@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct SuggestedView: View {
+    @StateObject var viewModel: OnboardingViewModel
     var body: some View {
         VStack {
+            NavigationLink(destination: FirstIntroductionView(),
+                           isActive: $viewModel.isPresentFirstIntroductionView) {}
             Image.suggested
                 .resizable()
                 .frame(width: 157, height: 136)
@@ -31,6 +34,6 @@ struct SuggestedView: View {
 
 struct SuggestedView_Previews: PreviewProvider {
     static var previews: some View {
-        SuggestedView()
+        SuggestedView(viewModel: OnboardingViewModel())
     }
 }

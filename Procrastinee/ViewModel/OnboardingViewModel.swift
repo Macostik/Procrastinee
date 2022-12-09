@@ -8,5 +8,19 @@
 import Foundation
 
 class OnboardingViewModel: ObservableObject {
-    @Published var isPresentSuggestedView = false
+    @Published var isPresentSuggestedView = false {
+        willSet {
+            if newValue {
+                presentFirstIntroductionViewAfterDelay()
+            }
+        }
+    }
+    @Published var isPresentFirstIntroductionView = false
+    @Published var isPresentSecondIntroductionView = false
+    @Published var isPresentThirdIntroductionView = false
+    func presentFirstIntroductionViewAfterDelay() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+            self.isPresentFirstIntroductionView = true
+        })
+    }
 }

@@ -14,6 +14,7 @@ internal extension Color {
 
 internal extension Image {
   // Assets.xcassets
+  static var arrow : Image { Image("arrow", bundle: BundleToken.bundle) }
   static var firstIntroduction : Image { Image("firstIntroduction", bundle: BundleToken.bundle) }
   static var getStarted : Image { Image("getStarted", bundle: BundleToken.bundle) }
   static var procrasteeImage : Image { Image("procrasteeImage", bundle: BundleToken.bundle) }

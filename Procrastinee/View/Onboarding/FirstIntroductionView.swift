@@ -16,7 +16,26 @@ struct FirstIntroductionView: View {
                 .scaledToFit()
             Spacer()
             Image.firstIntroduction
+            Group {
+                Text(L10n.Onboarding.hey) +
+                Text(L10n.Onboarding.stoping).bold() +
+                Text(L10n.Onboarding.weJustWant)
+            }
+            .font(.system(size: 18))
+            .padding(.top, 63)
+            .padding(.horizontal, 24)
             Spacer()
+            GradientButton(action: {
+                
+            }, label: {
+                HStack {
+                    Image.arrow
+                    Text(L10n.Onboarding.continue)
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 17)
+                            .weight(.bold))
+                }
+            })
         }
     }
 }
