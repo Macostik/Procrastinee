@@ -1,0 +1,32 @@
+
+ input_dir: Procrastinee/Resources
+ output_dir: Procrastinee/Generated
+
+
+# Image && Color
+ xcassets:
+  inputs:
+    - Assets.xcassets
+    - Colors.xcassets
+  outputs:
+    templatePath: Procrastinee/Templates/swiftui-xcassets-template.stencil
+    output: XCAssets+Generated.swift
+    
+# Strings
+ strings:
+  inputs:
+    - Localization/en.lproj
+  outputs:
+    - templateName: structured-swift5
+      params:
+        publicAccess: true
+      output: Strings+Generated.swift
+      
+# Fonts
+ fonts:
+  inputs:
+    - Annie
+  outputs:
+    templatePath: Procrastinee/Templates/fonts_swift5_swiftui.stencil
+    output: Fonts+Generated.swift
+

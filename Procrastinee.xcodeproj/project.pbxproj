@@ -11,6 +11,15 @@
 		560328D229431CA300E6BCB3 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328D129431CA300E6BCB3 /* ContentView.swift */; };
 		560328D429431CA400E6BCB3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 560328D329431CA400E6BCB3 /* Assets.xcassets */; };
 		560328D729431CA400E6BCB3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 560328D629431CA400E6BCB3 /* Preview Assets.xcassets */; };
+		560328DF29431D8F00E6BCB3 /* swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 560328DD29431D8F00E6BCB3 /* swiftlint.yml */; };
+		560328E029431D8F00E6BCB3 /* swiftgen.yml in Resources */ = {isa = PBXBuildFile; fileRef = 560328DE29431D8F00E6BCB3 /* swiftgen.yml */; };
+		560328E72943206300E6BCB3 /* fonts_swift5_swiftui.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 560328E52943206300E6BCB3 /* fonts_swift5_swiftui.stencil */; };
+		560328E82943206300E6BCB3 /* swiftui-xcassets-template.stencil in Resources */ = {isa = PBXBuildFile; fileRef = 560328E62943206300E6BCB3 /* swiftui-xcassets-template.stencil */; };
+		560328EA294320D100E6BCB3 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 560328E9294320D100E6BCB3 /* Colors.xcassets */; };
+		560328F42943254900E6BCB3 /* Fonts+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328F12943254900E6BCB3 /* Fonts+Generated.swift */; };
+		560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328F22943254900E6BCB3 /* XCAssets+Generated.swift */; };
+		560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328F32943254900E6BCB3 /* Strings+Generated.swift */; };
+		560328F92943266700E6BCB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560328FB2943266700E6BCB3 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +28,16 @@
 		560328D129431CA300E6BCB3 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		560328D329431CA400E6BCB3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		560328D629431CA400E6BCB3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		560328DD29431D8F00E6BCB3 /* swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftlint.yml; sourceTree = "<group>"; };
+		560328DE29431D8F00E6BCB3 /* swiftgen.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = swiftgen.yml; sourceTree = "<group>"; };
+		560328E52943206300E6BCB3 /* fonts_swift5_swiftui.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = fonts_swift5_swiftui.stencil; sourceTree = "<group>"; };
+		560328E62943206300E6BCB3 /* swiftui-xcassets-template.stencil */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "swiftui-xcassets-template.stencil"; sourceTree = "<group>"; };
+		560328E9294320D100E6BCB3 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		560328F12943254900E6BCB3 /* Fonts+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Fonts+Generated.swift"; sourceTree = "<group>"; };
+		560328F22943254900E6BCB3 /* XCAssets+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCAssets+Generated.swift"; sourceTree = "<group>"; };
+		560328F32943254900E6BCB3 /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
+		560328F8294325C300E6BCB3 /* Annie-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Annie-Regular.ttf"; sourceTree = "<group>"; };
+		560328FA2943266700E6BCB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +54,8 @@
 		560328C329431CA300E6BCB3 = {
 			isa = PBXGroup;
 			children = (
+				560328DE29431D8F00E6BCB3 /* swiftgen.yml */,
+				560328DD29431D8F00E6BCB3 /* swiftlint.yml */,
 				560328CE29431CA300E6BCB3 /* Procrastinee */,
 				560328CD29431CA300E6BCB3 /* Products */,
 			);
@@ -51,9 +72,11 @@
 		560328CE29431CA300E6BCB3 /* Procrastinee */ = {
 			isa = PBXGroup;
 			children = (
+				560328F02943253400E6BCB3 /* Generated */,
+				560328E42943203000E6BCB3 /* Templates */,
+				560328E129431DAF00E6BCB3 /* Resources */,
 				560328CF29431CA300E6BCB3 /* ProcrastineeApp.swift */,
 				560328D129431CA300E6BCB3 /* ContentView.swift */,
-				560328D329431CA400E6BCB3 /* Assets.xcassets */,
 				560328D529431CA400E6BCB3 /* Preview Content */,
 			);
 			path = Procrastinee;
@@ -65,6 +88,52 @@
 				560328D629431CA400E6BCB3 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		560328E129431DAF00E6BCB3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				560328F72943258D00E6BCB3 /* Annie */,
+				560328EB294320DE00E6BCB3 /* Localization */,
+				560328D329431CA400E6BCB3 /* Assets.xcassets */,
+				560328E9294320D100E6BCB3 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		560328E42943203000E6BCB3 /* Templates */ = {
+			isa = PBXGroup;
+			children = (
+				560328E52943206300E6BCB3 /* fonts_swift5_swiftui.stencil */,
+				560328E62943206300E6BCB3 /* swiftui-xcassets-template.stencil */,
+			);
+			path = Templates;
+			sourceTree = "<group>";
+		};
+		560328EB294320DE00E6BCB3 /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				560328FB2943266700E6BCB3 /* Localizable.strings */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		560328F02943253400E6BCB3 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				560328F12943254900E6BCB3 /* Fonts+Generated.swift */,
+				560328F32943254900E6BCB3 /* Strings+Generated.swift */,
+				560328F22943254900E6BCB3 /* XCAssets+Generated.swift */,
+			);
+			path = Generated;
+			sourceTree = "<group>";
+		};
+		560328F72943258D00E6BCB3 /* Annie */ = {
+			isa = PBXGroup;
+			children = (
+				560328F8294325C300E6BCB3 /* Annie-Regular.ttf */,
+			);
+			path = Annie;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -126,7 +195,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				560328D729431CA400E6BCB3 /* Preview Assets.xcassets in Resources */,
+				560328E72943206300E6BCB3 /* fonts_swift5_swiftui.stencil in Resources */,
+				560328E82943206300E6BCB3 /* swiftui-xcassets-template.stencil in Resources */,
+				560328DF29431D8F00E6BCB3 /* swiftlint.yml in Resources */,
 				560328D429431CA400E6BCB3 /* Assets.xcassets in Resources */,
+				560328F92943266700E6BCB3 /* Localizable.strings in Resources */,
+				560328E029431D8F00E6BCB3 /* swiftgen.yml in Resources */,
+				560328EA294320D100E6BCB3 /* Colors.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,12 +212,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */,
+				560328F42943254900E6BCB3 /* Fonts+Generated.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
 				560328D029431CA300E6BCB3 /* ProcrastineeApp.swift in Sources */,
+				560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		560328FB2943266700E6BCB3 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				560328FA2943266700E6BCB3 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		560328D829431CA400E6BCB3 /* Debug */ = {
