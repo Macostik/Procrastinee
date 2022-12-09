@@ -20,6 +20,8 @@
 		560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328F22943254900E6BCB3 /* XCAssets+Generated.swift */; };
 		560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328F32943254900E6BCB3 /* Strings+Generated.swift */; };
 		560328F92943266700E6BCB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560328FB2943266700E6BCB3 /* Localizable.strings */; };
+		5603290029432B1400E6BCB3 /* GetStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328FF29432B1400E6BCB3 /* GetStartView.swift */; };
+		5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290229432FDB00E6BCB3 /* GradientButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		560328F32943254900E6BCB3 /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		560328F8294325C300E6BCB3 /* Annie-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Annie-Regular.ttf"; sourceTree = "<group>"; };
 		560328FA2943266700E6BCB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		560328FF29432B1400E6BCB3 /* GetStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartView.swift; sourceTree = "<group>"; };
+		5603290229432FDB00E6BCB3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,11 +76,13 @@
 		560328CE29431CA300E6BCB3 /* Procrastinee */ = {
 			isa = PBXGroup;
 			children = (
+				560328CF29431CA300E6BCB3 /* ProcrastineeApp.swift */,
+				560328FE294327B200E6BCB3 /* Model */,
+				560328FD294327A000E6BCB3 /* ViewModel */,
+				560328FC2943279B00E6BCB3 /* View */,
 				560328F02943253400E6BCB3 /* Generated */,
 				560328E42943203000E6BCB3 /* Templates */,
 				560328E129431DAF00E6BCB3 /* Resources */,
-				560328CF29431CA300E6BCB3 /* ProcrastineeApp.swift */,
-				560328D129431CA300E6BCB3 /* ContentView.swift */,
 				560328D529431CA400E6BCB3 /* Preview Content */,
 			);
 			path = Procrastinee;
@@ -136,6 +142,38 @@
 			path = Annie;
 			sourceTree = "<group>";
 		};
+		560328FC2943279B00E6BCB3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5603290129432B4D00E6BCB3 /* Onboarding */,
+				560328D129431CA300E6BCB3 /* ContentView.swift */,
+				5603290229432FDB00E6BCB3 /* GradientButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		560328FD294327A000E6BCB3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		560328FE294327B200E6BCB3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5603290129432B4D00E6BCB3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				560328FF29432B1400E6BCB3 /* GetStartView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,6 +184,8 @@
 				560328C829431CA300E6BCB3 /* Sources */,
 				560328C929431CA300E6BCB3 /* Frameworks */,
 				560328CA29431CA300E6BCB3 /* Resources */,
+				5603290429434C5E00E6BCB3 /* SwiftLint */,
+				5603290529434C6B00E6BCB3 /* SwiftGen */,
 			);
 			buildRules = (
 			);
@@ -207,14 +247,55 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		5603290429434C5E00E6BCB3 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftlint > /dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		5603290529434C6B00E6BCB3 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export PATH=\"$PATH:/opt/homebrew/bin\"\nif which swiftgen >/dev/null; then\n  swiftgen\nelse\n  echo \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		560328C829431CA300E6BCB3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */,
 				560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */,
 				560328F42943254900E6BCB3 /* Fonts+Generated.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
+				5603290029432B1400E6BCB3 /* GetStartView.swift in Sources */,
 				560328D029431CA300E6BCB3 /* ProcrastineeApp.swift in Sources */,
 				560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */,
 			);

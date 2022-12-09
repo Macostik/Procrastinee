@@ -11,9 +11,9 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
 
-  public enum Temp {
-    /// Temp string!
-    public static let string = L10n.tr("Localizable", "temp.string")
+  public enum Onboarding {
+    /// Get Started
+    public static let getStarted = L10n.tr("Localizable", "onboarding.getStarted")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
