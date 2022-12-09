@@ -20,11 +20,12 @@
 		560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328F22943254900E6BCB3 /* XCAssets+Generated.swift */; };
 		560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328F32943254900E6BCB3 /* Strings+Generated.swift */; };
 		560328F92943266700E6BCB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560328FB2943266700E6BCB3 /* Localizable.strings */; };
-		5603290029432B1400E6BCB3 /* GetStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328FF29432B1400E6BCB3 /* GetStartView.swift */; };
+		5603290029432B1400E6BCB3 /* GetStartedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328FF29432B1400E6BCB3 /* GetStartedView.swift */; };
 		5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290229432FDB00E6BCB3 /* GradientButton.swift */; };
 		5603290729435B7B00E6BCB3 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290629435B7B00E6BCB3 /* OnboardingView.swift */; };
 		5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */; };
-		5603290B29435CA900E6BCB3 /* SuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290A29435CA900E6BCB3 /* SuggestView.swift */; };
+		5603290D294362F200E6BCB3 /* SuggestedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290C294362F200E6BCB3 /* SuggestedView.swift */; };
+		5603290F2943683D00E6BCB3 /* FirstIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290E2943683D00E6BCB3 /* FirstIntroductionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,11 +44,12 @@
 		560328F32943254900E6BCB3 /* Strings+Generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Strings+Generated.swift"; sourceTree = "<group>"; };
 		560328F8294325C300E6BCB3 /* Annie-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Annie-Regular.ttf"; sourceTree = "<group>"; };
 		560328FA2943266700E6BCB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		560328FF29432B1400E6BCB3 /* GetStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartView.swift; sourceTree = "<group>"; };
+		560328FF29432B1400E6BCB3 /* GetStartedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartedView.swift; sourceTree = "<group>"; };
 		5603290229432FDB00E6BCB3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
 		5603290629435B7B00E6BCB3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
-		5603290A29435CA900E6BCB3 /* SuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestView.swift; sourceTree = "<group>"; };
+		5603290C294362F200E6BCB3 /* SuggestedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedView.swift; sourceTree = "<group>"; };
+		5603290E2943683D00E6BCB3 /* FirstIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstIntroductionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,8 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				5603290629435B7B00E6BCB3 /* OnboardingView.swift */,
-				560328FF29432B1400E6BCB3 /* GetStartView.swift */,
-				5603290A29435CA900E6BCB3 /* SuggestView.swift */,
+				560328FF29432B1400E6BCB3 /* GetStartedView.swift */,
+				5603290C294362F200E6BCB3 /* SuggestedView.swift */,
+				5603290E2943683D00E6BCB3 /* FirstIntroductionView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -305,9 +308,10 @@
 				560328F42943254900E6BCB3 /* Fonts+Generated.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
 				5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */,
-				5603290029432B1400E6BCB3 /* GetStartView.swift in Sources */,
+				5603290029432B1400E6BCB3 /* GetStartedView.swift in Sources */,
+				5603290D294362F200E6BCB3 /* SuggestedView.swift in Sources */,
+				5603290F2943683D00E6BCB3 /* FirstIntroductionView.swift in Sources */,
 				5603290729435B7B00E6BCB3 /* OnboardingView.swift in Sources */,
-				5603290B29435CA900E6BCB3 /* SuggestView.swift in Sources */,
 				560328D029431CA300E6BCB3 /* ProcrastineeApp.swift in Sources */,
 				560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */,
 			);

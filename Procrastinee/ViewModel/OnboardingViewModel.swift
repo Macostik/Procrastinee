@@ -8,5 +8,5 @@
 import Foundation
 
 class OnboardingViewModel: ObservableObject {
-    @Published var isPresentSuggestView = false
+    @Published var isPresentSuggestedView = false
 }

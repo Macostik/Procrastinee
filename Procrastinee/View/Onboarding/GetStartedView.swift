@@ -1,5 +1,5 @@
 //
-//  GetStartView.swift
+//  GetStartedView.swift
 //  Procrastinee
 //
 //  Created by Macostik on 09.12.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct GetStartView: View {
+struct GetStartedView: View {
     var getStartClick: (() -> Void)?
     var body: some View {
         ZStack {
@@ -33,8 +33,8 @@ struct GetStartView: View {
     }
 }
 
-struct GetStartView_Previews: PreviewProvider {
+struct GetStartedView_Previews: PreviewProvider {
     static var previews: some View {
-        GetStartView()
+        GetStartedView()
     }
 }

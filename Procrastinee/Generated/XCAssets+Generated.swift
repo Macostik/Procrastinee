@@ -14,11 +14,13 @@ internal extension Color {
 
 internal extension Image {
   // Assets.xcassets
+  static var firstIntroduction : Image { Image("firstIntroduction", bundle: BundleToken.bundle) }
   static var getStarted : Image { Image("getStarted", bundle: BundleToken.bundle) }
-  static var logoImage : Image { Image("logoImage", bundle: BundleToken.bundle) }
-  static var rocrastinee : Image { Image("rocrastinee", bundle: BundleToken.bundle) }
+  static var procrasteeImage : Image { Image("procrasteeImage", bundle: BundleToken.bundle) }
+  static var reminders : Image { Image("reminders", bundle: BundleToken.bundle) }
+  static var secondIntroduction : Image { Image("secondIntroduction", bundle: BundleToken.bundle) }
   static var suggested : Image { Image("suggested", bundle: BundleToken.bundle) }
-  static var suggestedText : Image { Image("suggestedText", bundle: BundleToken.bundle) }
+  static var thirdIntroduction : Image { Image("thirdIntroduction", bundle: BundleToken.bundle) }
   // Colors.xcassets
 }
 
