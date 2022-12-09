@@ -17,6 +17,8 @@ internal extension Image {
   static var getStarted : Image { Image("getStarted", bundle: BundleToken.bundle) }
   static var logoImage : Image { Image("logoImage", bundle: BundleToken.bundle) }
   static var rocrastinee : Image { Image("rocrastinee", bundle: BundleToken.bundle) }
+  static var suggested : Image { Image("suggested", bundle: BundleToken.bundle) }
+  static var suggestedText : Image { Image("suggestedText", bundle: BundleToken.bundle) }
   // Colors.xcassets
 }
 

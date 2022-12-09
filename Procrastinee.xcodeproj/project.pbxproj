@@ -22,6 +22,9 @@
 		560328F92943266700E6BCB3 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 560328FB2943266700E6BCB3 /* Localizable.strings */; };
 		5603290029432B1400E6BCB3 /* GetStartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560328FF29432B1400E6BCB3 /* GetStartView.swift */; };
 		5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290229432FDB00E6BCB3 /* GradientButton.swift */; };
+		5603290729435B7B00E6BCB3 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290629435B7B00E6BCB3 /* OnboardingView.swift */; };
+		5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */; };
+		5603290B29435CA900E6BCB3 /* SuggestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290A29435CA900E6BCB3 /* SuggestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,9 @@
 		560328FA2943266700E6BCB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		560328FF29432B1400E6BCB3 /* GetStartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetStartView.swift; sourceTree = "<group>"; };
 		5603290229432FDB00E6BCB3 /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		5603290629435B7B00E6BCB3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		5603290A29435CA900E6BCB3 /* SuggestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,7 @@
 		560328FD294327A000E6BCB3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -169,7 +176,9 @@
 		5603290129432B4D00E6BCB3 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
+				5603290629435B7B00E6BCB3 /* OnboardingView.swift */,
 				560328FF29432B1400E6BCB3 /* GetStartView.swift */,
+				5603290A29435CA900E6BCB3 /* SuggestView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -295,7 +304,10 @@
 				560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */,
 				560328F42943254900E6BCB3 /* Fonts+Generated.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
+				5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */,
 				5603290029432B1400E6BCB3 /* GetStartView.swift in Sources */,
+				5603290729435B7B00E6BCB3 /* OnboardingView.swift in Sources */,
+				5603290B29435CA900E6BCB3 /* SuggestView.swift in Sources */,
 				560328D029431CA300E6BCB3 /* ProcrastineeApp.swift in Sources */,
 				560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */,
 			);
@@ -445,6 +457,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -452,9 +465,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = HYS.Procrastinee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -474,6 +490,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -481,9 +498,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = HYS.Procrastinee;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

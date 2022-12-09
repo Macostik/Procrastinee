@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct GetStartView: View {
+    var getStartClick: (() -> Void)?
     var body: some View {
         ZStack {
             Image.getStarted
@@ -17,11 +18,13 @@ struct GetStartView: View {
                 .frame(alignment: .center)
             VStack {
                 Spacer()
-                GradientButton(label: {
+                GradientButton(action: {
+                    getStartClick?()
+                }, label: {
                     Text(L10n.Onboarding.getStarted)
                         .foregroundColor(Color.white)
                         .font(.system(size: 17)
-                        .weight(.bold))
+                            .weight(.bold))
                 })
             }
             .padding(.bottom, 66)
