@@ -26,6 +26,11 @@
 		5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */; };
 		5603290D294362F200E6BCB3 /* SuggestedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290C294362F200E6BCB3 /* SuggestedView.swift */; };
 		5603290F2943683D00E6BCB3 /* FirstIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5603290E2943683D00E6BCB3 /* FirstIntroductionView.swift */; };
+		56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D342944A8D90068BDFF /* PageIndicatorView.swift */; };
+		56774D372944ABA60068BDFF /* SecondIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D362944ABA60068BDFF /* SecondIntroductionView.swift */; };
+		56774D392944AEFA0068BDFF /* ThirdIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D382944AEFA0068BDFF /* ThirdIntroductionView.swift */; };
+		56774D3B2944AF620068BDFF /* RemindersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D3A2944AF620068BDFF /* RemindersView.swift */; };
+		56774D3D2944B75A0068BDFF /* CreateProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D3C2944B75A0068BDFF /* CreateProfileView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +55,11 @@
 		5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		5603290C294362F200E6BCB3 /* SuggestedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestedView.swift; sourceTree = "<group>"; };
 		5603290E2943683D00E6BCB3 /* FirstIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstIntroductionView.swift; sourceTree = "<group>"; };
+		56774D342944A8D90068BDFF /* PageIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorView.swift; sourceTree = "<group>"; };
+		56774D362944ABA60068BDFF /* SecondIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondIntroductionView.swift; sourceTree = "<group>"; };
+		56774D382944AEFA0068BDFF /* ThirdIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdIntroductionView.swift; sourceTree = "<group>"; };
+		56774D3A2944AF620068BDFF /* RemindersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindersView.swift; sourceTree = "<group>"; };
+		56774D3C2944B75A0068BDFF /* CreateProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +166,7 @@
 				5603290129432B4D00E6BCB3 /* Onboarding */,
 				560328D129431CA300E6BCB3 /* ContentView.swift */,
 				5603290229432FDB00E6BCB3 /* GradientButton.swift */,
+				56774D342944A8D90068BDFF /* PageIndicatorView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -182,6 +193,10 @@
 				560328FF29432B1400E6BCB3 /* GetStartedView.swift */,
 				5603290C294362F200E6BCB3 /* SuggestedView.swift */,
 				5603290E2943683D00E6BCB3 /* FirstIntroductionView.swift */,
+				56774D362944ABA60068BDFF /* SecondIntroductionView.swift */,
+				56774D382944AEFA0068BDFF /* ThirdIntroductionView.swift */,
+				56774D3A2944AF620068BDFF /* RemindersView.swift */,
+				56774D3C2944B75A0068BDFF /* CreateProfileView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -305,12 +320,17 @@
 			files = (
 				5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */,
 				560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */,
+				56774D3D2944B75A0068BDFF /* CreateProfileView.swift in Sources */,
 				560328F42943254900E6BCB3 /* Fonts+Generated.swift in Sources */,
+				56774D372944ABA60068BDFF /* SecondIntroductionView.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
 				5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */,
 				5603290029432B1400E6BCB3 /* GetStartedView.swift in Sources */,
 				5603290D294362F200E6BCB3 /* SuggestedView.swift in Sources */,
+				56774D392944AEFA0068BDFF /* ThirdIntroductionView.swift in Sources */,
+				56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */,
 				5603290F2943683D00E6BCB3 /* FirstIntroductionView.swift in Sources */,
+				56774D3B2944AF620068BDFF /* RemindersView.swift in Sources */,
 				5603290729435B7B00E6BCB3 /* OnboardingView.swift in Sources */,
 				560328D029431CA300E6BCB3 /* ProcrastineeApp.swift in Sources */,
 				560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */,

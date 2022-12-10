@@ -9,6 +9,7 @@ internal extension Color {
   // Colors.xcassets
   static var endPointColor : Color { Color("endPointColor", bundle: BundleToken.bundle) }
   static var mainTextColor : Color { Color("mainTextColor", bundle: BundleToken.bundle) }
+  static var onboardingTextColor : Color { Color("onboardingTextColor", bundle: BundleToken.bundle) }
   static var startPointColor : Color { Color("startPointColor", bundle: BundleToken.bundle) }
 }
 

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GetStartedView: View {
-    @StateObject var viewModel: OnboardingViewModel
+    var isContinueButtonHelper: (() -> Void)?
     var body: some View {
         ZStack {
             Image.getStarted
@@ -19,7 +19,7 @@ struct GetStartedView: View {
             VStack {
                 Spacer()
                 GradientButton(action: {
-                   viewModel.isPresentSuggestedView = true
+                  isContinueButtonHelper?()
                 }, label: {
                     Text(L10n.Onboarding.getStarted)
                         .foregroundColor(Color.white)

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SuggestedView: View {
-    @StateObject var viewModel: OnboardingViewModel
+    @State private var isPresentedFirstIntroductionView = false
     var body: some View {
         VStack {
             NavigationLink(destination: FirstIntroductionView(),
-                           isActive: $viewModel.isPresentFirstIntroductionView) {}
+                           isActive: $isPresentedFirstIntroductionView) {}
             Image.suggested
                 .resizable()
                 .frame(width: 157, height: 136)
@@ -27,6 +27,11 @@ struct SuggestedView: View {
             .padding(.top, 19)
             .padding(.horizontal, 50)
         }
+        .onAppear {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: {
+                self.isPresentedFirstIntroductionView = true
+            })
+        }
         .offset(y: -25)
         .navigationBarHidden(true)
     }
@@ -34,6 +39,6 @@ struct SuggestedView: View {
 
 struct SuggestedView_Previews: PreviewProvider {
     static var previews: some View {
-        SuggestedView(viewModel: OnboardingViewModel())
+        SuggestedView()
     }
 }

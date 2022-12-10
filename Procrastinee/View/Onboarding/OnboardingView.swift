@@ -7,12 +7,14 @@
 
 import SwiftUI
 struct OnboardingView: View {
-    @StateObject private var viewModel = OnboardingViewModel()
+    @State private var isPresentedSuggestedView = false
     var body: some View {
         VStack {
-            NavigationLink(destination: SuggestedView(viewModel: viewModel),
-                           isActive: $viewModel.isPresentSuggestedView) {}
-            GetStartedView(viewModel: viewModel)
+            NavigationLink(destination: SuggestedView(),
+                           isActive: $isPresentedSuggestedView) {}
+            GetStartedView {
+                isPresentedSuggestedView = true
+            }
         }
     }
 }
