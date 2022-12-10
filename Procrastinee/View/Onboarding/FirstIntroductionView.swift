@@ -28,7 +28,7 @@ struct FirstIntroductionView: View {
                         .weight(.light)) +
                 Text(L10n.Onboarding.stoping)
                     .font(.system(size: 18)
-                        .weight(.bold)) +
+                        .weight(.medium)) +
                 Text(L10n.Onboarding.weJustWant)
                     .font(.system(size: 18)
                         .weight(.light))

@@ -20,32 +20,46 @@ public enum L10n {
     public static let becomeMoreSuccessful = L10n.tr("Localizable", "onboarding.becomeMoreSuccessful")
     /// Continue
     public static let `continue` = L10n.tr("Localizable", "onboarding.continue")
+    /// CREATE
+    public static let create = L10n.tr("Localizable", "onboarding.create")
     /// For better experience, 
     public static let forBetter = L10n.tr("Localizable", "onboarding.forBetter")
     /// Get Started
     public static let getStarted = L10n.tr("Localizable", "onboarding.getStarted")
     /// Hey! We’re really happy to meet you. Before you begin this journey of 
     public static let hey = L10n.tr("Localizable", "onboarding.hey")
+    /// Keep you on track with small reminders?
+    public static let keepYourTrack = L10n.tr("Localizable", "onboarding.keepYourTrack")
     /// motivated. 
     public static let motivated = L10n.tr("Localizable", "onboarding.motivated")
+    /// Nickname...
+    public static let nickname = L10n.tr("Localizable", "onboarding.nickname")
     /// or 
     public static let or = L10n.tr("Localizable", "onboarding.or")
     /// productive, concentrated 
     public static let proactive = L10n.tr("Localizable", "onboarding.proactive")
     /// You will be able not to just set the tasks but also you will complete all of them by the end of the day. You will no longer scold yourself for not finishing the set tasks you had to do because you already completed them.
     public static let secondIntroduction = L10n.tr("Localizable", "onboarding.secondIntroduction")
+    /// Set your nickname and country.
+    public static let setYourName = L10n.tr("Localizable", "onboarding.setYourName")
     /// stopping procrastinating, 
     public static let stoping = L10n.tr("Localizable", "onboarding.stoping")
     /// stop procrastinating 
     public static let stopProcrastinating = L10n.tr("Localizable", "onboarding.stopProcrastinating")
     /// This app will help you to 
     public static let thirdIntroduction = L10n.tr("Localizable", "onboarding.thirdIntroduction")
+    /// to create your profile
+    public static let toCreateProfile = L10n.tr("Localizable", "onboarding.toCreateProfile")
     /// turn audio on 
     public static let turnAudioOn = L10n.tr("Localizable", "onboarding.turnAudioOn")
     /// use headphones.
     public static let useHeadphones = L10n.tr("Localizable", "onboarding.useHeadphones")
+    /// Use reminders to achieve best results
+    public static let useReminders = L10n.tr("Localizable", "onboarding.useReminders")
     /// we just want to tell you what exactly you will achieve by completely killing all your procrastinating nature.
     public static let weJustWant = L10n.tr("Localizable", "onboarding.weJustWant")
+    /// Yes, please
+    public static let yesPlease = L10n.tr("Localizable", "onboarding.yesPlease")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
