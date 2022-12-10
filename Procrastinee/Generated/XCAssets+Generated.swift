@@ -11,12 +11,14 @@ internal extension Color {
   static var endPointColor : Color { Color("endPointColor", bundle: BundleToken.bundle) }
   static var mainTextColor : Color { Color("mainTextColor", bundle: BundleToken.bundle) }
   static var onboardingTextColor : Color { Color("onboardingTextColor", bundle: BundleToken.bundle) }
+  static var progressBackgroundColor : Color { Color("progressBackgroundColor", bundle: BundleToken.bundle) }
   static var shadowColor : Color { Color("shadowColor", bundle: BundleToken.bundle) }
   static var startPointColor : Color { Color("startPointColor", bundle: BundleToken.bundle) }
 }
 
 internal extension Image {
   // Assets.xcassets
+  static var successMark : Image { Image("SuccessMark", bundle: BundleToken.bundle) }
   static var arrow : Image { Image("arrow", bundle: BundleToken.bundle) }
   static var checkmark : Image { Image("checkmark", bundle: BundleToken.bundle) }
   static var countrySelectedIcon : Image { Image("countrySelectedIcon", bundle: BundleToken.bundle) }

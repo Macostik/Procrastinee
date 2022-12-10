@@ -12,6 +12,8 @@ import Foundation
 public enum L10n {
 
   public enum Onboarding {
+    /// Your Account is created Successfully
+    public static let accountCreateSuccess = L10n.tr("Localizable", "onboarding.accountCreateSuccess")
     /// Also, in this app, you will meet a community of people who are on the same page as you, who are working hard to become the most productive version of them selfs.
     public static let also = L10n.tr("Localizable", "onboarding.also")
     /// and, most of all - 
@@ -22,6 +24,8 @@ public enum L10n {
     public static let `continue` = L10n.tr("Localizable", "onboarding.continue")
     /// CREATE
     public static let create = L10n.tr("Localizable", "onboarding.create")
+    /// Creating a profile...
+    public static let creatingProfile = L10n.tr("Localizable", "onboarding.creatingProfile")
     /// For better experience, 
     public static let forBetter = L10n.tr("Localizable", "onboarding.forBetter")
     /// Get Started

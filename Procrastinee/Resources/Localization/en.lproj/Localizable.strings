@@ -29,3 +29,5 @@
 "onboarding.setYourName" = "Set your nickname and country.";
 "onboarding.toCreateProfile" = "to create your profile";
 "onboarding.nickname" = "Nickname...";
+"onboarding.creatingProfile" = "Creating a profile...";
+"onboarding.accountCreateSuccess" = "Your Account is created Successfully";

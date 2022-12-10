@@ -9,6 +9,7 @@ import Foundation
 
 class OnboardingViewModel: ObservableObject {
     @Published var isPresentedProgressBarView = false
+    @Published var nickName = ""
     var countryList = [String]()
     init() {
         setup()

@@ -10,10 +10,9 @@ import SwiftUI
 struct CreateProfileView: View {
     @StateObject private var keyboard = KeyboardHandler()
     @StateObject private var viewModel = OnboardingViewModel()
-    @State private var nickName = ""
     var body: some View {
         VStack {
-            NavigationLink(destination: CreateProfileView(),
+            NavigationLink(destination: ProgressView(),
                            isActive: $viewModel.isPresentedProgressBarView) {}
             Text(L10n.Onboarding.setYourName)
                 .font(.system(size: 28).weight(.bold))
@@ -35,7 +34,7 @@ struct CreateProfileView: View {
                         Divider()
                             .padding(.vertical, 19)
                             .padding(.horizontal, 11)
-                        TextField(L10n.Onboarding.nickname, text: $nickName)
+                        TextField(L10n.Onboarding.nickname, text: $viewModel.nickName)
                             .font(.system(size: 18))
                     }
                     .padding(.horizontal, 14)
