@@ -12,10 +12,9 @@ struct OnboardingView: View {
         VStack {
             NavigationLink(destination: SuggestedView(),
                            isActive: $isPresentedSuggestedView) {}
-//            GetStartedView {
-//                isPresentedSuggestedView = true
-//            }
-            CreateProfileView()
+            GetStartedView {
+                isPresentedSuggestedView = true
+            }
         }
     }
 }

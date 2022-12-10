@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct CreateProfileView: View {
-    @StateObject var keyboard = KeyboardHandler()
-    @State private var isPresentedProgressBarView = false
+    @StateObject private var keyboard = KeyboardHandler()
+    @StateObject private var viewModel = OnboardingViewModel()
     @State private var nickName = ""
     var body: some View {
         VStack {
             NavigationLink(destination: CreateProfileView(),
-                           isActive: $isPresentedProgressBarView) {}
+                           isActive: $viewModel.isPresentedProgressBarView) {}
             Text(L10n.Onboarding.setYourName)
                 .font(.system(size: 28).weight(.bold))
                 .multilineTextAlignment(.center)
@@ -30,7 +30,7 @@ struct CreateProfileView: View {
                 .foregroundColor(Color.white)
                 .overlay {
                     HStack {
-                        Image(systemName: "rectangle.tophalf.filled")
+                        Text(viewModel.countryList.first ?? "")
                         Image.countrySelectedIcon
                         Divider()
                             .padding(.vertical, 19)
@@ -46,7 +46,7 @@ struct CreateProfileView: View {
                 .offset(y: -100)
             Spacer()
             GradientButton(action: {
-                isPresentedProgressBarView = true
+                viewModel.isPresentedProgressBarView = true
             }, label: {
                 HStack {
                     Image.checkmark
@@ -56,6 +56,7 @@ struct CreateProfileView: View {
                             .weight(.bold))
                 }
             })
+            .animation(.easeInOut, value: keyboard.height)
             .offset(y: -keyboard.height - (keyboard.height > 0 ? 15 : 66))
         }
         .background(Color.backgroundColor)
