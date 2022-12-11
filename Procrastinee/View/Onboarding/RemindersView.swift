@@ -21,7 +21,7 @@ struct RemindersView: View {
             Text(L10n.Onboarding.useReminders)
                 .font(.system(size: 18).weight(.medium))
                 .multilineTextAlignment(.center)
-                .foregroundColor(Color.gray.opacity(0.3))
+                .foregroundColor(Color.grayColor)
                 .padding(.horizontal, 90)
                 .padding(.top, -10)
             Spacer()

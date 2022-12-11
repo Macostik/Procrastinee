@@ -32,6 +32,7 @@
 		560B68DF2944EA7A00EDD52F /* SuccessCreatingAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */; };
 		564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5B92945E5E900912250 /* AnimationCompletion.swift */; };
 		564DC5BD2945E69700912250 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5BC2945E69700912250 /* View+Ext.swift */; };
+		564DC5BF29462F6700912250 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5BE29462F6700912250 /* PurchaseView.swift */; };
 		56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D342944A8D90068BDFF /* PageIndicatorView.swift */; };
 		56774D372944ABA60068BDFF /* SecondIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D362944ABA60068BDFF /* SecondIntroductionView.swift */; };
 		56774D392944AEFA0068BDFF /* ThirdIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D382944AEFA0068BDFF /* ThirdIntroductionView.swift */; };
@@ -67,6 +68,7 @@
 		560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCreatingAccountView.swift; sourceTree = "<group>"; };
 		564DC5B92945E5E900912250 /* AnimationCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletion.swift; sourceTree = "<group>"; };
 		564DC5BC2945E69700912250 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
+		564DC5BE29462F6700912250 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
 		56774D342944A8D90068BDFF /* PageIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorView.swift; sourceTree = "<group>"; };
 		56774D362944ABA60068BDFF /* SecondIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondIntroductionView.swift; sourceTree = "<group>"; };
 		56774D382944AEFA0068BDFF /* ThirdIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdIntroductionView.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				56774D3C2944B75A0068BDFF /* CreateProfileView.swift */,
 				560B68DC2944E8EF00EDD52F /* ProgressView.swift */,
 				560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */,
+				564DC5BE29462F6700912250 /* PurchaseView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -355,6 +358,7 @@
 				5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */,
 				560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */,
 				56774D3D2944B75A0068BDFF /* CreateProfileView.swift in Sources */,
+				564DC5BF29462F6700912250 /* PurchaseView.swift in Sources */,
 				560328F42943254900E6BCB3 /* Fonts+Generated.swift in Sources */,
 				56774D372944ABA60068BDFF /* SecondIntroductionView.swift in Sources */,
 				564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */,

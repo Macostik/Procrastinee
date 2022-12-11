@@ -11,13 +11,13 @@ struct ProgressView: View {
     @StateObject var viewModel: OnboardingViewModel
     var body: some View {
         VStack {
-            NavigationLink(destination: SuccessCreatingAccountView(),
-                           isActive: $viewModel.isPresentSuccessCreatingAccount) {}
+            NavigationLink(destination: SuccessCreatingAccountView(viewModel: viewModel),
+                           isActive: $viewModel.isPresentedSuccessCreatingAccount) {}
             Text(L10n.Onboarding.creatingProfile)
                 .font(.system(size: 14).weight(.medium))
                 .foregroundColor(Color.onboardingTextColor)
             ProgressBarView {
-                viewModel.isPresentSuccessCreatingAccount = true
+                viewModel.isPresentedSuccessCreatingAccount = true
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

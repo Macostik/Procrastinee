@@ -6,12 +6,51 @@
 //
 
 import Foundation
+import Combine
+
+enum Purchasable: String, CaseIterable {
+    case week, month, year
+    var description: String {
+        switch self {
+        case .week: return L10n.Onboarding.oneWeek
+        case .month: return L10n.Onboarding.threeMonth
+        case .year: return L10n.Onboarding.oneYear
+        }
+    }
+    var price: String {
+        switch self {
+        case .week: return L10n.Onboarding.oneWeekPrice
+        case .month: return L10n.Onboarding.threeMonthPrice
+        case .year: return L10n.Onboarding.oneYearPrice
+        }
+    }
+    var averageValue: String {
+        switch self {
+        case .week: return L10n.Onboarding.averagePriceOfWeek
+        case .month: return L10n.Onboarding.averagePriceOfMonth
+        case .year: return L10n.Onboarding.averagePriceOfYear
+        }
+    }
+}
 
 class OnboardingViewModel: ObservableObject {
-    @Published var isPresentedProgressBarView = false
-    @Published var isPresentSuccessCreatingAccount = false
     @Published var nickName = ""
+    @Published var isPresentedPurchaseView = false
+    @Published var isPresentedProgressBarView = false
+    @Published var isPresentedSuccessCreatingAccount = false {
+        willSet {
+            if newValue {
+                cancellable = Timer.publish(every: 2, on: .main, in: .default)
+                    .autoconnect()
+                    .receive(on: DispatchQueue.main)
+                    .map({ _ in true })
+                    .assign(to: \.isPresentedPurchaseView, on: self)
+            }
+        }
+    }
+    var purchaseList = Purchasable.allCases
     var countryList = [String]()
+    var cancellable: Cancellable?
     init() {
         setup()
     }

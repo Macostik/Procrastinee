@@ -31,3 +31,15 @@
 "onboarding.nickname" = "Nickname...";
 "onboarding.creatingProfile" = "Creating a profile...";
 "onboarding.accountCreateSuccess" = "Your Account is created Successfully";
+"onboarding.chooseYourPlan" = "Choose your plan";
+"onboarding.tryFree" = "TRY 3 DAYS FREE";
+"onboarding.alreadySubscribe" = "Already subscriber?";
+"onboarding.oneWeek" = "1 Week\n Plan";
+"onboarding.threeMonth" = "12 Weeks\n Plan";
+"onboarding.oneYear" = "1 Year\n Plan";
+"onboarding.oneWeekPrice" = "4,99 USD\n for week";
+"onboarding.threeMonthPrice" = "19,99 USD\n for 12 weeks";
+"onboarding.oneYearPrice" = "29,99 USD\n for year";
+"onboarding.averagePriceOfWeek" = "4,99 USD / week";
+"onboarding.averagePriceOfMonth" = "1,66 USD / week";
+"onboarding.averagePriceOfYear" = "0,41 USD / week";
