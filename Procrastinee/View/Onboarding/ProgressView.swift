@@ -8,26 +8,27 @@
 import SwiftUI
 
 struct ProgressView: View {
-    @State private var isPresentSuccessCreatingAccount = false
+    @StateObject var viewModel: OnboardingViewModel
     var body: some View {
         VStack {
+            NavigationLink(destination: SuccessCreatingAccountView(),
+                           isActive: $viewModel.isPresentSuccessCreatingAccount) {}
             Text(L10n.Onboarding.creatingProfile)
                 .font(.system(size: 14).weight(.medium))
                 .foregroundColor(Color.onboardingTextColor)
-            ProgressBarView(progress: 0.6)
+            ProgressBarView {
+                viewModel.isPresentSuccessCreatingAccount = true
+            }
         }
-        .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                self.isPresentSuccessCreatingAccount = true
-            })
-        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
+        .ignoresSafeArea()
     }
 }
 
 struct ProgressView_Previews: PreviewProvider {
     static var previews: some View {
-        ProgressView()
+        ProgressView(viewModel: OnboardingViewModel())
     }
 }

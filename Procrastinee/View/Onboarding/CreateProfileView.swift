@@ -12,12 +12,14 @@ struct CreateProfileView: View {
     @StateObject private var viewModel = OnboardingViewModel()
     var body: some View {
         VStack {
-            NavigationLink(destination: ProgressView(),
+            NavigationLink(destination: ProgressView(viewModel: viewModel),
                            isActive: $viewModel.isPresentedProgressBarView) {}
             Text(L10n.Onboarding.setYourName)
                 .font(.system(size: 28).weight(.bold))
+                .foregroundColor(Color.black)
                 .multilineTextAlignment(.center)
                 .padding(.top, 50)
+                .padding(.horizontal, 67)
             Text(L10n.Onboarding.toCreateProfile)
                 .font(.system(size: 18).weight(.medium))
                 .multilineTextAlignment(.center)

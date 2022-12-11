@@ -29,6 +29,7 @@ struct GetStartedView: View {
             }
             .padding(.bottom, 66)
         }
+        .background(Color.backgroundColor)
         .ignoresSafeArea()
     }
 }

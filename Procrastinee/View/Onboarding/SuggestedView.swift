@@ -22,6 +22,7 @@ struct SuggestedView: View {
                 Text(L10n.Onboarding.or) +
                 Text(L10n.Onboarding.useHeadphones).bold()
             }
+            .foregroundColor(Color.onboardingTextColor)
             .multilineTextAlignment(.center)
             .font(.system(size: 18))
             .padding(.top, 19)
@@ -33,6 +34,8 @@ struct SuggestedView: View {
             })
         }
         .offset(y: -25)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Color.backgroundColor)
         .navigationBarHidden(true)
     }
 }

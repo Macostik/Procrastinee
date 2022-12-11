@@ -15,6 +15,7 @@ struct RemindersView: View {
                            isActive: $isPresentedCreateProfileView) {}
             Text(L10n.Onboarding.keepYourTrack)
                 .font(.system(size: 28).weight(.bold))
+                .foregroundColor(Color.black)
                 .multilineTextAlignment(.center)
                 .padding(.top, 50)
             Text(L10n.Onboarding.useReminders)
@@ -43,6 +44,7 @@ struct RemindersView: View {
             })
             .padding(.bottom, 66)
         }
+        .background(Color.backgroundColor)
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
     }

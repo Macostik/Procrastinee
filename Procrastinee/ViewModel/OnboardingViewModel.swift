@@ -9,6 +9,7 @@ import Foundation
 
 class OnboardingViewModel: ObservableObject {
     @Published var isPresentedProgressBarView = false
+    @Published var isPresentSuccessCreatingAccount = false
     @Published var nickName = ""
     var countryList = [String]()
     init() {
@@ -24,6 +25,9 @@ class OnboardingViewModel: ObservableObject {
             }
         }
     }
+}
+
+extension OnboardingViewModel {
     private func emojiFlag(for countryCode: String) -> String {
         func isLowercaseASCIIScalar(_ scalar: Unicode.Scalar) -> Bool {
             return scalar.value >= 0x61 && scalar.value <= 0x7A

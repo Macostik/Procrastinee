@@ -52,6 +52,7 @@ struct FirstIntroductionView: View {
                 .padding(.top, 12)
                 .padding(.bottom, 40)
         }
+        .background(Color.backgroundColor)
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)
     }

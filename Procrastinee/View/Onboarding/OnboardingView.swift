@@ -16,6 +16,7 @@ struct OnboardingView: View {
                 isPresentedSuggestedView = true
             }
         }
+        .background(Color.backgroundColor)
     }
 }
 
