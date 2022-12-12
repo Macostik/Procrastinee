@@ -17,10 +17,18 @@ struct SuggestedView: View {
                 .resizable()
                 .frame(width: 157, height: 136)
             Group {
-                Text(L10n.Onboarding.forBetter) +
-                Text(L10n.Onboarding.turnAudioOn).bold() +
-                Text(L10n.Onboarding.or) +
-                Text(L10n.Onboarding.useHeadphones).bold()
+                Text(L10n.Onboarding.forBetter)
+                    .font(.system(size: 18)
+                        .weight(.light)) +
+                Text(L10n.Onboarding.turnAudioOn)
+                    .font(.system(size: 18)
+                        .weight(.medium)) +
+                Text(L10n.Onboarding.or)
+                    .font(.system(size: 18)
+                        .weight(.light)) +
+                Text(L10n.Onboarding.useHeadphones)
+                    .font(.system(size: 18)
+                        .weight(.medium))
             }
             .foregroundColor(Color.onboardingTextColor)
             .multilineTextAlignment(.center)

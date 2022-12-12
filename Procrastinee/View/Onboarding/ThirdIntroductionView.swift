@@ -24,30 +24,30 @@ struct ThirdIntroductionView: View {
                 .scaledToFit()
             Group {
                 Text(L10n.Onboarding.thirdIntroduction)
-                    .font(.system(size: 17)
+                    .font(.system(size: 17.5)
                         .weight(.light)) +
                 Text(L10n.Onboarding.stopProcrastinating)
-                    .font(.system(size: 17)
+                    .font(.system(size: 17.5)
                         .weight(.medium)) +
                 Text(L10n.Onboarding.becomeMoreSuccessful)
-                    .font(.system(size: 17)
+                    .font(.system(size: 17.5)
                         .weight(.light)) +
                 Text(L10n.Onboarding.proactive)
-                    .font(.system(size: 17)
+                    .font(.system(size: 17.5)
                         .weight(.medium)) +
                 Text(L10n.Onboarding.andMost)
-                    .font(.system(size: 17)
+                    .font(.system(size: 17.5)
                         .weight(.light)) +
                 Text(L10n.Onboarding.motivated)
-                    .font(.system(size: 17)
+                    .font(.system(size: 17.5)
                         .weight(.medium)) +
                 Text(L10n.Onboarding.also)
-                    .font(.system(size: 17)
+                    .font(.system(size: 17.5)
                         .weight(.light))
             }
                 .foregroundColor(Color.onboardingTextColor)
                 .padding(.top, 34)
-                .padding(.horizontal, 22)
+                .padding(.horizontal, 20)
             Spacer()
             GradientButton(action: {
                 isPresentedKeepYourTrackView = true
