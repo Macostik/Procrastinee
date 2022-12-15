@@ -32,6 +32,7 @@ struct PurchaseView: View {
             .frame(height: 183)
             .padding(.horizontal, 19)
             GradientButton(action: {
+                viewModel.purchaseProduct()
             }, label: {
                 Text(L10n.Onboarding.tryFree)
                     .font(.system(size: 17).weight(.semibold))

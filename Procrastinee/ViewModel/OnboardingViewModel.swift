@@ -35,6 +35,7 @@ enum Purchasable: String, CaseIterable {
 
 class OnboardingViewModel: ObservableObject {
     @Published var nickName = ""
+    @Published var isPresentedMainView = false
     @Published var isPresentedPurchaseView = false
     @Published var isPresentedProgressBarView = false
     @Published var isPresentedSuccessCreatingAccount = false {
@@ -55,6 +56,8 @@ class OnboardingViewModel: ObservableObject {
         setup()
     }
     private func setup() {
+        isPresentedMainView =
+        UserDefaults.standard.bool(forKey: Constants.authorised)
         for code in NSLocale.isoCountryCodes {
             let flag = emojiFlag(for: code)
             if code == "UA" {
@@ -63,6 +66,14 @@ class OnboardingViewModel: ObservableObject {
                 countryList.append(flag)
             }
         }
+    }
+    func purchaseProduct() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            let isUserAuthorised = true
+            UserDefaults.standard.set(isUserAuthorised,
+                                      forKey: Constants.authorised)
+            self.isPresentedMainView = isUserAuthorised
+        })
     }
 }
 

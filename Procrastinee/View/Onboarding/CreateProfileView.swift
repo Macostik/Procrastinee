@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CreateProfileView: View {
     @StateObject private var keyboard = KeyboardHandler()
-    @StateObject private var viewModel = OnboardingViewModel()
+    @EnvironmentObject var viewModel: OnboardingViewModel
     var body: some View {
         VStack {
             NavigationLink(destination: ProgressView(viewModel: viewModel),

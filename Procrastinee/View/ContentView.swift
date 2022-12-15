@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = OnboardingViewModel()
     var body: some View {
-        NavigationView {
-            OnboardingView()
+        GeometryReader { proxy in
+            NavigationView {
+                if viewModel.isPresentedMainView {
+                    MainView()
+                } else {
+                    OnboardingView()
+                }
+            }
+            .environmentObject(viewModel)
+            .environment(\.screenSize, proxy.size)
         }
     }
 }
