@@ -37,6 +37,7 @@ struct CreateProfileView: View {
                             .padding(.vertical, 19)
                             .padding(.horizontal, 11)
                         TextField(L10n.Onboarding.nickname, text: $viewModel.nickName)
+                            .foregroundColor(Color.onboardingTextColor)
                             .font(.system(size: 18))
                     }
                     .padding(.horizontal, 14)

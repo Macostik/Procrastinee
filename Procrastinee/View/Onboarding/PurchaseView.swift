@@ -44,6 +44,7 @@ struct PurchaseView: View {
                 .padding(.top, 1)
                 .padding(.bottom, 19)
         }
+        .background(Color.backgroundColor)
         .navigationBarHidden(true)
     }
 }
@@ -64,11 +65,13 @@ struct PurchaseItem: View {
                     VStack {
                         Text(purchase.description)
                             .font(.system(size: 17).weight(.semibold))
+                            .foregroundColor(Color.onboardingTextColor)
                             .multilineTextAlignment(.center)
                             .padding(.top, 13)
                         Spacer()
                         Text(purchase.price)
                             .font(.system(size: 12).weight(.medium))
+                            .foregroundColor(Color.onboardingTextColor)
                             .multilineTextAlignment(.center)
                         Spacer()
                         Divider()
@@ -76,6 +79,7 @@ struct PurchaseItem: View {
                         Spacer()
                         Text(purchase.averageValue)
                             .font(.system(size: 11).weight(.bold))
+                            .foregroundColor(Color.onboardingTextColor)
                             .multilineTextAlignment(.center)
                             .offset(y: 5)
                         Spacer()
