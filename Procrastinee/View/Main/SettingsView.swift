@@ -9,16 +9,19 @@ import SwiftUI
 
 struct SettingsView: View {
     @State var selectedTracker: TrackerType = .promodoro
+    @State var isKeepingFocus: Bool = false
+    private var isPromodoroSelected: Bool {
+        selectedTracker == .promodoro
+    }
     var body: some View {
         VStack(spacing: 0) {
             SegmentControlTrackerView(selectedTracker: $selectedTracker)
-                .padding(.top, 60)
-            BreakTimeView()
-                .padding(.top, 40)
-            DeepFocusModeView()
-                .padding(.top, 60)
+            if isPromodoroSelected {
+                BreakTimeView()
+            }
+            DeepFocusModeView(isKeepingFocus: $isKeepingFocus,
+                              isPromodoroSelected: isPromodoroSelected)
             FocusSoundsView()
-                .padding(.top, 56)
             Spacer()
         }
         .fullScreenSize()
@@ -54,10 +57,13 @@ struct BreakTimeView: View {
             }
             .padding(.top, 20)
         }
+        .padding(.top, 40)
     }
 }
 
 struct DeepFocusModeView: View {
+    @Binding var isKeepingFocus: Bool
+    var isPromodoroSelected: Bool = false
     var body: some View {
         VStack(spacing: 0) {
             Text(L10n.Tracking.Settings.deepMode)
@@ -68,16 +74,19 @@ struct DeepFocusModeView: View {
                 .foregroundColor(Color.settingsTextColor)
                 .padding(.top, 4)
             Button {
+                isKeepingFocus.toggle()
             } label: {
-                Text(L10n.Tracking.Settings.off)
+                Text(isKeepingFocus ?
+                     L10n.Tracking.Settings.on : L10n.Tracking.Settings.off)
                     .font(.system(size: 17).weight(.bold))
                     .foregroundColor(Color.white)
                     .frame(width: 150, height: 50)
-                    .background(Color.grayColor)
+                    .background(backgroundView(isKeepingFocus))
                     .cornerRadius(14)
             }
             .padding(.top, 24)
         }
+        .padding(.top, isPromodoroSelected  ? 60 : 74)
     }
 }
 
@@ -93,5 +102,16 @@ struct FocusSoundsView: View {
             }
             .padding(.top, 19)
         }
+        .padding(.top, 56)
+    }
+}
+
+@ViewBuilder func backgroundView(_ isKeepingFocus: Bool) -> some View {
+    if isKeepingFocus {
+       LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
+                       startPoint: .top,
+                       endPoint: .bottom)
+    } else {
+        Color.grayColor
     }
 }
