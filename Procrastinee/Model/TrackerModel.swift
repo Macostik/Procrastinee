@@ -19,6 +19,14 @@ var soundList = [
     Sound(name: "Nature")
 ]
 
-enum TrackerType {
+enum TrackerSettingsType {
     case promodoro, stopWatch
+}
+
+enum DealType {
+    case tracker, planning
+}
+
+enum TrackerType {
+    case tracker, runking
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TrackerSettingsView: View {
-    @State var selectedTracker: TrackerType = .promodoro
+    @State var selectedTracker: TrackerSettingsType = .promodoro
     @State var isKeepingFocus: Bool = false
     private var isPromodoroSelected: Bool {
         selectedTracker == .promodoro

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SegmentControlTrackerView: View {
-    @Binding var selectedTracker: TrackerType
+    @Binding var selectedTracker: TrackerSettingsType
     private var isPromodoroSelected: Bool {
         selectedTracker == .promodoro
     }
@@ -29,28 +29,7 @@ struct SegmentControlTrackerView: View {
                     .foregroundColor(Color.settingsTextColor)
                     .padding(.top, 4)
             }
-            Capsule()
-                .foregroundColor(Color.ceaeaea)
-                .frame(width: 136, height: 31)
-                .padding(.top, 30)
-                .overlay(content: {
-                    ZStack {
-                        Color.white
-                            .clipShape(
-                                RoundedCorner(radius: 15,
-                                              corners: isPromodoroSelected ?
-                                              [.topLeft, .bottomLeft] :
-                                                [.topRight, .bottomRight])
-                            )
-                            .frame(width: 68, height: 31)
-                            .offset(x: isPromodoroSelected ? -34 : 34, y: 15)
-                            .shadow(color: Color.c2F2E41, radius: 15)
-                        Image.clock
-                            .offset(x: -34, y: 15)
-                        Image.timer
-                            .offset(x: 34, y: 15)
-                    }
-                })
+            SegmentControl(isRightCornerRounded: isPromodoroSelected)
                 .onTapGesture {
                     selectedTracker = selectedTracker == .promodoro ? .stopWatch : .promodoro
                 }
@@ -71,5 +50,33 @@ struct SegmentControlTrackerView: View {
             }
         }
         .padding(.top, 60)
+    }
+}
+
+struct SegmentControl: View {
+    var isRightCornerRounded = true
+    var body: some View {
+        Capsule()
+            .foregroundColor(Color.ceaeaea)
+            .frame(width: 136, height: 31)
+            .padding(.top, 30)
+            .overlay(content: {
+                ZStack {
+                    Color.white
+                        .clipShape(
+                            RoundedCorner(radius: 15,
+                                          corners: isRightCornerRounded ?
+                                          [.topLeft, .bottomLeft] :
+                                            [.topRight, .bottomRight])
+                        )
+                        .frame(width: 68, height: 31)
+                        .offset(x: isRightCornerRounded ? -34 : 34, y: 15)
+                        .shadow(color: Color.c2F2E4125, radius: 15)
+                    Image.clock
+                        .offset(x: -34, y: 15)
+                    Image.timer
+                        .offset(x: 34, y: 15)
+                }
+            })
     }
 }

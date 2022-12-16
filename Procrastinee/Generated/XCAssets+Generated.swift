@@ -9,6 +9,8 @@ internal extension Color {
   // Colors.xcassets
   static var backgroundColor : Color { Color("backgroundColor", bundle: BundleToken.bundle) }
   static var c2F2E41 : Color { Color("c2F2E41", bundle: BundleToken.bundle) }
+  static var c2F2E4125 : Color { Color("c2F2E4125", bundle: BundleToken.bundle) }
+  static var c878787 : Color { Color("c878787", bundle: BundleToken.bundle) }
   static var ceaeaea : Color { Color("cEAEAEA", bundle: BundleToken.bundle) }
   static var endPointColor : Color { Color("endPointColor", bundle: BundleToken.bundle) }
   static var grayColor : Color { Color("grayColor", bundle: BundleToken.bundle) }
@@ -22,6 +24,7 @@ internal extension Color {
 
 internal extension Image {
   // Assets.xcassets
+  static var groupDots : Image { Image("GroupDots", bundle: BundleToken.bundle) }
   static var purchase : Image { Image("Purchase", bundle: BundleToken.bundle) }
   static var slideLeft : Image { Image("SlideLeft", bundle: BundleToken.bundle) }
   static var successMark : Image { Image("SuccessMark", bundle: BundleToken.bundle) }

@@ -8,5 +8,5 @@
 import Foundation
 
 class MainViewModel: ObservableObject {
-    @Published var selectedTracker: TrackerType = .stopWatch
+    @Published var selectedTracker: TrackerSettingsType = .stopWatch
 }
