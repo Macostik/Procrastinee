@@ -43,3 +43,18 @@
 "onboarding.averagePriceOfWeek" = "4,99 USD / week";
 "onboarding.averagePriceOfMonth" = "1,66 USD / week";
 "onboarding.averagePriceOfYear" = "0,41 USD / week";
+
+"tracking.settings.promoTracker" = "Pomodoro Tracker";
+"tracking.settings.workSet" = "Work for a set period of time.";
+"tracking.settings.breakTime" = "Break Time";
+"tracking.settings.takeRest" = "Take a rest after working session.";
+"tracking.settings.deepMode" = "Deep Focus Mode";
+"tracking.settings.keepApp" = "You have to keep the app open while your\n tracker is running.";
+"tracking.settings.focusSound" = "Focus Sounds";
+
+"tracking.settings.stopWatchTracker" = "Stopwatch Tracker";
+"tracking.settings.workUntil" = "Work until your task is done.";
+"tracking.settings.on" = "On";
+"tracking.settings.off" = "Off";
+
+

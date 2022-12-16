@@ -8,8 +8,20 @@
 import SwiftUI
 
 struct MainView: View {
+    @State private var selectedTab = 0
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            Color.backgroundColor
+                .ignoresSafeArea()
+            TabView(selection: $selectedTab) {
+                SettingsView()
+                    .tag(0)
+                TrackerView()
+                    .tag(1)
+            }
+            .ignoresSafeArea()
+            .tabViewStyle(.page(indexDisplayMode: .never))
+        }
     }
 }
 

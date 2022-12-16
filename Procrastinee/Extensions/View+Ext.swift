@@ -19,4 +19,8 @@ extension View {
         return modifier(AnimationCompletionObserverModifier(observedValue: value,
                                                             completion: completion))
     }
+    func fullScreenSize() -> some View {
+        self.frame(maxWidth: .infinity, maxHeight: .infinity)
+            .ignoresSafeArea()
+    }
 }

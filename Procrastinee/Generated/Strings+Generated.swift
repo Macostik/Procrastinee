@@ -95,6 +95,34 @@ public enum L10n {
     /// Yes, please
     public static let yesPlease = L10n.tr("Localizable", "onboarding.yesPlease")
   }
+
+  public enum Tracking {
+    public enum Settings {
+      /// Break Time
+      public static let breakTime = L10n.tr("Localizable", "tracking.settings.breakTime")
+      /// Deep Focus Mode
+      public static let deepMode = L10n.tr("Localizable", "tracking.settings.deepMode")
+      /// Focus Sounds
+      public static let focusSound = L10n.tr("Localizable", "tracking.settings.focusSound")
+      /// You have to keep the app open while your
+      ///  tracker is running.
+      public static let keepApp = L10n.tr("Localizable", "tracking.settings.keepApp")
+      /// Off
+      public static let off = L10n.tr("Localizable", "tracking.settings.off")
+      /// On
+      public static let on = L10n.tr("Localizable", "tracking.settings.on")
+      /// Pomodoro Tracker
+      public static let promoTracker = L10n.tr("Localizable", "tracking.settings.promoTracker")
+      /// Stopwatch Tracker
+      public static let stopWatchTracker = L10n.tr("Localizable", "tracking.settings.stopWatchTracker")
+      /// Take a rest after working session.
+      public static let takeRest = L10n.tr("Localizable", "tracking.settings.takeRest")
+      /// Work for a set period of time.
+      public static let workSet = L10n.tr("Localizable", "tracking.settings.workSet")
+      /// Work until your task is done.
+      public static let workUntil = L10n.tr("Localizable", "tracking.settings.workUntil")
+    }
+  }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces
