@@ -1,13 +1,13 @@
 //
-//  SettingsView.swift
+//  TrackerSettingsView.swift
 //  Procrastinee
 //
-//  Created by Macostik on 15.12.2022.
+//  Created by Macostik on 16.12.2022.
 //
 
 import SwiftUI
 
-struct SettingsView: View {
+struct TrackerSettingsView: View {
     @State var selectedTracker: TrackerType = .promodoro
     @State var isKeepingFocus: Bool = false
     private var isPromodoroSelected: Bool {
@@ -28,9 +28,9 @@ struct SettingsView: View {
     }
 }
 
-struct SettingsView_Previews: PreviewProvider {
+struct TrackerSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        TrackerSettingsView()
     }
 }
 

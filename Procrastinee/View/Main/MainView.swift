@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MainView: View {
-    @State private var selectedTab = 0
+    @State private var selectedTab = 1
     var body: some View {
         ZStack {
             Color.backgroundColor
                 .ignoresSafeArea()
             TabView(selection: $selectedTab) {
-                SettingsView()
+                TrackerSettingsView()
                     .tag(0)
                 TrackerView()
                     .tag(1)

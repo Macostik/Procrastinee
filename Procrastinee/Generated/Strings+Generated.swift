@@ -11,6 +11,26 @@ import Foundation
 // swiftlint:disable nesting type_body_length type_name vertical_whitespace_opening_braces
 public enum L10n {
 
+  public enum Main {
+    /// DAILY AVARAGE: 
+    public static let dailyAverage = L10n.tr("Localizable", "main.dailyAverage")
+    /// PLANING
+    public static let planing = L10n.tr("Localizable", "main.planing")
+    /// RANKING
+    public static let ranking = L10n.tr("Localizable", "main.ranking")
+    /// Slide left to open
+    ///  Tracker settings
+    public static let slideLeft = L10n.tr("Localizable", "main.slideLeft")
+    /// Tap to start
+    public static let tapToStart = L10n.tr("Localizable", "main.tapToStart")
+    /// TODAYS FOCUSED: 
+    public static let todayFocused = L10n.tr("Localizable", "main.todayFocused")
+    /// TOTAL WEEKLY: 
+    public static let totalWeekly = L10n.tr("Localizable", "main.totalWeekly")
+    /// TRACKER
+    public static let tracker = L10n.tr("Localizable", "main.tracker")
+  }
+
   public enum Onboarding {
     /// Your Account is created Successfully
     public static let accountCreateSuccess = L10n.tr("Localizable", "onboarding.accountCreateSuccess")

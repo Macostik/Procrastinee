@@ -23,6 +23,7 @@ internal extension Color {
 internal extension Image {
   // Assets.xcassets
   static var purchase : Image { Image("Purchase", bundle: BundleToken.bundle) }
+  static var slideLeft : Image { Image("SlideLeft", bundle: BundleToken.bundle) }
   static var successMark : Image { Image("SuccessMark", bundle: BundleToken.bundle) }
   static var arrow : Image { Image("arrow", bundle: BundleToken.bundle) }
   static var checkmark : Image { Image("checkmark", bundle: BundleToken.bundle) }
@@ -34,6 +35,7 @@ internal extension Image {
   static var reminders : Image { Image("reminders", bundle: BundleToken.bundle) }
   static var secondIntroduction : Image { Image("secondIntroduction", bundle: BundleToken.bundle) }
   static var suggested : Image { Image("suggested", bundle: BundleToken.bundle) }
+  static var tapToStart : Image { Image("tapToStart", bundle: BundleToken.bundle) }
   static var thirdIntroduction : Image { Image("thirdIntroduction", bundle: BundleToken.bundle) }
   static var timer : Image { Image("timer", bundle: BundleToken.bundle) }
   // Colors.xcassets

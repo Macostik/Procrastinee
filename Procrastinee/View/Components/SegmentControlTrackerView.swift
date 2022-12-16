@@ -73,9 +73,3 @@ struct SegmentControlTrackerView: View {
         .padding(.top, 60)
     }
 }
-
-struct SegmentControlTrackerView_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingsView()
-    }
-}

@@ -9,11 +9,9 @@ import SwiftUI
 
 struct TrackerView: View {
     var body: some View {
-        Text("Tracker View")
-            .foregroundColor(Color.onboardingTextColor)
-            .ignoresSafeArea()
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.backgroundColor)
+        HStack {
+            Image.slideLeft
+        }
     }
 }
 
