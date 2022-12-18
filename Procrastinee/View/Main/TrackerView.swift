@@ -16,7 +16,7 @@ struct TrackerView: View {
             TimerView()
             TipsView()
             StatisticView()
-            SegmentControl(isRightCornerRounded: selectedTracker == .tracker)
+            MainSegmentControl(isRightCornerRounded: selectedTracker == .tracker)
                 .onTapGesture {
                     selectedTracker = selectedTracker == .tracker ? .runking : .tracker
                 }
@@ -49,6 +49,7 @@ struct TrackerPlaningSwitcher: View {
             }
         }
         .offset(x: dealType == .tracker ? 40 : -40)
+        .padding(.top, 17)
     }
 }
 
@@ -60,17 +61,16 @@ struct TimerView: View {
             ZStack {
                 TickView()
                 LinePath()
-                    .stroke(Color.c2F2E41, style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
-                GradientPolygon()
-                    .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
-                                         startPoint: .top,
-                                         endPoint: .bottom))
-                    .frame(width: 65, height: 65)
-                    .rotationEffect(Angle(radians: .pi/2))
+                    .stroke(Color.c2F2E41,
+                            style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
+                Image.polygon
+                    .resizable()
+                    .frame(width: 65, height: 70)
+                    .offset(x: 10)
+
             }
             .frame(width: 311, height: 311, alignment: .center)
         }
-        .padding(.top, 10)
     }
 }
 
@@ -98,29 +98,18 @@ struct LinePath: Shape {
     }
 }
 
-struct GradientPolygon: Shape {
-    func path(in rect: CGRect) -> Path {
-        var path = Path()
-        path.move(to: CGPoint(x: rect.midX, y: rect.minY))
-        path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
-        path.addLine(to: CGPoint(x: rect.midX, y: rect.minY))
-        return path
-    }
-}
-
 struct TipsView: View {
     var body: some View {
         VStack(spacing: 0) {
             Image.groupDots
-                .padding(.top, 87)
             HStack {
                 Image.slideLeft
                 Spacer()
             }
+            .padding(.top, 25)
         }
         .padding(.horizontal, 14)
-        .padding(.top, 25)
+        .padding(.top, 97)
     }
 }
 
@@ -142,14 +131,54 @@ struct StatisticView: View {
                     .font(.system(size: 12).weight(.semibold))
                     .foregroundColor(Color.mainTextColor)
             }
-            Text(L10n.Main.totalWeekly)
-                .font(.system(size: 12).weight(.semibold))
-                .foregroundColor(Color.c2F2E41) +
-            Text(todayFocusValue)
-                .font(.system(size: 12).weight(.semibold))
-                .foregroundColor(Color.mainTextColor)
+            HStack(alignment: .top, spacing: -10) {
+                Text(L10n.Main.totalWeekly)
+                    .font(.system(size: 12).weight(.semibold))
+                    .foregroundColor(Color.c2F2E41)
+                VStack(spacing: 0) {
+                    Text(todayFocusValue)
+                        .font(.system(size: 12).weight(.semibold))
+                        .foregroundColor(Color.mainTextColor)
+                    Image.underLine
+                        .resizable()
+                        .frame(width: 60, height: 50)
+                        .offset(y: -17)
+                }
+            }
         }
         .padding(.horizontal, 14)
-        .padding(.top, 25)
+        .padding(.top, 24)
+    }
+}
+
+struct MainSegmentControl: View {
+    var isRightCornerRounded = true
+    var body: some View {
+        VStack {
+            Capsule()
+                .foregroundColor(Color.ceaeaea)
+                .frame(width: 210, height: 31)
+                .overlay(content: {
+                    ZStack {
+                        Color.white
+                            .clipShape(
+                                RoundedCorner(radius: 15,
+                                              corners: isRightCornerRounded ?
+                                              [.topLeft, .bottomLeft] :
+                                                [.topRight, .bottomRight])
+                            )
+                            .frame(width: 105, height: 31)
+                            .offset(x: isRightCornerRounded ? -53 : 52)
+                            .shadow(color: Color.black.opacity(0.25), radius: 15)
+                        Text(L10n.Main.tracker)
+                            .font(.system(size: 12).weight(.semibold))
+                            .offset(x: -52)
+                        Text(L10n.Main.ranking)
+                            .font(.system(size: 12).weight(.semibold))
+                            .offset(x: 52)
+                    }
+                })
+                .padding(.top, 4)
+        }
     }
 }

@@ -8,7 +8,4 @@
 import SwiftUI
 import UIKit
 
-struct GradientStyle: ShapeStyle {
-    
-}
-
+struct GradientStyle: ShapeStyle {}

@@ -25,6 +25,7 @@ internal extension Color {
 internal extension Image {
   // Assets.xcassets
   static var groupDots : Image { Image("GroupDots", bundle: BundleToken.bundle) }
+  static var polygon : Image { Image("Polygon", bundle: BundleToken.bundle) }
   static var purchase : Image { Image("Purchase", bundle: BundleToken.bundle) }
   static var slideLeft : Image { Image("SlideLeft", bundle: BundleToken.bundle) }
   static var successMark : Image { Image("SuccessMark", bundle: BundleToken.bundle) }
@@ -41,6 +42,7 @@ internal extension Image {
   static var tapToStart : Image { Image("tapToStart", bundle: BundleToken.bundle) }
   static var thirdIntroduction : Image { Image("thirdIntroduction", bundle: BundleToken.bundle) }
   static var timer : Image { Image("timer", bundle: BundleToken.bundle) }
+  static var underLine : Image { Image("underLine", bundle: BundleToken.bundle) }
   // Colors.xcassets
 }
 
