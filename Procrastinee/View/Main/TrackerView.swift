@@ -63,6 +63,7 @@ struct TrackerPlaningSwitcher: View {
 
 struct TimerView: View {
     var clickHandler: (() -> Void)?
+    @State var isTrackStarted = true
     @State var player: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Play Tracker Buton",
                                          withExtension: "mp3")
@@ -83,10 +84,18 @@ struct TimerView: View {
                     } label: {
                         ZStack {
                             TickView()
-                            Image.polygon
-                                .resizable()
-                                .frame(width: 65, height: 70)
-                                .offset(x: 10)
+                            if isTrackStarted {
+                                GradientCircleView()
+                                    .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
+                                                         startPoint: .leading,
+                                                         endPoint: .trailing))
+                                    .frame(width: 219, height: 219, alignment: .center)
+                            } else {
+                                Image.polygon
+                                    .resizable()
+                                    .frame(width: 65, height: 70)
+                                    .offset(x: 10)
+                            }
                         }
                     }
                     .buttonStyle(ScaleButtonStyle())
@@ -204,5 +213,18 @@ struct MainSegmentControl: View {
                 })
                 .padding(.top, 4)
         }
+    }
+}
+
+struct GradientCircleView: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        path.move(to: CGPoint(x: rect.midX, y: rect.midY))
+        path.addArc(center: .init(x: rect.midX, y: rect.midY),
+                    radius: rect.width/2,
+                    startAngle: Angle(degrees: -90),
+                    endAngle: Angle(degrees: -89),
+                    clockwise: true)
+        return path
     }
 }

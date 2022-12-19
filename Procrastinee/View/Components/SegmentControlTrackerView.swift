@@ -41,7 +41,6 @@ struct SegmentControlTrackerView: View {
                         Text("10min")
                             .opacity(0.3)
                             .font(.system(size: 28).weight(.thin))
-                            
                         Text("15min")
                             .font(.system(size: 38).weight(.thin))
                         Text("20min")
