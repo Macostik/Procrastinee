@@ -33,6 +33,18 @@
 		564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5B92945E5E900912250 /* AnimationCompletion.swift */; };
 		564DC5BD2945E69700912250 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5BC2945E69700912250 /* View+Ext.swift */; };
 		564DC5BF29462F6700912250 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5BE29462F6700912250 /* PurchaseView.swift */; };
+		564ECCF5295050BB00EFD784 /* Slide Right.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEA295050BA00EFD784 /* Slide Right.mp3 */; };
+		564ECCF6295050BB00EFD784 /* Stop Tracker Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEB295050BA00EFD784 /* Stop Tracker Button.mp3 */; };
+		564ECCF7295050BB00EFD784 /* Ranking Tapbar Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEC295050BB00EFD784 /* Ranking Tapbar Button.mp3 */; };
+		564ECCF8295050BB00EFD784 /* Finish Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCED295050BB00EFD784 /* Finish Button.mp3 */; };
+		564ECCF9295050BB00EFD784 /* Play Tracker Buton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEE295050BB00EFD784 /* Play Tracker Buton.mp3 */; };
+		564ECCFA295050BB00EFD784 /* Planning Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEF295050BB00EFD784 /* Planning Button.mp3 */; };
+		564ECCFB295050BB00EFD784 /* Open Prize.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF0295050BB00EFD784 /* Open Prize.mp3 */; };
+		564ECCFC295050BB00EFD784 /* Tracker from Planning Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF1295050BB00EFD784 /* Tracker from Planning Button.mp3 */; };
+		564ECCFD295050BB00EFD784 /* Close Button 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF2295050BB00EFD784 /* Close Button 2.mp3 */; };
+		564ECCFE295050BB00EFD784 /* Tracker Tapbar Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */; };
+		564ECCFF295050BB00EFD784 /* Slide Lefs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */; };
+		564ECD012950583300EFD784 /* View+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD002950583300EFD784 /* View+Style.swift */; };
 		565275D0294C9E8A0081D268 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565275CF294C9E8A0081D268 /* GradientStyle.swift */; };
 		56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D342944A8D90068BDFF /* PageIndicatorView.swift */; };
 		56774D372944ABA60068BDFF /* SecondIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D362944ABA60068BDFF /* SecondIntroductionView.swift */; };
@@ -80,6 +92,18 @@
 		564DC5B92945E5E900912250 /* AnimationCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletion.swift; sourceTree = "<group>"; };
 		564DC5BC2945E69700912250 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		564DC5BE29462F6700912250 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
+		564ECCEA295050BA00EFD784 /* Slide Right.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slide Right.mp3"; sourceTree = "<group>"; };
+		564ECCEB295050BA00EFD784 /* Stop Tracker Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Stop Tracker Button.mp3"; sourceTree = "<group>"; };
+		564ECCEC295050BB00EFD784 /* Ranking Tapbar Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ranking Tapbar Button.mp3"; sourceTree = "<group>"; };
+		564ECCED295050BB00EFD784 /* Finish Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Finish Button.mp3"; sourceTree = "<group>"; };
+		564ECCEE295050BB00EFD784 /* Play Tracker Buton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Play Tracker Buton.mp3"; sourceTree = "<group>"; };
+		564ECCEF295050BB00EFD784 /* Planning Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Planning Button.mp3"; sourceTree = "<group>"; };
+		564ECCF0295050BB00EFD784 /* Open Prize.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Open Prize.mp3"; sourceTree = "<group>"; };
+		564ECCF1295050BB00EFD784 /* Tracker from Planning Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tracker from Planning Button.mp3"; sourceTree = "<group>"; };
+		564ECCF2295050BB00EFD784 /* Close Button 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Close Button 2.mp3"; sourceTree = "<group>"; };
+		564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tracker Tapbar Button.mp3"; sourceTree = "<group>"; };
+		564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slide Lefs.mp3"; sourceTree = "<group>"; };
+		564ECD002950583300EFD784 /* View+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Style.swift"; sourceTree = "<group>"; };
 		565275CF294C9E8A0081D268 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
 		56774D342944A8D90068BDFF /* PageIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorView.swift; sourceTree = "<group>"; };
 		56774D362944ABA60068BDFF /* SecondIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondIntroductionView.swift; sourceTree = "<group>"; };
@@ -155,6 +179,7 @@
 		560328E129431DAF00E6BCB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				564ECCDC29504ABB00EFD784 /* ButtonSound */,
 				560328F72943258D00E6BCB3 /* Annie */,
 				560328EB294320DE00E6BCB3 /* Localization */,
 				560328D329431CA400E6BCB3 /* Assets.xcassets */,
@@ -260,8 +285,27 @@
 			children = (
 				564DC5BC2945E69700912250 /* View+Ext.swift */,
 				56E9E767294B086300F03C08 /* Environment+Value.swift */,
+				564ECD002950583300EFD784 /* View+Style.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		564ECCDC29504ABB00EFD784 /* ButtonSound */ = {
+			isa = PBXGroup;
+			children = (
+				564ECCF2295050BB00EFD784 /* Close Button 2.mp3 */,
+				564ECCED295050BB00EFD784 /* Finish Button.mp3 */,
+				564ECCF0295050BB00EFD784 /* Open Prize.mp3 */,
+				564ECCEF295050BB00EFD784 /* Planning Button.mp3 */,
+				564ECCEE295050BB00EFD784 /* Play Tracker Buton.mp3 */,
+				564ECCEC295050BB00EFD784 /* Ranking Tapbar Button.mp3 */,
+				564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */,
+				564ECCEA295050BA00EFD784 /* Slide Right.mp3 */,
+				564ECCEB295050BA00EFD784 /* Stop Tracker Button.mp3 */,
+				564ECCF1295050BB00EFD784 /* Tracker from Planning Button.mp3 */,
+				564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */,
+			);
+			path = ButtonSound;
 			sourceTree = "<group>";
 		};
 		56E9E764294B078000F03C08 /* Main */ = {
@@ -347,14 +391,25 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				564ECCFF295050BB00EFD784 /* Slide Lefs.mp3 in Resources */,
+				564ECCFB295050BB00EFD784 /* Open Prize.mp3 in Resources */,
+				564ECCFE295050BB00EFD784 /* Tracker Tapbar Button.mp3 in Resources */,
 				560328D729431CA400E6BCB3 /* Preview Assets.xcassets in Resources */,
+				564ECCFC295050BB00EFD784 /* Tracker from Planning Button.mp3 in Resources */,
+				564ECCFD295050BB00EFD784 /* Close Button 2.mp3 in Resources */,
+				564ECCF7295050BB00EFD784 /* Ranking Tapbar Button.mp3 in Resources */,
 				560328E72943206300E6BCB3 /* fonts_swift5_swiftui.stencil in Resources */,
+				564ECCF9295050BB00EFD784 /* Play Tracker Buton.mp3 in Resources */,
 				560328E82943206300E6BCB3 /* swiftui-xcassets-template.stencil in Resources */,
+				564ECCF8295050BB00EFD784 /* Finish Button.mp3 in Resources */,
+				564ECCFA295050BB00EFD784 /* Planning Button.mp3 in Resources */,
 				560328DF29431D8F00E6BCB3 /* swiftlint.yml in Resources */,
 				560328D429431CA400E6BCB3 /* Assets.xcassets in Resources */,
 				560328F92943266700E6BCB3 /* Localizable.strings in Resources */,
 				560328E029431D8F00E6BCB3 /* swiftgen.yml in Resources */,
+				564ECCF6295050BB00EFD784 /* Stop Tracker Button.mp3 in Resources */,
 				560328EA294320D100E6BCB3 /* Colors.xcassets in Resources */,
+				564ECCF5295050BB00EFD784 /* Slide Right.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +461,7 @@
 			files = (
 				56E9E780294C821800F03C08 /* TrackerSettingsView.swift in Sources */,
 				5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */,
+				564ECD012950583300EFD784 /* View+Style.swift in Sources */,
 				56E9E766294B07BB00F03C08 /* MainView.swift in Sources */,
 				560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */,
 				56774D3D2944B75A0068BDFF /* CreateProfileView.swift in Sources */,

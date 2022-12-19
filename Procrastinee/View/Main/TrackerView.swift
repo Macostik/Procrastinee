@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct TrackerView: View {
     @State private var dealType: DealType = .tracker
@@ -54,22 +55,34 @@ struct TrackerPlaningSwitcher: View {
 }
 
 struct TimerView: View {
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Close Button 2",
+                                         withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                            fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         VStack(alignment: .leading) {
             Image.tapToStart
                 .offset(y: 20)
-            ZStack {
-                TickView()
-                LinePath()
-                    .stroke(Color.c2F2E41,
-                            style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
-                Image.polygon
-                    .resizable()
-                    .frame(width: 65, height: 70)
-                    .offset(x: 10)
-
-            }
-            .frame(width: 311, height: 311, alignment: .center)
+                ZStack {
+                    LinePath()
+                        .stroke(Color.c2F2E41,
+                                style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
+                    Button {
+                        player?.play()
+                    } label: {
+                        ZStack {
+                            TickView()
+                            Image.polygon
+                                .resizable()
+                                .frame(width: 65, height: 70)
+                                .offset(x: 10)
+                        }
+                    }
+                    .buttonStyle(ScaleButtonStyle())
+                }
+                .frame(width: 311, height: 311, alignment: .center)
         }
     }
 }
