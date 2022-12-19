@@ -116,6 +116,23 @@ public enum L10n {
     public static let yesPlease = L10n.tr("Localizable", "onboarding.yesPlease")
   }
 
+  public enum Task {
+    /// Task Category
+    public static let category = L10n.tr("Localizable", "task.category")
+    /// Task Name
+    public static let name = L10n.tr("Localizable", "task.name")
+    /// Task name...
+    public static let namePlaceholder = L10n.tr("Localizable", "task.namePlaceholder")
+    /// Next
+    public static let next = L10n.tr("Localizable", "task.next")
+    /// Set the category of your task
+    ///  to help our team identify it
+    public static let setCategory = L10n.tr("Localizable", "task.setCategory")
+    /// The name of the task has to
+    ///  have relevant meaning
+    public static let theName = L10n.tr("Localizable", "task.theName")
+  }
+
   public enum Tracking {
     public enum Settings {
       /// Break Time

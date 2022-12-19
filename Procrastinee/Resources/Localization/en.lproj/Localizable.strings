@@ -66,5 +66,12 @@
 "main.dailyAverage" = "DAILY AVARAGE: ";
 "main.totalWeekly" = "TOTAL WEEKLY: ";
 
+"task.category" = "Task Category";
+"task.setCategory" = "Set the category of your task\n to help our team identify it";
+"task.next" = "Next";
+"task.name" = "Task Name";
+"task.theName" = "The name of the task has to\n have relevant meaning";
+"task.namePlaceholder" = "Task name...";
+
 
 

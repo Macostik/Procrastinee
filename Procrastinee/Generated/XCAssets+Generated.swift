@@ -8,10 +8,14 @@ internal extension Color {
   static var accentColor : Color { Color("AccentColor", bundle: BundleToken.bundle) }
   // Colors.xcassets
   static var backgroundColor : Color { Color("backgroundColor", bundle: BundleToken.bundle) }
+  static var c253456 : Color { Color("c253456", bundle: BundleToken.bundle) }
   static var c2F2E41 : Color { Color("c2F2E41", bundle: BundleToken.bundle) }
   static var c2F2E4125 : Color { Color("c2F2E4125", bundle: BundleToken.bundle) }
   static var c878787 : Color { Color("c878787", bundle: BundleToken.bundle) }
+  static var cadadad : Color { Color("cADADAD", bundle: BundleToken.bundle) }
+  static var cd9D9D9 : Color { Color("cD9D9D9", bundle: BundleToken.bundle) }
   static var ceaeaea : Color { Color("cEAEAEA", bundle: BundleToken.bundle) }
+  static var cf8Fafb : Color { Color("cF8FAFB", bundle: BundleToken.bundle) }
   static var endPointColor : Color { Color("endPointColor", bundle: BundleToken.bundle) }
   static var grayColor : Color { Color("grayColor", bundle: BundleToken.bundle) }
   static var mainTextColor : Color { Color("mainTextColor", bundle: BundleToken.bundle) }

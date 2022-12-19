@@ -45,6 +45,7 @@
 		564ECCFE295050BB00EFD784 /* Tracker Tapbar Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */; };
 		564ECCFF295050BB00EFD784 /* Slide Lefs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */; };
 		564ECD012950583300EFD784 /* View+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD002950583300EFD784 /* View+Style.swift */; };
+		564ECD0329505B1100EFD784 /* TaskCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD0229505B1000EFD784 /* TaskCategoryView.swift */; };
 		565275D0294C9E8A0081D268 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565275CF294C9E8A0081D268 /* GradientStyle.swift */; };
 		56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D342944A8D90068BDFF /* PageIndicatorView.swift */; };
 		56774D372944ABA60068BDFF /* SecondIntroductionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D362944ABA60068BDFF /* SecondIntroductionView.swift */; };
@@ -104,6 +105,7 @@
 		564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tracker Tapbar Button.mp3"; sourceTree = "<group>"; };
 		564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slide Lefs.mp3"; sourceTree = "<group>"; };
 		564ECD002950583300EFD784 /* View+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Style.swift"; sourceTree = "<group>"; };
+		564ECD0229505B1000EFD784 /* TaskCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoryView.swift; sourceTree = "<group>"; };
 		565275CF294C9E8A0081D268 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
 		56774D342944A8D90068BDFF /* PageIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorView.swift; sourceTree = "<group>"; };
 		56774D362944ABA60068BDFF /* SecondIntroductionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondIntroductionView.swift; sourceTree = "<group>"; };
@@ -314,6 +316,7 @@
 				56E9E765294B07BB00F03C08 /* MainView.swift */,
 				56E9E76B294B51EE00F03C08 /* TrackerView.swift */,
 				56E9E77F294C821800F03C08 /* TrackerSettingsView.swift */,
+				564ECD0229505B1000EFD784 /* TaskCategoryView.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56E9E780294C821800F03C08 /* TrackerSettingsView.swift in Sources */,
+				564ECD0329505B1100EFD784 /* TaskCategoryView.swift in Sources */,
 				5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */,
 				564ECD012950583300EFD784 /* View+Style.swift in Sources */,
 				56E9E766294B07BB00F03C08 /* MainView.swift in Sources */,

@@ -30,3 +30,7 @@ enum DealType {
 enum TrackerType {
     case tracker, runking
 }
+
+enum TaskType: String, CaseIterable {
+    case sport, education, work, study
+}

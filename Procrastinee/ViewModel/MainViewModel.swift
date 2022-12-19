@@ -8,5 +8,6 @@
 import Foundation
 
 class MainViewModel: ObservableObject {
-    @Published var selectedTracker: TrackerSettingsType = .stopWatch
+    @Published var selectedTracker: TrackerType = .tracker
+    @Published var isTaskCategoryPresented = false
 }

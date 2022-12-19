@@ -10,19 +10,26 @@ import AVFoundation
 
 struct TrackerView: View {
     @State private var dealType: DealType = .tracker
-    @State private var selectedTracker: TrackerType = .tracker
+    @StateObject private var viewModel = MainViewModel()
     var body: some View {
-        VStack(spacing: 0) {
-            TrackerPlaningSwitcher(dealType: $dealType)
-            TimerView()
-            TipsView()
-            StatisticView()
-            MainSegmentControl(isRightCornerRounded: selectedTracker == .tracker)
-                .onTapGesture {
-                    selectedTracker = selectedTracker == .tracker ? .runking : .tracker
+        ZStack(alignment: .bottom) {
+            VStack(spacing: 0) {
+                TrackerPlaningSwitcher(dealType: $dealType)
+                TimerView {
+                    viewModel.isTaskCategoryPresented = true
                 }
-            Spacer()
+                TipsView()
+                StatisticView()
+                MainSegmentControl(isRightCornerRounded: viewModel.selectedTracker == .tracker)
+                    .onTapGesture {
+                        viewModel.selectedTracker = viewModel.selectedTracker == .tracker ? .runking : .tracker
+                    }
+                Spacer()
+            }
+            .background(Color.cf8Fafb)
+            TaskCategoryView(viewModel: viewModel)
         }
+        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
@@ -55,8 +62,9 @@ struct TrackerPlaningSwitcher: View {
 }
 
 struct TimerView: View {
+    var clickHandler: (() -> Void)?
     @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Close Button 2",
+        let url = Bundle.main.url(forResource: "Play Tracker Buton",
                                          withExtension: "mp3")
         return try? AVAudioPlayer(contentsOf: url!,
                             fileTypeHint: AVFileType.mp3.rawValue)
@@ -71,6 +79,7 @@ struct TimerView: View {
                                 style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
                     Button {
                         player?.play()
+                        clickHandler?()
                     } label: {
                         ZStack {
                             TickView()
