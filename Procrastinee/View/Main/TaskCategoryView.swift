@@ -8,57 +8,30 @@
 import SwiftUI
 
 struct TaskCategoryView: View {
-    @StateObject var viewModel: MainViewModel
-    @State var offset = 0.0
+    var action: (() -> Void)?
     var body: some View {
-        ZStack {
-            VStack {
-                if viewModel.isTaskCategoryPresented {
-                    contentView
-                        .transition(.move(edge: .bottom))
-                }
-            }
-        }
-        .animation(.easeInOut, value: viewModel.isTaskCategoryPresented)
-        .shadow(color: Color.black.opacity(0.1), radius: 16, y: -10)
-    }
-}
-extension TaskCategoryView {
-    var contentView: some View {
         VStack(spacing: 0) {
-            Capsule()
-                .foregroundColor(Color.cd9D9D9)
-                .frame(width: 35, height: 4)
-                .padding(.top, 12)
             HeaderView()
-            TaskPickerView()
+            PickerTaskView()
+            GradientButton(action: {
+                action?()
+            }, label: {
+                HStack {
+                    Image.arrow
+                    Text(L10n.Onboarding.continue)
+                        .foregroundColor(Color.white)
+                        .font(.system(size: 17)
+                            .weight(.bold))
+                }
+            })
             Spacer()
         }
-        .frame(maxWidth: .infinity, maxHeight: 594)
-        .background(Color.cf8Fafb)
-        .offset(y: self.offset)
-        .gesture(DragGesture()
-            .onChanged { gesture in
-                let yOffset = gesture.location.y
-                if yOffset > 0 {
-                    offset = yOffset
-                }
-            }
-            .onEnded { _ in
-                withAnimation {
-                    self.viewModel.isTaskCategoryPresented = !(offset > 200)
-                    self.offset = 0
-                }
-            }
-        )
-        .clipShape(RoundedCorner(radius: 30,
-                                 corners: [.topLeft, .topRight]))
     }
 }
 
 struct TaskCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCategoryView(viewModel: MainViewModel())
+        TaskCategoryView()
     }
 }
 
@@ -77,17 +50,15 @@ struct HeaderView: View {
     }
 }
 
-struct TaskPickerView: View {
-    @State var selectTask = TaskType.sport
+struct PickerTaskView: View {
+    @State var selectedTask: TaskType = .sport
     var body: some View {
-        VStack {
-            Picker("", selection: $selectTask) {
-                ForEach(TaskType.allCases, id: \.self) {
-                    Text($0.rawValue)
-                }
+        Picker("", selection: $selectedTask) {
+            ForEach(TaskType.allCases, id: \.self) { value in
+                Text(value.rawValue)
             }
-            .pickerStyle(.wheel)
-            .highPriorityGesture(DragGesture())
         }
+        .highPriorityGesture(DragGesture())
+        .pickerStyle(.wheel)
     }
 }

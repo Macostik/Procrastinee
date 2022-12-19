@@ -27,7 +27,7 @@ struct TrackerView: View {
                 Spacer()
             }
             .background(Color.cf8Fafb)
-            TaskCategoryView(viewModel: viewModel)
+            TaskView(viewModel: viewModel)
         }
         .edgesIgnoringSafeArea(.bottom)
     }
