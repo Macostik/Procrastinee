@@ -17,6 +17,7 @@ struct SegmentControlTrackerView: View {
             if isPromodoroSelected {
                 Text(L10n.Tracking.Settings.promoTracker)
                     .font(.system(size: 20).weight(.semibold))
+                    .foregroundColor(Color.c2F2E41)
                 Text(L10n.Tracking.Settings.workSet)
                     .font(.system(size: 15).weight(.light))
                     .foregroundColor(Color.settingsTextColor)
@@ -24,6 +25,7 @@ struct SegmentControlTrackerView: View {
             } else {
                 Text(L10n.Tracking.Settings.stopWatchTracker)
                     .font(.system(size: 20).weight(.semibold))
+                    .foregroundColor(Color.c2F2E41)
                 Text(L10n.Tracking.Settings.workUntil)
                     .font(.system(size: 15).weight(.light))
                     .foregroundColor(Color.settingsTextColor)
@@ -39,12 +41,14 @@ struct SegmentControlTrackerView: View {
                         Text("10min")
                             .opacity(0.3)
                             .font(.system(size: 28).weight(.thin))
+                            
                         Text("15min")
                             .font(.system(size: 38).weight(.thin))
                         Text("20min")
                             .opacity(0.3)
                             .font(.system(size: 28).weight(.thin))
                     }
+                    .foregroundColor(Color.black)
                 }
                 .padding(.top, 35)
             }

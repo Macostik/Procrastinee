@@ -9,8 +9,8 @@ import SwiftUI
 
 struct TaskView: View {
     @StateObject var viewModel: MainViewModel
+    @State var selectedTaskPage = 0
     @State var offset = 0.0
-    @State var selectedTask = 0
     var body: some View {
         ZStack {
             VStack {
@@ -35,23 +35,22 @@ extension TaskView {
                     .padding(.top, 12)
                 Spacer()
                 HStack {
-                    if #available(iOS 16.0, *) {
-                        TabView(selection: $selectedTask) {
-                            TaskCategoryView {
-                                withAnimation {
-                                    selectedTask = 1
-                                }
-                            }.tag(0)
-                            TaskNameView()
-                                .tag(1)
+                    TabView(selection: $selectedTaskPage) {
+                        TaskCategoryView {
+                            withAnimation {
+                                selectedTaskPage = 1
+                            }
+                        }.tag(0)
+                        TaskNameView {
+                            viewModel.isTaskCategoryPresented = false
                         }
-                        .tabViewStyle(.page(indexDisplayMode: .never))
-                        .scrollDisabled(true)
-                    } 
+                        .tag(1)
+                    }
+                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
                 Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 594)
+            .frame(maxWidth: .infinity, maxHeight: 645)
             .background(Color.cf8Fafb)
             .offset(y: self.offset)
             .gesture(DragGesture()
@@ -61,13 +60,16 @@ extension TaskView {
                         offset = gesture.translation.height
                     }
                 })
-                .onEnded({ _ in
-                    viewModel.isTaskCategoryPresented = !(offset > 200)
-                    offset = 0
-                })
+                    .onEnded({ _ in
+                        viewModel.isTaskCategoryPresented = !(offset > 200)
+                        offset = 0
+                    })
             )
-            .clipShape(RoundedCorner(radius: 30,
+            .clipShape(RoundedCorner(radius: 10,
                                      corners: [.topLeft, .topRight]))
+            .onDisappear {
+                selectedTaskPage = 0
+            }
         }
     }
 }

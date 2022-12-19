@@ -24,7 +24,6 @@ struct GradientButton<Label>: View where Label: View {
                                endPoint: .bottom)
                     .cornerRadius(14)
                     .frame(height: 50)
-                    .padding(.horizontal, 23)
                 label?()
             }
         }

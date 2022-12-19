@@ -58,6 +58,7 @@ struct CreateProfileView: View {
                             .weight(.bold))
                 }
             })
+            .padding(.horizontal, 23)
             .animation(.easeInOut, value: keyboard.height)
             .offset(y: -keyboard.height - (keyboard.height > 0 ? 15 : 66))
         }

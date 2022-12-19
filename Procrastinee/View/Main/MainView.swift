@@ -21,6 +21,9 @@ struct MainView: View {
             }
             .ignoresSafeArea()
             .tabViewStyle(.page(indexDisplayMode: .never))
+            .onAppear {
+                UIScrollView.appearance().bounces = false
+            }
         }
     }
 }

@@ -9,6 +9,6 @@ import Foundation
 
 class MainViewModel: ObservableObject {
     @Published var selectedTracker: TrackerType = .tracker
-    @Published var isTaskCategoryPresented = false
     @Published var selectedTask = TaskType.sport
+    @Published var isTaskCategoryPresented = false
 }

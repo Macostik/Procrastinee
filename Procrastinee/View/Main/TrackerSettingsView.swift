@@ -39,6 +39,7 @@ struct BreakTimeView: View {
         VStack(spacing: 0) {
             Text(L10n.Tracking.Settings.breakTime)
                 .font(.system(size: 20).weight(.semibold))
+                .foregroundColor(Color.c2F2E41)
             Text(L10n.Tracking.Settings.takeRest)
                 .font(.system(size: 15).weight(.light))
                 .foregroundColor(Color.settingsTextColor)
@@ -48,11 +49,14 @@ struct BreakTimeView: View {
                     Text("3min")
                         .opacity(0.3)
                         .font(.system(size: 28).weight(.thin))
+                        .foregroundColor(Color.black)
                     Text("4min")
                         .font(.system(size: 38).weight(.thin))
+                        .foregroundColor(Color.black)
                     Text("6min")
                         .opacity(0.3)
                         .font(.system(size: 28).weight(.thin))
+                        .foregroundColor(Color.black)
                 }
             }
             .padding(.top, 20)
@@ -68,6 +72,7 @@ struct DeepFocusModeView: View {
         VStack(spacing: 0) {
             Text(L10n.Tracking.Settings.deepMode)
                 .font(.system(size: 20).weight(.semibold))
+                .foregroundColor(Color.c2F2E41)
             Text(L10n.Tracking.Settings.keepApp)
                 .font(.system(size: 15).weight(.light))
                 .multilineTextAlignment(.center)
@@ -95,6 +100,7 @@ struct FocusSoundsView: View {
         VStack(alignment: .leading, spacing: 0) {
             Text(L10n.Tracking.Settings.focusSound)
                 .font(.system(size: 20).weight(.semibold))
+                .foregroundColor(Color.c2F2E41)
             HStack(spacing: 22) {
                 ForEach(soundList) { sound in
                     SoundView(sound: sound)

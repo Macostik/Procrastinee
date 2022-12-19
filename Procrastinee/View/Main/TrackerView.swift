@@ -105,7 +105,7 @@ struct TickView: View {
     private func tick(at tick: Int) -> some View {
         VStack {
             Rectangle()
-                .fill(Color.primary)
+                .fill(Color.c2F2E41)
                 .frame(width: 2, height: 7)
             Spacer()
         }.rotationEffect(Angle.degrees(Double(tick)/(28) * 360))
@@ -195,9 +195,11 @@ struct MainSegmentControl: View {
                         Text(L10n.Main.tracker)
                             .font(.system(size: 12).weight(.semibold))
                             .offset(x: -52)
+                            .foregroundColor(Color.c2F2E41)
                         Text(L10n.Main.ranking)
                             .font(.system(size: 12).weight(.semibold))
                             .offset(x: 52)
+                            .foregroundColor(Color.c2F2E41)
                     }
                 })
                 .padding(.top, 4)

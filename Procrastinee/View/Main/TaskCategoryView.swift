@@ -11,19 +11,21 @@ struct TaskCategoryView: View {
     var action: (() -> Void)?
     var body: some View {
         VStack(spacing: 0) {
-            HeaderView()
+            TaskCategoryHeaderView()
             PickerTaskView()
             GradientButton(action: {
                 action?()
             }, label: {
                 HStack {
-                    Image.arrow
-                    Text(L10n.Onboarding.continue)
+                    Image.checkmark
+                    Text(L10n.Task.next)
                         .foregroundColor(Color.white)
                         .font(.system(size: 17)
                             .weight(.bold))
                 }
             })
+            .padding(.horizontal, 48)
+            .padding(.top, 67)
             Spacer()
         }
     }
@@ -35,7 +37,7 @@ struct TaskCategoryView_Previews: PreviewProvider {
     }
 }
 
-struct HeaderView: View {
+struct TaskCategoryHeaderView: View {
     var body: some View {
         VStack(spacing: 0) {
             Text(L10n.Task.category)
@@ -44,9 +46,10 @@ struct HeaderView: View {
             Text(L10n.Task.setCategory)
                 .font(.system(size: 18).weight(.medium))
                 .foregroundColor(Color.cadadad)
+                .multilineTextAlignment(.center)
                 .padding(.top, 6)
         }
-        .padding(.top, 44)
+        .padding(.top, 90)
     }
 }
 
@@ -55,10 +58,13 @@ struct PickerTaskView: View {
     var body: some View {
         Picker("", selection: $selectedTask) {
             ForEach(TaskType.allCases, id: \.self) { value in
-                Text(value.rawValue)
+                Text(value.rawValue.capitalized)
+                    .font(.system(size: 23).weight(.medium))
+                    .foregroundColor(Color.black)
             }
         }
         .highPriorityGesture(DragGesture())
         .pickerStyle(.wheel)
+        .padding(.top, 55)
     }
 }

@@ -48,6 +48,7 @@ struct FirstIntroductionView: View {
                             .weight(.bold))
                 }
             })
+            .padding(.horizontal, 23)
             PageIndicatorView()
                 .padding(.top, 12)
                 .padding(.bottom, 40)

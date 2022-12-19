@@ -60,6 +60,7 @@ struct ThirdIntroductionView: View {
                             .weight(.bold))
                 }
             })
+            .padding(.horizontal, 23)
             PageIndicatorView(selected: 3)
                 .padding(.top, 12)
                 .padding(.bottom, 40)

@@ -27,6 +27,7 @@ struct GetStartedView: View {
                             .weight(.bold))
                 })
             }
+            .padding(.horizontal, 23)
             .padding(.bottom, 66)
         }
         .background(Color.backgroundColor)

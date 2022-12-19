@@ -38,6 +38,7 @@ struct PurchaseView: View {
                     .font(.system(size: 17).weight(.semibold))
                     .foregroundColor(Color.white)
             })
+            .padding(.horizontal, 23)
             .padding(.top, 29)
             Text(L10n.Onboarding.alreadySubscribe)
                 .font(.system(size: 16).weight(.light))
