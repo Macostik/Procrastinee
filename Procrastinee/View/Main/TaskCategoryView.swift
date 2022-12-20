@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct TaskCategoryView: View {
+    @StateObject var viewModel: MainViewModel
     var action: (() -> Void)?
     var body: some View {
         VStack(spacing: 0) {
             TaskCategoryHeaderView()
-            PickerTaskView()
+            PickerTaskView(viewModel: viewModel)
             GradientButton(action: {
                 action?()
             }, label: {
@@ -33,7 +34,7 @@ struct TaskCategoryView: View {
 
 struct TaskCategoryView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskCategoryView()
+        TaskCategoryView(viewModel: MainViewModel())
     }
 }
 
@@ -54,9 +55,9 @@ struct TaskCategoryHeaderView: View {
 }
 
 struct PickerTaskView: View {
-    @State var selectedTask: TaskType = .sport
+    @StateObject var viewModel: MainViewModel
     var body: some View {
-        Picker("", selection: $selectedTask) {
+        Picker("", selection: $viewModel.selectedTask) {
             ForEach(TaskType.allCases, id: \.self) { value in
                 Text(value.rawValue.capitalized)
                     .font(.system(size: 23).weight(.medium))

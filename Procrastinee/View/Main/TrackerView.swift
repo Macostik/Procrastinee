@@ -15,8 +15,10 @@ struct TrackerView: View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
                 TrackerPlaningSwitcher(dealType: $dealType)
-                TimerView {
-                    viewModel.isTaskCategoryPresented = true
+                TimerView(viewModel: viewModel) {
+                    if viewModel.pause == false {
+                        viewModel.isTaskCategoryPresented = true
+                    }
                 }
                 TipsView()
                 StatisticView()
@@ -62,45 +64,70 @@ struct TrackerPlaningSwitcher: View {
 }
 
 struct TimerView: View {
+    @StateObject var viewModel: MainViewModel
+    @State var reverseAnimation = false
+    @State var counter: CGFloat = -89
     var clickHandler: (() -> Void)?
-    @State var isTrackStarted = true
     @State var player: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Play Tracker Buton",
-                                         withExtension: "mp3")
+                                  withExtension: "mp3")
         return try? AVAudioPlayer(contentsOf: url!,
-                            fileTypeHint: AVFileType.mp3.rawValue)
+                                  fileTypeHint: AVFileType.mp3.rawValue)
     }()
     var body: some View {
         VStack(alignment: .leading) {
             Image.tapToStart
                 .offset(y: 20)
-                ZStack {
-                    LinePath()
-                        .stroke(Color.c2F2E41,
-                                style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
-                    Button {
-                        player?.play()
-                        clickHandler?()
-                    } label: {
-                        ZStack {
-                            TickView()
-                            if isTrackStarted {
-                                GradientCircleView()
-                                    .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
-                                                         startPoint: .leading,
-                                                         endPoint: .trailing))
-                                    .frame(width: 219, height: 219, alignment: .center)
-                            } else {
-                                Image.polygon
+            ZStack {
+                LinePath()
+                    .stroke(Color.c2F2E41,
+                            style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
+                Button {
+                    player?.play()
+                    clickHandler?()
+                } label: {
+                    ZStack {
+                        TickView()
+                        if viewModel.isTrackStarted {
+                            if viewModel.pause {
+                                Circle()
+                                    .foregroundColor(Color.gray)
+                                    .frame(width: 219, height: 219)
+                                Image.pause
                                     .resizable()
-                                    .frame(width: 65, height: 70)
-                                    .offset(x: 10)
+                                    .frame(width: 52, height: 58)
+                                    .zIndex(2)
                             }
+                            GradientCircleView(startInitValue: $counter)
+                                .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
+                                                     startPoint: .leading,
+                                                     endPoint: .trailing))
+                                .frame(width: 219, height: 219, alignment: .center)
+                                .rotationEffect(Angle(degrees: -CGFloat(counter/2) - 45))
+                                .onReceive(viewModel.timer) { _ in
+                                    if viewModel.pause == false {
+                                        if counter >= 269 {
+                                            self.reverseAnimation = true
+                                        } else if counter <= -89 {
+                                            self.reverseAnimation = false
+                                        }
+                                        counter = self.reverseAnimation ? counter - 1 : counter + 1
+                                    }
+                                }
+                                .onTapGesture {
+                                    viewModel.pause.toggle()
+                                }
+                        } else {
+                            Image.polygon
+                                .resizable()
+                                .frame(width: 65, height: 70)
+                                .offset(x: 10)
                         }
                     }
-                    .buttonStyle(ScaleButtonStyle())
                 }
-                .frame(width: 311, height: 311, alignment: .center)
+                .buttonStyle(ScaleButtonStyle())
+            }
+            .frame(width: 311, height: 311, alignment: .center)
         }
     }
 }
@@ -217,13 +244,14 @@ struct MainSegmentControl: View {
 }
 
 struct GradientCircleView: Shape {
+    @Binding var startInitValue: CGFloat
     func path(in rect: CGRect) -> Path {
         var path = Path()
         path.move(to: CGPoint(x: rect.midX, y: rect.midY))
         path.addArc(center: .init(x: rect.midX, y: rect.midY),
                     radius: rect.width/2,
                     startAngle: Angle(degrees: -90),
-                    endAngle: Angle(degrees: -89),
+                    endAngle: Angle(degrees: startInitValue),
                     clockwise: true)
         return path
     }

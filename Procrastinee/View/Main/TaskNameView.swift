@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct TaskNameView: View {
-    var action: (() -> Void)?
+    @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 0) {
             TaskNameHeaderView()
-            TaskNameTextField(action: action)
+            TaskNameTextField(viewModel: viewModel)
             Spacer()
         }
     }
@@ -20,7 +20,7 @@ struct TaskNameView: View {
 
 struct TaskNameView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskNameView()
+        TaskNameView(viewModel: MainViewModel())
     }
 }
 
@@ -40,8 +40,7 @@ struct TaskNameHeaderView: View {
     }
 }
 struct TaskNameTextField: View {
-    var action: (() -> Void)?
-    @State var taskName = ""
+    @StateObject var viewModel: MainViewModel
     @FocusState private var isFocused: Bool
     @State var textFontColor = Color.ccfd0D4
     var body: some View {
@@ -52,19 +51,19 @@ struct TaskNameTextField: View {
                 .shadow(color: Color.c2F2E41.opacity(0.1), radius: 6)
                 .overlay {
                     HStack {
-                        TextField(L10n.Task.namePlaceholder, text: $taskName)
+                        TextField(L10n.Task.namePlaceholder, text: $viewModel.taskName)
                             .font(.system(size: 18).weight(.regular))
                             .foregroundColor(textFontColor)
                             .focused($isFocused)
-                            .onChange(of: taskName) { newValue in
+                            .onChange(of: viewModel.taskName) { newValue in
                                 textFontColor = newValue.count > 0 ?
                                 Color.black : Color.ccfd0D4
                             }
                         Spacer()
                         Button {
-                            if taskName.isEmpty == false {
+                            if viewModel.taskName.isEmpty == false {
                                 isFocused = false
-                                action?()
+                                viewModel.isTaskCategoryPresented = false
                             }
                         } label: {
                             Image.successMark

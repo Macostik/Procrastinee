@@ -36,14 +36,12 @@ extension TaskView {
                 Spacer()
                 HStack {
                     TabView(selection: $selectedTaskPage) {
-                        TaskCategoryView {
+                        TaskCategoryView(viewModel: viewModel) {
                             withAnimation {
                                 selectedTaskPage = 1
                             }
                         }.tag(0)
-                        TaskNameView {
-                            viewModel.isTaskCategoryPresented = false
-                        }
+                        TaskNameView(viewModel: viewModel)
                         .tag(1)
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
