@@ -72,6 +72,18 @@
 "task.name" = "Task Name";
 "task.theName" = "The name of the task has to\n have relevant meaning";
 "task.namePlaceholder" = "Task name...";
+"task.continue" = "Continue";
+"task.finish" = "Finish";
+"task.wantToFinish" = "Want to finish?";
+"task.ifYouDone" = "If you’ve done your task press\n finish to stop the tracker.";
+"task.areYouStill" = "Are you still in?";
+"task.everySec" = "Every 15 minutes you will receive a little\n check-in notification that will\n check your productivity.";
+"task.showIfDeepMode" = "(Shows only when ";
+"task.deepFocusMode" = "Deep Focus Mode ";
+"task.is" = "is ";
+"task.off" = "“Off”";
+"task.end" = ")";
+"task.checkAndContinue" = "Check-In & Continue";
 
 
 

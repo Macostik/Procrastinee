@@ -15,7 +15,8 @@ class MainViewModel: ObservableObject {
     @Published var isTaskCategoryPresented = false
     @Published var isTrackStarted = false
     @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common)
-    @Published var pause = false
+    @Published var isPaused = false
+    @Published var isFinished = false
     private var cancellable: Set<AnyCancellable> = []
     init() {
         $isTaskCategoryPresented

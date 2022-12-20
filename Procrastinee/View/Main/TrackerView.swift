@@ -16,12 +16,12 @@ struct TrackerView: View {
             VStack(spacing: 0) {
                 TrackerPlaningSwitcher(dealType: $dealType)
                 TimerView(viewModel: viewModel) {
-                    if viewModel.pause == false {
+                    if viewModel.isPaused == false {
                         viewModel.isTaskCategoryPresented = true
                     }
                 }
-                TipsView()
-                StatisticView()
+                TipsView(isTrackerStarted: $viewModel.isTrackStarted)
+                StatisticView(isTrackerStarted: $viewModel.isTrackStarted)
                 MainSegmentControl(isRightCornerRounded: viewModel.selectedTracker == .tracker)
                     .onTapGesture {
                         viewModel.selectedTracker = viewModel.selectedTracker == .tracker ? .runking : .tracker
@@ -67,6 +67,7 @@ struct TimerView: View {
     @StateObject var viewModel: MainViewModel
     @State var reverseAnimation = false
     @State var counter: CGFloat = -89
+    @State var isScale = false
     var clickHandler: (() -> Void)?
     @State var player: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Play Tracker Buton",
@@ -78,46 +79,60 @@ struct TimerView: View {
         VStack(alignment: .leading) {
             Image.tapToStart
                 .offset(y: 20)
+                .opacity(viewModel.isTrackStarted ? 0 : 1)
             ZStack {
                 LinePath()
                     .stroke(Color.c2F2E41,
                             style: StrokeStyle(lineWidth: 12, lineCap: .round, lineJoin: .round))
-                Button {
-                    player?.play()
-                    clickHandler?()
-                } label: {
-                    ZStack {
-                        TickView()
-                        if viewModel.isTrackStarted {
-                            if viewModel.pause {
-                                Circle()
-                                    .foregroundColor(Color.gray)
-                                    .frame(width: 219, height: 219)
-                                Image.pause
-                                    .resizable()
-                                    .frame(width: 52, height: 58)
-                                    .zIndex(2)
-                            }
-                            GradientCircleView(startInitValue: $counter)
-                                .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
-                                                     startPoint: .leading,
-                                                     endPoint: .trailing))
-                                .frame(width: 219, height: 219, alignment: .center)
-                                .rotationEffect(Angle(degrees: -CGFloat(counter/2) - 45))
-                                .onReceive(viewModel.timer) { _ in
-                                    if viewModel.pause == false {
-                                        if counter >= 269 {
-                                            self.reverseAnimation = true
-                                        } else if counter <= -89 {
-                                            self.reverseAnimation = false
-                                        }
-                                        counter = self.reverseAnimation ? counter - 1 : counter + 1
-                                    }
-                                }
+                ZStack {
+                    TickView()
+                        .scaleEffect(isScale ? 0.94 : 1.0)
+                        .animation(.interactiveSpring(), value: isScale)
+                    if viewModel.isTrackStarted {
+                        if viewModel.isPaused {
+                            Circle()
+                                .foregroundColor(Color.gray)
+                                .frame(width: 219, height: 219)
+                            Image.pause
+                                .resizable()
+                                .frame(width: 52, height: 58)
+                                .zIndex(2)
                                 .onTapGesture {
-                                    viewModel.pause.toggle()
+                                    viewModel.isPaused = false
                                 }
-                        } else {
+                                .onLongPressGesture(perform: {
+                                    viewModel.isFinished = true
+                                })
+                                .zIndex(2)
+                        }
+                        GradientCircleView(startInitValue: $counter)
+                            .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
+                                                 startPoint: .leading,
+                                                 endPoint: .trailing))
+                            .frame(width: 219, height: 219, alignment: .center)
+                            .rotationEffect(Angle(degrees: -CGFloat(counter/2) - 45))
+                            .onReceive(viewModel.timer) { _ in
+                                if viewModel.isPaused == false {
+                                    if counter >= 269 {
+                                        self.reverseAnimation = true
+                                    } else if counter <= -89 {
+                                        self.reverseAnimation = false
+                                    }
+                                    counter = self.reverseAnimation ? counter - 1 : counter + 1
+                                }
+                            }
+                            .onTapGesture {
+                                viewModel.isPaused = true
+                            }
+                    } else {
+                        Button {
+                            isScale = true
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                player?.play()
+                                clickHandler?()
+                                isScale = false
+                            }
+                        } label: {
                             Image.polygon
                                 .resizable()
                                 .frame(width: 65, height: 70)
@@ -125,7 +140,6 @@ struct TimerView: View {
                         }
                     }
                 }
-                .buttonStyle(ScaleButtonStyle())
             }
             .frame(width: 311, height: 311, alignment: .center)
         }
@@ -157,55 +171,80 @@ struct LinePath: Shape {
 }
 
 struct TipsView: View {
+    @Binding var isTrackerStarted: Bool
     var body: some View {
         VStack(spacing: 0) {
-            Image.groupDots
-            HStack {
-                Image.slideLeft
-                Spacer()
+            if isTrackerStarted {
+                HStack {
+                    Image.tapToPause
+                    Spacer()
+                    Image.tapToHold
+                }
+                .padding(.bottom, 12)
+                .padding(.horizontal, 10)
             }
-            .padding(.top, 25)
+            Image.groupDots
+            if !isTrackerStarted {
+                HStack {
+                    Image.slideLeft
+                    Spacer()
+                }
+                .padding(.top, 25)
+            }
         }
         .padding(.horizontal, 14)
-        .padding(.top, 97)
+        .padding(.top, isTrackerStarted ? -30 : 97)
     }
 }
 
 struct StatisticView: View {
     @State private var todayFocusValue = "1h43m"
+    @Binding var isTrackerStarted: Bool
     var body: some View {
         VStack(spacing: 5) {
-            HStack {
-                Text(L10n.Main.todayFocused)
-                    .font(.system(size: 12).weight(.semibold))
-                    .foregroundColor(Color.c2F2E41) +
-                Text(todayFocusValue)
-                    .font(.system(size: 12).weight(.semibold))
-                    .foregroundColor(Color.mainTextColor)
-                Text(L10n.Main.dailyAverage)
-                    .font(.system(size: 12).weight(.semibold))
-                    .foregroundColor(Color.c2F2E41) +
-                Text(todayFocusValue)
-                    .font(.system(size: 12).weight(.semibold))
-                    .foregroundColor(Color.mainTextColor)
-            }
-            HStack(alignment: .top, spacing: -10) {
-                Text(L10n.Main.totalWeekly)
-                    .font(.system(size: 12).weight(.semibold))
-                    .foregroundColor(Color.c2F2E41)
-                VStack(spacing: 0) {
+            if isTrackerStarted {
+                HStack {
+                    Text(L10n.Main.todayFocused)
+                        .font(.system(size: 12).weight(.semibold))
+                        .foregroundColor(Color.c2F2E41) +
                     Text(todayFocusValue)
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundColor(Color.mainTextColor)
-                    Image.underLine
-                        .resizable()
-                        .frame(width: 60, height: 50)
-                        .offset(y: -17)
+                }
+                .padding(.bottom, 70)
+            } else {
+                HStack {
+                    Text(L10n.Main.todayFocused)
+                        .font(.system(size: 12).weight(.semibold))
+                        .foregroundColor(Color.c2F2E41) +
+                    Text(todayFocusValue)
+                        .font(.system(size: 12).weight(.semibold))
+                        .foregroundColor(Color.mainTextColor)
+                    Text(L10n.Main.dailyAverage)
+                        .font(.system(size: 12).weight(.semibold))
+                        .foregroundColor(Color.c2F2E41) +
+                    Text(todayFocusValue)
+                        .font(.system(size: 12).weight(.semibold))
+                        .foregroundColor(Color.mainTextColor)
+                }
+                HStack(alignment: .top, spacing: -10) {
+                    Text(L10n.Main.totalWeekly)
+                        .font(.system(size: 12).weight(.semibold))
+                        .foregroundColor(Color.c2F2E41)
+                    VStack(spacing: 0) {
+                        Text(todayFocusValue)
+                            .font(.system(size: 12).weight(.semibold))
+                            .foregroundColor(Color.mainTextColor)
+                        Image.underLine
+                            .resizable()
+                            .frame(width: 60, height: 50)
+                            .offset(y: -17)
+                    }
                 }
             }
         }
         .padding(.horizontal, 14)
-        .padding(.top, 24)
+        .padding(.top, isTrackerStarted ? 100 : 24)
     }
 }
 

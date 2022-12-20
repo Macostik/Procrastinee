@@ -14,6 +14,7 @@ internal extension Color {
   static var c2F2E4145 : Color { Color("c2F2E4145", bundle: BundleToken.bundle) }
   static var c878787 : Color { Color("c878787", bundle: BundleToken.bundle) }
   static var cadadad : Color { Color("cADADAD", bundle: BundleToken.bundle) }
+  static var ccbcbcb : Color { Color("cCBCBCB", bundle: BundleToken.bundle) }
   static var ccfd0D4 : Color { Color("cCFD0D4", bundle: BundleToken.bundle) }
   static var cd9D9D9 : Color { Color("cD9D9D9", bundle: BundleToken.bundle) }
   static var ceaeaea : Color { Color("cEAEAEA", bundle: BundleToken.bundle) }
@@ -46,6 +47,8 @@ internal extension Image {
   static var reminders : Image { Image("reminders", bundle: BundleToken.bundle) }
   static var secondIntroduction : Image { Image("secondIntroduction", bundle: BundleToken.bundle) }
   static var suggested : Image { Image("suggested", bundle: BundleToken.bundle) }
+  static var tapToHold : Image { Image("tapToHold", bundle: BundleToken.bundle) }
+  static var tapToPause : Image { Image("tapToPause", bundle: BundleToken.bundle) }
   static var tapToStart : Image { Image("tapToStart", bundle: BundleToken.bundle) }
   static var thirdIntroduction : Image { Image("thirdIntroduction", bundle: BundleToken.bundle) }
   static var timer : Image { Image("timer", bundle: BundleToken.bundle) }

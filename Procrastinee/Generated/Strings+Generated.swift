@@ -117,20 +117,47 @@ public enum L10n {
   }
 
   public enum Task {
+    /// Are you still in?
+    public static let areYouStill = L10n.tr("Localizable", "task.areYouStill")
     /// Task Category
     public static let category = L10n.tr("Localizable", "task.category")
+    /// Check-In & Continue
+    public static let checkAndContinue = L10n.tr("Localizable", "task.checkAndContinue")
+    /// Continue
+    public static let `continue` = L10n.tr("Localizable", "task.continue")
+    /// Deep Focus Mode 
+    public static let deepFocusMode = L10n.tr("Localizable", "task.deepFocusMode")
+    /// )
+    public static let end = L10n.tr("Localizable", "task.end")
+    /// Every 15 minutes you will receive a little
+    ///  check-in notification that will
+    ///  check your productivity.
+    public static let everySec = L10n.tr("Localizable", "task.everySec")
+    /// Finish
+    public static let finish = L10n.tr("Localizable", "task.finish")
+    /// If you’ve done your task press
+    ///  finish to stop the tracker.
+    public static let ifYouDone = L10n.tr("Localizable", "task.ifYouDone")
+    /// is 
+    public static let `is` = L10n.tr("Localizable", "task.is")
     /// Task Name
     public static let name = L10n.tr("Localizable", "task.name")
     /// Task name...
     public static let namePlaceholder = L10n.tr("Localizable", "task.namePlaceholder")
     /// Next
     public static let next = L10n.tr("Localizable", "task.next")
+    /// “Off”
+    public static let off = L10n.tr("Localizable", "task.off")
     /// Set the category of your task
     ///  to help our team identify it
     public static let setCategory = L10n.tr("Localizable", "task.setCategory")
+    /// (Shows only when 
+    public static let showIfDeepMode = L10n.tr("Localizable", "task.showIfDeepMode")
     /// The name of the task has to
     ///  have relevant meaning
     public static let theName = L10n.tr("Localizable", "task.theName")
+    /// Want to finish?
+    public static let wantToFinish = L10n.tr("Localizable", "task.wantToFinish")
   }
 
   public enum Tracking {
