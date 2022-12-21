@@ -103,7 +103,6 @@ struct TimerView: View {
                                 .onLongPressGesture(perform: {
                                     viewModel.isFinished = true
                                 })
-                                .zIndex(2)
                         }
                         GradientCircleView(startInitValue: $counter)
                             .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],

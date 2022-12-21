@@ -28,16 +28,17 @@ struct WantToFinishView: View {
                         .font(.system(size: 17).weight(.bold))
                         .foregroundColor(Color.white)
                 }
-                Button {
-                    viewModel.isFinished = false
-                } label: {
-                    Text(L10n.Task.finish)
-                        .font(.system(size: 17).weight(.bold))
-                        .foregroundColor(Color.white)
-                }
-                .frame(maxWidth: .infinity, maxHeight: 50)
-                .background(Color.ccbcbcb)
-                .cornerRadius(14)
+                RoundedRectangle(cornerRadius: 14)
+                    .foregroundColor(Color.ccbcbcb)
+                    .frame(maxWidth: .infinity, maxHeight: 50)
+                    .overlay {
+                        Text(L10n.Task.finish)
+                            .font(.system(size: 17).weight(.bold))
+                            .foregroundColor(Color.white)
+                    }
+                    .onTapGesture {
+                        viewModel.isFinished = false
+                    }
             }
             .padding(.horizontal, 48)
             .padding(.top, 66)
