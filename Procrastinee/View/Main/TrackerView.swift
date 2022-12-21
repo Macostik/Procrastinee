@@ -15,13 +15,19 @@ struct TrackerView: View {
         ZStack(alignment: .bottom) {
             VStack(spacing: 0) {
                 TrackerPlaningSwitcher(dealType: $dealType)
-                TimerView(viewModel: viewModel) {
-                    if viewModel.hasTaskPaused == false {
-                        viewModel.isTaskCategoryPresented = true
+                if dealType == .tracker {
+                    TimerView(viewModel: viewModel) {
+                        if viewModel.hasTaskPaused == false {
+                            viewModel.isTaskCategoryPresented = true
+                        }
+                    }
+                    TipsView(isTrackerStarted: $viewModel.isTrackStarted)
+                    StatisticView(isTrackerStarted: $viewModel.isTrackStarted)
+                } else {
+                    VStack {
+                        
                     }
                 }
-                TipsView(isTrackerStarted: $viewModel.isTrackStarted)
-                StatisticView(isTrackerStarted: $viewModel.isTrackStarted)
                 MainSegmentControl(isRightCornerRounded: viewModel.selectedTracker == .tracker)
                     .onTapGesture {
                         viewModel.selectedTracker = viewModel.selectedTracker == .tracker ? .runking : .tracker
@@ -46,19 +52,24 @@ struct TrackerPlaningSwitcher: View {
     var body: some View {
         HStack(spacing: 30) {
             Button {
+                dealType = .tracker
             } label: {
                 Text(L10n.Main.tracker)
                     .font(.system(size: 15).weight(.regular))
-                    .foregroundColor(Color.c2F2E41)
+                    .foregroundColor(dealType == .tracker ?
+                                     Color.c2F2E41 : Color.c878787)
             }
             Button {
+                dealType = .planning
             } label: {
                 Text(L10n.Main.planing)
                     .font(.system(size: 15).weight(.regular))
-                    .foregroundColor(Color.c878787)
+                    .foregroundColor(dealType == .planning ?
+                                     Color.c2F2E41 : Color.c878787)
             }
         }
         .offset(x: dealType == .tracker ? 40 : -40)
+        .animation(.easeInOut, value: dealType)
         .padding(.top, 17)
     }
 }
