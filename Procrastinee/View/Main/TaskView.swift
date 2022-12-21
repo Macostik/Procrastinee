@@ -15,14 +15,14 @@ struct TaskView: View {
                 if viewModel.isTaskCategoryPresented {
                     TaskCreatePopupView(viewModel: viewModel)
                         .transition(.move(edge: .bottom))
-                } else if viewModel.isFinished {
+                } else if viewModel.presentFinishedPopup {
                     TaskFinishPopupView(viewModel: viewModel)
                         .transition(.move(edge: .bottom))
                 }
             }
         }
         .animation(.easeInOut, value: viewModel.isTaskCategoryPresented)
-        .animation(.easeInOut, value: viewModel.isFinished)
+        .animation(.easeInOut, value: viewModel.presentFinishedPopup)
         .shadow(color: Color.black.opacity(0.1), radius: 16, y: -10)
     }
 }

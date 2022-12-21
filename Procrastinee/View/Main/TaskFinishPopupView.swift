@@ -44,7 +44,7 @@ struct TaskFinishPopupView: View {
                     }
                 })
                     .onEnded({ _ in
-                        viewModel.isFinished = !(offset > 200)
+                        viewModel.presentFinishedPopup = !(offset > 200)
                         offset = 0
                     })
             )

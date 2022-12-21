@@ -24,6 +24,8 @@ internal extension Color {
   static var mainTextColor : Color { Color("mainTextColor", bundle: BundleToken.bundle) }
   static var onboardingTextColor : Color { Color("onboardingTextColor", bundle: BundleToken.bundle) }
   static var progressBackgroundColor : Color { Color("progressBackgroundColor", bundle: BundleToken.bundle) }
+  static var promodoroEndGradientColor : Color { Color("promodoroEndGradientColor", bundle: BundleToken.bundle) }
+  static var promodoroStartGradientColor : Color { Color("promodoroStartGradientColor", bundle: BundleToken.bundle) }
   static var settingsTextColor : Color { Color("settingsTextColor", bundle: BundleToken.bundle) }
   static var shadowColor : Color { Color("shadowColor", bundle: BundleToken.bundle) }
   static var startPointColor : Color { Color("startPointColor", bundle: BundleToken.bundle) }

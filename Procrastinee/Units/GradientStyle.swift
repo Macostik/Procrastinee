@@ -9,3 +9,13 @@ import SwiftUI
 import UIKit
 
 struct GradientStyle: ShapeStyle {}
+let gradient = LinearGradient(colors:
+                                [Color.startPointColor,
+                                 Color.endPointColor],
+                              startPoint: .leading,
+                              endPoint: .trailing)
+let promodoroGradient = LinearGradient(colors:
+                                        [Color.promodoroStartGradientColor,
+                                         Color.promodoroEndGradientColor],
+                                       startPoint: .leading,
+                                       endPoint: .trailing)

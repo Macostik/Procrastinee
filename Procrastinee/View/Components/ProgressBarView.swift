@@ -16,11 +16,7 @@ struct ProgressBarView: View {
             .frame(width: 191, height: 8)
             .overlay(alignment: .leading) {
                 Capsule()
-                    .overlay(
-                        LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
-                                       startPoint: .top,
-                                       endPoint: .bottom)
-                    )
+                    .overlay(gradient)
                     .cornerRadius(5)
                     .frame(width: 191 * progress, height: 8)
             }

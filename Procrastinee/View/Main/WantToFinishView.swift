@@ -19,6 +19,7 @@ struct WantToFinishView: View {
                 Text(L10n.Task.ifYouDone)
                     .font(.system(size: 15).weight(.regular))
                     .foregroundColor(Color.cadadad)
+                    .multilineTextAlignment(.center)
             }
             VStack {
                 GradientButton {
@@ -37,7 +38,7 @@ struct WantToFinishView: View {
                             .foregroundColor(Color.white)
                     }
                     .onTapGesture {
-                        viewModel.isFinished = false
+                        viewModel.taskIsOver = true
                     }
             }
             .padding(.horizontal, 48)

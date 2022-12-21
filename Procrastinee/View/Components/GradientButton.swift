@@ -19,9 +19,7 @@ struct GradientButton<Label>: View where Label: View {
             self.action?()
         } label: {
             ZStack {
-                LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
-                               startPoint: .top,
-                               endPoint: .bottom)
+                gradient
                     .cornerRadius(14)
                     .frame(height: 50)
                 label?()

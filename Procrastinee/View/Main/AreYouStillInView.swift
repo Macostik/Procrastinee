@@ -14,14 +14,15 @@ struct AreYouStillInView: View {
             PopupFinishHeaderView()
             VStack {
                 GradientButton {
-                    viewModel.isFinished = false
+                    viewModel.presentFinishedPopup = false
                 } label: {
                     Text(L10n.Task.checkAndContinue)
                         .font(.system(size: 17).weight(.bold))
                         .foregroundColor(Color.white)
                 }
                 Button {
-                    viewModel.isFinished = false
+                    viewModel.taskIsOver = true
+                    viewModel.presentFinishedPopup = false
                 } label: {
                     Text(L10n.Task.finish)
                         .font(.system(size: 17).weight(.bold))

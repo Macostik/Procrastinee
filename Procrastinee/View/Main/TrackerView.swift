@@ -16,7 +16,7 @@ struct TrackerView: View {
             VStack(spacing: 0) {
                 TrackerPlaningSwitcher(dealType: $dealType)
                 TimerView(viewModel: viewModel) {
-                    if viewModel.isPaused == false {
+                    if viewModel.hasTaskPaused == false {
                         viewModel.isTaskCategoryPresented = true
                     }
                 }
@@ -89,7 +89,7 @@ struct TimerView: View {
                         .scaleEffect(isScale ? 0.94 : 1.0)
                         .animation(.interactiveSpring(), value: isScale)
                     if viewModel.isTrackStarted {
-                        if viewModel.isPaused {
+                        if viewModel.hasTaskPaused {
                             Circle()
                                 .foregroundColor(Color.gray)
                                 .frame(width: 219, height: 219)
@@ -98,20 +98,18 @@ struct TimerView: View {
                                 .frame(width: 52, height: 58)
                                 .zIndex(2)
                                 .onTapGesture {
-                                    viewModel.isPaused = false
+                                    viewModel.hasTaskPaused = false
                                 }
                                 .onLongPressGesture(perform: {
-                                    viewModel.isFinished = true
+                                    viewModel.presentFinishedPopup = true
                                 })
                         }
                         GradientCircleView(startInitValue: $counter)
-                            .fill(LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
-                                                 startPoint: .leading,
-                                                 endPoint: .trailing))
+                            .fill(viewModel.selectedTrackerType == .stopWatch ? gradient : promodoroGradient)
                             .frame(width: 219, height: 219, alignment: .center)
                             .rotationEffect(Angle(degrees: -CGFloat(counter/2) - 45))
                             .onReceive(viewModel.timer) { _ in
-                                if viewModel.isPaused == false {
+                                if viewModel.hasTaskPaused == false {
                                     if counter >= 269 {
                                         self.reverseAnimation = true
                                     } else if counter <= -89 {
@@ -121,7 +119,7 @@ struct TimerView: View {
                                 }
                             }
                             .onTapGesture {
-                                viewModel.isPaused = true
+                                viewModel.hasTaskPaused = true
                             }
                     } else {
                         Button {
@@ -202,29 +200,33 @@ struct StatisticView: View {
     var body: some View {
         VStack(spacing: 5) {
             if isTrackerStarted {
-                HStack {
+                HStack(alignment: .bottom, spacing: 0) {
                     Text(L10n.Main.todayFocused)
                         .font(.system(size: 12).weight(.semibold))
-                        .foregroundColor(Color.c2F2E41) +
+                        .foregroundColor(Color.c2F2E41)
                     Text(todayFocusValue)
                         .font(.system(size: 12).weight(.semibold))
-                        .foregroundColor(Color.mainTextColor)
+                        .foregroundStyle(gradient)
                 }
                 .padding(.bottom, 70)
             } else {
                 HStack {
-                    Text(L10n.Main.todayFocused)
-                        .font(.system(size: 12).weight(.semibold))
-                        .foregroundColor(Color.c2F2E41) +
-                    Text(todayFocusValue)
-                        .font(.system(size: 12).weight(.semibold))
-                        .foregroundColor(Color.mainTextColor)
-                    Text(L10n.Main.dailyAverage)
-                        .font(.system(size: 12).weight(.semibold))
-                        .foregroundColor(Color.c2F2E41) +
-                    Text(todayFocusValue)
-                        .font(.system(size: 12).weight(.semibold))
-                        .foregroundColor(Color.mainTextColor)
+                    HStack(alignment: .bottom, spacing: 0) {
+                        Text(L10n.Main.todayFocused)
+                            .font(.system(size: 12).weight(.semibold))
+                            .foregroundColor(Color.c2F2E41)
+                        Text(todayFocusValue)
+                            .font(.system(size: 12).weight(.semibold))
+                            .foregroundStyle(gradient)
+                    }
+                    HStack(alignment: .bottom, spacing: 0) {
+                        Text(L10n.Main.dailyAverage)
+                            .font(.system(size: 12).weight(.semibold))
+                            .foregroundColor(Color.c2F2E41)
+                        Text(todayFocusValue)
+                            .font(.system(size: 12).weight(.semibold))
+                            .foregroundStyle(gradient)
+                    }
                 }
                 HStack(alignment: .top, spacing: -10) {
                     Text(L10n.Main.totalWeekly)
@@ -233,7 +235,7 @@ struct StatisticView: View {
                     VStack(spacing: 0) {
                         Text(todayFocusValue)
                             .font(.system(size: 12).weight(.semibold))
-                            .foregroundColor(Color.mainTextColor)
+                            .foregroundStyle(gradient)
                         Image.underLine
                             .resizable()
                             .frame(width: 60, height: 50)

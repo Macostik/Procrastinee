@@ -114,9 +114,7 @@ struct FocusSoundsView: View {
 
 @ViewBuilder func backgroundView(_ isKeepingFocus: Bool) -> some View {
     if isKeepingFocus {
-       LinearGradient(colors: [Color.startPointColor, Color.endPointColor],
-                       startPoint: .top,
-                       endPoint: .bottom)
+       gradient
     } else {
         Color.grayColor
     }

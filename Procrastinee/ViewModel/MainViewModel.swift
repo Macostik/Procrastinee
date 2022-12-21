@@ -9,14 +9,16 @@ import Foundation
 import Combine
 
 class MainViewModel: ObservableObject {
+    @Published var selectedTrackerType: TrackerSettingsType = .stopWatch
     @Published var selectedTracker: TrackerType = .tracker
     @Published var selectedTask = TaskType.sport
     @Published var taskName = ""
     @Published var isTaskCategoryPresented = false
     @Published var isTrackStarted = false
     @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common)
-    @Published var isPaused = false
-    @Published var isFinished = false
+    @Published var hasTaskPaused = false
+    @Published var presentFinishedPopup = false
+    @Published var taskIsOver = false
     private var cancellable: Set<AnyCancellable> = []
     init() {
         $isTaskCategoryPresented
@@ -32,6 +34,24 @@ class MainViewModel: ObservableObject {
                     _ = self.timer.connect()
                 }
             }
+            .store(in: &cancellable)
+        $taskIsOver
+            .dropFirst(1)
+            .receive(on: DispatchQueue.main)
+            .map({!$0})
+            .assign(to: \.isTrackStarted, on: self)
+            .store(in: &cancellable)
+        $taskIsOver
+            .dropFirst(1)
+            .receive(on: DispatchQueue.main)
+            .map({!$0})
+            .assign(to: \.hasTaskPaused, on: self)
+            .store(in: &cancellable)
+        $taskIsOver
+            .dropFirst(1)
+            .receive(on: DispatchQueue.main)
+            .map({!$0})
+            .assign(to: \.presentFinishedPopup, on: self)
             .store(in: &cancellable)
     }
 }
