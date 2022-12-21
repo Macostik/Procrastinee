@@ -15,10 +15,13 @@ internal extension Color {
   static var c878787 : Color { Color("c878787", bundle: BundleToken.bundle) }
   static var cadadad : Color { Color("cADADAD", bundle: BundleToken.bundle) }
   static var ccbcbcb : Color { Color("cCBCBCB", bundle: BundleToken.bundle) }
+  static var ccfcfcf : Color { Color("cCFCFCF", bundle: BundleToken.bundle) }
   static var ccfd0D4 : Color { Color("cCFD0D4", bundle: BundleToken.bundle) }
   static var cd9D9D9 : Color { Color("cD9D9D9", bundle: BundleToken.bundle) }
   static var ceaeaea : Color { Color("cEAEAEA", bundle: BundleToken.bundle) }
+  static var cf2F2F2 : Color { Color("cF2F2F2", bundle: BundleToken.bundle) }
   static var cf8Fafb : Color { Color("cF8FAFB", bundle: BundleToken.bundle) }
+  static var cf9F9F9 : Color { Color("cF9F9F9", bundle: BundleToken.bundle) }
   static var endPointColor : Color { Color("endPointColor", bundle: BundleToken.bundle) }
   static var grayColor : Color { Color("grayColor", bundle: BundleToken.bundle) }
   static var mainTextColor : Color { Color("mainTextColor", bundle: BundleToken.bundle) }
@@ -42,12 +45,16 @@ internal extension Image {
   static var checkmark : Image { Image("checkmark", bundle: BundleToken.bundle) }
   static var clock : Image { Image("clock", bundle: BundleToken.bundle) }
   static var countrySelectedIcon : Image { Image("countrySelectedIcon", bundle: BundleToken.bundle) }
+  static var educationTaskIcon : Image { Image("educationTaskIcon", bundle: BundleToken.bundle) }
   static var firstIntroduction : Image { Image("firstIntroduction", bundle: BundleToken.bundle) }
   static var getStarted : Image { Image("getStarted", bundle: BundleToken.bundle) }
   static var pause : Image { Image("pause", bundle: BundleToken.bundle) }
+  static var plusIcon : Image { Image("plusIcon", bundle: BundleToken.bundle) }
   static var procrasteeImage : Image { Image("procrasteeImage", bundle: BundleToken.bundle) }
   static var reminders : Image { Image("reminders", bundle: BundleToken.bundle) }
   static var secondIntroduction : Image { Image("secondIntroduction", bundle: BundleToken.bundle) }
+  static var sportTaskIcon : Image { Image("sportTaskIcon", bundle: BundleToken.bundle) }
+  static var studyTaskIcon : Image { Image("studyTaskIcon", bundle: BundleToken.bundle) }
   static var suggested : Image { Image("suggested", bundle: BundleToken.bundle) }
   static var tapToHold : Image { Image("tapToHold", bundle: BundleToken.bundle) }
   static var tapToPause : Image { Image("tapToPause", bundle: BundleToken.bundle) }
@@ -55,6 +62,7 @@ internal extension Image {
   static var thirdIntroduction : Image { Image("thirdIntroduction", bundle: BundleToken.bundle) }
   static var timer : Image { Image("timer", bundle: BundleToken.bundle) }
   static var underLine : Image { Image("underLine", bundle: BundleToken.bundle) }
+  static var workTaskIcon : Image { Image("workTaskIcon", bundle: BundleToken.bundle) }
   // Colors.xcassets
 }
 

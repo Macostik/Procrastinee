@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "workTaskIcon.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

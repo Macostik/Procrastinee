@@ -84,6 +84,15 @@
 "task.off" = "“Off”";
 "task.end" = ")";
 "task.checkAndContinue" = "Check-In & Continue";
+"task.type.sport" = "Sport";
+"task.type.work" = "Work";
+"task.type.study" = "Study";
+"task.type.education" = "Education";
+"task.completed" = "Completed";
+"task.planned" = "Planned";
+"task.time" = "Time";
+"task.whenPlanning" = "When you are\n planning to start?";
+"task.create" = "Create";
 
 
 

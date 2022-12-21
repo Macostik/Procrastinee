@@ -16,17 +16,9 @@ struct TrackerView: View {
             VStack(spacing: 0) {
                 TrackerPlaningSwitcher(dealType: $dealType)
                 if dealType == .tracker {
-                    TimerView(viewModel: viewModel) {
-                        if viewModel.hasTaskPaused == false {
-                            viewModel.isTaskCategoryPresented = true
-                        }
-                    }
-                    TipsView(isTrackerStarted: $viewModel.isTrackStarted)
-                    StatisticView(isTrackerStarted: $viewModel.isTrackStarted)
+                    ContainerTrackerView(viewModel: viewModel)
                 } else {
-                    VStack {
-                        
-                    }
+                    ContainerPlanningView(viewModel: viewModel)
                 }
                 MainSegmentControl(isRightCornerRounded: viewModel.selectedTracker == .tracker)
                     .onTapGesture {
@@ -35,7 +27,7 @@ struct TrackerView: View {
                 Spacer()
             }
             .background(Color.cf8Fafb)
-            TaskView(viewModel: viewModel)
+            TaskPopoverPresenterView(viewModel: viewModel)
         }
         .edgesIgnoringSafeArea(.bottom)
     }

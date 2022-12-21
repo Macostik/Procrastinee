@@ -123,8 +123,12 @@ public enum L10n {
     public static let category = L10n.tr("Localizable", "task.category")
     /// Check-In & Continue
     public static let checkAndContinue = L10n.tr("Localizable", "task.checkAndContinue")
+    /// Completed
+    public static let completed = L10n.tr("Localizable", "task.completed")
     /// Continue
     public static let `continue` = L10n.tr("Localizable", "task.continue")
+    /// Create
+    public static let create = L10n.tr("Localizable", "task.create")
     /// Deep Focus Mode 
     public static let deepFocusMode = L10n.tr("Localizable", "task.deepFocusMode")
     /// )
@@ -148,6 +152,8 @@ public enum L10n {
     public static let next = L10n.tr("Localizable", "task.next")
     /// “Off”
     public static let off = L10n.tr("Localizable", "task.off")
+    /// Planned
+    public static let planned = L10n.tr("Localizable", "task.planned")
     /// Set the category of your task
     ///  to help our team identify it
     public static let setCategory = L10n.tr("Localizable", "task.setCategory")
@@ -156,8 +162,23 @@ public enum L10n {
     /// The name of the task has to
     ///  have relevant meaning
     public static let theName = L10n.tr("Localizable", "task.theName")
+    /// Time
+    public static let time = L10n.tr("Localizable", "task.time")
     /// Want to finish?
     public static let wantToFinish = L10n.tr("Localizable", "task.wantToFinish")
+    /// When you are
+    ///  planning to start?
+    public static let whenPlanning = L10n.tr("Localizable", "task.whenPlanning")
+    public enum `Type` {
+      /// Education
+      public static let education = L10n.tr("Localizable", "task.type.education")
+      /// Sport
+      public static let sport = L10n.tr("Localizable", "task.type.sport")
+      /// Study
+      public static let study = L10n.tr("Localizable", "task.type.study")
+      /// Work
+      public static let work = L10n.tr("Localizable", "task.type.work")
+    }
   }
 
   public enum Tracking {

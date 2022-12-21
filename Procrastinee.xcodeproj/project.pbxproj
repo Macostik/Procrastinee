@@ -46,7 +46,7 @@
 		564ECCFF295050BB00EFD784 /* Slide Lefs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */; };
 		564ECD012950583300EFD784 /* View+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD002950583300EFD784 /* View+Style.swift */; };
 		564ECD0329505B1100EFD784 /* TaskCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD0229505B1000EFD784 /* TaskCategoryView.swift */; };
-		564ECD052950734000EFD784 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD042950734000EFD784 /* TaskView.swift */; };
+		564ECD052950734000EFD784 /* TaskPopoverPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD042950734000EFD784 /* TaskPopoverPresenterView.swift */; };
 		564ECD072950740500EFD784 /* TaskNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD062950740500EFD784 /* TaskNameView.swift */; };
 		565275D0294C9E8A0081D268 /* GradientStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 565275CF294C9E8A0081D268 /* GradientStyle.swift */; };
 		56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56774D342944A8D90068BDFF /* PageIndicatorView.swift */; };
@@ -58,6 +58,9 @@
 		567CB22A29521DD60065A39B /* TaskFinishPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CB22929521DD60065A39B /* TaskFinishPopupView.swift */; };
 		567CB22C29521F200065A39B /* WantToFinishView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CB22B29521F200065A39B /* WantToFinishView.swift */; };
 		567CB22E29521F360065A39B /* AreYouStillInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567CB22D29521F360065A39B /* AreYouStillInView.swift */; };
+		569E3DC729533B5B00145A95 /* ContainerTrakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DC629533B5B00145A95 /* ContainerTrakerView.swift */; };
+		569E3DC929533B7600145A95 /* ContainerPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DC829533B7600145A95 /* ContainerPlanningView.swift */; };
+		569E3DCB2953441000145A95 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DCA2953441000145A95 /* TaskModel.swift */; };
 		56E9E766294B07BB00F03C08 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9E765294B07BB00F03C08 /* MainView.swift */; };
 		56E9E768294B086300F03C08 /* Environment+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9E767294B086300F03C08 /* Environment+Value.swift */; };
 		56E9E76A294B0C3E00F03C08 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9E769294B0C3E00F03C08 /* Constants.swift */; };
@@ -113,7 +116,7 @@
 		564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slide Lefs.mp3"; sourceTree = "<group>"; };
 		564ECD002950583300EFD784 /* View+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Style.swift"; sourceTree = "<group>"; };
 		564ECD0229505B1000EFD784 /* TaskCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoryView.swift; sourceTree = "<group>"; };
-		564ECD042950734000EFD784 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
+		564ECD042950734000EFD784 /* TaskPopoverPresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPopoverPresenterView.swift; sourceTree = "<group>"; };
 		564ECD062950740500EFD784 /* TaskNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskNameView.swift; sourceTree = "<group>"; };
 		565275CF294C9E8A0081D268 /* GradientStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientStyle.swift; sourceTree = "<group>"; };
 		56774D342944A8D90068BDFF /* PageIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageIndicatorView.swift; sourceTree = "<group>"; };
@@ -125,6 +128,9 @@
 		567CB22929521DD60065A39B /* TaskFinishPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskFinishPopupView.swift; sourceTree = "<group>"; };
 		567CB22B29521F200065A39B /* WantToFinishView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WantToFinishView.swift; sourceTree = "<group>"; };
 		567CB22D29521F360065A39B /* AreYouStillInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreYouStillInView.swift; sourceTree = "<group>"; };
+		569E3DC629533B5B00145A95 /* ContainerTrakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTrakerView.swift; sourceTree = "<group>"; };
+		569E3DC829533B7600145A95 /* ContainerPlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPlanningView.swift; sourceTree = "<group>"; };
+		569E3DCA2953441000145A95 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
 		56E9E765294B07BB00F03C08 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56E9E767294B086300F03C08 /* Environment+Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Value.swift"; sourceTree = "<group>"; };
 		56E9E769294B0C3E00F03C08 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -263,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				56E9E773294C5FC100F03C08 /* TrackerModel.swift */,
+				569E3DCA2953441000145A95 /* TaskModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -329,9 +336,11 @@
 			isa = PBXGroup;
 			children = (
 				56E9E765294B07BB00F03C08 /* MainView.swift */,
-				56E9E76B294B51EE00F03C08 /* TrackerView.swift */,
+				569E3DC629533B5B00145A95 /* ContainerTrakerView.swift */,
+				569E3DC829533B7600145A95 /* ContainerPlanningView.swift */,
 				56E9E77F294C821800F03C08 /* TrackerSettingsView.swift */,
-				564ECD042950734000EFD784 /* TaskView.swift */,
+				56E9E76B294B51EE00F03C08 /* TrackerView.swift */,
+				564ECD042950734000EFD784 /* TaskPopoverPresenterView.swift */,
 				564ECD0229505B1000EFD784 /* TaskCategoryView.swift */,
 				564ECD062950740500EFD784 /* TaskNameView.swift */,
 				567CB22729521DC60065A39B /* TaskCreatePopupView.swift */,
@@ -487,7 +496,7 @@
 				564ECD0329505B1100EFD784 /* TaskCategoryView.swift in Sources */,
 				567CB22E29521F360065A39B /* AreYouStillInView.swift in Sources */,
 				564ECD072950740500EFD784 /* TaskNameView.swift in Sources */,
-				564ECD052950734000EFD784 /* TaskView.swift in Sources */,
+				564ECD052950734000EFD784 /* TaskPopoverPresenterView.swift in Sources */,
 				5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */,
 				564ECD012950583300EFD784 /* View+Style.swift in Sources */,
 				56E9E766294B07BB00F03C08 /* MainView.swift in Sources */,
@@ -500,6 +509,7 @@
 				56E9E76A294B0C3E00F03C08 /* Constants.swift in Sources */,
 				564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
+				569E3DC929533B7600145A95 /* ContainerPlanningView.swift in Sources */,
 				567CB22C29521F200065A39B /* WantToFinishView.swift in Sources */,
 				560B68DF2944EA7A00EDD52F /* SuccessCreatingAccountView.swift in Sources */,
 				5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */,
@@ -511,6 +521,7 @@
 				5603290D294362F200E6BCB3 /* SuggestedView.swift in Sources */,
 				56774D392944AEFA0068BDFF /* ThirdIntroductionView.swift in Sources */,
 				56E9E774294C5FC100F03C08 /* TrackerModel.swift in Sources */,
+				569E3DCB2953441000145A95 /* TaskModel.swift in Sources */,
 				56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */,
 				5603290F2943683D00E6BCB3 /* FirstIntroductionView.swift in Sources */,
 				56E9E778294C66A500F03C08 /* SegmentControlTrackerView.swift in Sources */,
@@ -522,6 +533,7 @@
 				560B68DD2944E8EF00EDD52F /* ProgressView.swift in Sources */,
 				560328F52943254900E6BCB3 /* XCAssets+Generated.swift in Sources */,
 				56E9E77A294C67A400F03C08 /* SoundView.swift in Sources */,
+				569E3DC729533B5B00145A95 /* ContainerTrakerView.swift in Sources */,
 				567CB22A29521DD60065A39B /* TaskFinishPopupView.swift in Sources */,
 				56E9E772294C55DA00F03C08 /* RoundedCorner.swift in Sources */,
 				560B68DB2944E5C300EDD52F /* ProgressBarView.swift in Sources */,

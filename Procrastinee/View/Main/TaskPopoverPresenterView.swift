@@ -1,5 +1,5 @@
 //
-//  TaskView.swift
+//  TaskPopoverPresenterView.swift
 //  Procrastinee
 //
 //  Created by Macostik on 19.12.2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TaskView: View {
+struct TaskPopoverPresenterView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         ZStack {
@@ -29,6 +29,6 @@ struct TaskView: View {
 
 struct TaskView_Previews: PreviewProvider {
     static var previews: some View {
-        TaskView(viewModel: MainViewModel())
+        TaskPopoverPresenterView(viewModel: MainViewModel())
     }
 }

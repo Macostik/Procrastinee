@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 struct Sound: Identifiable {
     let id = UUID()
@@ -33,4 +34,8 @@ enum TrackerType {
 
 enum TaskType: String, CaseIterable {
     case  sport, education, work, study
+}
+
+enum TaskState: String {
+    case planned, completed
 }
