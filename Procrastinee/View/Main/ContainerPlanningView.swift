@@ -12,22 +12,29 @@ let horizontalPadding: CGFloat = 20
 struct ContainerPlanningView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
-        VStack(spacing: 0) {
-            PlusView()
+        ZStack(alignment: .top) {
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(pinnedViews: [.sectionHeaders]) {
                     ForEach(groupTask, id: \.self) { item in
                         Section(header:
                                     TaskSectionHeader(title: item.key)) {
-                            ForEach(item.value, id: \.self) { task in
-                                TaskCell(task: task)
+                            VStack(spacing: 13) {
+                                ForEach(item.value, id: \.self) { task in
+                                    TaskCell(task: task)
+                                        .frame(height: 110)
+                                }
                             }
                         }
                     }
                 }
             }
+            HStack {
+                Spacer()
+                Image.plusIcon
+                    .padding(.top, 49)
+            }
+            .padding(.trailing, 7)
         }
-        .padding(.horizontal, horizontalPadding)
     }
 }
 
@@ -37,18 +44,7 @@ struct ContainerPlanningView_Previews: PreviewProvider {
     }
 }
 
-struct PlusView: View {
-    var body: some View {
-        VStack {
-            Image.plusIcon
-                .resizable()
-                .frame(width: 50, height: 50)
-        }
-    }
-}
-
 struct TaskSectionHeader: View {
-    @Environment(\.screenSize) private var screenSize
     var title: String
     var body: some View {
         HStack(spacing: 16) {
@@ -75,20 +71,20 @@ struct TaskSectionHeader: View {
             }
             Spacer()
         }
-        .frame(width: screenSize.width - horizontalPadding * 2, height: 78)
+        .padding(.horizontal, horizontalPadding)
+        .padding(.bottom, 22)
+        .frame(height: 128, alignment: .bottom)
+        .background(Color.backgroundColor)
     }
 }
 
 struct TaskCell: View {
-    @Environment(\.screenSize) private var screenSize
     var task: Task
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 9)
-                .frame(width: screenSize.width - horizontalPadding * 2, height: 110)
                 .foregroundColor(Color.white)
-                .shadow(color: Color.black.opacity(0.1),
-                        radius: 9)
+                .shadow(color: Color.black.opacity(0.1), radius: 10, y: 4)
                 .overlay {
                     HStack {
                         DesctriptionTaskView(task: task)
@@ -98,6 +94,7 @@ struct TaskCell: View {
                     .padding(.horizontal, 18)
                 }
         }
+        .padding(.horizontal, horizontalPadding)
     }
 }
 
