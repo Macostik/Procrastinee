@@ -132,14 +132,24 @@ struct PurchaseItem: View {
                             }
                         } else {
                             Divider()
-                                .offset(y: 10)
+                                .frame(height: 2)
+                                .background(isSelected ? gradientVertical : nil)
+                                .offset(y: 12)
                         }
                         Spacer()
-                        Text(purchase.purchaseType.averageValue)
-                            .font(.system(size: 11).weight(.bold))
-                            .foregroundColor(Color.onboardingTextColor)
-                            .multilineTextAlignment(.center)
-                            .offset(y: isSelected ? 2 : 5)
+                        if purchase.purchaseType == .month {
+                            Text(purchase.purchaseType.averageValue)
+                                .font(.system(size: 11).weight(.bold))
+                                .foregroundColor(Color.onboardingTextColor)
+                                .multilineTextAlignment(.center)
+                                .offset(y: 2)
+                        } else {
+                            Text(purchase.purchaseType.averageValue)
+                                .font(.system(size: 11).weight(.bold))
+                                .foregroundColor(Color.onboardingTextColor)
+                                .multilineTextAlignment(.center)
+                                .offset(y: 5)
+                        }
                         Spacer()
                     }
                 }

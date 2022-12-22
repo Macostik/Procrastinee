@@ -36,23 +36,11 @@ struct SegmentControlTrackerView: View {
                     selectedTracker = selectedTracker == .promodoro ? .stopWatch : .promodoro
                 }
             if isPromodoroSelected {
-                HStack(spacing: 38) {
-                    Group {
-                        Text("10min")
-                            .opacity(0.3)
-                            .font(.system(size: 28).weight(.thin))
-                        Text("15min")
-                            .font(.system(size: 38).weight(.thin))
-                        Text("20min")
-                            .opacity(0.3)
-                            .font(.system(size: 28).weight(.thin))
-                    }
-                    .foregroundColor(Color.black)
-                }
-                .padding(.top, 35)
+                СarouselView(dataList: Array(1...12), multiplayValue: 5)
+                    .padding(.top, 10)
             }
         }
-        .padding(.top, 60)
+        .padding(.top, 73)
     }
 }
 

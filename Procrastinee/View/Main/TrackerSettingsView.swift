@@ -44,24 +44,10 @@ struct BreakTimeView: View {
                 .font(.system(size: 15).weight(.light))
                 .foregroundColor(Color.settingsTextColor)
                 .padding(.top, 4)
-            HStack(spacing: 48) {
-                Group {
-                    Text("3min")
-                        .opacity(0.3)
-                        .font(.system(size: 28).weight(.thin))
-                        .foregroundColor(Color.black)
-                    Text("4min")
-                        .font(.system(size: 38).weight(.thin))
-                        .foregroundColor(Color.black)
-                    Text("6min")
-                        .opacity(0.3)
-                        .font(.system(size: 28).weight(.thin))
-                        .foregroundColor(Color.black)
-                }
-            }
-            .padding(.top, 20)
+            СarouselView(dataList: Array(1...10))
+            .padding(.top, 0)
         }
-        .padding(.top, 40)
+        .padding(.top, 16)
     }
 }
 
@@ -89,9 +75,9 @@ struct DeepFocusModeView: View {
                     .background(backgroundView(isKeepingFocus))
                     .cornerRadius(14)
             }
-            .padding(.top, 24)
+            .padding(.top, 20)
         }
-        .padding(.top, isPromodoroSelected  ? 60 : 74)
+        .padding(.top, isPromodoroSelected  ? 30 : 74)
     }
 }
 
