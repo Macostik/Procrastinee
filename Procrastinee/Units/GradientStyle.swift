@@ -14,6 +14,11 @@ let gradient = LinearGradient(colors:
                                  Color.endPointColor],
                               startPoint: .leading,
                               endPoint: .trailing)
+let gradientVertical = LinearGradient(colors:
+                                [Color.startPointColor,
+                                 Color.endPointColor],
+                              startPoint: .top,
+                              endPoint: .bottom)
 let promodoroGradient = LinearGradient(colors:
                                         [Color.promodoroStartGradientColor,
                                          Color.promodoroEndGradientColor],

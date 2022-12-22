@@ -82,6 +82,8 @@ public enum L10n {
     public static let oneYearPrice = L10n.tr("Localizable", "onboarding.oneYearPrice")
     /// or 
     public static let or = L10n.tr("Localizable", "onboarding.or")
+    /// Popular
+    public static let popular = L10n.tr("Localizable", "onboarding.popular")
     /// productive, concentrated 
     public static let proactive = L10n.tr("Localizable", "onboarding.proactive")
     /// You will be able not to just set the tasks but also you will complete all of them by the end of the day. You will no longer scold yourself for not finishing the set tasks you had to do because you already completed them.
@@ -92,6 +94,8 @@ public enum L10n {
     public static let stoping = L10n.tr("Localizable", "onboarding.stoping")
     /// stop procrastinating 
     public static let stopProcrastinating = L10n.tr("Localizable", "onboarding.stopProcrastinating")
+    /// SUBSCRIBE
+    public static let subscribe = L10n.tr("Localizable", "onboarding.subscribe")
     /// This app will help you to 
     public static let thirdIntroduction = L10n.tr("Localizable", "onboarding.thirdIntroduction")
     /// 12 Weeks

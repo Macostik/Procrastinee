@@ -43,6 +43,8 @@
 "onboarding.averagePriceOfWeek" = "4,99 USD / week";
 "onboarding.averagePriceOfMonth" = "1,66 USD / week";
 "onboarding.averagePriceOfYear" = "0,41 USD / week";
+"onboarding.popular" = "Popular";
+"onboarding.subscribe" = "SUBSCRIBE";
 
 "tracking.settings.promoTracker" = "Pomodoro Tracker";
 "tracking.settings.workSet" = "Work for a set period of time.";

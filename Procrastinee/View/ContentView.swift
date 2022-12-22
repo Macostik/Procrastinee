@@ -12,11 +12,12 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { proxy in
             NavigationView {
-                if viewModel.isPresentedMainView {
-                    MainView()
-                } else {
-                    OnboardingView()
-                }
+//                if viewModel.isPresentedMainView {
+//                    MainView()
+//                } else {
+//                    OnboardingView()
+//                }
+                PurchaseView(onboardingViewModel: viewModel)
             }
             .environmentObject(viewModel)
             .environment(\.screenSize, proxy.size)

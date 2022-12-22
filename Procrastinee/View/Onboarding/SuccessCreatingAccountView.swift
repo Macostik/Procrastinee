@@ -11,7 +11,7 @@ struct SuccessCreatingAccountView: View {
     @StateObject var viewModel: OnboardingViewModel
     var body: some View {
         VStack {
-            NavigationLink(destination: PurchaseView(viewModel: viewModel),
+            NavigationLink(destination: PurchaseView(onboardingViewModel: viewModel),
                            isActive: $viewModel.isPresentedPurchaseView) {}
             Image.successMark
             Text(L10n.Onboarding.accountCreateSuccess)

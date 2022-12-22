@@ -56,6 +56,7 @@ class MainViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     func creatTask() {
-        
+        isTaskCategoryPresented = false
+        isTrackStarted = false
     }
 }

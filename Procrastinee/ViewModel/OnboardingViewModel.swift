@@ -8,31 +8,6 @@
 import Foundation
 import Combine
 
-enum Purchasable: String, CaseIterable {
-    case week, month, year
-    var description: String {
-        switch self {
-        case .week: return L10n.Onboarding.oneWeek
-        case .month: return L10n.Onboarding.threeMonth
-        case .year: return L10n.Onboarding.oneYear
-        }
-    }
-    var price: String {
-        switch self {
-        case .week: return L10n.Onboarding.oneWeekPrice
-        case .month: return L10n.Onboarding.threeMonthPrice
-        case .year: return L10n.Onboarding.oneYearPrice
-        }
-    }
-    var averageValue: String {
-        switch self {
-        case .week: return L10n.Onboarding.averagePriceOfWeek
-        case .month: return L10n.Onboarding.averagePriceOfMonth
-        case .year: return L10n.Onboarding.averagePriceOfYear
-        }
-    }
-}
-
 class OnboardingViewModel: ObservableObject {
     @Published var nickName = ""
     @Published var isPresentedMainView = false
@@ -49,7 +24,6 @@ class OnboardingViewModel: ObservableObject {
             }
         }
     }
-    var purchaseList = Purchasable.allCases
     var countryList = [String]()
     var cancellable: Cancellable?
     init() {
@@ -66,14 +40,6 @@ class OnboardingViewModel: ObservableObject {
                 countryList.append(flag)
             }
         }
-    }
-    func purchaseProduct() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            let isUserAuthorised = true
-            UserDefaults.standard.set(isUserAuthorised,
-                                      forKey: Constants.authorised)
-            self.isPresentedMainView = isUserAuthorised
-        })
     }
 }
 
@@ -94,5 +60,13 @@ extension OnboardingViewModel {
         let indicatorSymbols =
         lowercasedCode.unicodeScalars.map({ regionalIndicatorSymbol(for: $0) })
         return String(indicatorSymbols.map({ Character($0) }))
+    }
+    func purchaseProduct() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+            let isUserAuthorised = true
+            UserDefaults.standard.set(isUserAuthorised,
+                                      forKey: Constants.authorised)
+            self.isPresentedMainView = isUserAuthorised
+        })
     }
 }

@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct PurchaseView: View {
-    @StateObject var viewModel: OnboardingViewModel
+    @StateObject var onboardingViewModel: OnboardingViewModel
+    @StateObject var viewModel = PurchaseViewModel()
+    @State var isSelectedPurchaseType: PurchaseType = .none
     var body: some View {
         VStack {
             Image.procrasteeImage
@@ -26,15 +28,21 @@ struct PurchaseView: View {
             HStack(spacing: 3) {
                 ForEach(viewModel.purchaseList,
                         id: \.self) { purchase in
-                    PurchaseItem(purchase: purchase)
+                    PurchaseItem(purchase: purchase,
+                                 isSelected:
+                            .constant(purchase.purchaseType == isSelectedPurchaseType))
+                        .onTapGesture {
+                            isSelectedPurchaseType = purchase.purchaseType
+                        }
                 }
             }
             .frame(height: 183)
             .padding(.horizontal, 19)
             GradientButton(action: {
-                viewModel.purchaseProduct()
+                onboardingViewModel.purchaseProduct()
             }, label: {
-                Text(L10n.Onboarding.tryFree)
+                Text(isSelectedPurchaseType == .week ?
+                     L10n.Onboarding.subscribe : L10n.Onboarding.tryFree)
                     .font(.system(size: 17).weight(.semibold))
                     .foregroundColor(Color.white)
             })
@@ -53,40 +61,89 @@ struct PurchaseView: View {
 
 struct PurchaseView_Previews: PreviewProvider {
     static var previews: some View {
-        PurchaseView(viewModel: OnboardingViewModel())
+        PurchaseView(onboardingViewModel: OnboardingViewModel())
     }
 }
 
 struct PurchaseItem: View {
-    var purchase: Purchasable
+    var purchase: Purchase
+    @Binding var isSelected: Bool
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 7)
-                .stroke(Color.grayColor, lineWidth: 1)
-                .overlay {
+            Group {
+                if isSelected {
+                    RoundedRectangle(cornerRadius: 7)
+                    .stroke(gradientVertical,
+                            lineWidth: isSelected ? 2 : 1)
+                } else {
+                    RoundedRectangle(cornerRadius: 7)
+                        .stroke(Color.grayColor,
+                                lineWidth: isSelected ? 2 : 1)
+                }
+            }.overlay {
                     VStack {
-                        Text(purchase.description)
+                        Text(purchase.purchaseType.description)
                             .font(.system(size: 17).weight(.semibold))
                             .foregroundColor(Color.onboardingTextColor)
                             .multilineTextAlignment(.center)
                             .padding(.top, 13)
                         Spacer()
-                        Text(purchase.price)
+                        Text(purchase.purchaseType.price)
                             .font(.system(size: 12).weight(.medium))
                             .foregroundColor(Color.onboardingTextColor)
                             .multilineTextAlignment(.center)
+                            .offset(y: purchase.purchaseType == .month ? 7 : 0)
                         Spacer()
-                        Divider()
-                            .offset(y: 10)
+                        if purchase.purchaseType == .month {
+                            HStack(spacing: 5) {
+                                VStack {
+                                    Divider()
+                                        .frame(height: 2)
+                                        .background(isSelected ? gradientVertical : nil)
+                                        .offset(y: 12)
+                                }
+                                if isSelected {
+                                    RoundedRectangle(cornerRadius: 2)
+                                        .foregroundStyle(gradientVertical)
+                                        .frame(width: 79, height: 20)
+                                        .overlay {
+                                            Text(L10n.Onboarding.popular)
+                                                .font(.system(size: 11).weight(.medium))
+                                                .foregroundColor(Color.white)
+                                        }
+                                        .offset(y: 12)
+                                } else {
+                                    RoundedRectangle(cornerRadius: 2)
+                                        .foregroundStyle(Color.ccfcfcf)
+                                        .frame(width: 79, height: 20)
+                                        .overlay {
+                                            Text(L10n.Onboarding.popular)
+                                                .font(.system(size: 11).weight(.medium))
+                                                .foregroundColor(Color.white)
+                                        }
+                                        .offset(y: 12)
+                                }
+                                VStack {
+                                    Divider()
+                                        .frame(height: 2)
+                                        .background(isSelected ? gradientVertical : nil)
+                                        .offset(y: 12)
+                                }
+                            }
+                        } else {
+                            Divider()
+                                .offset(y: 10)
+                        }
                         Spacer()
-                        Text(purchase.averageValue)
+                        Text(purchase.purchaseType.averageValue)
                             .font(.system(size: 11).weight(.bold))
                             .foregroundColor(Color.onboardingTextColor)
                             .multilineTextAlignment(.center)
-                            .offset(y: 5)
+                            .offset(y: isSelected ? 2 : 5)
                         Spacer()
                     }
                 }
         }
+        .padding(.top, purchase.purchaseType == .month ? 0 : 11)
     }
 }
