@@ -61,6 +61,8 @@
 		569E3DC729533B5B00145A95 /* ContainerTrakerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DC629533B5B00145A95 /* ContainerTrakerView.swift */; };
 		569E3DC929533B7600145A95 /* ContainerPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DC829533B7600145A95 /* ContainerPlanningView.swift */; };
 		569E3DCB2953441000145A95 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DCA2953441000145A95 /* TaskModel.swift */; };
+		569E3DCD2954419800145A95 /* TaskTimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DCC2954419800145A95 /* TaskTimeView.swift */; };
+		56A33F8629546DC700A7A87E /* TimePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56A33F8529546DC700A7A87E /* TimePickerView.swift */; };
 		56E9E766294B07BB00F03C08 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9E765294B07BB00F03C08 /* MainView.swift */; };
 		56E9E768294B086300F03C08 /* Environment+Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9E767294B086300F03C08 /* Environment+Value.swift */; };
 		56E9E76A294B0C3E00F03C08 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56E9E769294B0C3E00F03C08 /* Constants.swift */; };
@@ -131,6 +133,8 @@
 		569E3DC629533B5B00145A95 /* ContainerTrakerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTrakerView.swift; sourceTree = "<group>"; };
 		569E3DC829533B7600145A95 /* ContainerPlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPlanningView.swift; sourceTree = "<group>"; };
 		569E3DCA2953441000145A95 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
+		569E3DCC2954419800145A95 /* TaskTimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTimeView.swift; sourceTree = "<group>"; };
+		56A33F8529546DC700A7A87E /* TimePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePickerView.swift; sourceTree = "<group>"; };
 		56E9E765294B07BB00F03C08 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		56E9E767294B086300F03C08 /* Environment+Value.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Environment+Value.swift"; sourceTree = "<group>"; };
 		56E9E769294B0C3E00F03C08 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 				560328FC2943279B00E6BCB3 /* View */,
 				564DC5BB2945E68000912250 /* Extensions */,
 				560B68D72944D4D000EDD52F /* Units */,
+				56A33F8429546DB400A7A87E /* UIKit */,
 				560328F02943253400E6BCB3 /* Generated */,
 				560328E42943203000E6BCB3 /* Templates */,
 				560328E129431DAF00E6BCB3 /* Resources */,
@@ -332,21 +337,62 @@
 			path = ButtonSound;
 			sourceTree = "<group>";
 		};
+		569E3DCE295441A700145A95 /* TaskCreator */ = {
+			isa = PBXGroup;
+			children = (
+				564ECD0229505B1000EFD784 /* TaskCategoryView.swift */,
+				564ECD062950740500EFD784 /* TaskNameView.swift */,
+				569E3DCC2954419800145A95 /* TaskTimeView.swift */,
+			);
+			path = TaskCreator;
+			sourceTree = "<group>";
+		};
+		569E3DCF295441CE00145A95 /* TaskPapup */ = {
+			isa = PBXGroup;
+			children = (
+				564ECD042950734000EFD784 /* TaskPopoverPresenterView.swift */,
+				567CB22729521DC60065A39B /* TaskCreatePopupView.swift */,
+				567CB22929521DD60065A39B /* TaskFinishPopupView.swift */,
+			);
+			path = TaskPapup;
+			sourceTree = "<group>";
+		};
+		569E3DD02954420A00145A95 /* TaskContaier */ = {
+			isa = PBXGroup;
+			children = (
+				569E3DC629533B5B00145A95 /* ContainerTrakerView.swift */,
+				569E3DC829533B7600145A95 /* ContainerPlanningView.swift */,
+			);
+			path = TaskContaier;
+			sourceTree = "<group>";
+		};
+		569E3DD12954423400145A95 /* TaskFinisher */ = {
+			isa = PBXGroup;
+			children = (
+				567CB22B29521F200065A39B /* WantToFinishView.swift */,
+				567CB22D29521F360065A39B /* AreYouStillInView.swift */,
+			);
+			path = TaskFinisher;
+			sourceTree = "<group>";
+		};
+		56A33F8429546DB400A7A87E /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				56A33F8529546DC700A7A87E /* TimePickerView.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		56E9E764294B078000F03C08 /* Main */ = {
 			isa = PBXGroup;
 			children = (
 				56E9E765294B07BB00F03C08 /* MainView.swift */,
-				569E3DC629533B5B00145A95 /* ContainerTrakerView.swift */,
-				569E3DC829533B7600145A95 /* ContainerPlanningView.swift */,
 				56E9E77F294C821800F03C08 /* TrackerSettingsView.swift */,
 				56E9E76B294B51EE00F03C08 /* TrackerView.swift */,
-				564ECD042950734000EFD784 /* TaskPopoverPresenterView.swift */,
-				564ECD0229505B1000EFD784 /* TaskCategoryView.swift */,
-				564ECD062950740500EFD784 /* TaskNameView.swift */,
-				567CB22729521DC60065A39B /* TaskCreatePopupView.swift */,
-				567CB22929521DD60065A39B /* TaskFinishPopupView.swift */,
-				567CB22B29521F200065A39B /* WantToFinishView.swift */,
-				567CB22D29521F360065A39B /* AreYouStillInView.swift */,
+				569E3DD02954420A00145A95 /* TaskContaier */,
+				569E3DCF295441CE00145A95 /* TaskPapup */,
+				569E3DCE295441A700145A95 /* TaskCreator */,
+				569E3DD12954423400145A95 /* TaskFinisher */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -499,6 +545,7 @@
 				564ECD052950734000EFD784 /* TaskPopoverPresenterView.swift in Sources */,
 				5603290329432FDB00E6BCB3 /* GradientButton.swift in Sources */,
 				564ECD012950583300EFD784 /* View+Style.swift in Sources */,
+				56A33F8629546DC700A7A87E /* TimePickerView.swift in Sources */,
 				56E9E766294B07BB00F03C08 /* MainView.swift in Sources */,
 				560328F62943254900E6BCB3 /* Strings+Generated.swift in Sources */,
 				56774D3D2944B75A0068BDFF /* CreateProfileView.swift in Sources */,
@@ -537,6 +584,7 @@
 				567CB22A29521DD60065A39B /* TaskFinishPopupView.swift in Sources */,
 				56E9E772294C55DA00F03C08 /* RoundedCorner.swift in Sources */,
 				560B68DB2944E5C300EDD52F /* ProgressBarView.swift in Sources */,
+				569E3DCD2954419800145A95 /* TaskTimeView.swift in Sources */,
 				56E9E776294C65B700F03C08 /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

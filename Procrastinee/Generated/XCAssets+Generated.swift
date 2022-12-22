@@ -19,6 +19,7 @@ internal extension Color {
   static var ccfd0D4 : Color { Color("cCFD0D4", bundle: BundleToken.bundle) }
   static var cd9D9D9 : Color { Color("cD9D9D9", bundle: BundleToken.bundle) }
   static var ceaeaea : Color { Color("cEAEAEA", bundle: BundleToken.bundle) }
+  static var cebebeb : Color { Color("cEBEBEB", bundle: BundleToken.bundle) }
   static var cf2F2F2 : Color { Color("cF2F2F2", bundle: BundleToken.bundle) }
   static var cf8Fafb : Color { Color("cF8FAFB", bundle: BundleToken.bundle) }
   static var cf9F9F9 : Color { Color("cF9F9F9", bundle: BundleToken.bundle) }

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct TaskNameView: View {
     @StateObject var viewModel: MainViewModel
+    var setTimeAction: (() -> Void)?
     var body: some View {
         VStack(spacing: 0) {
             TaskNameHeaderView()
-            TaskNameTextField(viewModel: viewModel)
+            TaskNameTextField(viewModel: viewModel,
+                              setTimeAction: setTimeAction)
             Spacer()
         }
     }
@@ -43,6 +45,7 @@ struct TaskNameTextField: View {
     @StateObject var viewModel: MainViewModel
     @FocusState private var isFocused: Bool
     @State var textFontColor = Color.ccfd0D4
+    var setTimeAction: (() -> Void)?
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 6)
@@ -61,9 +64,13 @@ struct TaskNameTextField: View {
                             }
                         Spacer()
                         Button {
-                            if viewModel.taskName.isEmpty == false {
-                                isFocused = false
-                                viewModel.isTaskCategoryPresented = false
+                             if viewModel.taskName.isEmpty == false {
+                                 isFocused = false
+                                 if viewModel.isSetTaskTime {
+                                     setTimeAction?()
+                                 } else {
+                                     viewModel.isTaskCategoryPresented = false
+                                 }
                             }
                         } label: {
                             Image.successMark

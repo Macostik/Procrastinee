@@ -25,9 +25,16 @@ struct TaskCreatePopupView: View {
                             withAnimation {
                                 selectedTaskPage = 1
                             }
-                        }.tag(0)
-                        TaskNameView(viewModel: viewModel)
+                        }
+                        .tag(0)
+                        TaskNameView(viewModel: viewModel) {
+                            withAnimation {
+                                selectedTaskPage = 2
+                            }
+                        }
                         .tag(1)
+                        TaskTimeView(viewModel: viewModel)
+                            .tag(2)
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                 }

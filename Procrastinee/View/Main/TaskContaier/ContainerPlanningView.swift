@@ -30,8 +30,13 @@ struct ContainerPlanningView: View {
             }
             HStack {
                 Spacer()
-                Image.plusIcon
-                    .padding(.top, 49)
+                Button {
+                    viewModel.isSetTaskTime = true
+                    viewModel.isTaskCategoryPresented = true
+                } label: {
+                    Image.plusIcon
+                        .padding(.top, 49)
+                }
             }
             .padding(.trailing, 7)
         }

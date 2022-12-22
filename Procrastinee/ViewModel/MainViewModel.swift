@@ -13,6 +13,7 @@ class MainViewModel: ObservableObject {
     @Published var selectedTracker: TrackerType = .tracker
     @Published var selectedTask = TaskType.sport
     @Published var taskName = ""
+    @Published var isSetTaskTime = false
     @Published var isTaskCategoryPresented = false
     @Published var isTrackStarted = false
     @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common)
@@ -53,5 +54,8 @@ class MainViewModel: ObservableObject {
             .map({!$0})
             .assign(to: \.presentFinishedPopup, on: self)
             .store(in: &cancellable)
+    }
+    func creatTask() {
+        
     }
 }
