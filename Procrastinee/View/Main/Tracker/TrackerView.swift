@@ -1,41 +1,33 @@
 //
-//  TrackerView.swift
+//  TrackerContentView.swift
 //  Procrastinee
 //
-//  Created by Macostik on 15.12.2022.
+//  Created by Macostik on 23.12.2022.
 //
 
 import SwiftUI
 import AVFoundation
 
 struct TrackerView: View {
+    @StateObject var viewModel: MainViewModel
     @State private var dealType: DealType = .tracker
-    @StateObject private var viewModel = MainViewModel()
     var body: some View {
-        ZStack(alignment: .bottom) {
-            VStack(spacing: 0) {
-                TrackerPlaningSwitcher(dealType: $dealType)
-                if dealType == .tracker {
-                    ContainerTrackerView(viewModel: viewModel)
-                } else {
-                    ContainerPlanningView(viewModel: viewModel)
-                }
-                MainSegmentControl(isRightCornerRounded: viewModel.selectedTracker == .tracker)
-                    .onTapGesture {
-                        viewModel.selectedTracker = viewModel.selectedTracker == .tracker ? .runking : .tracker
-                    }
-                Spacer()
+        VStack(spacing: 0) {
+            TrackerPlaningSwitcher(dealType: $dealType)
+            if dealType == .tracker {
+                ContainerTrackerView(viewModel: viewModel)
+            } else {
+                ContainerPlanningView(viewModel: viewModel)
             }
-            .background(Color.cf8Fafb)
-            TaskPopoverPresenterView(viewModel: viewModel)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .background(Color.cf8Fafb)
+        TaskPopoverPresenterView(viewModel: viewModel)
     }
 }
 
-struct TrackerView_Previews: PreviewProvider {
+struct TrackerContentView_Previews: PreviewProvider {
     static var previews: some View {
-        TrackerView()
+        TrackerView(viewModel: MainViewModel())
     }
 }
 

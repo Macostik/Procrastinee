@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "closeIcon.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

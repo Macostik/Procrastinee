@@ -16,7 +16,7 @@ struct MainView: View {
             TabView(selection: $selectedTab) {
                 TrackerSettingsView()
                     .tag(0)
-                TrackerView()
+                MainContentView()
                     .tag(1)
             }
             .ignoresSafeArea()

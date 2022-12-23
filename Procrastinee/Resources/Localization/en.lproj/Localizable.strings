@@ -96,5 +96,15 @@
 "task.whenPlanning" = "When you are\n planning to start?";
 "task.create" = "Create";
 
-
+"ranking.topOne" = "TOP 1 ";
+"ranking.willReceive" = "WILL RECEIVE...";
+"ranking.endsIn" = "ENDS IN ";
+"ranking.weekly" = "WEEKLY RANKING";
+"ranking.system" = "Ranking System";
+"ranking.youRecieve" = "You will receive the ";
+"ranking.goldWings" = "Golden Wings ";
+"ranking.trophy" = "trophy,  if you occupy/n the first ranking position at the end of the week";
+"rankung.for" = "for";
+"ranking.top" = "TOP 1";
+"ranking.weeksEndIn" = "WEEK ENDS IN ";
 

@@ -29,7 +29,7 @@ enum DealType {
 }
 
 enum TrackerType {
-    case tracker, runking
+    case tracker, ranking
 }
 
 enum TaskType: String, CaseIterable {

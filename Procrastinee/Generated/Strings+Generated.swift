@@ -120,6 +120,34 @@ public enum L10n {
     public static let yesPlease = L10n.tr("Localizable", "onboarding.yesPlease")
   }
 
+  public enum Ranking {
+    /// ENDS IN 
+    public static let endsIn = L10n.tr("Localizable", "ranking.endsIn")
+    /// Golden Wings 
+    public static let goldWings = L10n.tr("Localizable", "ranking.goldWings")
+    /// Ranking System
+    public static let system = L10n.tr("Localizable", "ranking.system")
+    /// TOP 1
+    public static let top = L10n.tr("Localizable", "ranking.top")
+    /// TOP 1 
+    public static let topOne = L10n.tr("Localizable", "ranking.topOne")
+    /// trophy,  if you occupy/n the first ranking position at the end of the week
+    public static let trophy = L10n.tr("Localizable", "ranking.trophy")
+    /// WEEKLY RANKING
+    public static let weekly = L10n.tr("Localizable", "ranking.weekly")
+    /// WEEK ENDS IN 
+    public static let weeksEndIn = L10n.tr("Localizable", "ranking.weeksEndIn")
+    /// WILL RECEIVE...
+    public static let willReceive = L10n.tr("Localizable", "ranking.willReceive")
+    /// You will receive the 
+    public static let youRecieve = L10n.tr("Localizable", "ranking.youRecieve")
+  }
+
+  public enum Rankung {
+    /// for
+    public static let `for` = L10n.tr("Localizable", "rankung.for")
+  }
+
   public enum Task {
     /// Are you still in?
     public static let areYouStill = L10n.tr("Localizable", "task.areYouStill")
