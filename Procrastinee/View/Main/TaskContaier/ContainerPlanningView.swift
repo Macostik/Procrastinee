@@ -10,6 +10,7 @@ import SwiftUI
 let horizontalPadding: CGFloat = 20
 
 struct ContainerPlanningView: View {
+    @Environment(\.screenSize) private var screenSize
     @StateObject var viewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .top) {
@@ -27,6 +28,8 @@ struct ContainerPlanningView: View {
                         }
                     }
                 }
+                Color.clear
+                    .frame(width: screenSize.width, height: 20)
             }
             HStack {
                 Spacer()

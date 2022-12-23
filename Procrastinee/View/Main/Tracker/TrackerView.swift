@@ -1,5 +1,5 @@
 //
-//  TrackerContentView.swift
+//  TrackerView.swift
 //  Procrastinee
 //
 //  Created by Macostik on 23.12.2022.
@@ -25,7 +25,7 @@ struct TrackerView: View {
     }
 }
 
-struct TrackerContentView_Previews: PreviewProvider {
+struct TrackerView_Previews: PreviewProvider {
     static var previews: some View {
         TrackerView(viewModel: MainViewModel())
     }

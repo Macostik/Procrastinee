@@ -8,13 +8,22 @@
 import SwiftUI
 
 struct RankingView: View {
+    @State var isPresentTopRankingView = false
     @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 0) {
+            NavigationLink(destination: TopRankingView(viewModel: viewModel),
+                           isActive: $isPresentTopRankingView,
+                           label: {})
             Text(L10n.Ranking.weekly)
                 .font(.system(size: 15).weight(.regular))
                 .foregroundColor(Color.c2F2E41)
-            TopRankingHeader()
+                .padding(.top, 73)
+            Button {
+                isPresentTopRankingView = true
+            } label: {
+                TopRankingHeader()
+            }
             TopListView()
         }
         .background(Color.cf8Fafb)
@@ -42,13 +51,13 @@ struct TopRankingHeader: View {
                             Spacer()
                         }
                     }
-                    HStack(spacing: 0) {
+                    HStack(spacing: 12) {
                         Image.topOne
                             .resizable()
                             .frame(width: 43, height: 27)
                             .padding(.leading, 24)
                         VStack(alignment: .leading, spacing: 8) {
-                            HStack(spacing: 0) {
+                            HStack(spacing: 5) {
                                 Text(L10n.Ranking.top)
                                     .font(.system(size: 18).weight(.bold))
                                     .foregroundColor(Color.white)
@@ -70,10 +79,12 @@ struct TopRankingHeader: View {
                 }
             }
             .padding(.horizontal, 15)
+            .padding(.top, 42)
     }
 }
 
 struct TopListView: View {
+    @Environment(\.screenSize) private var screenSize
     let dataList = Array(1...10).map { _ in TopListItem() }
     var body: some View {
         VStack {
@@ -84,7 +95,10 @@ struct TopListView: View {
                     }
                 }
             }
+            Color.clear
+                .frame(width: screenSize.width, height: 20)
         }
+        .padding(.top, 22)
     }
 }
 

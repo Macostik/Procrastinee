@@ -21,12 +21,13 @@ struct MainContentView: View {
                 .onTapGesture {
                     viewModel.selectedTracker = viewModel.selectedTracker == .tracker ? .ranking : .tracker
                 }
+                .padding(.bottom, viewModel.selectedTracker == .ranking ? 53 : -24)
         }
-        .edgesIgnoringSafeArea(.bottom)
+        .fullScreenSize()
     }
 }
 
-struct TrackerView_Previews: PreviewProvider {
+struct MainContentView_Previews: PreviewProvider {
     static var previews: some View {
         MainContentView()
     }

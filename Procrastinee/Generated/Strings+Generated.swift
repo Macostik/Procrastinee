@@ -121,31 +121,33 @@ public enum L10n {
   }
 
   public enum Ranking {
+    /// ENDS 
+    public static let end = L10n.tr("Localizable", "ranking.end")
     /// ENDS IN 
     public static let endsIn = L10n.tr("Localizable", "ranking.endsIn")
+    /// for
+    public static let `for` = L10n.tr("Localizable", "ranking.for")
     /// Golden Wings 
     public static let goldWings = L10n.tr("Localizable", "ranking.goldWings")
+    /// IN 
+    public static let `in` = L10n.tr("Localizable", "ranking.in")
     /// Ranking System
     public static let system = L10n.tr("Localizable", "ranking.system")
     /// TOP 1
     public static let top = L10n.tr("Localizable", "ranking.top")
     /// TOP 1 
     public static let topOne = L10n.tr("Localizable", "ranking.topOne")
-    /// trophy,  if you occupy/n the first ranking position at the end of the week
+    /// trophy,  if you occupy
+    ///  the first ranking position at the end of the week
     public static let trophy = L10n.tr("Localizable", "ranking.trophy")
     /// WEEKLY RANKING
     public static let weekly = L10n.tr("Localizable", "ranking.weekly")
-    /// WEEK ENDS IN 
-    public static let weeksEndIn = L10n.tr("Localizable", "ranking.weeksEndIn")
+    /// WEEK 
+    public static let weeks = L10n.tr("Localizable", "ranking.weeks")
     /// WILL RECEIVE...
     public static let willReceive = L10n.tr("Localizable", "ranking.willReceive")
     /// You will receive the 
-    public static let youRecieve = L10n.tr("Localizable", "ranking.youRecieve")
-  }
-
-  public enum Rankung {
-    /// for
-    public static let `for` = L10n.tr("Localizable", "rankung.for")
+    public static let youReceive = L10n.tr("Localizable", "ranking.youReceive")
   }
 
   public enum Task {
