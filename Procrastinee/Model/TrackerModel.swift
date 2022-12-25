@@ -24,7 +24,7 @@ enum TrackerSettingsType {
     case promodoro, stopWatch
 }
 
-enum DealType {
+enum DealType: String {
     case tracker, planning
 }
 

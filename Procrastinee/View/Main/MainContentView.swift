@@ -21,7 +21,10 @@ struct MainContentView: View {
                 .onTapGesture {
                     viewModel.selectedTracker = viewModel.selectedTracker == .tracker ? .ranking : .tracker
                 }
-                .padding(.bottom, viewModel.selectedTracker == .ranking ? 53 : -24)
+                .padding(.bottom, 80)
+                .opacity(viewModel.isTaskCategoryPresented || viewModel.presentFinishedPopup ? 0 : 1)
+                .animation(.easeInOut(duration: 0.5), value: viewModel.isTaskCategoryPresented)
+                .animation(.easeInOut(duration: 0.5), value: viewModel.presentFinishedPopup)
         }
         .fullScreenSize()
     }

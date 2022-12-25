@@ -14,11 +14,33 @@ struct TrackerView: View {
     var body: some View {
         VStack(spacing: 0) {
             TrackerPlaningSwitcher(dealType: $dealType)
-            if dealType == .tracker {
-                ContainerTrackerView(viewModel: viewModel)
-            } else {
-                ContainerPlanningView(viewModel: viewModel)
+            VStack {
+                GeometryReader { proxy in
+                    VStack {
+                        ScrollViewReader { reader in
+                            ScrollView(.horizontal, showsIndicators: false) {
+                                LazyHStack(spacing: 0) {
+                                    Group {
+                                        ContainerTrackerView(viewModel: viewModel)
+                                            .id(DealType.tracker)
+                                        ContainerPlanningView(viewModel: viewModel)
+                                            .id(DealType.planning)
+                                    }
+                                    .frame(width: proxy.size.width,
+                                           height: proxy.size.height)
+                                }
+                            }
+//                            .scrollDisabled(true)
+                            .onChange(of: dealType, perform: { item in
+                                withAnimation {
+                                    reader.scrollTo(item)
+                                }
+                            })
+                        }
+                    }
+                }
             }
+            .padding(.bottom, 100)
         }
         .background(Color.cf8Fafb)
         TaskPopoverPresenterView(viewModel: viewModel)
@@ -54,7 +76,7 @@ struct TrackerPlaningSwitcher: View {
         }
         .offset(x: dealType == .tracker ? 40 : -40)
         .animation(.easeInOut, value: dealType)
-        .padding(.top, 17)
+        .padding(.top, 66)
     }
 }
 

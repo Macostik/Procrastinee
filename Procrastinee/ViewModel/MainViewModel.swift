@@ -20,6 +20,11 @@ class MainViewModel: ObservableObject {
     @Published var hasTaskPaused = false
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
+    @Published var selecteTime = "" {
+        willSet {
+            print(">> \(newValue)")
+        }
+    }
     private var cancellable: Set<AnyCancellable> = []
     init() {
         $isTaskCategoryPresented

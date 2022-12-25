@@ -8,13 +8,18 @@
 import SwiftUI
 
 struct TaskTimeView: View {
+    @Environment(\.screenSize) private var screenSize
     @StateObject var viewModel: MainViewModel
-    @State var selecteTime = ""
     var body: some View {
         VStack(spacing: 0) {
             TaskTimeHeaderView()
-            TimePickerView(selectedItem: $selecteTime)
-                .padding(.top, 60)
+            ZStack {
+                RoundedRectangle(cornerRadius: 9)
+                    .foregroundColor(Color.cebebeb)
+                    .frame(width: screenSize.width - 16, height: 34)
+                TimePickerView(selectedTime: $viewModel.selecteTime)
+            }
+            .padding(.top, 60)
             GradientButton {
                 viewModel.creatTask()
             } label: {

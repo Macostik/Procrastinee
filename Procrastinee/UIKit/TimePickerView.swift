@@ -13,21 +13,25 @@ enum TimePickerData: CaseIterable {
     case hour, minute
     var description: [String] {
         switch self {
-        case .hour: return (1..<25).map({"\($0)"})
-        case .minute: return (1..<61).map({"\($0)"})
+        case .hour: return (1...10).map({"\($0)"})
+        case .minute: return (1..<12).map({"\($0 * 5)"})
         }
     }
 }
 
 struct TimePickerView: UIViewRepresentable {
-    @Binding var selectedItem: String
+    @Binding var selectedTime: String
     class Coordinator: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
-        var selectedItem: Binding<String>
-        init(selectedItem: Binding<String>) {
-          self.selectedItem = selectedItem
+        private var hourValue = "0"
+        private var minuteValue = "0"
+        var timeValue: Binding<String>
+        init(timeValue: Binding<String>) {
+            self.timeValue = timeValue
         }
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
-            2
+            pickerView.subviews.first?.backgroundColor = .clear
+            pickerView.subviews.last?.backgroundColor = .clear
+            return 2
         }
         func pickerView(_ pickerView: UIPickerView,
                         numberOfRowsInComponent component: Int) -> Int {
@@ -36,13 +40,18 @@ struct TimePickerView: UIViewRepresentable {
         func pickerView(_ pickerView: UIPickerView,
                         titleForRow row: Int,
                         forComponent component: Int) -> String? {
-            TimePickerData.allCases[component].description[row]
+            return TimePickerData.allCases[component].description[row]
         }
         func pickerView(_ pickerView: UIPickerView,
                         didSelectRow row: Int,
                         inComponent component: Int) {
-            self.selectedItem.wrappedValue =
-            TimePickerData.allCases[component].description[row]
+            let value = TimePickerData.allCases[component].description[row]
+            if component == 0 {
+                hourValue = value
+            } else {
+                minuteValue = value
+            }
+            timeValue.wrappedValue = hourValue + "." + minuteValue
         }
         func pickerView(_ pickerView: UIPickerView,
                         viewForRow row: Int,
@@ -52,15 +61,16 @@ struct TimePickerView: UIViewRepresentable {
             label.text = TimePickerData.allCases[component].description[row]
             label.textAlignment = .center
             label.font = UIFont.systemFont(ofSize: 23, weight: .medium)
+            label.textColor = UIColor.black
             return label
         }
         func pickerView(_ pickerView: UIPickerView,
                         widthForComponent component: Int) -> CGFloat {
-            return 84
+            return 100
         }
     }
     func makeCoordinator() -> Coordinator {
-        Coordinator(selectedItem: $selectedItem)
+        Coordinator(timeValue: $selectedTime)
     }
     func makeUIView(context: Context) -> UIPickerView {
         let picker = UIPickerView()
@@ -68,28 +78,4 @@ struct TimePickerView: UIViewRepresentable {
         return picker
     }
     func updateUIView(_ picker: UIPickerView, context: Context) {}
-}
-
-struct RangeDatePicker: UIViewRepresentable {
-    @Binding var selectedItem: Date
-    class Coordinator: NSObject {
-        var selectedItem: Binding<Date>
-        init(selectedItem: Binding<Date>) {
-          self.selectedItem = selectedItem
-        }
-        @objc func handleDatePicker(_ datePicker: UIDatePicker) {
-            selectedItem.wrappedValue = datePicker.date
-        }
-    }
-    func makeCoordinator() -> Coordinator {
-        Coordinator(selectedItem: $selectedItem)
-    }
-    func makeUIView(context: Context) -> UIDatePicker {
-        let picker = UIDatePicker()
-        picker.datePickerMode = .time
-        picker.preferredDatePickerStyle = .wheels
-        picker.addTarget(context.coordinator, action: #selector(Coordinator.handleDatePicker), for: .valueChanged)
-        return picker
-    }
-    func updateUIView(_ picker: UIDatePicker, context: Context) {}
 }
