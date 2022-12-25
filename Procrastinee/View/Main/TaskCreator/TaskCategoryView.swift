@@ -50,7 +50,7 @@ struct TaskCategoryHeaderView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, 6)
         }
-        .padding(.top, 90)
+        .padding(.top, 64)
     }
 }
 
@@ -66,6 +66,6 @@ struct PickerTaskView: View {
         }
         .highPriorityGesture(DragGesture())
         .pickerStyle(.wheel)
-        .padding(.top, 55)
+        .padding(.top, 76)
     }
 }

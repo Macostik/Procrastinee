@@ -25,14 +25,14 @@ struct TaskTimeView: View {
             } label: {
                 HStack {
                     Image.checkmark
-                    Text(L10n.Onboarding.create)
+                    Text(L10n.Onboarding.create.lowercased().capitalized)
                         .foregroundColor(Color.white)
                         .font(.system(size: 17)
                             .weight(.bold))
                 }
             }
             .padding(.horizontal, 48)
-            .padding(.top, 48)
+            .padding(.top, 85)
             Spacer()
         }
     }
@@ -56,6 +56,6 @@ struct TaskTimeHeaderView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, 6)
         }
-        .padding(.top, 90)
+        .padding(.top, 64)
     }
 }

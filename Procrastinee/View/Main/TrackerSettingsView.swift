@@ -24,6 +24,7 @@ struct TrackerSettingsView: View {
             FocusSoundsView()
             Spacer()
         }
+        .padding(.top, -10)
         .fullScreenSize()
     }
 }

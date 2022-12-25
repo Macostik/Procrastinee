@@ -19,6 +19,7 @@ struct ContainerTrackerView: View {
             TipsView(isTrackerStarted: $viewModel.isTrackStarted)
             StatisticView(isTrackerStarted: $viewModel.isTrackStarted)
         }
+        .padding(.bottom, 100)
     }
 }
 

@@ -40,7 +40,7 @@ struct TaskCreatePopupView: View {
                 }
                 Spacer()
             }
-            .frame(maxWidth: .infinity, maxHeight: 645)
+            .frame(maxWidth: .infinity, maxHeight: 630)
             .background(Color.cf8Fafb)
             .offset(y: self.offset)
             .gesture(DragGesture()

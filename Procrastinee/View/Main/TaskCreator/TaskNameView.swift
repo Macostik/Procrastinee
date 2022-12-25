@@ -38,7 +38,7 @@ struct TaskNameHeaderView: View {
                 .multilineTextAlignment(.center)
                 .padding(.top, 6)
         }
-        .padding(.top, 90)
+        .padding(.top, 64)
     }
 }
 struct TaskNameTextField: View {
@@ -82,7 +82,7 @@ struct TaskNameTextField: View {
                 }
                 .padding(.horizontal, 29)
         }
-        .padding(.top, 40)
+        .padding(.top, 60)
         .onAppear {
             isFocused = true
         }
