@@ -62,6 +62,7 @@ struct TaskNameTextField: View {
                                 textFontColor = newValue.count > 0 ?
                                 Color.black : Color.ccfd0D4
                             }
+                            .accentColor(Color.c2F2E41)
                         Spacer()
                         Button {
                              if viewModel.taskName.isEmpty == false {
