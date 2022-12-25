@@ -18,19 +18,17 @@ struct TrackerView: View {
                 GeometryReader { proxy in
                     VStack {
                         ScrollViewReader { reader in
-                            ScrollView(.horizontal, showsIndicators: false) {
-                                LazyHStack(spacing: 0) {
-                                    Group {
-                                        ContainerTrackerView(viewModel: viewModel)
-                                            .id(DealType.tracker)
-                                        ContainerPlanningView(viewModel: viewModel)
-                                            .id(DealType.planning)
-                                    }
-                                    .frame(width: proxy.size.width,
-                                           height: proxy.size.height)
+                            ScrollableScrollView(scrollDisable: true,
+                                                 content: {
+                                Group {
+                                    ContainerTrackerView(viewModel: viewModel)
+                                        .id(DealType.tracker)
+                                    ContainerPlanningView(viewModel: viewModel)
+                                        .id(DealType.planning)
                                 }
-                            }
-//                            .scrollDisabled(true)
+                                .frame(width: proxy.size.width,
+                                       height: proxy.size.height)
+                            })
                             .onChange(of: dealType, perform: { item in
                                 withAnimation {
                                     reader.scrollTo(item)
