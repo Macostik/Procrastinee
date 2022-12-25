@@ -20,23 +20,33 @@ struct TaskCreatePopupView: View {
                     .padding(.top, 12)
                 Spacer()
                 HStack {
-                    TabView(selection: $selectedTaskPage) {
-                        TaskCategoryView(viewModel: viewModel) {
-                            withAnimation {
-                                selectedTaskPage = 1
+                    GeometryReader { proxy in
+                        ScrollViewReader { reader in
+                            VStack {
+                                ScrollableScrollView(scrollDisable: true) {
+                                    Group {
+                                        TaskCategoryView(viewModel: viewModel) {
+                                            selectedTaskPage = 1
+                                        }
+                                        .id(0)
+                                        TaskNameView(viewModel: viewModel) {
+                                            selectedTaskPage = 2
+                                        }
+                                        .id(1)
+                                        TaskTimeView(viewModel: viewModel)
+                                            .id(2)
+                                    }
+                                    .frame(width: proxy.size.width,
+                                           height: proxy.size.height)
+                                }
+                            }
+                            .onChange(of: selectedTaskPage) { newValue in
+                                withAnimation {
+                                    reader.scrollTo(newValue)
+                                }
                             }
                         }
-                        .tag(0)
-                        TaskNameView(viewModel: viewModel) {
-                            withAnimation {
-                                selectedTaskPage = 2
-                            }
-                        }
-                        .tag(1)
-                        TaskTimeView(viewModel: viewModel)
-                            .tag(2)
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
                 Spacer()
             }

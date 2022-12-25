@@ -20,16 +20,31 @@ struct TaskFinishPopupView: View {
                     .padding(.top, 12)
                 Spacer()
                 HStack {
-                    TabView(selection: $selectedTaskPage) {
-                        WantToFinishView(viewModel: viewModel) {
-                            withAnimation {
-                                selectedTaskPage = 1
+                    GeometryReader { proxy in
+                        ScrollViewReader { reader in
+                            VStack {
+                                ScrollableScrollView(scrollDisable: true) {
+                                    Group {
+                                        WantToFinishView(viewModel: viewModel) {
+                                            withAnimation {
+                                                selectedTaskPage = 1
+                                            }
+                                        }
+                                        .id(0)
+                                        AreYouStillInView(viewModel: viewModel)
+                                            .id(1)
+                                    }
+                                    .frame(width: proxy.size.width,
+                                           height: proxy.size.height)
+                                }
                             }
-                        }.tag(0)
-                        AreYouStillInView(viewModel: viewModel)
-                        .tag(1)
+                            .onChange(of: selectedTaskPage) { newValue in
+                                withAnimation {
+                                    reader.scrollTo(newValue)
+                                }
+                            }
+                        }
                     }
-                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
                 Spacer()
             }
