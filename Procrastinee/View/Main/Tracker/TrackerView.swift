@@ -30,6 +30,7 @@ struct TrackerView: View {
                                            height: proxy.size.height)
                                 }
                             }
+//                            .simultaneousGesture(DragGesture(minimumDistance: 0), including: .all)
 //                            .scrollDisabled(true)
                             .onChange(of: dealType, perform: { item in
                                 withAnimation {
@@ -40,7 +41,6 @@ struct TrackerView: View {
                     }
                 }
             }
-            .padding(.bottom, 100)
         }
         .background(Color.cf8Fafb)
         TaskPopoverPresenterView(viewModel: viewModel)
