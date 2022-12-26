@@ -37,6 +37,8 @@ struct RemindersView: View {
                 .offset(y: -40)
             Spacer()
             GradientButton(action: {
+                UIImpactFeedbackGenerator(style: .soft)
+                    .impactOccurred()
                 player?.play()
                 onNextScreen?()
             }, label: {

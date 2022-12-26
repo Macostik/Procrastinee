@@ -14,17 +14,13 @@ class MainViewModel: ObservableObject {
     @Published var selectedTask = TaskType.sport
     @Published var taskName = ""
     @Published var isSetTaskTime = false
-    @Published var isTaskCategoryPresented = false
     @Published var isTrackStarted = false
     @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common)
     @Published var hasTaskPaused = false
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
-    @Published var selecteTime = "" {
-        willSet {
-            print(">> \(newValue)")
-        }
-    }
+    @Published var selecteTime = ""
+    @Published var isTaskCategoryPresented = false
     private var cancellable: Set<AnyCancellable> = []
     init() {
         $isTaskCategoryPresented
@@ -37,6 +33,8 @@ class MainViewModel: ObservableObject {
         $isTrackStarted
             .sink { [unowned self] value in
                 if value {
+                    self.taskName = ""
+                    self.selectedTask = .sport
                     _ = self.timer.connect()
                 }
             }
@@ -63,5 +61,8 @@ class MainViewModel: ObservableObject {
     func creatTask() {
         isTaskCategoryPresented = false
         isTrackStarted = false
+    }
+    func resetTaskParam() {
+       
     }
 }

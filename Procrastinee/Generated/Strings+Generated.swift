@@ -184,6 +184,8 @@ public enum L10n {
     public static let namePlaceholder = L10n.tr("Localizable", "task.namePlaceholder")
     /// Next
     public static let next = L10n.tr("Localizable", "task.next")
+    /// Nothing is planned yet
+    public static let noting = L10n.tr("Localizable", "task.noting")
     /// “Off”
     public static let off = L10n.tr("Localizable", "task.off")
     /// Planned

@@ -43,6 +43,8 @@ struct IntroducingView: View {
                 }
             }
             FooterIntroducingView {
+                UIImpactFeedbackGenerator(style: .soft)
+                    .impactOccurred()
                 player?.play()
                 nextScreen.goToNext()
                 if nextScreen == .finish {

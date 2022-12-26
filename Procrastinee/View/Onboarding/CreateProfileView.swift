@@ -77,6 +77,8 @@ struct CreateProfileView: View {
                 GradientButton(action: {
                     isFocused = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                        UIImpactFeedbackGenerator(style: .soft)
+                            .impactOccurred()
                         player?.play()
                         onNextScreen?()
                     })

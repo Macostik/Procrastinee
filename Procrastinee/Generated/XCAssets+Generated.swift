@@ -14,6 +14,7 @@ internal extension Color {
   static var c2F2E4145 : Color { Color("c2F2E4145", bundle: BundleToken.bundle) }
   static var c878787 : Color { Color("c878787", bundle: BundleToken.bundle) }
   static var cadadad : Color { Color("cADADAD", bundle: BundleToken.bundle) }
+  static var cb7B7B7 : Color { Color("cB7B7B7", bundle: BundleToken.bundle) }
   static var ccbcbcb : Color { Color("cCBCBCB", bundle: BundleToken.bundle) }
   static var ccfcfcf : Color { Color("cCFCFCF", bundle: BundleToken.bundle) }
   static var ccfd0D4 : Color { Color("cCFD0D4", bundle: BundleToken.bundle) }

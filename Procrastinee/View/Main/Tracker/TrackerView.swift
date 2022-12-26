@@ -142,6 +142,7 @@ struct TimerView: View {
                                 player?.play()
                                 clickHandler?()
                                 isScale = false
+                                counter = -89
                             }
                         } label: {
                             Image.polygon

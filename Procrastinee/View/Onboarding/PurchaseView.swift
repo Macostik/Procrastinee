@@ -55,6 +55,8 @@ struct PurchaseView: View {
             .padding(.horizontal, 19)
             .padding(.bottom, 28)
             GradientButton(action: {
+                UIImpactFeedbackGenerator(style: .soft)
+                    .impactOccurred()
                 player?.play()
                 onboardingViewModel.purchaseProduct()
             }, label: {

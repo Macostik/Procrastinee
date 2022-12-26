@@ -14,21 +14,31 @@ struct ContainerPlanningView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .top) {
-            ScrollView(.vertical, showsIndicators: false) {
-                ForEach(groupTask, id: \.self) { item in
-                    Section(header:
-                                TaskSectionHeader(title: item.key)) {
-                        VStack(spacing: 13) {
-                            ForEach(item.value, id: \.self) { task in
-                                TaskCell(task: task)
-                                    .frame(height: 110)
+            if groupTask.isEmpty {
+                VStack {
+                    Spacer()
+                    Text(L10n.Task.noting)
+                        .font(.system(size: 16).weight(.regular))
+                        .foregroundColor(Color.cb7B7B7)
+                    Spacer()
+                }
+            } else {
+                ScrollView(.vertical, showsIndicators: false) {
+                    ForEach(groupTask, id: \.self) { item in
+                        Section(header:
+                                    TaskSectionHeader(title: item.key)) {
+                            VStack(spacing: 13) {
+                                ForEach(item.value, id: \.self) { task in
+                                    TaskCell(task: task)
+                                        .frame(height: 110)
+                                }
                             }
                         }
                     }
+                    Color.clear
+                        .frame(width: screenSize.width, height: 20)
                 }
             }
-            Color.clear
-                .frame(width: screenSize.width, height: 20)
             HStack {
                 Spacer()
                 Button {
@@ -41,6 +51,7 @@ struct ContainerPlanningView: View {
             }
             .padding(.trailing, 7)
         }
+        .fullScreenSize()
     }
 }
 

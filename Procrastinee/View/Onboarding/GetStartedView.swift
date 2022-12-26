@@ -26,6 +26,8 @@ struct GetStartedView: View {
             VStack {
                 Spacer()
                 GradientButton(action: {
+                    UIImpactFeedbackGenerator(style: .soft)
+                        .impactOccurred()
                     player?.play()
                     onNextScreen?()
                 }, label: {
