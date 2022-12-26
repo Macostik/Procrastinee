@@ -5,23 +5,13 @@
 //  Created by Macostik on 09.12.2022.
 //
 import SwiftUI
-enum OnboardingScreensType: String {
-    case getStarted,
-         suggested,
-         introducing,
-         reminder,
-         createProfile,
-         progress,
-         successCreated,
-         purchase,
-         main
-}
 
 struct OnboardingView: View {
     @StateObject var viewModel: OnboardingViewModel
     @State private var screenType: OnboardingScreensType = .getStarted
     var body: some View {
         GeometryReader { proxy in
+            NavigationLink("", destination: MainView(), isActive: $viewModel.isPresentedMainView)
             ScrollViewReader { reader in
                 VStack {
                     ScrollableScrollView(scrollDisable: true) {
@@ -80,9 +70,7 @@ struct ListScreenView: View {
                 screenType = .purchase
             }
             .id(OnboardingScreensType.successCreated)
-            PurchaseView(onboardingViewModel: viewModel) {
-                screenType = .main
-            }
+            PurchaseView(onboardingViewModel: viewModel) 
             .id(OnboardingScreensType.purchase)
         }
     }

@@ -8,6 +8,29 @@
 import Foundation
 import Combine
 
+enum OnboardingScreensType: String {
+    case getStarted,
+         suggested,
+         introducing,
+         reminder,
+         createProfile,
+         progress,
+         successCreated,
+         purchase
+}
+
+enum IntroducingViewType: String {
+    case first, second, third, finish
+    mutating func goToNext() {
+        switch self {
+        case .first: self = .second
+        case .second: self = .third
+        case .third: self = .finish
+        case .finish: self = .finish
+        }
+    }
+}
+
 class OnboardingViewModel: ObservableObject {
     @Published var nickName = ""
     @Published var isPresentedMainView = false

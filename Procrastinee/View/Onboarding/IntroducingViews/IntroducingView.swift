@@ -5,18 +5,6 @@
 //  Created by Macostik on 26.12.2022.
 //
 
-enum IntroducingViewType: String {
-    case first, second, third, finish
-    mutating func goToNext() {
-        switch self {
-        case .first: self = .second
-        case .second: self = .third
-        case .third: self = .finish
-        case .finish: self = .finish
-        }
-    }
-}
-
 import SwiftUI
 
 struct IntroducingView: View {

@@ -11,7 +11,6 @@ struct PurchaseView: View {
     @StateObject var onboardingViewModel: OnboardingViewModel
     @StateObject var viewModel = PurchaseViewModel()
     @State var isSelectedPurchaseType: PurchaseType = .none
-    var onNextScreen: (() -> Void)?
     var body: some View {
         VStack {
             Image.procrasteeImage
@@ -42,7 +41,7 @@ struct PurchaseView: View {
             .padding(.horizontal, 19)
             .padding(.bottom, 28)
             GradientButton(action: {
-                onNextScreen?()
+                onboardingViewModel.purchaseProduct()
             }, label: {
                 Text(isSelectedPurchaseType == .week ?
                      L10n.Onboarding.subscribe : L10n.Onboarding.tryFree)
