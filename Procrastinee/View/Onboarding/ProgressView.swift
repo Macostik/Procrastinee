@@ -17,7 +17,6 @@ struct ProgressView: View {
                 .foregroundColor(Color.onboardingTextColor)
             ProgressBarView {
                 onNextScreen?()
-                viewModel.isPresentedSuccessCreatingAccount = true
             }
         }
         .padding(.bottom, 40)

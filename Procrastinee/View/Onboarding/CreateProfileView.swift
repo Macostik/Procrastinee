@@ -6,11 +6,18 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct CreateProfileView: View {
     @FocusState private var isFocused: Bool
     @StateObject private var keyboard = KeyboardHandler()
     @StateObject var viewModel: OnboardingViewModel
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Planning Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var onNextScreen: (() -> Void)?
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -70,6 +77,7 @@ struct CreateProfileView: View {
                 GradientButton(action: {
                     isFocused = false
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                        player?.play()
                         onNextScreen?()
                     })
                 }, label: {

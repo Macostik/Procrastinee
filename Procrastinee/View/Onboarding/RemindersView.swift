@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct RemindersView: View {
     var onNextScreen: (() -> Void)?
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Planning Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         VStack {
             Text(L10n.Onboarding.keepYourTrack)
@@ -30,6 +37,7 @@ struct RemindersView: View {
                 .offset(y: -40)
             Spacer()
             GradientButton(action: {
+                player?.play()
                 onNextScreen?()
             }, label: {
                 HStack {

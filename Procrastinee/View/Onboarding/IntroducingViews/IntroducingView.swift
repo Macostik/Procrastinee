@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct IntroducingView: View {
     var onNextScreen: (() -> Void)?
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Planning Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     @State var nextScreen: IntroducingViewType = .first
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -36,6 +43,7 @@ struct IntroducingView: View {
                 }
             }
             FooterIntroducingView {
+                player?.play()
                 nextScreen.goToNext()
                 if nextScreen == .finish {
                     onNextScreen?()
@@ -71,7 +79,7 @@ struct FooterIntroducingView: View {
             .padding(.horizontal, 23)
             PageIndicatorView(selected: $selected)
                 .padding(.top, 18)
-                .padding(.bottom, 12)
+                .padding(.bottom, 10)
         }
     }
 }

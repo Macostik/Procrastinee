@@ -6,11 +6,24 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct PurchaseView: View {
     @StateObject var onboardingViewModel: OnboardingViewModel
     @StateObject var viewModel = PurchaseViewModel()
     @State var isSelectedPurchaseType: PurchaseType = .none
+    @State var choosePurchasePlayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Planning Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Open Prize",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         VStack {
             Image.procrasteeImage
@@ -33,6 +46,7 @@ struct PurchaseView: View {
                                  isSelected:
                             .constant(purchase.purchaseType == isSelectedPurchaseType))
                         .onTapGesture {
+                            choosePurchasePlayer?.play()
                             isSelectedPurchaseType = purchase.purchaseType
                         }
                 }
@@ -41,6 +55,7 @@ struct PurchaseView: View {
             .padding(.horizontal, 19)
             .padding(.bottom, 28)
             GradientButton(action: {
+                player?.play()
                 onboardingViewModel.purchaseProduct()
             }, label: {
                 Text(isSelectedPurchaseType == .week ?
@@ -156,6 +171,7 @@ struct PurchaseItem: View {
                     }
                 }
         }
+        .background(Color.backgroundColor)
         .padding(.top, purchase.purchaseType == .month ? 0 : 11)
     }
 }

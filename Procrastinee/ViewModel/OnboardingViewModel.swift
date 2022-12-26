@@ -41,7 +41,7 @@ class OnboardingViewModel: ObservableObject {
     @Published var isPresentedSuccessCreatingAccount = false {
         willSet {
             if newValue {
-                cancellable = Timer.publish(every: 4, on: .main, in: .default)
+                cancellable = Timer.publish(every: 2, on: .main, in: .default)
                     .autoconnect()
                     .receive(on: DispatchQueue.main)
                     .map({ _ in true })

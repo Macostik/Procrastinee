@@ -6,9 +6,16 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct GetStartedView: View {
     var onNextScreen: (() -> Void)?
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Tracker Tapbar Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         ZStack {
             Image.getStarted
@@ -19,6 +26,7 @@ struct GetStartedView: View {
             VStack {
                 Spacer()
                 GradientButton(action: {
+                    player?.play()
                     onNextScreen?()
                 }, label: {
                     Text(L10n.Onboarding.getStarted)

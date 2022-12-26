@@ -26,6 +26,9 @@ struct SuccessCreatingAccountView: View {
                 onNextScreen?()
             }
         })
+        .onAppear {
+            viewModel.isPresentedSuccessCreatingAccount = true
+        }
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
     }

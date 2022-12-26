@@ -20,12 +20,20 @@ struct ProgressBarView: View {
                     .cornerRadius(5)
                     .frame(width: 191 * progress, height: 8)
             }
-            .onAnimationCompleted(for: progress,
-                                  completion: completion)
             .onAppear {
-                withAnimation(.easeInOut(duration: 2.0)) {
-                    progress = 1.0
+                withAnimation(.easeInOut(duration: 0.4).delay(0.6)) {
+                    progress = 0.4
+                    withAnimation(.easeInOut(duration: 0.7).delay(0.3)) {
+                        progress = 0.6
+                        withAnimation(.easeInOut(duration: 1.0).delay(1.0)) {
+                            progress = 1.0
+                        }
+                    }
                 }
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2.5,
+                                              execute: {
+                    completion()
+                })
             }
     }
 }

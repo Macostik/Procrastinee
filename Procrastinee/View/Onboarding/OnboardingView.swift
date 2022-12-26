@@ -70,7 +70,7 @@ struct ListScreenView: View {
                 screenType = .purchase
             }
             .id(OnboardingScreensType.successCreated)
-            PurchaseView(onboardingViewModel: viewModel) 
+            PurchaseView(onboardingViewModel: viewModel)
             .id(OnboardingScreensType.purchase)
         }
     }
