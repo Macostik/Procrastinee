@@ -15,7 +15,7 @@ struct ContentView: View {
                 if viewModel.isPresentedMainView {
                     MainView()
                 } else {
-                    OnboardingView()
+                    OnboardingView(viewModel: viewModel)
                 }
             }
             .environmentObject(viewModel)

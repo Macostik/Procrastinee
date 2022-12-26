@@ -18,7 +18,7 @@ enum OnboardingScreensType: String {
 }
 
 struct OnboardingView: View {
-    @StateObject var viewModel = OnboardingViewModel()
+    @StateObject var viewModel: OnboardingViewModel
     @State private var screenType: OnboardingScreensType = .getStarted
     var body: some View {
         GeometryReader { proxy in
@@ -43,7 +43,7 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView()
+        OnboardingView(viewModel: OnboardingViewModel())
     }
 }
 
@@ -68,7 +68,7 @@ struct ListScreenView: View {
                 screenType = .createProfile
             }
             .id(OnboardingScreensType.reminder)
-            CreateProfileView {
+            CreateProfileView(viewModel: viewModel) {
                 screenType = .progress
             }
             .id(OnboardingScreensType.createProfile)
