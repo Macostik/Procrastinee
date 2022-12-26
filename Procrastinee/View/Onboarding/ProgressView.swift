@@ -9,21 +9,20 @@ import SwiftUI
 
 struct ProgressView: View {
     @StateObject var viewModel: OnboardingViewModel
+    var onNextScreen: (() -> Void)?
     var body: some View {
         VStack {
-            NavigationLink(destination: SuccessCreatingAccountView(viewModel: viewModel),
-                           isActive: $viewModel.isPresentedSuccessCreatingAccount) {}
             Text(L10n.Onboarding.creatingProfile)
                 .font(.system(size: 14).weight(.medium))
                 .foregroundColor(Color.onboardingTextColor)
             ProgressBarView {
+                onNextScreen?()
                 viewModel.isPresentedSuccessCreatingAccount = true
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .padding(.bottom, 40)
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
-        .ignoresSafeArea()
     }
 }
 

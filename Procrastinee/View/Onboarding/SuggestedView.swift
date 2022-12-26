@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct SuggestedView: View {
-    @State private var isPresentedFirstIntroductionView = false
+    var onNextScreen: (() -> Void)?
     var body: some View {
         VStack {
-            NavigationLink(destination: FirstIntroductionView(),
-                           isActive: $isPresentedFirstIntroductionView) {}
             Image.suggested
                 .resizable()
                 .frame(width: 157, height: 136)
@@ -37,11 +35,11 @@ struct SuggestedView: View {
             .padding(.horizontal, 50)
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-                self.isPresentedFirstIntroductionView = true
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+                onNextScreen?()
             })
         }
-        .offset(y: -25)
+        .offset(y: -12)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.backgroundColor)
         .navigationBarHidden(true)

@@ -10,13 +10,7 @@ import SwiftUI
 struct FirstIntroductionView: View {
     @State private var isPresentedSecondIntroductionView = false
     var body: some View {
-        VStack {
-            NavigationLink(destination: SecondIntroductionView(),
-                           isActive: $isPresentedSecondIntroductionView) {}
-            Image.procrasteeImage
-                .resizable()
-                .frame(width: 138, height: 32)
-                .scaledToFit()
+        VStack(spacing: 0) {
             Spacer()
             Image.firstIntroduction
                 .resizable()
@@ -33,26 +27,12 @@ struct FirstIntroductionView: View {
                     .font(.system(size: 18)
                         .weight(.light))
             }
-            .foregroundColor(Color.onboardingTextColor)
             .padding(.top, 63)
+            .foregroundColor(Color.onboardingTextColor)
             .padding(.horizontal, 24)
             Spacer()
-            GradientButton(action: {
-                isPresentedSecondIntroductionView = true
-            }, label: {
-                HStack {
-                    Image.arrow
-                    Text(L10n.Onboarding.continue)
-                        .foregroundColor(Color.white)
-                        .font(.system(size: 17)
-                            .weight(.bold))
-                }
-            })
-            .padding(.horizontal, 23)
-            PageIndicatorView()
-                .padding(.top, 12)
-                .padding(.bottom, 40)
         }
+        .padding(.bottom, 36)
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
         .edgesIgnoringSafeArea(.bottom)

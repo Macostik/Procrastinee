@@ -11,6 +11,7 @@ struct PurchaseView: View {
     @StateObject var onboardingViewModel: OnboardingViewModel
     @StateObject var viewModel = PurchaseViewModel()
     @State var isSelectedPurchaseType: PurchaseType = .none
+    var onNextScreen: (() -> Void)?
     var body: some View {
         VStack {
             Image.procrasteeImage
@@ -22,9 +23,10 @@ struct PurchaseView: View {
                 .resizable()
                 .frame(width: 337, height: 252)
                 .scaledToFit()
-                .padding(.bottom, 20)
+                .padding(.bottom, 27)
             Text(L10n.Onboarding.chooseYourPlan)
                 .font(.system(size: 23).weight(.bold))
+                .padding(.bottom, 12)
             HStack(spacing: 3) {
                 ForEach(viewModel.purchaseList,
                         id: \.self) { purchase in
@@ -38,8 +40,9 @@ struct PurchaseView: View {
             }
             .frame(height: 183)
             .padding(.horizontal, 19)
+            .padding(.bottom, 28)
             GradientButton(action: {
-                onboardingViewModel.purchaseProduct()
+                onNextScreen?()
             }, label: {
                 Text(isSelectedPurchaseType == .week ?
                      L10n.Onboarding.subscribe : L10n.Onboarding.tryFree)
@@ -47,13 +50,13 @@ struct PurchaseView: View {
                     .foregroundColor(Color.white)
             })
             .padding(.horizontal, 23)
-            .padding(.top, 29)
+            .padding(.bottom, 6)
             Text(L10n.Onboarding.alreadySubscribe)
                 .font(.system(size: 16).weight(.light))
                 .foregroundColor(Color.grayColor)
-                .padding(.top, 1)
-                .padding(.bottom, 19)
+                .padding(.bottom, 20)
         }
+        .padding(.top, 16)
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
     }

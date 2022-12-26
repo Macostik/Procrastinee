@@ -9,10 +9,9 @@ import SwiftUI
 
 struct SuccessCreatingAccountView: View {
     @StateObject var viewModel: OnboardingViewModel
+    var onNextScreen: (() -> Void)?
     var body: some View {
         VStack {
-            NavigationLink(destination: PurchaseView(onboardingViewModel: viewModel),
-                           isActive: $viewModel.isPresentedPurchaseView) {}
             Image.successMark
             Text(L10n.Onboarding.accountCreateSuccess)
                 .font(.system(size: 14).weight(.medium))
@@ -21,7 +20,12 @@ struct SuccessCreatingAccountView: View {
                 .padding(.top, 6)
                 .padding(.horizontal, 116)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .onChange(of: viewModel.isPresentedPurchaseView,
+                  perform: { value in
+            if value {
+                onNextScreen?()
+            }
+        })
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
     }

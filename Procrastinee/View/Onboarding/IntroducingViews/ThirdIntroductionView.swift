@@ -13,10 +13,6 @@ struct ThirdIntroductionView: View {
         VStack {
             NavigationLink(destination: RemindersView(),
                            isActive: $isPresentedKeepYourTrackView) {}
-            Image.procrasteeImage
-                .resizable()
-                .frame(width: 138, height: 32)
-                .scaledToFit()
             Spacer()
             Image.thirdIntroduction
                 .resizable()
@@ -49,25 +45,10 @@ struct ThirdIntroductionView: View {
                 .padding(.top, 34)
                 .padding(.horizontal, 20)
             Spacer()
-            GradientButton(action: {
-                isPresentedKeepYourTrackView = true
-            }, label: {
-                HStack {
-                    Image.arrow
-                    Text(L10n.Onboarding.continue)
-                        .foregroundColor(Color.white)
-                        .font(.system(size: 17)
-                            .weight(.bold))
-                }
-            })
-            .padding(.horizontal, 23)
-            PageIndicatorView(selected: 3)
-                .padding(.top, 12)
-                .padding(.bottom, 40)
         }
+        .padding(.bottom, 34)
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

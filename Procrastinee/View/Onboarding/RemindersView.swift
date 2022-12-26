@@ -8,11 +8,9 @@
 import SwiftUI
 
 struct RemindersView: View {
-    @State private var isPresentedCreateProfileView = false
+    var onNextScreen: (() -> Void)?
     var body: some View {
         VStack {
-            NavigationLink(destination: CreateProfileView(),
-                           isActive: $isPresentedCreateProfileView) {}
             Text(L10n.Onboarding.keepYourTrack)
                 .font(.system(size: 28).weight(.bold))
                 .foregroundColor(Color.black)
@@ -32,7 +30,7 @@ struct RemindersView: View {
                 .offset(y: -40)
             Spacer()
             GradientButton(action: {
-                isPresentedCreateProfileView = true
+                onNextScreen?()
             }, label: {
                 HStack {
                     Image.checkmark
@@ -43,11 +41,10 @@ struct RemindersView: View {
                 }
             })
             .padding(.horizontal, 23)
-            .padding(.bottom, 66)
+            .padding(.bottom, 36)
         }
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.bottom)
     }
 }
 

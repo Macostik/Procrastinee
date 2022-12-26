@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PageIndicatorView: View {
-    var selected = 1
+    @Binding var selected: Int
     var body: some View {
         HStack(spacing: 10) {
             ForEach(1..<4) { index in
@@ -22,6 +22,6 @@ struct PageIndicatorView: View {
 
 struct PageIndicatorView_Previews: PreviewProvider {
     static var previews: some View {
-        PageIndicatorView()
+        PageIndicatorView(selected: .constant(1))
     }
 }

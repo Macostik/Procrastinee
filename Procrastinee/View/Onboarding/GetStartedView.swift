@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct GetStartedView: View {
-    var isContinueButtonHelper: (() -> Void)?
+    var onNextScreen: (() -> Void)?
     var body: some View {
         ZStack {
             Image.getStarted
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .padding(.horizontal, 55)
-                .frame(alignment: .center)
+                .offset(y: -9)
             VStack {
                 Spacer()
                 GradientButton(action: {
-                  isContinueButtonHelper?()
+                    onNextScreen?()
                 }, label: {
                     Text(L10n.Onboarding.getStarted)
                         .foregroundColor(Color.white)
@@ -28,7 +28,7 @@ struct GetStartedView: View {
                 })
             }
             .padding(.horizontal, 23)
-            .padding(.bottom, 66)
+            .padding(.bottom, 35)
         }
         .background(Color.backgroundColor)
         .ignoresSafeArea()

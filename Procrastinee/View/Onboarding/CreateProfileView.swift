@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct CreateProfileView: View {
+    var onNextScreen: (() -> Void)?
+    @FocusState private var isFocused: Bool
     @StateObject private var keyboard = KeyboardHandler()
     @EnvironmentObject var viewModel: OnboardingViewModel
     var body: some View {
         VStack {
-            NavigationLink(destination: ProgressView(viewModel: viewModel),
-                           isActive: $viewModel.isPresentedProgressBarView) {}
             Text(L10n.Onboarding.setYourName)
                 .font(.system(size: 28).weight(.bold))
                 .foregroundColor(Color.black)
@@ -40,16 +40,25 @@ struct CreateProfileView: View {
                             .foregroundColor(Color.onboardingTextColor)
                             .font(.system(size: 18))
                             .accentColor(Color.c2F2E41)
+                            .focused($isFocused)
+                            .onAppear {
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+                                    isFocused = true
+                                })
+                            }
                     }
                     .padding(.horizontal, 14)
                 }
                 .frame(height: 66)
                 .padding(.horizontal, 28)
+                .padding(.top, 40)
                 .shadow(color: Color.shadowColor, radius: 30)
-                .offset(y: -100)
             Spacer()
             GradientButton(action: {
-                viewModel.isPresentedProgressBarView = true
+                isFocused = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+                    onNextScreen?()
+                })
             }, label: {
                 HStack {
                     Image.checkmark
@@ -60,12 +69,10 @@ struct CreateProfileView: View {
                 }
             })
             .padding(.horizontal, 23)
-            .animation(.easeInOut, value: keyboard.height)
-            .offset(y: -keyboard.height - (keyboard.height > 0 ? 15 : 66))
+            .padding(.bottom, 20)
         }
         .background(Color.backgroundColor)
         .navigationBarHidden(true)
-        .edgesIgnoringSafeArea(.bottom)
     }
 }
 
