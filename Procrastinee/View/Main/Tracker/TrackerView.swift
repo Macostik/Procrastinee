@@ -81,7 +81,6 @@ struct TimerView: View {
     @StateObject var viewModel: MainViewModel
     @StateObject var notificationModel = NotificationViewModel()
     @State var reverseAnimation = false
-    @State var counter: CGFloat = -89
     @State var isScale = false
     var clickHandler: (() -> Void)?
     @State var player: AVAudioPlayer? = {
@@ -128,25 +127,20 @@ struct TimerView: View {
                                     viewModel.presentFinishedPopup = true
                                 })
                         }
-                        GradientCircleView(startInitValue: $counter)
+                        GradientCircleView(startInitValue: $viewModel.counter)
                             .fill(viewModel.selectedTrackerType == .stopWatch ? gradient : promodoroGradient)
                             .frame(width: 219, height: 219, alignment: .center)
-                            .rotationEffect(Angle(degrees: -CGFloat(counter/2) - 45))
+                            .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
-                                    if counter >= 269 {
+                                    if viewModel.counter >= 269 {
                                         self.reverseAnimation = true
-                                    } else if counter <= -89 {
+                                    } else if viewModel.counter <= -89 {
                                         self.reverseAnimation = false
                                     }
-                                    counter = self.reverseAnimation ? counter - 1 : counter + 1
+                                    viewModel.counter = self.reverseAnimation ?
+                                    viewModel.counter - 1 : viewModel.counter + 1
                                 }
-                            }
-                            .onTapGesture {
-                                viewModel.hasTaskPaused = true
-                                stopPlayer?.play()
-                                UIImpactFeedbackGenerator(style: .soft)
-                                    .impactOccurred()
                             }
                     } else {
                         Button {
@@ -155,7 +149,7 @@ struct TimerView: View {
                                 player?.play()
                                 clickHandler?()
                                 isScale = false
-                                counter = -89
+                                viewModel.counter = -89
                                 UIImpactFeedbackGenerator(style: .soft)
                                     .impactOccurred()
                             }
@@ -167,6 +161,13 @@ struct TimerView: View {
                         }
                     }
                 }
+            }
+            .background(Color.backgroundColor)
+            .onTapGesture {
+                viewModel.hasTaskPaused = true
+                stopPlayer?.play()
+                UIImpactFeedbackGenerator(style: .soft)
+                    .impactOccurred()
             }
             .frame(width: 311, height: 311, alignment: .center)
         }

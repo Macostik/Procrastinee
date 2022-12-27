@@ -15,7 +15,8 @@ class MainViewModel: ObservableObject {
     @Published var taskName = ""
     @Published var isSetTaskTime = false
     @Published var isTrackStarted = false
-    @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common)
+    @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @Published var counter: CGFloat = -89
     @Published var hasTaskPaused = false
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
@@ -35,7 +36,8 @@ class MainViewModel: ObservableObject {
                 if value {
                     self.taskName = ""
                     self.selectedTask = .sport
-                    _ = self.timer.connect()
+                } else {
+                    timer.upstream.connect().cancel()
                 }
             }
             .store(in: &cancellable)
