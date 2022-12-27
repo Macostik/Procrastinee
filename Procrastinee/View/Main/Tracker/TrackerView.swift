@@ -90,6 +90,12 @@ struct TimerView: View {
         return try? AVAudioPlayer(contentsOf: url!,
                                   fileTypeHint: AVFileType.mp3.rawValue)
     }()
+    @State var stopPlayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Stop Tracker Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         VStack(alignment: .leading) {
             Image.tapToStart
@@ -114,6 +120,9 @@ struct TimerView: View {
                                 .zIndex(2)
                                 .onTapGesture {
                                     viewModel.hasTaskPaused = false
+                                    player?.play()
+                                    UIImpactFeedbackGenerator(style: .soft)
+                                        .impactOccurred()
                                 }
                                 .onLongPressGesture(perform: {
                                     viewModel.presentFinishedPopup = true
@@ -135,6 +144,9 @@ struct TimerView: View {
                             }
                             .onTapGesture {
                                 viewModel.hasTaskPaused = true
+                                stopPlayer?.play()
+                                UIImpactFeedbackGenerator(style: .soft)
+                                    .impactOccurred()
                             }
                     } else {
                         Button {
