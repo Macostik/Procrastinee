@@ -6,9 +6,22 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct WantToFinishView: View {
     @StateObject var viewModel: MainViewModel
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Ranking Tapbar Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
+    @State var finishPlayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Finish Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var continueClick: (() -> Void)?
     var body: some View {
         VStack(spacing: 0) {
@@ -23,6 +36,9 @@ struct WantToFinishView: View {
             }
             VStack {
                 GradientButton {
+                    player?.play()
+                    UIImpactFeedbackGenerator(style: .soft)
+                        .impactOccurred()
                     continueClick?()
                 } label: {
                     Text(L10n.Task.continue)
@@ -38,6 +54,9 @@ struct WantToFinishView: View {
                             .foregroundColor(Color.white)
                     }
                     .onTapGesture {
+                        finishPlayer?.play()
+                        UIImpactFeedbackGenerator(style: .soft)
+                            .impactOccurred()
                         viewModel.taskIsOver = true
                     }
             }

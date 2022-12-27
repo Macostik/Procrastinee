@@ -6,14 +6,30 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct AreYouStillInView: View {
     @StateObject var viewModel: MainViewModel
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Ranking Tapbar Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
+    @State var finishPlayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Finish Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         VStack(spacing: 0) {
             PopupFinishHeaderView()
             VStack {
                 GradientButton {
+                    player?.play()
+                    UIImpactFeedbackGenerator(style: .soft)
+                        .impactOccurred()
                     viewModel.presentFinishedPopup = false
                 } label: {
                     Text(L10n.Task.checkAndContinue)
@@ -21,6 +37,9 @@ struct AreYouStillInView: View {
                         .foregroundColor(Color.white)
                 }
                 Button {
+                    finishPlayer?.play()
+                    UIImpactFeedbackGenerator(style: .soft)
+                        .impactOccurred()
                     viewModel.taskIsOver = true
                     viewModel.presentFinishedPopup = false
                 } label: {
