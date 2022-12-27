@@ -95,3 +95,14 @@ let groupTask = [
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m")])
 ]
+
+public struct TaskF: Codable {
+  @DocumentID var id: String?
+  var name: String
+  var type: String
+  var time: Float
+}
+
+extension Book {
+  static let empty = TaskF(id: "", name: "", type: "", time: 0)
+}
