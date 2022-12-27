@@ -6,20 +6,29 @@
 //
 
 import SwiftUI
+import UserNotifications
 
 struct ContentView: View {
-    @StateObject private var viewModel = OnboardingViewModel()
+    @StateObject private var notificationManager = NotificationViewModel()
+    @StateObject private var onboardingViewModel = OnboardingViewModel()
+    @StateObject private var mainViewModel = MainViewModel()
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
         GeometryReader { proxy in
             NavigationView {
-                if viewModel.isPresentedMainView {
-                    MainView()
+                if onboardingViewModel.isPresentedMainView {
+                    MainView(viewModel: mainViewModel)
                 } else {
-                    OnboardingView(viewModel: viewModel)
+                    OnboardingView(onboardingViewModel: onboardingViewModel,
+                                   mainViewModel: mainViewModel)
                 }
             }
-            .environmentObject(viewModel)
             .environment(\.screenSize, proxy.size)
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .inactive && mainViewModel.isTrackStarted {
+                     notificationManager.sendNotification()
+                }
+            }
         }
     }
 }

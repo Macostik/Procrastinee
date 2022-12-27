@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var viewModel: MainViewModel
     @State private var selectedTab = 1
     var body: some View {
         ZStack {
@@ -16,7 +17,7 @@ struct MainView: View {
             TabView(selection: $selectedTab) {
                 TrackerSettingsView()
                     .tag(0)
-                MainContentView()
+                MainContentView(viewModel: viewModel)
                     .tag(1)
             }
             .ignoresSafeArea()
@@ -30,6 +31,6 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView()
+        MainView(viewModel: MainViewModel())
     }
 }

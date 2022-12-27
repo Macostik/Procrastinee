@@ -30,6 +30,7 @@
 		560B68DB2944E5C300EDD52F /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DA2944E5C300EDD52F /* ProgressBarView.swift */; };
 		560B68DD2944E8EF00EDD52F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DC2944E8EF00EDD52F /* ProgressView.swift */; };
 		560B68DF2944EA7A00EDD52F /* SuccessCreatingAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */; };
+		5643007C295AF72A00657034 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007B295AF72A00657034 /* NotificationViewModel.swift */; };
 		5645FFC62959896900A92205 /* IntroducingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5645FFC52959896900A92205 /* IntroducingView.swift */; };
 		5645FFC82959ABA200A92205 /* CountryPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5645FFC72959ABA200A92205 /* CountryPopupView.swift */; };
 		564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5B92945E5E900912250 /* AnimationCompletion.swift */; };
@@ -112,6 +113,7 @@
 		560B68DA2944E5C300EDD52F /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		560B68DC2944E8EF00EDD52F /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCreatingAccountView.swift; sourceTree = "<group>"; };
+		5643007B295AF72A00657034 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		5645FFC52959896900A92205 /* IntroducingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingView.swift; sourceTree = "<group>"; };
 		5645FFC72959ABA200A92205 /* CountryPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPopupView.swift; sourceTree = "<group>"; };
 		564DC5B92945E5E900912250 /* AnimationCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletion.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 				5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */,
 				56E9E775294C65B700F03C08 /* MainViewModel.swift */,
 				56A33F872954A6D100A7A87E /* PurchaseViewModel.swift */,
+				5643007B295AF72A00657034 /* NotificationViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -612,6 +615,7 @@
 				56E9E76A294B0C3E00F03C08 /* Constants.swift in Sources */,
 				5645FFC62959896900A92205 /* IntroducingView.swift in Sources */,
 				564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */,
+				5643007C295AF72A00657034 /* NotificationViewModel.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
 				569E3DC929533B7600145A95 /* ContainerPlanningView.swift in Sources */,
 				567CB22C29521F200065A39B /* WantToFinishView.swift in Sources */,

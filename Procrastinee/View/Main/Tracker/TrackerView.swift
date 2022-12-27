@@ -79,6 +79,7 @@ struct TrackerPlaningSwitcher: View {
 
 struct TimerView: View {
     @StateObject var viewModel: MainViewModel
+    @StateObject var notificationModel = NotificationViewModel()
     @State var reverseAnimation = false
     @State var counter: CGFloat = -89
     @State var isScale = false
@@ -143,6 +144,8 @@ struct TimerView: View {
                                 clickHandler?()
                                 isScale = false
                                 counter = -89
+                                UIImpactFeedbackGenerator(style: .soft)
+                                    .impactOccurred()
                             }
                         } label: {
                             Image.polygon

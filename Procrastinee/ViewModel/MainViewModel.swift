@@ -62,7 +62,4 @@ class MainViewModel: ObservableObject {
         isTaskCategoryPresented = false
         isTrackStarted = false
     }
-    func resetTaskParam() {
-       
-    }
 }

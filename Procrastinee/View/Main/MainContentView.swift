@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct MainContentView: View {
-    @StateObject private var viewModel = MainViewModel()
+    @StateObject var viewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .bottom) {
             if viewModel.selectedTracker == .ranking {
@@ -32,6 +32,6 @@ struct MainContentView: View {
 
 struct MainContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainContentView()
+        MainContentView(viewModel: MainViewModel())
     }
 }

@@ -7,15 +7,18 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    @StateObject var viewModel: OnboardingViewModel
+    @StateObject var onboardingViewModel: OnboardingViewModel
+    @StateObject var mainViewModel: MainViewModel
     @State private var screenType: OnboardingScreensType = .getStarted
     var body: some View {
         GeometryReader { proxy in
-            NavigationLink("", destination: MainView(), isActive: $viewModel.isPresentedMainView)
+            NavigationLink("", destination: MainView(viewModel: mainViewModel),
+                           isActive: $onboardingViewModel.isPresentedMainView)
             ScrollViewReader { reader in
                 VStack {
                     ScrollableScrollView(scrollDisable: true) {
-                        ListScreenView(viewModel: viewModel, screenType: $screenType)
+                        ListScreenView(viewModel: onboardingViewModel,
+                                       screenType: $screenType)
                             .frame(width: proxy.size.width,
                                    height: proxy.size.height)
                     }
@@ -33,7 +36,8 @@ struct OnboardingView: View {
 
 struct OnboardingView_Previews: PreviewProvider {
     static var previews: some View {
-        OnboardingView(viewModel: OnboardingViewModel())
+        OnboardingView(onboardingViewModel: OnboardingViewModel(),
+                       mainViewModel: MainViewModel())
     }
 }
 
