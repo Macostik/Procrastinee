@@ -11,6 +11,8 @@ import Combine
 class MainViewModel: ObservableObject {
     @Published var selectedTrackerType: TrackerSettingsType = .stopWatch
     @Published var selectedTracker: TrackerType = .tracker
+    @Published var selectedDeal: DealType = .tracker
+    @Published var pickerViewSelectedIndex = 0
     @Published var selectedTask = TaskType.sport
     @Published var isDeepMode = false
     @Published var taskName = ""
@@ -59,6 +61,10 @@ class MainViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .map({!$0})
             .assign(to: \.presentFinishedPopup, on: self)
+            .store(in: &cancellable)
+        $selectedDeal
+            .map({ $0 == .tracker ? 0 : 1 })
+            .assign(to: \.pickerViewSelectedIndex, on: self)
             .store(in: &cancellable)
     }
     func creatTask() {

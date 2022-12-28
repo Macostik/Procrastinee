@@ -10,31 +10,22 @@ import AVFoundation
 
 struct TrackerView: View {
     @StateObject var viewModel: MainViewModel
-    @State private var dealType: DealType = .tracker
+    @State private var canDrag = false
     var body: some View {
         VStack(spacing: 0) {
-            TrackerPlaningSwitcher(dealType: $dealType)
+            TrackerPlaningSwitcher(type: $viewModel.selectedDeal)
             VStack {
                 GeometryReader { proxy in
-                    VStack {
-                        ScrollViewReader { reader in
-                            ScrollableScrollView(scrollDisable: false,
-                                                 content: {
-                                Group {
-                                    ContainerTrackerView(viewModel: viewModel)
-                                        .id(DealType.tracker)
-                                    ContainerPlanningView(viewModel: viewModel)
-                                        .id(DealType.planning)
-                                }
-                                .frame(width: proxy.size.width,
-                                       height: proxy.size.height)
-                            })
-                            .onChange(of: dealType, perform: { item in
-                                withAnimation {
-                                    reader.scrollTo(item)
-                                }
-                            })
+                    PagerView(pageCount: 2, canDrag: $canDrag, currentIndex: $viewModel.pickerViewSelectedIndex) {
+                        Group {
+                            ContainerTrackerView(viewModel: viewModel)
+                                .id(DealType.tracker)
+                                .opacity(viewModel.selectedDeal == .planning ? 0 : 1)
+                            ContainerPlanningView(viewModel: viewModel)
+                                .id(DealType.planning)
                         }
+                        .frame(width: proxy.size.width,
+                               height: proxy.size.height)
                     }
                 }
             }
@@ -51,28 +42,28 @@ struct TrackerView_Previews: PreviewProvider {
 }
 
 struct TrackerPlaningSwitcher: View {
-    @Binding var dealType: DealType
+    @Binding var type: DealType
     var body: some View {
         HStack(spacing: 30) {
             Button {
-                dealType = .tracker
+                type = .tracker
             } label: {
                 Text(L10n.Main.tracker)
                     .font(.system(size: 15).weight(.regular))
-                    .foregroundColor(dealType == .tracker ?
+                    .foregroundColor(type == .tracker ?
                                      Color.c2F2E41 : Color.c878787)
             }
             Button {
-                dealType = .planning
+                type = .planning
             } label: {
                 Text(L10n.Main.planing)
                     .font(.system(size: 15).weight(.regular))
-                    .foregroundColor(dealType == .planning ?
+                    .foregroundColor(type == .planning ?
                                      Color.c2F2E41 : Color.c878787)
             }
         }
-        .offset(x: dealType == .tracker ? 40 : -40)
-        .animation(.easeInOut, value: dealType)
+        .offset(x: type == .tracker ? 40 : -40)
+        .animation(.easeInOut, value: type)
         .padding(.top, 66)
     }
 }

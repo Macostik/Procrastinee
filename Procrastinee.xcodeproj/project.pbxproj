@@ -30,6 +30,7 @@
 		560B68DB2944E5C300EDD52F /* ProgressBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DA2944E5C300EDD52F /* ProgressBarView.swift */; };
 		560B68DD2944E8EF00EDD52F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DC2944E8EF00EDD52F /* ProgressView.swift */; };
 		560B68DF2944EA7A00EDD52F /* SuccessCreatingAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */; };
+		56288975295C41BA004EA89E /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56288974295C41BA004EA89E /* PagerView.swift */; };
 		5643007C295AF72A00657034 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007B295AF72A00657034 /* NotificationViewModel.swift */; };
 		5643007E295B53BC00657034 /* FirebaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007D295B53BC00657034 /* FirebaseViewModel.swift */; };
 		56430080295B53EA00657034 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007F295B53EA00657034 /* User.swift */; };
@@ -120,6 +121,7 @@
 		560B68DA2944E5C300EDD52F /* ProgressBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressBarView.swift; sourceTree = "<group>"; };
 		560B68DC2944E8EF00EDD52F /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCreatingAccountView.swift; sourceTree = "<group>"; };
+		56288974295C41BA004EA89E /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		5643007B295AF72A00657034 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		5643007D295B53BC00657034 /* FirebaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseViewModel.swift; sourceTree = "<group>"; };
 		5643007F295B53EA00657034 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 				56E9E779294C67A400F03C08 /* SoundView.swift */,
 				56A33F8B2954CB0800A7A87E /* СarouselView.swift */,
 				56B0F062295872A5001F9D9F /* ScrollableScrollView.swift */,
+				56288974295C41BA004EA89E /* PagerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				56E9E774294C5FC100F03C08 /* TrackerModel.swift in Sources */,
 				569E3DCB2953441000145A95 /* TaskModel.swift in Sources */,
 				56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */,
+				56288975295C41BA004EA89E /* PagerView.swift in Sources */,
 				5603290F2943683D00E6BCB3 /* FirstIntroductionView.swift in Sources */,
 				5643007E295B53BC00657034 /* FirebaseViewModel.swift in Sources */,
 				56A33F8C2954CB0800A7A87E /* СarouselView.swift in Sources */,
