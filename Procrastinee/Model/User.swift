@@ -6,7 +6,8 @@
 //
 
 import Foundation
-import FireBase
+import Firebase
+import FirebaseFirestoreSwift
 
 public struct User: Codable {
   @DocumentID var id: String?
@@ -14,6 +15,6 @@ public struct User: Codable {
   var totalTime: Float
 }
 
-extension Book {
+extension User {
     static let empty = User(id: nil, name: "", totalTime: 0)
 }

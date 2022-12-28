@@ -12,6 +12,7 @@ struct CreateProfileView: View {
     @FocusState private var isFocused: Bool
     @StateObject private var keyboard = KeyboardHandler()
     @StateObject var viewModel: OnboardingViewModel
+    @StateObject var firebaseManager: FirebaseViewModel
     @State var player: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Planning Button",
                                   withExtension: "mp3")
@@ -81,6 +82,7 @@ struct CreateProfileView: View {
                             .impactOccurred()
                         player?.play()
                         onNextScreen?()
+//                        firebaseManager.addUser()
                     })
                 }, label: {
                     HStack {
@@ -107,6 +109,7 @@ struct CreateProfileView: View {
 
 struct CreateProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfileView(viewModel: OnboardingViewModel())
+        CreateProfileView(viewModel: OnboardingViewModel(),
+                          firebaseManager: FirebaseViewModel())
     }
 }

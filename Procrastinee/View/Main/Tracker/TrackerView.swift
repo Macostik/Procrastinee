@@ -18,7 +18,7 @@ struct TrackerView: View {
                 GeometryReader { proxy in
                     VStack {
                         ScrollViewReader { reader in
-                            ScrollableScrollView(scrollDisable: true,
+                            ScrollableScrollView(scrollDisable: false,
                                                  content: {
                                 Group {
                                     ContainerTrackerView(viewModel: viewModel)

@@ -11,6 +11,7 @@ import UserNotifications
 struct ContentView: View {
     @StateObject private var notificationManager = NotificationViewModel()
     @StateObject private var onboardingViewModel = OnboardingViewModel()
+    @StateObject private var firebaseManager = FirebaseViewModel()
     @StateObject private var mainViewModel = MainViewModel()
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
@@ -20,6 +21,7 @@ struct ContentView: View {
                     MainView(viewModel: mainViewModel)
                 } else {
                     OnboardingView(onboardingViewModel: onboardingViewModel,
+                                   firebaseManager: firebaseManager,
                                    mainViewModel: mainViewModel)
                 }
             }

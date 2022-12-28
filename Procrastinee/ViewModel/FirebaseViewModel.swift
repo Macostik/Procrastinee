@@ -6,69 +6,48 @@
 //
 
 import Foundation
+import FirebaseCore
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 
 class FirebaseViewModel: ObservableObject {
     @Published var user: User = .empty
     @Published var task: [TaskF] = []
-    
-    private func fetchUsers() {
-        let docRef = db.collection("users").document(documentId)
-        
-        docRef.getDocument { document, error in
-            if let error = error as NSError? {
-                self.errorMessage = "Error getting document: \(error.localizedDescription)"
-            }
-            else {
-                if let document = document {
-                    let id = document.documentID
-                    let data = document.data()
-                    let name = data?["name"] as? String ?? ""
-                    let totalTime = data?["totalTime"] as? Float ?? 0
-                    self.user = User(name: name, totalTime: totalTime)
-                }
+    private var database = Firestore.firestore()
+    private func fetchUsers(documentID: String) {
+        let docRef = database.collection("users").document(documentID)
+        docRef.getDocument { snapshot, _ in
+            guard let user = try? snapshot?.data(as: User.self) else { return }
+            print(">> \(user)")
+        }
+    }
+    private func fetchTask(documentID: String) {
+        let docRef = database.collection("tasks").document(documentID)
+        docRef.getDocument { snapshot, _ in
+            guard let task = try? snapshot?.data(as: TaskF.self) else { return }
+            print(">> \(task)")
+        }
+    }
+    func addUser() {
+        var ref: DocumentReference?
+        ref = database.collection("User").addDocument(data: [
+            "name": "Ada",
+            "totalTime": 5
+        ]) { err in
+            if let err = err {
+                print("Error adding document: \(err)")
+            } else {
+                print("Document added with ID: \(ref!.documentID)")
             }
         }
     }
-    
-    private func fetchTask(documentId: String) {
-        let docRef = db.collection("users").document(documentId)
-        
-        docRef.getDocument { document, error in
-            if let error = error as NSError? {
-                self.errorMessage = "Error getting document: \(error.localizedDescription)"
-            }
-            else {
-                if let document = document {
-                    let id = document.documentID
-                    let data = document.data()
-                    let name = data?["name"] as? String ?? ""
-                    let name = data?["type"] as? String ?? ""
-                    let time = data?["time"] as? Float ?? 0
-                    self.task = TaskF(name: id, name: name, type: type, time: time)
-                }
-            }
-        }
-    }
-    
     @MainActor
     private func fetchBookAsync(documentId: String) async {
-      let docRef = db.collection("users").document(documentId)
+      let docRef = database.collection("users").document(documentId)
       do {
         self.user = try await docRef.getDocument(as: User.self)
-      }
-      catch {
-        switch error {
-        case DecodingError.typeMismatch(_, let context):
-          self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-        case DecodingError.valueNotFound(_, let context):
-          self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-        case DecodingError.keyNotFound(_, let context):
-          self.errorMessage = "\(error.localizedDescription): \(context.debugDescription)"
-        case DecodingError.dataCorrupted(let key):
-          self.errorMessage = "\(error.localizedDescription): \(key)"
-        default:
-          self.errorMessage = "Error decoding document: \(error.localizedDescription)"
-        }
+      } catch {
+          print("Error getting document: \(error.localizedDescription)")
       }
     }
 }

@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import FirebaseFirestoreSwift
 
 struct Task: Hashable {
     let id = UUID()
@@ -24,12 +25,14 @@ struct Task: Hashable {
     }
 }
 struct GroupTask: Hashable {
+    let index: Int
     let key: String
     let value: [Task]
 }
 
 let groupTask = [
-    GroupTask(key: "Today",
+    GroupTask(index: 0,
+              key: "Today",
               value: [Task(state: .completed,
                            type: .sport,
                            fromTime: "from 10:25 AM",
@@ -61,7 +64,8 @@ let groupTask = [
                            type: .work,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m")]),
-    GroupTask(key: "Yesterday",
+    GroupTask(index: 1,
+              key: "Yesterday",
               value: [Task(state: .completed,
                            type: .education,
                            fromTime: "from 10:25 AM",
@@ -97,12 +101,12 @@ let groupTask = [
 ]
 
 public struct TaskF: Codable {
-  @DocumentID var id: String?
-  var name: String
-  var type: String
-  var time: Float
+    @DocumentID var id: String?
+    var name: String
+    var type: String
+    var time: Float
 }
 
-extension Book {
-  static let empty = TaskF(id: "", name: "", type: "", time: 0)
+extension TaskF {
+    static let empty = TaskF(id: "", name: "", type: "", time: 0)
 }

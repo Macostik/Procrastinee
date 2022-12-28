@@ -26,7 +26,9 @@ struct ContainerPlanningView: View {
                 ScrollView(.vertical, showsIndicators: false) {
                     ForEach(groupTask, id: \.self) { item in
                         Section(header:
-                                    TaskSectionHeader(title: item.key)) {
+                                    TaskSectionHeader(viewModel: viewModel,
+                                                      index: item.index,
+                                                      title: item.key)) {
                             VStack(spacing: 13) {
                                 ForEach(item.value, id: \.self) { task in
                                     TaskCell(task: task)
@@ -39,17 +41,6 @@ struct ContainerPlanningView: View {
                         .frame(width: screenSize.width, height: 20)
                 }
             }
-            HStack {
-                Spacer()
-                Button {
-                    viewModel.isSetTaskTime = true
-                    viewModel.isTaskCategoryPresented = true
-                } label: {
-                    Image.plusIcon
-                        .padding(.top, 49)
-                }
-            }
-            .padding(.trailing, 7)
         }
         .fullScreenSize()
     }
@@ -62,6 +53,8 @@ struct ContainerPlanningView_Previews: PreviewProvider {
 }
 
 struct TaskSectionHeader: View {
+    @StateObject var viewModel: MainViewModel
+    var index: Int
     var title: String
     var body: some View {
         HStack(spacing: 16) {
@@ -87,9 +80,18 @@ struct TaskSectionHeader: View {
                     .foregroundColor(Color.ccfcfcf)
             }
             Spacer()
+            if index == 0 {
+                Button {
+                    viewModel.isSetTaskTime = true
+                    viewModel.isTaskCategoryPresented = true
+                } label: {
+                    Image.plusIcon
+                }
+                .padding(.trailing, 7)
+            }
         }
         .padding(.horizontal, horizontalPadding)
-        .padding(.bottom, 22)
+        .padding(.bottom, 10)
         .frame(height: 128, alignment: .bottom)
         .background(Color.backgroundColor)
     }

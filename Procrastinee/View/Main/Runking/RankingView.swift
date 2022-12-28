@@ -12,9 +12,6 @@ struct RankingView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 0) {
-            NavigationLink(destination: TopRankingView(viewModel: viewModel),
-                           isActive: $isPresentTopRankingView,
-                           label: {})
             Text(L10n.Ranking.weekly)
                 .font(.system(size: 15).weight(.regular))
                 .foregroundColor(Color.c2F2E41)
@@ -27,6 +24,9 @@ struct RankingView: View {
             TopListView()
         }
         .background(Color.cf8Fafb)
+        .sheet(isPresented: $isPresentTopRankingView) {
+            TopRankingView(viewModel: viewModel)
+        }
     }
 }
 
