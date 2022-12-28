@@ -12,6 +12,7 @@ class MainViewModel: ObservableObject {
     @Published var selectedTrackerType: TrackerSettingsType = .stopWatch
     @Published var selectedTracker: TrackerType = .tracker
     @Published var selectedTask = TaskType.sport
+    @Published var isDeepMode = false
     @Published var taskName = ""
     @Published var isSetTaskTime = false
     @Published var isTrackStarted = false

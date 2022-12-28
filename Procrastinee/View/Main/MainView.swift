@@ -15,7 +15,7 @@ struct MainView: View {
             Color.backgroundColor
                 .ignoresSafeArea()
             TabView(selection: $selectedTab) {
-                TrackerSettingsView()
+                TrackerSettingsView(viewModel: viewModel)
                     .tag(0)
                 MainContentView(viewModel: viewModel)
                     .tag(1)

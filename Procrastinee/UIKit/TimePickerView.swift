@@ -10,11 +10,12 @@ import UIKit
 import SwiftUI
 
 enum TimePickerData: CaseIterable {
-    case hour, minute
+    case hour, minute, period
     var description: [String] {
         switch self {
-        case .hour: return (1...10).map({"\($0)"})
+        case .hour: return (1...12).map({"\($0)"})
         case .minute: return (1..<12).map({"\($0 * 5)"})
+        case .period: return ["AM", "PM"]
         }
     }
 }
@@ -24,6 +25,7 @@ struct TimePickerView: UIViewRepresentable {
     class Coordinator: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
         private var hourValue = "0"
         private var minuteValue = "0"
+        private var period = "AM"
         var timeValue: Binding<String>
         init(timeValue: Binding<String>) {
             self.timeValue = timeValue
@@ -31,7 +33,7 @@ struct TimePickerView: UIViewRepresentable {
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             pickerView.subviews.first?.backgroundColor = .clear
             pickerView.subviews.last?.backgroundColor = .clear
-            return 2
+            return 3
         }
         func pickerView(_ pickerView: UIPickerView,
                         numberOfRowsInComponent component: Int) -> Int {
@@ -48,10 +50,12 @@ struct TimePickerView: UIViewRepresentable {
             let value = TimePickerData.allCases[component].description[row]
             if component == 0 {
                 hourValue = value
-            } else {
+            } else if component == 1 {
                 minuteValue = value
+            } else {
+                period = value
             }
-            timeValue.wrappedValue = hourValue + "." + minuteValue
+            timeValue.wrappedValue = hourValue + "." + minuteValue + period
         }
         func pickerView(_ pickerView: UIPickerView,
                         viewForRow row: Int,

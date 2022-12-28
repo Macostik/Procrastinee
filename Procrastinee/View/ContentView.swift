@@ -27,7 +27,9 @@ struct ContentView: View {
             }
             .environment(\.screenSize, proxy.size)
             .onChange(of: scenePhase) { newPhase in
-                if newPhase == .inactive && mainViewModel.isTrackStarted {
+                if newPhase == .inactive &&
+                    mainViewModel.isTrackStarted &&
+                    mainViewModel.isDeepMode {
                      notificationManager.sendNotification()
                 }
             }

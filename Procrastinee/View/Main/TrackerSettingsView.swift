@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct TrackerSettingsView: View {
+    @StateObject var viewModel: MainViewModel
     @State var selectedTracker: TrackerSettingsType = .stopWatch
-    @State var isKeepingFocus: Bool = false
     private var isPromodoroSelected: Bool {
         selectedTracker == .promodoro
     }
@@ -19,7 +19,7 @@ struct TrackerSettingsView: View {
             if isPromodoroSelected {
                 BreakTimeView()
             }
-            DeepFocusModeView(isKeepingFocus: $isKeepingFocus,
+            DeepFocusModeView(isKeepingFocus: $viewModel.isDeepMode,
                               isPromodoroSelected: isPromodoroSelected)
             FocusSoundsView()
             Spacer()
@@ -31,7 +31,7 @@ struct TrackerSettingsView: View {
 
 struct TrackerSettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        TrackerSettingsView()
+        TrackerSettingsView(viewModel: MainViewModel())
     }
 }
 
