@@ -31,14 +31,13 @@
 		560B68DD2944E8EF00EDD52F /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DC2944E8EF00EDD52F /* ProgressView.swift */; };
 		560B68DF2944EA7A00EDD52F /* SuccessCreatingAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */; };
 		56288975295C41BA004EA89E /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56288974295C41BA004EA89E /* PagerView.swift */; };
+		56288977295C626D004EA89E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56288976295C626D004EA89E /* GoogleService-Info.plist */; };
 		5643007C295AF72A00657034 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007B295AF72A00657034 /* NotificationViewModel.swift */; };
 		5643007E295B53BC00657034 /* FirebaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007D295B53BC00657034 /* FirebaseViewModel.swift */; };
 		56430080295B53EA00657034 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007F295B53EA00657034 /* User.swift */; };
-		56430084295B757000657034 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56430083295B757000657034 /* GoogleService-Info.plist */; };
 		56430087295B765400657034 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 56430086295B765400657034 /* FirebaseFirestore */; };
 		56430089295B765400657034 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56430088295B765400657034 /* FirebaseFirestoreSwift */; };
 		5643008C295B7A9700657034 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 5643008B295B7A9700657034 /* FirebaseStorage */; };
-		5643008E295B7AA400657034 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 5643008D295B7AA400657034 /* FirebaseDatabase */; };
 		5645FFC62959896900A92205 /* IntroducingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5645FFC52959896900A92205 /* IntroducingView.swift */; };
 		5645FFC82959ABA200A92205 /* CountryPopupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5645FFC72959ABA200A92205 /* CountryPopupView.swift */; };
 		564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5B92945E5E900912250 /* AnimationCompletion.swift */; };
@@ -122,10 +121,10 @@
 		560B68DC2944E8EF00EDD52F /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessCreatingAccountView.swift; sourceTree = "<group>"; };
 		56288974295C41BA004EA89E /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
+		56288976295C626D004EA89E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5643007B295AF72A00657034 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		5643007D295B53BC00657034 /* FirebaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseViewModel.swift; sourceTree = "<group>"; };
 		5643007F295B53EA00657034 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		56430083295B757000657034 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5645FFC52959896900A92205 /* IntroducingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingView.swift; sourceTree = "<group>"; };
 		5645FFC72959ABA200A92205 /* CountryPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPopupView.swift; sourceTree = "<group>"; };
 		564DC5B92945E5E900912250 /* AnimationCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletion.swift; sourceTree = "<group>"; };
@@ -189,7 +188,6 @@
 			files = (
 				56430087295B765400657034 /* FirebaseFirestore in Frameworks */,
 				56430089295B765400657034 /* FirebaseFirestoreSwift in Frameworks */,
-				5643008E295B7AA400657034 /* FirebaseDatabase in Frameworks */,
 				5643008C295B7A9700657034 /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -245,7 +243,7 @@
 		560328E129431DAF00E6BCB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				56430083295B757000657034 /* GoogleService-Info.plist */,
+				56288976295C626D004EA89E /* GoogleService-Info.plist */,
 				564ECCDC29504ABB00EFD784 /* ButtonSound */,
 				560328F72943258D00E6BCB3 /* Annie */,
 				560328EB294320DE00E6BCB3 /* Localization */,
@@ -517,7 +515,6 @@
 				56430086295B765400657034 /* FirebaseFirestore */,
 				56430088295B765400657034 /* FirebaseFirestoreSwift */,
 				5643008B295B7A9700657034 /* FirebaseStorage */,
-				5643008D295B7AA400657034 /* FirebaseDatabase */,
 			);
 			productName = Procrastinee;
 			productReference = 560328CC29431CA300E6BCB3 /* Procrastinee.app */;
@@ -571,10 +568,10 @@
 				564ECCFC295050BB00EFD784 /* Tracker from Planning Button.mp3 in Resources */,
 				564ECCFD295050BB00EFD784 /* Close Button 2.mp3 in Resources */,
 				564ECCF7295050BB00EFD784 /* Ranking Tapbar Button.mp3 in Resources */,
+				56288977295C626D004EA89E /* GoogleService-Info.plist in Resources */,
 				560328E72943206300E6BCB3 /* fonts_swift5_swiftui.stencil in Resources */,
 				564ECCF9295050BB00EFD784 /* Play Tracker Buton.mp3 in Resources */,
 				560328E82943206300E6BCB3 /* swiftui-xcassets-template.stencil in Resources */,
-				56430084295B757000657034 /* GoogleService-Info.plist in Resources */,
 				564ECCF8295050BB00EFD784 /* Finish Button.mp3 in Resources */,
 				564ECCFA295050BB00EFD784 /* Planning Button.mp3 in Resources */,
 				560328DF29431D8F00E6BCB3 /* swiftlint.yml in Resources */,
@@ -868,10 +865,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Procrastinee/Preview Content\"";
-				DEVELOPMENT_TEAM = 224SJKKLQ3;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = PZR2KMT946;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -885,8 +884,10 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = procrastinee.GYS;
+				PRODUCT_BUNDLE_IDENTIFIER = "procrastinee15-12-2022";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Procrastinee Dev Provision Profile";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -945,11 +946,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 56430085295B765400657034 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		5643008D295B7AA400657034 /* FirebaseDatabase */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 56430085295B765400657034 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseDatabase;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

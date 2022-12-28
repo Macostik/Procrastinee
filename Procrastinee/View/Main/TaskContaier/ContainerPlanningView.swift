@@ -40,6 +40,7 @@ struct ContainerPlanningView: View {
                     Color.clear
                         .frame(width: screenSize.width, height: 20)
                 }
+                .padding(.top)
             }
         }
         .fullScreenSize()

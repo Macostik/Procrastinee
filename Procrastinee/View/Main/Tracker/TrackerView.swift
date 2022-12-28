@@ -42,10 +42,17 @@ struct TrackerView_Previews: PreviewProvider {
 }
 
 struct TrackerPlaningSwitcher: View {
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Play Tracker Buton",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     @Binding var type: DealType
     var body: some View {
         HStack(spacing: 30) {
             Button {
+                player?.play()
                 type = .tracker
             } label: {
                 Text(L10n.Main.tracker)
@@ -54,6 +61,7 @@ struct TrackerPlaningSwitcher: View {
                                      Color.c2F2E41 : Color.c878787)
             }
             Button {
+                player?.play()
                 type = .planning
             } label: {
                 Text(L10n.Main.planing)

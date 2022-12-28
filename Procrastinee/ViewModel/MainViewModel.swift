@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 class MainViewModel: ObservableObject {
-    @Published var selectedTrackerType: TrackerSettingsType = .stopWatch
+    @Published var selectedTrackerType: TrackerSettingsType = .promodoro
     @Published var selectedTracker: TrackerType = .tracker
     @Published var selectedDeal: DealType = .tracker
     @Published var pickerViewSelectedIndex = 0

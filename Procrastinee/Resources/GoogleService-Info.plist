@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>582284569755-5vle15m25hkigmjorhb7f2k99u5hh8bf.apps.googleusercontent.com</string>
+	<string>642831986496-1o2alajmdt8lgr880bolh31ejuens5rs.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.582284569755-5vle15m25hkigmjorhb7f2k99u5hh8bf</string>
+	<string>com.googleusercontent.apps.642831986496-1o2alajmdt8lgr880bolh31ejuens5rs</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCuw7kyKzY6-VPBbeqRiXWLHeaykvM777c</string>
+	<string>AIzaSyArjYwS31X1GmX7ANUUCdU4adi3wTcLDEQ</string>
 	<key>GCM_SENDER_ID</key>
-	<string>582284569755</string>
+	<string>642831986496</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>HYS.Helper</string>
+	<string>procrastinee15-12-2022</string>
 	<key>PROJECT_ID</key>
-	<string>helper-ce2be</string>
+	<string>procrastinee-fa58c</string>
 	<key>STORAGE_BUCKET</key>
-	<string>helper-ce2be.appspot.com</string>
+	<string>procrastinee-fa58c.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:582284569755:ios:e0302e92120760b40aea3e</string>
+	<string>1:642831986496:ios:2b2455bb80a200024f94a5</string>
 </dict>
 </plist>
