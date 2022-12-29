@@ -17,8 +17,14 @@ extension EnvironmentValues {
         get { return self[SafeAreaInsetsKey.self] }
         set { self[SafeAreaInsetsKey.self] = newValue }
     }
+    var currentUser: User {
+        get { return self[CurrentUserKey.self] }
+        set { self[CurrentUserKey.self] = newValue }
+    }
 }
-
+public struct CurrentUserKey: EnvironmentKey {
+    public static let defaultValue: User = .empty
+}
 public struct ScreenSizeKey: EnvironmentKey {
     public static let defaultValue: CGSize = .zero
 }

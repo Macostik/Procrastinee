@@ -13,7 +13,8 @@ struct OnboardingView: View {
     @State private var screenType: OnboardingScreensType = .getStarted
     var body: some View {
         GeometryReader { proxy in
-            NavigationLink("", destination: MainView(viewModel: mainViewModel),
+            NavigationLink("", destination: MainView(viewModel: mainViewModel,
+                                                     firebaseManager: firebaseManager),
                            isActive: $onboardingViewModel.isPresentedMainView)
             ScrollViewReader { reader in
                 VStack {

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainView: View {
     @StateObject var viewModel: MainViewModel
+    @StateObject var firebaseManager: FirebaseViewModel
     @State private var selectedTab = 1
     var body: some View {
         ZStack {
@@ -31,6 +32,7 @@ struct MainView: View {
 
 struct MainView_Previews: PreviewProvider {
     static var previews: some View {
-        MainView(viewModel: MainViewModel())
+        MainView(viewModel: MainViewModel(),
+                  firebaseManager: FirebaseViewModel())
     }
 }

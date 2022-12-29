@@ -32,7 +32,6 @@ enum IntroducingViewType: String {
 }
 
 class OnboardingViewModel: ObservableObject {
-    @Published var nickName = ""
     @Published var isPresentedMainView = false
     @Published var isPresentedPurchaseView = false
     @Published var isPresentedProgressBarView = false
@@ -46,6 +45,14 @@ class OnboardingViewModel: ObservableObject {
                     .receive(on: DispatchQueue.main)
                     .map({ _ in true })
                     .assign(to: \.isPresentedPurchaseView, on: self)
+            }
+        }
+    }
+    @Published var nickName = "" {
+        willSet {
+            if newValue.isEmpty == false {
+                UserDefaults.standard.set(newValue,
+                                          forKey: Constants.userNickname)
             }
         }
     }
@@ -93,7 +100,8 @@ extension OnboardingViewModel {
     }
     func purchaseProduct() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
-            let isUserAuthorised = true
+            let userDefaults = UserDefaults.standard
+            let isUserAuthorised = !(userDefaults.string(forKey: Constants.userNickname)?.isEmpty ?? false)
             UserDefaults.standard.set(isUserAuthorised,
                                       forKey: Constants.authorised)
             self.isPresentedMainView = isUserAuthorised

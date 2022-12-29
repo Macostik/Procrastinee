@@ -18,7 +18,8 @@ struct ContentView: View {
         GeometryReader { proxy in
             NavigationView {
                 if onboardingViewModel.isPresentedMainView {
-                    MainView(viewModel: mainViewModel)
+                    MainView(viewModel: mainViewModel,
+                             firebaseManager: firebaseManager)
                 } else {
                     OnboardingView(onboardingViewModel: onboardingViewModel,
                                    firebaseManager: firebaseManager,

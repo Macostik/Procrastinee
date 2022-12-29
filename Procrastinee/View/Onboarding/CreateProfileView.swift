@@ -81,8 +81,8 @@ struct CreateProfileView: View {
                         UIImpactFeedbackGenerator(style: .soft)
                             .impactOccurred()
                         player?.play()
+                        firebaseManager.addUser(name: viewModel.nickName, totalTime: 0)
                         onNextScreen?()
-//                        firebaseManager.addUser()
                     })
                 }, label: {
                     HStack {

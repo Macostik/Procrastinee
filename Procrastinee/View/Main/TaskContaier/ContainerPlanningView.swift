@@ -99,7 +99,7 @@ struct TaskSectionHeader: View {
 }
 
 struct TaskCell: View {
-    var task: Task
+    var task: TaskOld
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 9)
@@ -119,7 +119,7 @@ struct TaskCell: View {
 }
 
 struct DesctriptionTaskView: View {
-    var task: Task
+    var task: TaskOld
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(task.type.rawValue.capitalized)

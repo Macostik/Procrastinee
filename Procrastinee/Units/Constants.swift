@@ -9,4 +9,5 @@ import Foundation
 
 struct Constants {
     static let authorised = "authorised"
+    static let userNickname = "userNickname"
 }
