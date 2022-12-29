@@ -39,6 +39,7 @@
 		5628898B295E05E2004EA89E /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628898A295E05E2004EA89E /* FirebaseProvider.swift */; };
 		5628898D295E07CA004EA89E /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628898C295E07CA004EA89E /* NotificationProvider.swift */; };
 		5628898F295E119A004EA89E /* HYSLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 5628898E295E119A004EA89E /* HYSLogger */; };
+		56288991295E31B9004EA89E /* bamboo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56288990295E31B9004EA89E /* bamboo.mp3 */; };
 		56430080295B53EA00657034 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007F295B53EA00657034 /* User.swift */; };
 		56430087295B765400657034 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 56430086295B765400657034 /* FirebaseFirestore */; };
 		56430089295B765400657034 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56430088295B765400657034 /* FirebaseFirestoreSwift */; };
@@ -134,6 +135,7 @@
 		56288985295E0373004EA89E /* NotificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInteractor.swift; sourceTree = "<group>"; };
 		5628898A295E05E2004EA89E /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		5628898C295E07CA004EA89E /* NotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProvider.swift; sourceTree = "<group>"; };
+		56288990295E31B9004EA89E /* bamboo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bamboo.mp3; sourceTree = "<group>"; };
 		5643007F295B53EA00657034 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5645FFC52959896900A92205 /* IntroducingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingView.swift; sourceTree = "<group>"; };
 		5645FFC72959ABA200A92205 /* CountryPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPopupView.swift; sourceTree = "<group>"; };
@@ -431,6 +433,7 @@
 		564ECCDC29504ABB00EFD784 /* ButtonSound */ = {
 			isa = PBXGroup;
 			children = (
+				56288990295E31B9004EA89E /* bamboo.mp3 */,
 				564ECCF2295050BB00EFD784 /* Close Button 2.mp3 */,
 				564ECCED295050BB00EFD784 /* Finish Button.mp3 */,
 				564ECCF0295050BB00EFD784 /* Open Prize.mp3 */,
@@ -621,6 +624,7 @@
 				56288977295C626D004EA89E /* GoogleService-Info.plist in Resources */,
 				560328E72943206300E6BCB3 /* fonts_swift5_swiftui.stencil in Resources */,
 				564ECCF9295050BB00EFD784 /* Play Tracker Buton.mp3 in Resources */,
+				56288991295E31B9004EA89E /* bamboo.mp3 in Resources */,
 				560328E82943206300E6BCB3 /* swiftui-xcassets-template.stencil in Resources */,
 				564ECCF8295050BB00EFD784 /* Finish Button.mp3 in Resources */,
 				564ECCFA295050BB00EFD784 /* Planning Button.mp3 in Resources */,

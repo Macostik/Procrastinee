@@ -26,7 +26,7 @@ struct NotificationService: NotificationInteractor {
         let content = UNMutableNotificationContent()
         content.title = "Go back to the Procrastinee"
         content.subtitle = "Task is not completed"
-        content.sound = UNNotificationSound.default
+        content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "bamboo.mp3"))
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
                                                         repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString,
