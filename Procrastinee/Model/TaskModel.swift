@@ -9,7 +9,7 @@ import Foundation
 import SwiftUI
 import FirebaseFirestoreSwift
 
-struct TaskOld: Hashable {
+struct LocalTask: Hashable {
     let id = UUID()
     let state: TaskState
     let type: TaskType
@@ -27,86 +27,86 @@ struct TaskOld: Hashable {
 struct GroupTask: Hashable {
     let index: Int
     let key: String
-    let value: [TaskOld]
+    let value: [LocalTask]
 }
 
 let groupTask = [
     GroupTask(index: 0,
               key: "Today",
-              value: [TaskOld(state: .completed,
+              value: [LocalTask(state: .completed,
                            type: .sport,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .work,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .education,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .completed,
+                      LocalTask(state: .completed,
                            type: .study,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .work,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .sport,
                            fromTime: "from 10:25 AM", forTime: "for 3h 28m"),
-                      TaskOld(state: .completed,
+                      LocalTask(state: .completed,
                            type: .education,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .work,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m")]),
     GroupTask(index: 1,
               key: "Yesterday",
-              value: [TaskOld(state: .completed,
+              value: [LocalTask(state: .completed,
                            type: .education,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .completed,
+                      LocalTask(state: .completed,
                            type: .sport,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .education,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .study,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .completed,
+                      LocalTask(state: .completed,
                            type: .education,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .sport,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .completed,
+                      LocalTask(state: .completed,
                            type: .work,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m"),
-                      TaskOld(state: .planned,
+                      LocalTask(state: .planned,
                            type: .sport,
                            fromTime: "from 10:25 AM",
                            forTime: "for 3h 28m")])
 ]
 
-public struct TaskF: Codable {
+public struct RemoteTask: Codable {
     @DocumentID var id: String?
     var name: String
     var type: String
     var time: Float
 }
 
-extension TaskF {
-    static let empty = TaskF(id: "", name: "", type: "", time: 0)
+extension RemoteTask {
+    static let empty = RemoteTask(id: "", name: "", type: "", time: 0)
 }

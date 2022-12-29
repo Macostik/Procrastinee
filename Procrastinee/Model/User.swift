@@ -10,11 +10,12 @@ import Firebase
 import FirebaseFirestoreSwift
 
 public struct User: Codable {
-  @DocumentID var id: String?
-  var name: String
-  var totalTime: Float
+    @DocumentID var id: String?
+    var name: String
+    var totalTime: Float
+    var tasks: [RemoteTask]
 }
 
 extension User {
-    static let empty = User(id: nil, name: "", totalTime: 0)
+    static let empty = User(id: nil, name: "", totalTime: 0, tasks: [.empty])
 }

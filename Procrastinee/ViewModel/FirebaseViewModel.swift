@@ -52,9 +52,9 @@ struct FirestoreDecoder {
 
 class FirebaseViewModel: ObservableObject {
     @Published var currentUser: User = .empty
-    @Published var tasks: [TaskF] = []
     @Published var users: [User] = []
     struct SubscriptionID: Hashable {}
+    private var dataBase = Firestore.firestore()
     private var cancellable: Set<AnyCancellable> = []
     init() {
         addListener()
@@ -78,7 +78,7 @@ class FirebaseViewModel: ObservableObject {
     }
     func addUser(name: String, totalTime: Int) {
         var ref: DocumentReference?
-        ref = Firestore.firestore().collection("User").addDocument(data: [
+        ref = dataBase.collection("User").addDocument(data: [
             "name": name,
             "totalTime": totalTime
         ]) { err in
@@ -88,5 +88,13 @@ class FirebaseViewModel: ObservableObject {
                 print("Document added with ID: \(ref!.documentID)")
             }
         }
+    }
+    func update(currentUser: User) {
+        dataBase.collection("User")
+            .document(currentUser.id!).setData([
+                "name": currentUser.name,
+                "totalTime": currentUser.totalTime,
+                "task": currentUser.tasks
+            ])
     }
 }
