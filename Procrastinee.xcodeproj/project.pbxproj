@@ -32,8 +32,13 @@
 		560B68DF2944EA7A00EDD52F /* SuccessCreatingAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 560B68DE2944EA7A00EDD52F /* SuccessCreatingAccountView.swift */; };
 		56288975295C41BA004EA89E /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56288974295C41BA004EA89E /* PagerView.swift */; };
 		56288977295C626D004EA89E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 56288976295C626D004EA89E /* GoogleService-Info.plist */; };
-		5643007C295AF72A00657034 /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007B295AF72A00657034 /* NotificationViewModel.swift */; };
-		5643007E295B53BC00657034 /* FirebaseViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007D295B53BC00657034 /* FirebaseViewModel.swift */; };
+		5628897C295DFF0B004EA89E /* DependencyProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628897B295DFF0B004EA89E /* DependencyProvider.swift */; };
+		5628897E295DFF38004EA89E /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628897D295DFF38004EA89E /* Provider.swift */; };
+		56288982295E001C004EA89E /* FacebookInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56288981295E001C004EA89E /* FacebookInteractor.swift */; };
+		56288986295E0373004EA89E /* NotificationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56288985295E0373004EA89E /* NotificationInteractor.swift */; };
+		5628898B295E05E2004EA89E /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628898A295E05E2004EA89E /* FirebaseProvider.swift */; };
+		5628898D295E07CA004EA89E /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628898C295E07CA004EA89E /* NotificationProvider.swift */; };
+		5628898F295E119A004EA89E /* HYSLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 5628898E295E119A004EA89E /* HYSLogger */; };
 		56430080295B53EA00657034 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007F295B53EA00657034 /* User.swift */; };
 		56430087295B765400657034 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 56430086295B765400657034 /* FirebaseFirestore */; };
 		56430089295B765400657034 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 56430088295B765400657034 /* FirebaseFirestoreSwift */; };
@@ -123,8 +128,12 @@
 		56288974295C41BA004EA89E /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
 		56288976295C626D004EA89E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		56288978295DA51A004EA89E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		5643007B295AF72A00657034 /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
-		5643007D295B53BC00657034 /* FirebaseViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseViewModel.swift; sourceTree = "<group>"; };
+		5628897B295DFF0B004EA89E /* DependencyProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyProvider.swift; sourceTree = "<group>"; };
+		5628897D295DFF38004EA89E /* Provider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Provider.swift; sourceTree = "<group>"; };
+		56288981295E001C004EA89E /* FacebookInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookInteractor.swift; sourceTree = "<group>"; };
+		56288985295E0373004EA89E /* NotificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInteractor.swift; sourceTree = "<group>"; };
+		5628898A295E05E2004EA89E /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
+		5628898C295E07CA004EA89E /* NotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProvider.swift; sourceTree = "<group>"; };
 		5643007F295B53EA00657034 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5645FFC52959896900A92205 /* IntroducingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingView.swift; sourceTree = "<group>"; };
 		5645FFC72959ABA200A92205 /* CountryPopupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPopupView.swift; sourceTree = "<group>"; };
@@ -188,6 +197,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				56430087295B765400657034 /* FirebaseFirestore in Frameworks */,
+				5628898F295E119A004EA89E /* HYSLogger in Frameworks */,
 				56430089295B765400657034 /* FirebaseFirestoreSwift in Frameworks */,
 				5643008C295B7A9700657034 /* FirebaseStorage in Frameworks */,
 			);
@@ -226,6 +236,7 @@
 				564DC5BB2945E68000912250 /* Extensions */,
 				560B68D72944D4D000EDD52F /* Units */,
 				56A33F8429546DB400A7A87E /* UIKit */,
+				56288979295DFEE7004EA89E /* Dependency */,
 				560328F02943253400E6BCB3 /* Generated */,
 				560328E42943203000E6BCB3 /* Templates */,
 				560328E129431DAF00E6BCB3 /* Resources */,
@@ -307,8 +318,6 @@
 				5603290829435BC500E6BCB3 /* OnboardingViewModel.swift */,
 				56E9E775294C65B700F03C08 /* MainViewModel.swift */,
 				56A33F872954A6D100A7A87E /* PurchaseViewModel.swift */,
-				5643007B295AF72A00657034 /* NotificationViewModel.swift */,
-				5643007D295B53BC00657034 /* FirebaseViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -351,6 +360,43 @@
 				565275CF294C9E8A0081D268 /* GradientStyle.swift */,
 			);
 			path = Units;
+			sourceTree = "<group>";
+		};
+		56288979295DFEE7004EA89E /* Dependency */ = {
+			isa = PBXGroup;
+			children = (
+				56288983295E0316004EA89E /* Service */,
+				5628897F295DFFF3004EA89E /* Interactor */,
+				56288980295DFFFF004EA89E /* Provider */,
+			);
+			path = Dependency;
+			sourceTree = "<group>";
+		};
+		5628897F295DFFF3004EA89E /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				56288981295E001C004EA89E /* FacebookInteractor.swift */,
+				56288985295E0373004EA89E /* NotificationInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		56288980295DFFFF004EA89E /* Provider */ = {
+			isa = PBXGroup;
+			children = (
+				5628897B295DFF0B004EA89E /* DependencyProvider.swift */,
+				5628897D295DFF38004EA89E /* Provider.swift */,
+				5628898A295E05E2004EA89E /* FirebaseProvider.swift */,
+				5628898C295E07CA004EA89E /* NotificationProvider.swift */,
+			);
+			path = Provider;
+			sourceTree = "<group>";
+		};
+		56288983295E0316004EA89E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		5643008A295B7A9700657034 /* Frameworks */ = {
@@ -517,6 +563,7 @@
 				56430086295B765400657034 /* FirebaseFirestore */,
 				56430088295B765400657034 /* FirebaseFirestoreSwift */,
 				5643008B295B7A9700657034 /* FirebaseStorage */,
+				5628898E295E119A004EA89E /* HYSLogger */,
 			);
 			productName = Procrastinee;
 			productReference = 560328CC29431CA300E6BCB3 /* Procrastinee.app */;
@@ -548,6 +595,7 @@
 			mainGroup = 560328C329431CA300E6BCB3;
 			packageReferences = (
 				56430085295B765400657034 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				56288987295E04FB004EA89E /* XCRemoteSwiftPackageReference "HYSLogger" */,
 			);
 			productRefGroup = 560328CD29431CA300E6BCB3 /* Products */;
 			projectDirPath = "";
@@ -652,11 +700,12 @@
 				56E9E76A294B0C3E00F03C08 /* Constants.swift in Sources */,
 				5645FFC62959896900A92205 /* IntroducingView.swift in Sources */,
 				564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */,
-				5643007C295AF72A00657034 /* NotificationViewModel.swift in Sources */,
+				5628898B295E05E2004EA89E /* FirebaseProvider.swift in Sources */,
 				560328D229431CA300E6BCB3 /* ContentView.swift in Sources */,
 				569E3DC929533B7600145A95 /* ContainerPlanningView.swift in Sources */,
 				567CB22C29521F200065A39B /* WantToFinishView.swift in Sources */,
 				560B68DF2944EA7A00EDD52F /* SuccessCreatingAccountView.swift in Sources */,
+				56288986295E0373004EA89E /* NotificationInteractor.swift in Sources */,
 				5603290929435BC500E6BCB3 /* OnboardingViewModel.swift in Sources */,
 				567CB22829521DC60065A39B /* TaskCreatePopupView.swift in Sources */,
 				5603290029432B1400E6BCB3 /* GetStartedView.swift in Sources */,
@@ -672,17 +721,20 @@
 				56774D352944A8D90068BDFF /* PageIndicatorView.swift in Sources */,
 				56288975295C41BA004EA89E /* PagerView.swift in Sources */,
 				5603290F2943683D00E6BCB3 /* FirstIntroductionView.swift in Sources */,
-				5643007E295B53BC00657034 /* FirebaseViewModel.swift in Sources */,
 				56A33F8C2954CB0800A7A87E /* СarouselView.swift in Sources */,
+				5628897C295DFF0B004EA89E /* DependencyProvider.swift in Sources */,
 				56A33F8A2954A72F00A7A87E /* PurchaseModel.swift in Sources */,
 				56E9E778294C66A500F03C08 /* SegmentControlTrackerView.swift in Sources */,
 				56774D3B2944AF620068BDFF /* RemindersView.swift in Sources */,
 				5603290729435B7B00E6BCB3 /* OnboardingView.swift in Sources */,
 				560328D029431CA300E6BCB3 /* ProcrastineeApp.swift in Sources */,
+				56288982295E001C004EA89E /* FacebookInteractor.swift in Sources */,
 				564DC5BD2945E69700912250 /* View+Ext.swift in Sources */,
 				56430080295B53EA00657034 /* User.swift in Sources */,
 				56F68EC929559CFC00116D17 /* TrackerView.swift in Sources */,
+				5628898D295E07CA004EA89E /* NotificationProvider.swift in Sources */,
 				56F68EC729559CB900116D17 /* RankingView.swift in Sources */,
+				5628897E295DFF38004EA89E /* Provider.swift in Sources */,
 				56E9E768294B086300F03C08 /* Environment+Value.swift in Sources */,
 				56F68ECB2955CA6F00116D17 /* TopListItem.swift in Sources */,
 				560B68DD2944E8EF00EDD52F /* ProgressView.swift in Sources */,
@@ -923,6 +975,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		56288987295E04FB004EA89E /* XCRemoteSwiftPackageReference "HYSLogger" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Macostik/HYSLogger";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		56430085295B765400657034 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -934,6 +994,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5628898E295E119A004EA89E /* HYSLogger */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 56288987295E04FB004EA89E /* XCRemoteSwiftPackageReference "HYSLogger" */;
+			productName = HYSLogger;
+		};
 		56430086295B765400657034 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 56430085295B765400657034 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

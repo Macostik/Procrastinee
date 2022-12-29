@@ -68,6 +68,8 @@ public enum L10n {
     public static let motivated = L10n.tr("Localizable", "onboarding.motivated")
     /// Nickname...
     public static let nickname = L10n.tr("Localizable", "onboarding.nickname")
+    /// OK
+    public static let ok = L10n.tr("Localizable", "onboarding.ok")
     /// 1 Week
     ///  Plan
     public static let oneWeek = L10n.tr("Localizable", "onboarding.oneWeek")
@@ -114,6 +116,10 @@ public enum L10n {
     public static let useHeadphones = L10n.tr("Localizable", "onboarding.useHeadphones")
     /// Use reminders to achieve best results
     public static let useReminders = L10n.tr("Localizable", "onboarding.useReminders")
+    /// User with this name is already exist!
+    public static let userExist = L10n.tr("Localizable", "onboarding.userExist")
+    /// User with this name is already exist! Please try another name
+    public static let userExistTryAnother = L10n.tr("Localizable", "onboarding.userExistTryAnother")
     /// we just want to tell you what exactly you will achieve by completely killing all your procrastinating nature.
     public static let weJustWant = L10n.tr("Localizable", "onboarding.weJustWant")
     /// Yes, please

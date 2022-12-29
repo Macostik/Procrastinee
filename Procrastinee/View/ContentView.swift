@@ -9,20 +9,17 @@ import SwiftUI
 import UserNotifications
 
 struct ContentView: View {
-    @StateObject private var notificationManager = NotificationViewModel()
     @StateObject private var onboardingViewModel = OnboardingViewModel()
-    @StateObject private var firebaseManager = FirebaseViewModel()
     @StateObject private var mainViewModel = MainViewModel()
-    @Environment(\.scenePhase) var scenePhase
+    @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.dependency) private var dependency
     var body: some View {
         GeometryReader { proxy in
             NavigationView {
                 if onboardingViewModel.isPresentedMainView {
-                    MainView(viewModel: mainViewModel,
-                             firebaseManager: firebaseManager)
+                    MainView(viewModel: mainViewModel)
                 } else {
                     OnboardingView(onboardingViewModel: onboardingViewModel,
-                                   firebaseManager: firebaseManager,
                                    mainViewModel: mainViewModel)
                 }
             }
@@ -31,7 +28,7 @@ struct ContentView: View {
                 if newPhase == .inactive &&
                     mainViewModel.isTrackStarted &&
                     mainViewModel.isDeepMode {
-                     notificationManager.sendNotification()
+                    dependency.provider.notificationService.sendNotification()
                 }
             }
         }

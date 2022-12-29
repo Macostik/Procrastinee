@@ -1,19 +1,24 @@
 //
-//  NotificationViewModel.swift
+//  NotificationProvider.swift
 //  Procrastinee
 //
-//  Created by Macostik on 27.12.2022.
+//  Created by Macostik on 29.12.2022.
 //
 
 import Foundation
 import UserNotificationsUI
+import HYSLogger
 
-class NotificationViewModel: ObservableObject {
+protocol NotificationProvider {
+    var notificationService: NotificationInteractor { get }
+}
+
+struct NotificationService: NotificationInteractor {
     init() {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                 if success == false || error != nil {
-                    print(">>Notification was not setup correctly)")
+                    Logger.debug(">>Notification was not setup correctly)")
                 }
         }
     }

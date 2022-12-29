@@ -78,7 +78,6 @@ struct TrackerPlaningSwitcher: View {
 
 struct TimerView: View {
     @StateObject var viewModel: MainViewModel
-    @StateObject var notificationModel = NotificationViewModel()
     @State var reverseAnimation = false
     @State var isScale = false
     var clickHandler: (() -> Void)?

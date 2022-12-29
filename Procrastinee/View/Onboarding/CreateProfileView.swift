@@ -7,12 +7,14 @@
 
 import SwiftUI
 import AVFoundation
+import HYSLogger
 
 struct CreateProfileView: View {
     @FocusState private var isFocused: Bool
     @StateObject private var keyboard = KeyboardHandler()
     @StateObject var viewModel: OnboardingViewModel
-    @StateObject var firebaseManager: FirebaseViewModel
+    @Environment(\.dependency) private var dependency
+    @State private var userExist = false
     @State var player: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Planning Button",
                                   withExtension: "mp3")
@@ -69,6 +71,7 @@ struct CreateProfileView: View {
                                 }
                         }
                         .padding(.horizontal, 14)
+                       
                     }
                     .frame(height: 66)
                     .padding(.horizontal, 28)
@@ -81,9 +84,17 @@ struct CreateProfileView: View {
                         UIImpactFeedbackGenerator(style: .soft)
                             .impactOccurred()
                         player?.play()
-                        firebaseManager
-                            .addUser(name: viewModel.nickName, totalTime: 0)
-                        onNextScreen?()
+                        userExist = dependency.provider.firebaseService.users
+                            .contains(where: { $0.name == viewModel.nickName })
+                        if userExist {
+                            Logger.warrning(L10n.Onboarding.userExist)
+                        } else {
+                            dependency.provider.firebaseService
+                                .addUser(name: viewModel.nickName,
+                                         country: viewModel.selectedCountry,
+                                         totalTime: 0)
+                            onNextScreen?()
+                        }
                     })
                 }, label: {
                     HStack {
@@ -93,9 +104,14 @@ struct CreateProfileView: View {
                             .font(.system(size: 17)
                                 .weight(.bold))
                     }
+                    .disabled(userExist)
                 })
                 .padding(.horizontal, 23)
                 .padding(.bottom, 20)
+                .alert(L10n.Onboarding.userExistTryAnother,
+                       isPresented: $userExist) {
+                    Button(L10n.Onboarding.ok, role: .cancel) { }
+                        }
             }
             if viewModel.isCountyPopupPresented {
                 CountryPopupView(viewModel: viewModel)
@@ -110,7 +126,6 @@ struct CreateProfileView: View {
 
 struct CreateProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfileView(viewModel: OnboardingViewModel(),
-                          firebaseManager: FirebaseViewModel())
+        CreateProfileView(viewModel: OnboardingViewModel())
     }
 }

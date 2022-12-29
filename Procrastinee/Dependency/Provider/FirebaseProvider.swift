@@ -1,40 +1,41 @@
 //
-//  FirebaseViewModel.swift
+//  FirebaseProvider.swift
 //  Procrastinee
 //
-//  Created by Macostik on 27.12.2022.
+//  Created by Macostik on 29.12.2022.
 //
 
 import Foundation
 import Combine
+import HYSLogger
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 private var listeners: [AnyHashable: Listener] = [:]
 private struct Listener {
-  let document: CollectionReference
-  let listener: ListenerRegistration
-  let subject: PassthroughSubject<[QueryDocumentSnapshot], Never>
+    let document: CollectionReference
+    let listener: ListenerRegistration
+    let subject: PassthroughSubject<[QueryDocumentSnapshot], Never>
 }
 
 struct FirestoreSubscription {
-  static func subscribe(id: AnyHashable, docPath: String) -> AnyPublisher<[QueryDocumentSnapshot], Never> {
-    let subject = PassthroughSubject<[QueryDocumentSnapshot], Never>()
-    let docRef = Firestore.firestore().collection(docPath)
-    let listener = docRef.addSnapshotListener { snapshot, _ in
-      if let snapshot = snapshot {
-          subject.send(snapshot.documents)
-      }
+    static func subscribe(id: AnyHashable, docPath: String) -> AnyPublisher<[QueryDocumentSnapshot], Never> {
+        let subject = PassthroughSubject<[QueryDocumentSnapshot], Never>()
+        let docRef = Firestore.firestore().collection(docPath)
+        let listener = docRef.addSnapshotListener { snapshot, _ in
+            if let snapshot = snapshot {
+                subject.send(snapshot.documents)
+            }
+        }
+        listeners[id] = Listener(document: docRef, listener: listener, subject: subject)
+        return subject.eraseToAnyPublisher()
     }
-    listeners[id] = Listener(document: docRef, listener: listener, subject: subject)
-    return subject.eraseToAnyPublisher()
-  }
-  static func cancel(id: AnyHashable) {
-    listeners[id]?.listener.remove()
-    listeners[id]?.subject.send(completion: .finished)
-    listeners[id] = nil
-  }
+    static func cancel(id: AnyHashable) {
+        listeners[id]?.listener.remove()
+        listeners[id]?.subject.send(completion: .finished)
+        listeners[id] = nil
+    }
 }
 
 struct FirestoreDecoder {
@@ -50,7 +51,11 @@ struct FirestoreDecoder {
     }
 }
 
-class FirebaseViewModel: ObservableObject {
+protocol FirebaseProvider {
+    var firebaseService: FirebaseInteractor { get }
+}
+
+class FirebaseService: FirebaseInteractor {
     @Published var currentUser: User = .empty
     @Published var users: [User] = []
     struct SubscriptionID: Hashable {}
@@ -62,11 +67,11 @@ class FirebaseViewModel: ObservableObject {
     }
     private func addListener() {
         FirestoreSubscription.subscribe(id: SubscriptionID(), docPath: "User")
-              .compactMap(FirestoreDecoder.decode(User.self))
-              .receive(on: DispatchQueue.main)
-              .print("List of users")
-              .assign(to: \.users, on: self)
-              .store(in: &cancellable)
+            .compactMap(FirestoreDecoder.decode(User.self))
+            .receive(on: DispatchQueue.main)
+            .print("List of users")
+            .assign(to: \.users, on: self)
+            .store(in: &cancellable)
     }
     private func getCurrentUser() {
         $users
@@ -76,25 +81,26 @@ class FirebaseViewModel: ObservableObject {
             .assign(to: \.currentUser, on: self)
             .store(in: &cancellable)
     }
-    func addUser(name: String, totalTime: Int) {
+    func addUser(name: String, country: String, totalTime: Int) {
         var ref: DocumentReference?
         ref = dataBase.collection("User").addDocument(data: [
             "name": name,
+            "country": country,
             "totalTime": totalTime
         ]) { err in
             if let err = err {
-                print("Error adding document: \(err)")
+                Logger.error("Error adding document: \(err)")
             } else {
-                print("Document added with ID: \(ref!.documentID)")
+                Logger.debug("Document added with ID: \(ref!.documentID)")
+                self.getCurrentUser()
             }
         }
     }
-    func update(currentUser: User) {
+    func update(user: User) {
         dataBase.collection("User")
             .document(currentUser.id!).setData([
                 "name": currentUser.name,
-                "totalTime": currentUser.totalTime,
-                "task": currentUser.tasks
+                "totalTime": currentUser.totalTime
             ])
     }
 }

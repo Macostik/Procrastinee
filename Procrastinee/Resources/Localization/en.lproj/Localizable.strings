@@ -45,6 +45,9 @@
 "onboarding.averagePriceOfYear" = "0,41 USD / week";
 "onboarding.popular" = "Popular";
 "onboarding.subscribe" = "SUBSCRIBE";
+"onboarding.userExist" = "User with this name is already exist!";
+"onboarding.userExistTryAnother" = "User with this name is already exist! Please try another name";
+"onboarding.ok" = "OK";
 
 "tracking.settings.promoTracker" = "Pomodoro Tracker";
 "tracking.settings.workSet" = "Work for a set period of time.";
