@@ -74,9 +74,9 @@ struct TaskNameTextField: View {
                         Button {
                              if viewModel.taskName.isEmpty == false {
                                  isFocused = false
-                                 player?.play()
-                                 UIImpactFeedbackGenerator(style: .soft)
-                                     .impactOccurred()
+                                     player?.play()
+                                     UIImpactFeedbackGenerator(style: .soft)
+                                         .impactOccurred()
                                  if viewModel.isSetTaskTime {
                                      setTimeAction?()
                                  } else {

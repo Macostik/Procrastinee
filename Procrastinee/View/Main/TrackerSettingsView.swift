@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct TrackerSettingsView: View {
     @StateObject var viewModel: MainViewModel
@@ -54,6 +55,18 @@ struct BreakTimeView: View {
 
 struct DeepFocusModeView: View {
     @Binding var isKeepingFocus: Bool
+    @State var playerOn: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Tracker from Planning Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
+    @State var playerOff: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Planning Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var isPromodoroSelected: Bool = false
     var body: some View {
         VStack(spacing: 0) {
@@ -67,6 +80,12 @@ struct DeepFocusModeView: View {
                 .padding(.top, 4)
             Button {
                 isKeepingFocus.toggle()
+                if isKeepingFocus {
+                    playerOn?.play()
+                } else {
+                    playerOff?.play()
+                }
+                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
             } label: {
                 Text(isKeepingFocus ?
                      L10n.Tracking.Settings.on : L10n.Tracking.Settings.off)

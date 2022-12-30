@@ -6,10 +6,17 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct TaskTimeView: View {
     @Environment(\.screenSize) private var screenSize
     @StateObject var viewModel: MainViewModel
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Tracker Tapbar Button",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         VStack(spacing: 0) {
             TaskTimeHeaderView()
@@ -22,6 +29,9 @@ struct TaskTimeView: View {
             .padding(.top, 60)
             GradientButton {
                 viewModel.creatTask()
+                player?.play()
+                UIImpactFeedbackGenerator(style: .soft)
+                    .impactOccurred()
             } label: {
                 HStack {
                     Image.checkmark

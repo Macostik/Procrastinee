@@ -7,15 +7,25 @@
 
 import Foundation
 import SwiftUI
+import AVFoundation
 
 struct TopRankingView: View {
     @StateObject var viewModel: MainViewModel
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Close Button 2",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Spacer()
                 Button {
                     viewModel.selectedTracker = .tracker
+                    player?.play()
+                    UIImpactFeedbackGenerator(style: .soft)
+                        .impactOccurred()
                 } label: {
                     Image.closeIcon
                 }

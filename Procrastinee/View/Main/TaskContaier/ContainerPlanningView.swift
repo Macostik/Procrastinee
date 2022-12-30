@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 let horizontalPadding: CGFloat = 20
 
@@ -55,6 +56,12 @@ struct ContainerPlanningView_Previews: PreviewProvider {
 
 struct TaskSectionHeader: View {
     @StateObject var viewModel: MainViewModel
+    @State var player: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "Open Prize",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var index: Int
     var title: String
     var body: some View {
@@ -85,6 +92,9 @@ struct TaskSectionHeader: View {
                 Button {
                     viewModel.isSetTaskTime = true
                     viewModel.isTaskCategoryPresented = true
+                    player?.play()
+                    UIImpactFeedbackGenerator(style: .soft)
+                        .impactOccurred()
                 } label: {
                     Image.plusIcon
                 }
