@@ -170,7 +170,7 @@ struct UserTotalTime: View {
                 }
                 HStack(spacing: 5) {
                     HStack(spacing: 0) {
-                        Text("\(Int(user.totalTime/60))")
+                        Text("\(Int((Int(user.totalTime) ?? 0)/60))")
                             .font(.system(size: 14).weight(.medium))
                             .foregroundStyle(gradientVertical)
                         Text("h")
@@ -178,9 +178,12 @@ struct UserTotalTime: View {
                             .foregroundColor(Color.black)
                     }
                     HStack(spacing: 0) {
-                        Text("\(Int(user.totalTime.truncatingRemainder(dividingBy: 60)))")
-                            .font(.system(size: 14).weight(.medium))
-                            .foregroundStyle(gradientVertical)
+                        let value = Int(CGFloat(truncating: NumberFormatter()
+                            .number(from: user.totalTime) ?? 0)
+                            .truncatingRemainder(dividingBy: 60))
+                        Text("\(value)")
+                        .font(.system(size: 14).weight(.medium))
+                        .foregroundStyle(gradientVertical)
                         Text("m")
                             .font(.system(size: 14).weight(.medium))
                             .foregroundColor(Color.black)
@@ -190,7 +193,9 @@ struct UserTotalTime: View {
         } else {
             HStack(spacing: 5) {
                 HStack(spacing: 0) {
-                    Text("\(Int(user.totalTime/60))")
+                    let value = Int(CGFloat(truncating: NumberFormatter()
+                        .number(from: user.totalTime) ?? 0)/60)
+                    Text("\(value)")
                         .font(.system(size: 14).weight(.medium))
                         .foregroundStyle(gradientVertical)
                     Text("h")
@@ -198,7 +203,10 @@ struct UserTotalTime: View {
                         .foregroundColor(Color.black)
                 }
                 HStack(spacing: 0) {
-                    Text("\(Int(user.totalTime.truncatingRemainder(dividingBy: 60)))")
+                    let value = Int(CGFloat(truncating: NumberFormatter()
+                        .number(from: user.totalTime) ?? 0)
+                        .truncatingRemainder(dividingBy: 60))
+                    Text("\(value)")
                         .font(.system(size: 14).weight(.medium))
                         .foregroundStyle(gradientVertical)
                     Text("m")

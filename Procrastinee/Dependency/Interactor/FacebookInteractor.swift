@@ -10,6 +10,6 @@ import Foundation
 protocol FirebaseInteractor {
     var currentUser: User { get }
     var users: [User] { get }
-    func addUser(name: String, country: String, totalTime: Int)
-    func update(user: User)
+    func addUser(name: String, country: String, totalTime: String) 
+    func addTask(task: RemoteTask)
 }

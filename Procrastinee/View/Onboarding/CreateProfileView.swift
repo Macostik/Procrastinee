@@ -91,7 +91,7 @@ struct CreateProfileView: View {
                             dependency.provider.firebaseService
                                 .addUser(name: viewModel.nickName,
                                          country: viewModel.selectedCountry,
-                                         totalTime: 0)
+                                         totalTime: "")
                             onNextScreen?()
                         }
                     })

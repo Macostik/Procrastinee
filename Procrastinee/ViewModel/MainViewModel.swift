@@ -7,8 +7,10 @@
 
 import Foundation
 import Combine
+import SwiftUI
 
 class MainViewModel: ObservableObject {
+    @Environment(\.dependency) private var dependency
     @Published var selectedTrackerType: TrackerSettingsType = .stopWatch
     @Published var selectedTracker: TrackerType = .tracker
     @Published var selectedDeal: DealType = .tracker
@@ -72,14 +74,16 @@ class MainViewModel: ObservableObject {
     func creatTask() {
         isTaskCategoryPresented = false
         isTrackStarted = false
-        let task = LocalTask(state: .planned,
-                   type: selectedTask,
-                   fromTime: "from \(selecteTime)",
-                   forTime: "for 3h 28m")
+        let localTask = LocalTask(state: .planned,
+                                  type: selectedTask,
+                                  name: taskName,
+                                  fromTime: "from \(selecteTime)",
+                                  forTime: "for 3h 28m")
         var todayValue = groupTask.first!
-        todayValue.value.append(task)
+        todayValue.value.append(localTask)
         todayValue.value.sort(by: { $0.fromTime < $1.fromTime })
         groupTask[0] = todayValue
+        sendTo()
     }
     private func endInWeek() {
         let endOfWeek = Date().endOfWeek ?? Date()
@@ -90,6 +94,12 @@ class MainViewModel: ObservableObject {
         let hour = diffs.hour ?? 0
         let minutes = diffs.minute ?? 0
         weekEndInValue = "\(day)" + "d:" + "\(hour)" + "h:" + "\(minutes)" + "m"
+    }
+    private func sendTo() {
+        let remoteTask = RemoteTask(name: taskName,
+                                    type: selectedTask.rawValue,
+                                    time: selecteTime)
+        dependency.provider.firebaseService.addTask(task: remoteTask)
     }
 }
 

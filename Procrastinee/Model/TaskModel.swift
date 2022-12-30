@@ -13,6 +13,7 @@ struct LocalTask: Hashable {
     let id = UUID()
     let state: TaskState
     let type: TaskType
+    let name: String
     let fromTime: String
     let forTime: String
     var taskImage: some View {
@@ -37,12 +38,11 @@ var groupTask = [
 ]
 
 public struct RemoteTask: Codable {
-    @DocumentID var id: String?
     var name: String
     var type: String
-    var time: Float
+    var time: String
 }
 
 extension RemoteTask {
-    static let empty = RemoteTask(id: "", name: "", type: "", time: 0)
+    static let empty = RemoteTask(name: "", type: "", time: "")
 }

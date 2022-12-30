@@ -13,13 +13,13 @@ public struct User: Codable {
     @DocumentID var id: String?
     var name: String
     var country: String
-    var totalTime: Float
-//    var tasks: [RemoteTask]?
+    var totalTime: String
+    var tasks: [String]?
 }
 
 extension User {
     static let empty = User(id: nil,
                             name: "",
                             country: "",
-                            totalTime: 0)
+                            totalTime: "")
 }

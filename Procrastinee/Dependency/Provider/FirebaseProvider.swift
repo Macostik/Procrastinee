@@ -81,12 +81,13 @@ class FirebaseService: FirebaseInteractor {
             .assign(to: \.currentUser, on: self)
             .store(in: &cancellable)
     }
-    func addUser(name: String, country: String, totalTime: Int) {
+    func addUser(name: String, country: String, totalTime: String) {
         var ref: DocumentReference?
         ref = dataBase.collection("User").addDocument(data: [
             "name": name,
             "country": country,
-            "totalTime": totalTime
+            "totalTime": totalTime,
+            "tasks": [""]
         ]) { err in
             if let err = err {
                 Logger.error("Error adding document: \(err)")
@@ -96,11 +97,14 @@ class FirebaseService: FirebaseInteractor {
             }
         }
     }
-    func update(user: User) {
-        dataBase.collection("User")
-            .document(currentUser.id!).setData([
-                "name": currentUser.name,
-                "totalTime": currentUser.totalTime
-            ])
+    func addTask(task: RemoteTask) {
+        if let encodedTask = try? JSONEncoder().encode(task) {
+            if let jsonTask = String(data: encodedTask, encoding: .utf8) {
+                let ref = dataBase.collection("User").document(currentUser.id!)
+                ref.updateData([
+                    "tasks": FieldValue.arrayUnion([jsonTask])
+                ])
+            }
+        }
     }
 }
