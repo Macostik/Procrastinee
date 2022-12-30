@@ -72,6 +72,14 @@ class MainViewModel: ObservableObject {
     func creatTask() {
         isTaskCategoryPresented = false
         isTrackStarted = false
+        let task = LocalTask(state: .planned,
+                   type: selectedTask,
+                   fromTime: "from \(selecteTime)",
+                   forTime: "for 3h 28m")
+        var todayValue = groupTask.first!
+        todayValue.value.append(task)
+        todayValue.value.sort(by: { $0.fromTime < $1.fromTime })
+        groupTask[0] = todayValue
     }
     private func endInWeek() {
         let endOfWeek = Date().endOfWeek ?? Date()

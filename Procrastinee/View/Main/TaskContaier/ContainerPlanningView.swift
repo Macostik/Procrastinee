@@ -15,34 +15,34 @@ struct ContainerPlanningView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .top) {
-            if groupTask.isEmpty {
+            if groupTask.first?.value.isEmpty ?? true {
                 VStack {
                     Spacer()
                     Text(L10n.Task.noting)
                         .font(.system(size: 16).weight(.regular))
                         .foregroundColor(Color.cb7B7B7)
+                        .offset(y: -42)
                     Spacer()
                 }
-            } else {
-                ScrollView(.vertical, showsIndicators: false) {
-                    ForEach(groupTask, id: \.self) { item in
-                        Section(header:
-                                    TaskSectionHeader(viewModel: viewModel,
-                                                      index: item.index,
-                                                      title: item.key)) {
-                            VStack(spacing: 13) {
-                                ForEach(item.value, id: \.self) { task in
-                                    TaskCell(task: task)
-                                        .frame(height: 110)
-                                }
+            }
+            ScrollView(.vertical, showsIndicators: false) {
+                ForEach(groupTask, id: \.self) { item in
+                    Section(header:
+                                TaskSectionHeader(viewModel: viewModel,
+                                                  index: item.index,
+                                                  title: item.key)) {
+                        VStack(spacing: 13) {
+                            ForEach(item.value, id: \.self) { task in
+                                TaskCell(task: task)
+                                    .frame(height: 110)
                             }
                         }
                     }
-                    Color.clear
-                        .frame(width: screenSize.width, height: 20)
                 }
-                .padding(.top)
+                Color.clear
+                    .frame(width: screenSize.width, height: 20)
             }
+            .padding(.top, 0)
         }
         .fullScreenSize()
     }

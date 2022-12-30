@@ -23,12 +23,13 @@ enum TimePickerData: CaseIterable {
 struct TimePickerView: UIViewRepresentable {
     @Binding var selectedTime: String
     class Coordinator: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
-        private var hourValue = "0"
-        private var minuteValue = "0"
+        private var hourValue = "1"
+        private var minuteValue = "05"
         private var period = "AM"
         var timeValue: Binding<String>
         init(timeValue: Binding<String>) {
             self.timeValue = timeValue
+            timeValue.wrappedValue = hourValue + ":" + minuteValue + " " + period
         }
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
             pickerView.subviews.first?.backgroundColor = .clear
@@ -52,10 +53,13 @@ struct TimePickerView: UIViewRepresentable {
                 hourValue = value
             } else if component == 1 {
                 minuteValue = value
+                if minuteValue == "5" {
+                    minuteValue = "05"
+                }
             } else {
                 period = value
             }
-            timeValue.wrappedValue = hourValue + "." + minuteValue + period
+            timeValue.wrappedValue = hourValue + ":" + minuteValue + " " + period
         }
         func pickerView(_ pickerView: UIPickerView,
                         viewForRow row: Int,

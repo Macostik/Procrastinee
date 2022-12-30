@@ -25,79 +25,15 @@ struct LocalTask: Hashable {
     }
 }
 struct GroupTask: Hashable {
-    let index: Int
-    let key: String
-    let value: [LocalTask]
+    var index: Int
+    var key: String
+    var value: [LocalTask]
 }
 
-let groupTask = [
+var groupTask = [
     GroupTask(index: 0,
               key: "Today",
-              value: [LocalTask(state: .completed,
-                           type: .sport,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .work,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .education,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .completed,
-                           type: .study,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .work,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .sport,
-                           fromTime: "from 10:25 AM", forTime: "for 3h 28m"),
-                      LocalTask(state: .completed,
-                           type: .education,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .work,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m")]),
-    GroupTask(index: 1,
-              key: "Yesterday",
-              value: [LocalTask(state: .completed,
-                           type: .education,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .completed,
-                           type: .sport,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .education,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .study,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .completed,
-                           type: .education,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .sport,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .completed,
-                           type: .work,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m"),
-                      LocalTask(state: .planned,
-                           type: .sport,
-                           fromTime: "from 10:25 AM",
-                           forTime: "for 3h 28m")])
+              value: [])
 ]
 
 public struct RemoteTask: Codable {
