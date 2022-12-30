@@ -71,7 +71,6 @@ struct CreateProfileView: View {
                                 }
                         }
                         .padding(.horizontal, 14)
-                       
                     }
                     .frame(height: 66)
                     .padding(.horizontal, 28)

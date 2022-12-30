@@ -18,14 +18,14 @@ struct NotificationService: NotificationInteractor {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                 if success == false || error != nil {
-                    Logger.debug(">>Notification was not setup correctly)")
+                    Logger.debug("Notification was not setup correctly)")
                 }
         }
     }
     func sendNotification() {
         let content = UNMutableNotificationContent()
         content.title = "Go back to the Procrastinee"
-        content.subtitle = "Task is not completed"
+        content.subtitle = "The task is not completed"
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "bamboo.mp3"))
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5,
                                                         repeats: false)

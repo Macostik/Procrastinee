@@ -10,7 +10,6 @@ import SwiftUI
 
 struct TopRankingView: View {
     @StateObject var viewModel: MainViewModel
-    @State var weekEndInValue = "2d:23h:59m"
     var body: some View {
         VStack(spacing: 0) {
             HStack {
@@ -63,13 +62,13 @@ struct TopRankingView: View {
                         .font(.system(size: 17).weight(.bold))
                         .foregroundColor(Color.c2F2E41) +
                     Text(L10n.Ranking.end)
-                        .font(.system(size: 17).weight(.regular))
+                        .font(.system(size: 17).weight(.light))
                         .foregroundColor(Color.c2F2E41) +
                     Text(L10n.Ranking.in)
                         .font(.system(size: 17).weight(.bold))
                         .foregroundColor(Color.c2F2E41)
                 }
-                Text(weekEndInValue)
+                Text(viewModel.weekEndInValue)
                     .font(.system(size: 17).weight(.bold))
                     .foregroundColor(Color.c2F2E41)
             }
