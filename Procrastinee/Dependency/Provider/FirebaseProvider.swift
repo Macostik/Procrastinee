@@ -58,12 +58,14 @@ protocol FirebaseProvider {
 class FirebaseService: FirebaseInteractor {
     @Published var currentUser: User = .empty
     @Published var users: [User] = []
+    var tasks = CurrentValueSubject<[RemoteTask], Error>([])
     struct SubscriptionID: Hashable {}
     private var dataBase = Firestore.firestore()
     private var cancellable: Set<AnyCancellable> = []
     init() {
         addListener()
         getCurrentUser()
+        fetchAllTasks()
     }
     private func addListener() {
         FirestoreSubscription.subscribe(id: SubscriptionID(), docPath: "User")
@@ -79,6 +81,22 @@ class FirebaseService: FirebaseInteractor {
                 .string(forKey: Constants.userNickname) }).first })
             .print("Current user")
             .assign(to: \.currentUser, on: self)
+            .store(in: &cancellable)
+    }
+    private func fetchAllTasks() {
+        $currentUser
+            .sink { user in
+                guard let tasks = user.tasks else { return }
+                var tasksList: [RemoteTask] = []
+                for task in tasks {
+                    guard let remoteTask = try? JSONDecoder()
+                        .decode(RemoteTask.self,
+                                from: task.data(using: .utf8)!)
+                    else { return }
+                    tasksList.append(remoteTask)
+                }
+                self.tasks.value = tasksList
+            }
             .store(in: &cancellable)
     }
     func addUser(name: String, country: String, totalTime: String) {

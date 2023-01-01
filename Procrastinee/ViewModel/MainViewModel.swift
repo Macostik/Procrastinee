@@ -28,6 +28,11 @@ class MainViewModel: ObservableObject {
     @Published var selecteTime = ""
     @Published var isTaskCategoryPresented = false
     @Published var weekEndInValue = ""
+    @Published var groupTask = [
+        GroupTask(index: 0,
+                  key: "Today",
+                  value: [])
+    ]
     private var cancellable: Set<AnyCancellable> = []
     init() {
         $isTaskCategoryPresented
@@ -70,20 +75,16 @@ class MainViewModel: ObservableObject {
             .assign(to: \.pickerViewSelectedIndex, on: self)
             .store(in: &cancellable)
         endInWeek()
+        fetchAllTasks()
     }
     func creatTask() {
         isTaskCategoryPresented = false
         isTrackStarted = false
-        let localTask = LocalTask(state: .planned,
-                                  type: selectedTask,
-                                  name: taskName,
-                                  fromTime: "from \(selecteTime)",
-                                  forTime: "for 3h 28m")
-        var todayValue = groupTask.first!
-        todayValue.value.append(localTask)
-        todayValue.value.sort(by: { $0.fromTime < $1.fromTime })
-        groupTask[0] = todayValue
-        sendTo()
+        let firebaseService = dependency.provider.firebaseService
+        let remoteTask = RemoteTask(name: taskName,
+                                    type: selectedTask.rawValue,
+                                    time: selecteTime)
+        firebaseService.addTask(task: remoteTask)
     }
     private func endInWeek() {
         let endOfWeek = Date().endOfWeek ?? Date()
@@ -95,11 +96,25 @@ class MainViewModel: ObservableObject {
         let minutes = diffs.minute ?? 0
         weekEndInValue = "\(day)" + "d:" + "\(hour)" + "h:" + "\(minutes)" + "m"
     }
-    private func sendTo() {
-        let remoteTask = RemoteTask(name: taskName,
-                                    type: selectedTask.rawValue,
-                                    time: selecteTime)
-        dependency.provider.firebaseService.addTask(task: remoteTask)
+    private func fetchAllTasks() {
+        dependency.provider.firebaseService.tasks
+            .receive(on: DispatchQueue.main)
+            .sink { _ in
+            } receiveValue: { [weak self] tasks in
+                guard var todayValue = self?.groupTask.first else { return }
+                todayValue.value.removeAll()
+                for task in tasks {
+                    let localTask = LocalTask(state: .planned,
+                                              type: TaskType(rawValue: task.type) ?? .education,
+                                              name: task.name,
+                                              fromTime: task.time,
+                                              forTime: "")
+                    todayValue.value.append(localTask)
+                }
+                todayValue.value.sort(by: { $0.fromTime < $1.fromTime })
+                self?.groupTask[0] = todayValue
+            }
+            .store(in: &cancellable)
     }
 }
 

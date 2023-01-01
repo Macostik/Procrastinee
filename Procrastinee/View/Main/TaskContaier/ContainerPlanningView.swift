@@ -15,7 +15,7 @@ struct ContainerPlanningView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .top) {
-            if groupTask.first?.value.isEmpty ?? true {
+            if viewModel.groupTask.first?.value.isEmpty ?? true {
                 VStack {
                     Spacer()
                     Text(L10n.Task.noting)
@@ -26,7 +26,7 @@ struct ContainerPlanningView: View {
                 }
             }
             ScrollView(.vertical, showsIndicators: false) {
-                ForEach(groupTask, id: \.self) { item in
+                ForEach(viewModel.groupTask, id: \.self) { item in
                     Section(header:
                                 TaskSectionHeader(viewModel: viewModel,
                                                   index: item.index,

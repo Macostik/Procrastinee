@@ -31,12 +31,6 @@ struct GroupTask: Hashable {
     var value: [LocalTask]
 }
 
-var groupTask = [
-    GroupTask(index: 0,
-              key: "Today",
-              value: [])
-]
-
 public struct RemoteTask: Codable {
     var name: String
     var type: String

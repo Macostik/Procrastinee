@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import Combine
 
 protocol FirebaseInteractor {
     var currentUser: User { get }
     var users: [User] { get }
-    func addUser(name: String, country: String, totalTime: String) 
+    var tasks: CurrentValueSubject<[RemoteTask], Error> { get }
+    func addUser(name: String, country: String, totalTime: String)
     func addTask(task: RemoteTask)
 }
