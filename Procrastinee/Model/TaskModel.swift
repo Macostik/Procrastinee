@@ -9,15 +9,21 @@ import Foundation
 import SwiftUI
 import FirebaseFirestoreSwift
 
-struct LocalTask: Hashable {
-    let id = UUID()
-    let state: TaskState
-    let type: TaskType
+struct TaskItem: Hashable, Codable {
+    var id = UUID()
+    let state: String
+    let type: String
     let name: String
     let fromTime: String
     let forTime: String
+    var timestamp = Date().timeIntervalSince1970
+}
+extension TaskItem {
+    var taskType: TaskType {
+        TaskType(rawValue: type) ?? .sport
+    }
     var taskImage: some View {
-        switch type {
+        switch taskType {
         case .work: return Image.workTaskIcon
         case .study: return Image.studyTaskIcon
         case .sport: return Image.sportTaskIcon
@@ -25,18 +31,9 @@ struct LocalTask: Hashable {
         }
     }
 }
+
 struct GroupTask: Hashable {
     var index: Int
     var key: String
-    var value: [LocalTask]
-}
-
-public struct RemoteTask: Codable {
-    var name: String
-    var type: String
-    var time: String
-}
-
-extension RemoteTask {
-    static let empty = RemoteTask(name: "", type: "", time: "")
+    var value: [TaskItem]
 }

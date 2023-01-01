@@ -109,7 +109,7 @@ struct TaskSectionHeader: View {
 }
 
 struct TaskCell: View {
-    var task: LocalTask
+    var task: TaskItem
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: 9)
@@ -129,25 +129,25 @@ struct TaskCell: View {
 }
 
 struct DesctriptionTaskView: View {
-    var task: LocalTask
+    var task: TaskItem
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text(task.type.rawValue.capitalized)
+            Text(task.type.capitalized)
                 .font(.system(size: 16).weight(.semibold))
                 .foregroundColor(Color.black)
             HStack {
                 Text(task.fromTime)
                     .font(.system(size: 12).weight(.medium))
                     .foregroundColor(Color.ccfcfcf)
-                if task.state == .completed {
+                if task.state == "completed" {
                     Text(task.forTime)
                         .font(.system(size: 12).weight(.medium))
                         .foregroundColor(Color.ccfcfcf)
                 }
             }
             .padding(.top, 5)
-            if task.state == .planned {
-                Text(task.state.rawValue.capitalized)
+            if task.state == "planned" {
+                Text(task.state.capitalized)
                     .font(.system(size: 15).weight(.light))
                     .foregroundColor(Color.black)
                     .padding(.vertical, 7)
@@ -156,7 +156,7 @@ struct DesctriptionTaskView: View {
                     .cornerRadius(9)
                     .padding(.top, 19)
             } else {
-                Text(task.state.rawValue.capitalized)
+                Text(task.state.capitalized)
                     .font(.system(size: 15).weight(.light))
                     .foregroundStyle(gradient)
                     .background(Color.cf9F9F9)

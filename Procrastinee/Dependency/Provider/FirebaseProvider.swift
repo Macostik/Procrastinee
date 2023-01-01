@@ -58,7 +58,7 @@ protocol FirebaseProvider {
 class FirebaseService: FirebaseInteractor {
     var currentUser = CurrentValueSubject<User, Error>(.empty)
     var users = CurrentValueSubject<[User], Error>([])
-    var tasks = CurrentValueSubject<[RemoteTask], Error>([])
+    var tasks = CurrentValueSubject<[TaskItem], Error>([])
     struct SubscriptionID: Hashable {}
     private var dataBase = Firestore.firestore()
     private var cancellable: Set<AnyCancellable> = []
@@ -93,10 +93,10 @@ class FirebaseService: FirebaseInteractor {
             .sink { _ in
             } receiveValue: { user in
                 guard let tasks = user.tasks else { return }
-                var tasksList: [RemoteTask] = []
+                var tasksList: [TaskItem] = []
                 for task in tasks {
                     guard let remoteTask = try? JSONDecoder()
-                        .decode(RemoteTask.self,
+                        .decode(TaskItem.self,
                                 from: task.data(using: .utf8)!)
                     else { return }
                     tasksList.append(remoteTask)
@@ -121,7 +121,7 @@ class FirebaseService: FirebaseInteractor {
             }
         }
     }
-    func addTask(task: RemoteTask) {
+    func addTask(task: TaskItem) {
         if let encodedTask = try? JSONEncoder().encode(task) {
             if let jsonTask = String(data: encodedTask, encoding: .utf8) {
                 let ref = dataBase.collection("User").document(currentUser.value.id!)

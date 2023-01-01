@@ -83,10 +83,12 @@ class MainViewModel: ObservableObject {
     func creatTask() {
         isTaskCategoryPresented = false
         isTrackStarted = false
-        let remoteTask = RemoteTask(name: taskName,
-                                    type: selectedTask.rawValue,
-                                    time: selecteTime)
-        firebaseService.addTask(task: remoteTask)
+        let task = TaskItem(state: "planned",
+                             type: selectedTask.rawValue,
+                             name: taskName,
+                             fromTime: selecteTime,
+                             forTime: "")
+        firebaseService.addTask(task: task)
     }
     private func endInWeek() {
         let endOfWeek = Date().endOfWeek ?? Date()
@@ -106,12 +108,7 @@ class MainViewModel: ObservableObject {
                 guard var todayValue = self?.groupTask.first else { return }
                 todayValue.value.removeAll()
                 for task in tasks {
-                    let localTask = LocalTask(state: .planned,
-                                              type: TaskType(rawValue: task.type) ?? .education,
-                                              name: task.name,
-                                              fromTime: task.time,
-                                              forTime: "")
-                    todayValue.value.append(localTask)
+                    todayValue.value.append(task)
                 }
                 todayValue.value.sort(by: { $0.fromTime < $1.fromTime })
                 self?.groupTask[0] = todayValue

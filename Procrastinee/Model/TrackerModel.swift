@@ -33,7 +33,7 @@ enum TrackerType {
 }
 
 enum TaskType: String, CaseIterable {
-    case  sport, education, work, study
+    case sport, education, work, study
 }
 
 enum TaskState: String {
