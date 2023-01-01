@@ -99,6 +99,8 @@
 "task.whenPlanning" = "When you are\n planning to start?";
 "task.create" = "Create";
 "task.noting" = "Nothing is planned yet";
+"task.from" = "from ";
+"task.for" = "for ";
 
 "ranking.topOne" = "TOP 1 ";
 "ranking.willReceive" = "WILL RECEIVE...";

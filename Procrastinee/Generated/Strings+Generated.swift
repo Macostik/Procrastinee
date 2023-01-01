@@ -179,6 +179,10 @@ public enum L10n {
     public static let everySec = L10n.tr("Localizable", "task.everySec")
     /// Finish
     public static let finish = L10n.tr("Localizable", "task.finish")
+    /// for 
+    public static let `for` = L10n.tr("Localizable", "task.for")
+    /// from 
+    public static let from = L10n.tr("Localizable", "task.from")
     /// If you’ve done your task press
     ///  finish to stop the tracker.
     public static let ifYouDone = L10n.tr("Localizable", "task.ifYouDone")

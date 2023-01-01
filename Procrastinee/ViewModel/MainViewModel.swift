@@ -104,25 +104,22 @@ class MainViewModel: ObservableObject {
         firebaseService.tasks
             .receive(on: DispatchQueue.main)
             .sink { _ in
-            } receiveValue: { [weak self] tasks in
-                guard var todayValue = self?.groupTask.first else { return }
-                todayValue.value.removeAll()
-                for task in tasks {
-                    todayValue.value.append(task)
-                }
-                todayValue.value.sort(by: { $0.fromTime < $1.fromTime })
-                self?.groupTask[0] = todayValue
+            } receiveValue: { [weak self] itemList in
+                self?.divideByDate(itemList)
             }
             .store(in: &cancellable)
     }
-}
-
-extension Date {
-    var endOfWeek: Date? {
-        let gregorian = Calendar(identifier: .gregorian)
-        guard let sunday = gregorian
-            .date(from: gregorian.dateComponents([.yearForWeekOfYear, .weekOfYear],
-                                                 from: self)) else { return nil }
-        return gregorian.date(byAdding: .day, value: 7, to: sunday)
+    private func divideByDate(_ list: [TaskItem]) {
+        let listByDate = Dictionary(grouping: list,
+                                    by: { item in item.timestamp.getReadableDate() })
+        var listItem: [GroupTask] = []
+        for (index, key) in listByDate.keys.enumerated() {
+            guard let key = key,
+                    let value = listByDate[key]?.sorted(by: { $0.fromTime < $1.fromTime })
+            else { return }
+            let group = GroupTask(index: index, key: key, value: value)
+            listItem.append(group)
+        }
+        groupTask = listItem.sorted(by: { $0.key < $1.key })
     }
 }

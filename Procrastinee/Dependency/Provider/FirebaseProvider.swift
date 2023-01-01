@@ -94,7 +94,7 @@ class FirebaseService: FirebaseInteractor {
             } receiveValue: { user in
                 guard let tasks = user.tasks else { return }
                 var tasksList: [TaskItem] = []
-                for task in tasks {
+                for task in tasks where task.isEmpty == false {
                     guard let remoteTask = try? JSONDecoder()
                         .decode(TaskItem.self,
                                 from: task.data(using: .utf8)!)

@@ -136,13 +136,19 @@ struct DesctriptionTaskView: View {
                 .font(.system(size: 16).weight(.semibold))
                 .foregroundColor(Color.black)
             HStack {
-                Text(task.fromTime)
+                Group {
+                    Text(L10n.Task.from) +
+                    Text(task.fromTime)
+                }
+                .font(.system(size: 12).weight(.medium))
+                .foregroundColor(Color.ccfcfcf)
+                if task.state == "completed" {
+                    Group {
+                        Text(L10n.Task.for) +
+                        Text(task.forTime)
+                    }
                     .font(.system(size: 12).weight(.medium))
                     .foregroundColor(Color.ccfcfcf)
-                if task.state == "completed" {
-                    Text(task.forTime)
-                        .font(.system(size: 12).weight(.medium))
-                        .foregroundColor(Color.ccfcfcf)
                 }
             }
             .padding(.top, 5)
