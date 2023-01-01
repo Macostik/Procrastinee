@@ -83,7 +83,7 @@ struct CreateProfileView: View {
                         UIImpactFeedbackGenerator(style: .soft)
                             .impactOccurred()
                         player?.play()
-                        userExist = dependency.provider.firebaseService.users
+                        userExist = dependency.provider.firebaseService.users.value
                             .contains(where: { $0.name == viewModel.nickName })
                         if userExist {
                             Logger.warrning(L10n.Onboarding.userExist)

@@ -56,8 +56,8 @@ protocol FirebaseProvider {
 }
 
 class FirebaseService: FirebaseInteractor {
-    @Published var currentUser: User = .empty
-    @Published var users: [User] = []
+    var currentUser = CurrentValueSubject<User, Error>(.empty)
+    var users = CurrentValueSubject<[User], Error>([])
     var tasks = CurrentValueSubject<[RemoteTask], Error>([])
     struct SubscriptionID: Hashable {}
     private var dataBase = Firestore.firestore()
@@ -72,20 +72,26 @@ class FirebaseService: FirebaseInteractor {
             .compactMap(FirestoreDecoder.decode(User.self))
             .receive(on: DispatchQueue.main)
             .print("List of users")
-            .assign(to: \.users, on: self)
+            .sink(receiveValue: { [weak self] users in
+                self?.users.value = users
+            })
             .store(in: &cancellable)
     }
     private func getCurrentUser() {
-        $users
+        users
             .compactMap({ $0.filter({ $0.name == UserDefaults.standard
                 .string(forKey: Constants.userNickname) }).first })
             .print("Current user")
-            .assign(to: \.currentUser, on: self)
+            .sink { _ in
+            } receiveValue: { [weak self] user in
+                self?.currentUser.value = user
+            }
             .store(in: &cancellable)
     }
     private func fetchAllTasks() {
-        $currentUser
-            .sink { user in
+        currentUser
+            .sink { _ in
+            } receiveValue: { user in
                 guard let tasks = user.tasks else { return }
                 var tasksList: [RemoteTask] = []
                 for task in tasks {
@@ -118,7 +124,7 @@ class FirebaseService: FirebaseInteractor {
     func addTask(task: RemoteTask) {
         if let encodedTask = try? JSONEncoder().encode(task) {
             if let jsonTask = String(data: encodedTask, encoding: .utf8) {
-                let ref = dataBase.collection("User").document(currentUser.id!)
+                let ref = dataBase.collection("User").document(currentUser.value.id!)
                 ref.updateData([
                     "tasks": FieldValue.arrayUnion([jsonTask])
                 ])

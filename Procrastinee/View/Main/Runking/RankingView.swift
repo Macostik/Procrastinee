@@ -97,7 +97,7 @@ struct TopListView: View {
     @Environment(\.screenSize) private var screenSize
     @Environment(\.dependency) private var dependency
     var body: some View {
-        let dataList = dependency.provider.firebaseService.users
+        let dataList = dependency.provider.firebaseService.users.value
             .sorted(by: { $0.totalTime > $1.totalTime })
         VStack {
             ScrollView {

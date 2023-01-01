@@ -33,6 +33,9 @@ class MainViewModel: ObservableObject {
                   key: "Today",
                   value: [])
     ]
+    private var firebaseService: FirebaseInteractor {
+        dependency.provider.firebaseService
+    }
     private var cancellable: Set<AnyCancellable> = []
     init() {
         $isTaskCategoryPresented
@@ -80,7 +83,6 @@ class MainViewModel: ObservableObject {
     func creatTask() {
         isTaskCategoryPresented = false
         isTrackStarted = false
-        let firebaseService = dependency.provider.firebaseService
         let remoteTask = RemoteTask(name: taskName,
                                     type: selectedTask.rawValue,
                                     time: selecteTime)
@@ -97,7 +99,7 @@ class MainViewModel: ObservableObject {
         weekEndInValue = "\(day)" + "d:" + "\(hour)" + "h:" + "\(minutes)" + "m"
     }
     private func fetchAllTasks() {
-        dependency.provider.firebaseService.tasks
+        firebaseService.tasks
             .receive(on: DispatchQueue.main)
             .sink { _ in
             } receiveValue: { [weak self] tasks in
