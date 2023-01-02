@@ -34,6 +34,7 @@ class MainViewModel: ObservableObject {
     @Published var stopWatchingTrackingTime = 10
     @Published var isTrackShouldStop = false
     @Published var isBrackingTimeShouldStop = false
+    @Published var todayFocusedValue = ""
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var promodoroTimer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     @Published var groupTask = [
@@ -59,6 +60,8 @@ class MainViewModel: ObservableObject {
                 if value {
                     self.taskName = ""
                     self.selectedTask = .sport
+                    self.todayFocusedValue = self.firebaseService
+                        .currentUser.value.totalTime
                     let workingTime = (selectedTrackerType == .stopWatch ?
                                        stopWatchingTrackingTime : workPeriodTime) * 60
                     let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
@@ -70,6 +73,14 @@ class MainViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellable)
+        endInWeek()
+        fetchTrackOver()
+        fetchAllTasks()
+        observeBreakingTime()
+        observeSelectedDeal()
+        observeTrackFinish()
+    }
+    private func observeBreakingTime() {
         $isBreakingTime
             .sink { [unowned self] value in
                 if self.selectedTrackerType == .promodoro {
@@ -83,14 +94,12 @@ class MainViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellable)
+    }
+    private func observeSelectedDeal() {
         $selectedDeal
             .map({ $0 == .tracker ? 0 : 1 })
             .assign(to: \.pickerViewSelectedIndex, on: self)
             .store(in: &cancellable)
-        endInWeek()
-        fetchTrackOver()
-        fetchAllTasks()
-        observeTrackFinish()
     }
     private func fetchTrackOver() {
         $taskIsOver

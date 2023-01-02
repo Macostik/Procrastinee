@@ -19,7 +19,8 @@ struct TrackerView: View {
             TrackerPlaningSwitcher(type: $viewModel.selectedDeal)
             VStack {
                 GeometryReader { proxy in
-                    PagerView(pageCount: 2, canDrag: $canDrag, currentIndex: $viewModel.pickerViewSelectedIndex) {
+                    PagerView(pageCount: 2, canDrag: $canDrag,
+                              currentIndex: $viewModel.pickerViewSelectedIndex) {
                         Group {
                             ContainerTrackerView(viewModel: viewModel)
                                 .id(DealType.tracker)
@@ -124,9 +125,6 @@ struct TimerView: View {
                                     UIImpactFeedbackGenerator(style: .soft)
                                         .impactOccurred()
                                 }
-                                .onLongPressGesture(perform: {
-                                    viewModel.presentFinishedPopup = true
-                                })
                         }
                         GradientCircleView(startInitValue: $viewModel.counter)
                             .fill(viewModel.isBreakingTime ? promodoroGradient : gradient)
@@ -183,11 +181,16 @@ struct TimerView: View {
             }
             .background(Color.backgroundColor)
             .onTapGesture {
-                viewModel.hasTaskPaused = true
-                stopPlayer?.play()
-                UIImpactFeedbackGenerator(style: .soft)
-                    .impactOccurred()
+                if viewModel.selectedTrackerType == .stopWatch {
+                    viewModel.hasTaskPaused = true
+                    stopPlayer?.play()
+                    UIImpactFeedbackGenerator(style: .soft)
+                        .impactOccurred()
+                }
             }
+            .onLongPressGesture(perform: {
+                viewModel.presentFinishedPopup = true
+            })
             .frame(width: 311, height: 311, alignment: .center)
         }
     }
@@ -218,12 +221,14 @@ struct LinePath: Shape {
 }
 
 struct TipsView: View {
-    @Binding var isTrackerStarted: Bool
+    @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 0) {
-            if isTrackerStarted {
+            if viewModel.isTrackStarted {
                 HStack {
-                    Image.tapToPause
+                    if viewModel.selectedTrackerType == .stopWatch {
+                        Image.tapToPause
+                    }
                     Spacer()
                     Image.tapToHold
                 }
@@ -231,7 +236,7 @@ struct TipsView: View {
                 .padding(.horizontal, 10)
             }
             Image.groupDots
-            if !isTrackerStarted {
+            if !viewModel.isTrackStarted {
                 HStack {
                     Image.slideLeft
                     Spacer()
@@ -240,21 +245,23 @@ struct TipsView: View {
             }
         }
         .padding(.horizontal, 14)
-        .padding(.top, isTrackerStarted ? -30 : 97)
+        .padding(.top, viewModel.isTrackStarted ? -30 : 97)
     }
 }
 
 struct StatisticView: View {
-    @State private var todayFocusValue = "1h43m"
-    @Binding var isTrackerStarted: Bool
+    @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 5) {
-            if isTrackerStarted {
+            let focusHour = (Int(viewModel.todayFocusedValue) ?? 0) / 60
+            let focusMinute = (Int(viewModel.todayFocusedValue) ?? 0) % 60
+            let todayFocusFocusTime = "\(focusHour)" + "h " + "\(focusMinute)" + "m"
+            if viewModel.isTrackStarted {
                 HStack(alignment: .bottom, spacing: 0) {
                     Text(L10n.Main.todayFocused)
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundColor(Color.c2F2E41)
-                    Text(todayFocusValue)
+                    Text(todayFocusFocusTime)
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundStyle(gradient)
                 }
@@ -265,7 +272,7 @@ struct StatisticView: View {
                         Text(L10n.Main.todayFocused)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundColor(Color.c2F2E41)
-                        Text(todayFocusValue)
+                        Text(viewModel.todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradient)
                     }
@@ -273,7 +280,7 @@ struct StatisticView: View {
                         Text(L10n.Main.dailyAverage)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundColor(Color.c2F2E41)
-                        Text(todayFocusValue)
+                        Text(viewModel.todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradient)
                     }
@@ -283,7 +290,7 @@ struct StatisticView: View {
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundColor(Color.c2F2E41)
                     VStack(spacing: 0) {
-                        Text(todayFocusValue)
+                        Text(viewModel.todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradient)
                         Image.underLine
@@ -295,7 +302,7 @@ struct StatisticView: View {
             }
         }
         .padding(.horizontal, 14)
-        .padding(.top, isTrackerStarted ? 100 : 24)
+        .padding(.top, viewModel.isTrackStarted ? 100 : 24)
     }
 }
 

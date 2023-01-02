@@ -16,8 +16,8 @@ struct ContainerTrackerView: View {
                     viewModel.isTaskCategoryPresented = true
                 }
             }
-            TipsView(isTrackerStarted: $viewModel.isTrackStarted)
-            StatisticView(isTrackerStarted: $viewModel.isTrackStarted)
+            TipsView(viewModel: viewModel)
+            StatisticView(viewModel: viewModel)
         }
         .padding(.bottom, 100)
     }
