@@ -10,14 +10,13 @@ import AVFoundation
 
 struct TrackerSettingsView: View {
     @StateObject var viewModel: MainViewModel
-    @State var selectedTracker: TrackerSettingsType = .stopWatch
     private var isPromodoroSelected: Bool {
-        selectedTracker == .promodoro
+        viewModel.selectedTrackerType == .promodoro
     }
     var body: some View {
         VStack(spacing: 0) {
             SegmentControlTrackerView(viewModel: viewModel,
-                                      selectedTracker: $selectedTracker)
+                                      selectedTracker: $viewModel.selectedTrackerType)
             if isPromodoroSelected {
                 BreakTimeView(viewModel: viewModel)
             }

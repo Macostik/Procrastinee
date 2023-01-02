@@ -8,6 +8,9 @@
 import SwiftUI
 import AVFoundation
 
+let endCycleValue: CGFloat = 269
+let beginCycleValue: CGFloat = -89
+
 struct TrackerView: View {
     @StateObject var viewModel: MainViewModel
     @State private var canDrag = false
@@ -126,15 +129,31 @@ struct TimerView: View {
                                 })
                         }
                         GradientCircleView(startInitValue: $viewModel.counter)
-                            .fill(viewModel.selectedTrackerType == .stopWatch ? gradient : promodoroGradient)
+                            .fill(viewModel.isBreakingTime ? promodoroGradient : gradient)
                             .frame(width: 219, height: 219, alignment: .center)
                             .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
-                                    if viewModel.counter >= 269 {
+                                    if viewModel.counter >= endCycleValue {
                                         self.reverseAnimation = true
-                                    } else if viewModel.counter <= -89 {
+                                        viewModel.isTrackShouldStop = true
+                                        viewModel.isBrackingTimeShouldStop = viewModel.isBreakingTime
+                                    } else if viewModel.counter <= beginCycleValue {
+                                        viewModel.isBreakingTime =
+                                        reverseAnimation &&
+                                        viewModel.selectedTrackerType == .promodoro
                                         self.reverseAnimation = false
+                                        if viewModel.isTrackShouldStop {
+                                            if viewModel.isBreakingTime {
+                                                if viewModel.isBrackingTimeShouldStop {
+                                                    viewModel.isTrackStarted = false
+                                                }
+                                            } else {
+                                                viewModel.isTrackStarted = false
+                                            }
+                                            viewModel.isTrackShouldStop = false
+                                            viewModel.isBrackingTimeShouldStop = false
+                                        }
                                     }
                                     viewModel.counter = self.reverseAnimation ?
                                     viewModel.counter - 1 : viewModel.counter + 1
@@ -147,7 +166,7 @@ struct TimerView: View {
                                 player?.play()
                                 clickHandler?()
                                 isScale = false
-                                viewModel.counter = -89
+                                viewModel.counter = beginCycleValue - 0.9
                                 UIImpactFeedbackGenerator(style: .soft)
                                     .impactOccurred()
                             }

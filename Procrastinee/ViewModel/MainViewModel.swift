@@ -14,6 +14,7 @@ class MainViewModel: ObservableObject {
     @Published var selectedTrackerType: TrackerSettingsType = .stopWatch
     @Published var selectedTracker: TrackerType = .tracker
     @Published var selectedDeal: DealType = .tracker
+    @Published var isBreakingTime = false
     @Published var pickerViewSelectedIndex = 0
     @Published var selectedTask = TaskType.sport
     @Published var isDeepMode = false
@@ -29,7 +30,11 @@ class MainViewModel: ObservableObject {
     @Published var weekEndInValue = ""
     @Published var breakTime = 10
     @Published var workPeriodTime = 60
-    @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @Published var usualTrackingTime = 10
+    @Published var isTrackShouldStop = false
+    @Published var isBrackingTimeShouldStop = false
+    @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @Published var promodoroTimer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     @Published var groupTask = [
         GroupTask(index: 0, key: "Today", value: [])
     ]
@@ -53,12 +58,27 @@ class MainViewModel: ObservableObject {
                 if value {
                     self.taskName = ""
                     self.selectedTask = .sport
-//                    let interval = CGFloat(workPeriodTime * 60)
-//                    timer = Timer.publish(every: interval,
-//                                          on: .main,
-//                                          in: .common).autoconnect()
+                    let workingTime = (selectedTrackerType == .stopWatch ?
+                                       usualTrackingTime : workPeriodTime) * 60
+                    let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
+                    timer = Timer.publish(every: interval,
+                                          on: .main,
+                                          in: .common).autoconnect()
                 } else {
                     timer.upstream.connect().cancel()
+                }
+            }
+            .store(in: &cancellable)
+        $isBreakingTime
+            .sink { [unowned self] value in
+                if self.selectedTrackerType == .promodoro {
+                    if value {
+                        let workingTime = breakTime * 60
+                        let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
+                        timer = Timer.publish(every: interval,
+                                              on: .main,
+                                              in: .common).autoconnect()
+                    }
                 }
             }
             .store(in: &cancellable)
