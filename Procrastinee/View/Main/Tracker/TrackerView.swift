@@ -147,9 +147,11 @@ struct TimerView: View {
                                             if viewModel.isBreakingTime {
                                                 if viewModel.isBrackingTimeShouldStop {
                                                     viewModel.isTrackStarted = false
+                                                    viewModel.trackIsOver = true
                                                 }
                                             } else {
                                                 viewModel.isTrackStarted = false
+                                                viewModel.trackIsOver = true
                                             }
                                             viewModel.isTrackShouldStop = false
                                             viewModel.isBrackingTimeShouldStop = false

@@ -25,12 +25,13 @@ class MainViewModel: ObservableObject {
     @Published var hasTaskPaused = false
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
+    @Published var trackIsOver = false
     @Published var selecteTime = ""
     @Published var isTaskCategoryPresented = false
     @Published var weekEndInValue = ""
     @Published var breakTime = 10
     @Published var workPeriodTime = 60
-    @Published var usualTrackingTime = 10
+    @Published var stopWatchingTrackingTime = 10
     @Published var isTrackShouldStop = false
     @Published var isBrackingTimeShouldStop = false
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -59,7 +60,7 @@ class MainViewModel: ObservableObject {
                     self.taskName = ""
                     self.selectedTask = .sport
                     let workingTime = (selectedTrackerType == .stopWatch ?
-                                       usualTrackingTime : workPeriodTime) * 60
+                                       stopWatchingTrackingTime : workPeriodTime) * 60
                     let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
                     timer = Timer.publish(every: interval,
                                           on: .main,
@@ -82,6 +83,16 @@ class MainViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellable)
+        $selectedDeal
+            .map({ $0 == .tracker ? 0 : 1 })
+            .assign(to: \.pickerViewSelectedIndex, on: self)
+            .store(in: &cancellable)
+        endInWeek()
+        fetchTrackOver()
+        fetchAllTasks()
+        observeTrackFinish()
+    }
+    private func fetchTrackOver() {
         $taskIsOver
             .dropFirst(1)
             .receive(on: DispatchQueue.main)
@@ -100,12 +111,20 @@ class MainViewModel: ObservableObject {
             .map({!$0})
             .assign(to: \.presentFinishedPopup, on: self)
             .store(in: &cancellable)
-        $selectedDeal
-            .map({ $0 == .tracker ? 0 : 1 })
-            .assign(to: \.pickerViewSelectedIndex, on: self)
+    }
+    private func observeTrackFinish() {
+        $trackIsOver
+            .dropFirst(1)
+            .receive(on: DispatchQueue.main)
+            .sink { [unowned self] value in
+                if value {
+                    let time = self.selectedTrackerType == .promodoro ?
+                    self.workPeriodTime : self.stopWatchingTrackingTime
+                    self.firebaseService
+                        .updateTotalTime(with: time)
+                }
+            }
             .store(in: &cancellable)
-        endInWeek()
-        fetchAllTasks()
     }
     func creatTask() {
         isTaskCategoryPresented = false

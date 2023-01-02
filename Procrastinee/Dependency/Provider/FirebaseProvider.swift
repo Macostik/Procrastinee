@@ -131,4 +131,16 @@ class FirebaseService: FirebaseInteractor {
             }
         }
     }
+    func updateTotalTime(with time: Int) {
+        dataBase.collection("User").document(currentUser.value.id!)
+            .getDocument(completion: { snapshot, _ in
+                guard let user = try? snapshot?.data(as: User.self) else { return }
+                let oldTotalTime = user.totalTime
+                let  newTotalTime = Int(truncating: NumberFormatter()
+                    .number(from: oldTotalTime) ?? 0) + time
+                snapshot?.reference.updateData([
+                    "totalTime": "\(newTotalTime)"
+                ])
+            })
+    }
 }
