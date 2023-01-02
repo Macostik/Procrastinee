@@ -15,7 +15,8 @@ struct ContainerPlanningView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         ZStack(alignment: .top) {
-            if viewModel.groupTask.first?.value.isEmpty ?? true {
+            if  viewModel.groupTask.count == 1 &&
+                    viewModel.groupTask.first?.value.isEmpty ?? true {
                 VStack {
                     Spacer()
                     Text(L10n.Task.noting)
@@ -30,6 +31,7 @@ struct ContainerPlanningView: View {
                     Section(header:
                                 TaskSectionHeader(viewModel: viewModel,
                                                   index: item.index,
+                                                  date: item.value.first?.timestamp ?? 0,
                                                   title: item.key)) {
                         VStack(spacing: 13) {
                             ForEach(item.value, id: \.self) { task in
@@ -63,27 +65,31 @@ struct TaskSectionHeader: View {
                                   fileTypeHint: AVFileType.mp3.rawValue)
     }()
     var index: Int
+    var date: TimeInterval
     var title: String
     var body: some View {
         HStack(spacing: 16) {
+            let componentDay = date.getDay()
+                .replacingOccurrences(of: ",", with: "")
+                .split(separator: " ")
             RoundedRectangle(cornerRadius: 12)
                 .foregroundColor(Color.cf2F2F2)
                 .frame(width: 48, height: 56)
                 .overlay {
                     VStack {
-                        Text("30")
+                        Text(String(componentDay[2]))
                             .font(.system(size: 20).weight(.bold))
                             .foregroundColor(Color.black)
-                        Text("Sep")
+                        Text(componentDay[1])
                             .font(.system(size: 12).weight(.bold))
                             .foregroundColor(Color.ccfcfcf)
                     }
                 }
-            VStack {
+            VStack(alignment: .leading) {
                 Text(title)
                     .font(.system(size: 20).weight(.bold))
                     .foregroundColor(Color.black)
-                Text("Friday")
+                Text(String(componentDay[0]))
                     .font(.system(size: 12).weight(.bold))
                     .foregroundColor(Color.ccfcfcf)
             }

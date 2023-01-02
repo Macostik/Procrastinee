@@ -111,7 +111,7 @@ class MainViewModel: ObservableObject {
     }
     private func divideByDate(_ list: [TaskItem]) {
         let listByDate = Dictionary(grouping: list,
-                                    by: { item in item.timestamp.getReadableDate() })
+                                    by: { item in item.timestamp.getDate() })
         var listItem: [GroupTask] = []
         for (index, key) in listByDate.keys.enumerated() {
             guard let key = key,
@@ -120,6 +120,7 @@ class MainViewModel: ObservableObject {
             let group = GroupTask(index: index, key: key, value: value)
             listItem.append(group)
         }
-        groupTask = listItem.sorted(by: { $0.key < $1.key })
+        groupTask = listItem
+            .sorted(by: { ($0.value.first?.timestamp ?? 0) > ($1.value.first?.timestamp ?? 0) })
     }
 }

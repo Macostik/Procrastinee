@@ -18,7 +18,7 @@ extension Date {
 }
 
 extension TimeInterval {
-    func getReadableDate() -> String? {
+    func getDate() -> String? {
         let calendar = Calendar.current
         let date = Date(timeIntervalSince1970: self)
         let dateFormatter = DateFormatter()
@@ -37,6 +37,13 @@ extension TimeInterval {
             dateFormatter.dateFormat = "MMM d, yyyy"
             return dateFormatter.string(from: date)
         }
+    }
+    func getDay() -> String {
+        let date = Date(timeIntervalSince1970: self)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE, MMM d"
+        dateFormatter.locale = Locale(identifier: "en")
+        return dateFormatter.string(from: date)
     }
     func dateFallsInCurrentWeek(date: Date) -> Bool {
         let currentWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: Date())
