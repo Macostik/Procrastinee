@@ -16,9 +16,10 @@ struct TrackerSettingsView: View {
     }
     var body: some View {
         VStack(spacing: 0) {
-            SegmentControlTrackerView(selectedTracker: $selectedTracker)
+            SegmentControlTrackerView(viewModel: viewModel,
+                                      selectedTracker: $selectedTracker)
             if isPromodoroSelected {
-                BreakTimeView()
+                BreakTimeView(viewModel: viewModel)
             }
             DeepFocusModeView(isKeepingFocus: $viewModel.isDeepMode,
                               isPromodoroSelected: isPromodoroSelected)
@@ -37,6 +38,7 @@ struct TrackerSettingsView_Previews: PreviewProvider {
 }
 
 struct BreakTimeView: View {
+    @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 0) {
             Text(L10n.Tracking.Settings.breakTime)
@@ -46,7 +48,7 @@ struct BreakTimeView: View {
                 .font(.system(size: 15).weight(.light))
                 .foregroundColor(Color.settingsTextColor)
                 .padding(.top, 4)
-            СarouselView(dataList: Array(1...10))
+            СarouselView(dataList: Array(1...10), selectedValue: $viewModel.breakTime)
             .padding(.top, 0)
         }
         .padding(.top, 16)

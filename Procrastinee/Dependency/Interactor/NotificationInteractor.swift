@@ -8,5 +8,6 @@
 import Foundation
 
 protocol NotificationInteractor {
-    func sendNotification()
+    func sendAlertNotification()
+    func scheduleNotification(with task: TaskItem)
 }

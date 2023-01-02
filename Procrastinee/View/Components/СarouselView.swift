@@ -13,6 +13,7 @@ struct СarouselView: View {
     var multiplayValue = 1
     @State private var snappedItem = 0.0
     @State private var draggingItem = 0.0
+    @Binding var selectedValue: Int
     var body: some View {
         ZStack {
             ForEach(dataList, id: \.self) { item in
@@ -38,6 +39,8 @@ struct СarouselView: View {
                         draggingItem = snappedItem + value.predictedEndTranslation.width / 100
                         draggingItem = round(draggingItem).remainder(dividingBy: Double(dataList.count))
                         snappedItem = draggingItem
+                        let index = ((dataList.count - 1) - Int(draggingItem)) % dataList.count
+                        selectedValue = dataList[index] * multiplayValue
                     }
                 }
         )
@@ -54,8 +57,8 @@ struct СarouselView: View {
 struct СarouselView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 70) {
-            СarouselView(dataList: Array(1...12))
-            СarouselView(dataList: Array(1...12), multiplayValue: 5)
+            СarouselView(dataList: Array(1...12), selectedValue: .constant(0))
+            СarouselView(dataList: Array(1...12), multiplayValue: 5, selectedValue: .constant(0))
         }
     }
 }

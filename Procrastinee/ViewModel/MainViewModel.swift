@@ -20,7 +20,6 @@ class MainViewModel: ObservableObject {
     @Published var taskName = ""
     @Published var isSetTaskTime = false
     @Published var isTrackStarted = false
-    @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @Published var counter: CGFloat = -89
     @Published var hasTaskPaused = false
     @Published var presentFinishedPopup = false
@@ -28,13 +27,17 @@ class MainViewModel: ObservableObject {
     @Published var selecteTime = ""
     @Published var isTaskCategoryPresented = false
     @Published var weekEndInValue = ""
+    @Published var breakTime = 10
+    @Published var workPeriodTime = 60
+    @Published var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
     @Published var groupTask = [
-        GroupTask(index: 0,
-                  key: "Today",
-                  value: [])
+        GroupTask(index: 0, key: "Today", value: [])
     ]
     private var firebaseService: FirebaseInteractor {
         dependency.provider.firebaseService
+    }
+    private var notificationService: NotificationInteractor {
+        dependency.provider.notificationService
     }
     private var cancellable: Set<AnyCancellable> = []
     init() {
@@ -50,6 +53,10 @@ class MainViewModel: ObservableObject {
                 if value {
                     self.taskName = ""
                     self.selectedTask = .sport
+//                    let interval = CGFloat(workPeriodTime * 60)
+//                    timer = Timer.publish(every: interval,
+//                                          on: .main,
+//                                          in: .common).autoconnect()
                 } else {
                     timer.upstream.connect().cancel()
                 }
@@ -89,6 +96,7 @@ class MainViewModel: ObservableObject {
                              fromTime: selecteTime,
                              forTime: "")
         firebaseService.addTask(task: task)
+        notificationService.scheduleNotification(with: task)
     }
     private func endInWeek() {
         let endOfWeek = Date().endOfWeek ?? Date()
@@ -113,11 +121,11 @@ class MainViewModel: ObservableObject {
         let listByDate = Dictionary(grouping: list,
                                     by: { item in item.timestamp.getDate() })
         var listItem: [GroupTask] = []
-        for (index, key) in listByDate.keys.enumerated() {
+        for key in listByDate.keys {
             guard let key = key,
-                    let value = listByDate[key]?.sorted(by: { $0.fromTime < $1.fromTime })
+                    let value = listByDate[key]?.sorted(by: { $0.timestamp < $1.timestamp })
             else { return }
-            let group = GroupTask(index: index, key: key, value: value)
+            let group = GroupTask(index: key == "Today" ? 0 : -1, key: key, value: value)
             listItem.append(group)
         }
         groupTask = listItem

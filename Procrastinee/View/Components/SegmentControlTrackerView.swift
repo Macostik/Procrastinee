@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct SegmentControlTrackerView: View {
+    @StateObject var viewModel: MainViewModel
     @Binding var selectedTracker: TrackerSettingsType
     @State var planningPlayer: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Planning Button",
@@ -56,7 +57,9 @@ struct SegmentControlTrackerView: View {
                     UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                 }
             if isPromodoroSelected {
-                СarouselView(dataList: Array(1...12), multiplayValue: 5)
+                СarouselView(dataList: Array(1...12),
+                             multiplayValue: 5,
+                             selectedValue: $viewModel.workPeriodTime)
                     .padding(.top, 10)
             }
         }

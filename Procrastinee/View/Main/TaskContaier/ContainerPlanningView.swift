@@ -13,6 +13,7 @@ let horizontalPadding: CGFloat = 20
 struct ContainerPlanningView: View {
     @Environment(\.screenSize) private var screenSize
     @StateObject var viewModel: MainViewModel
+    @State var showPlusButton = true
     var body: some View {
         ZStack(alignment: .top) {
             if  viewModel.groupTask.count == 1 &&

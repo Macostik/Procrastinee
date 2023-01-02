@@ -28,7 +28,7 @@ struct ContentView: View {
                 if newPhase == .inactive &&
                     mainViewModel.isTrackStarted &&
                     mainViewModel.isDeepMode {
-                    dependency.provider.notificationService.sendNotification()
+                    dependency.provider.notificationService.sendAlertNotification()
                 }
             }
         }
