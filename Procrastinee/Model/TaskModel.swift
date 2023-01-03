@@ -30,7 +30,13 @@ extension TaskItem {
         case .education: return Image.educationTaskIcon
         }
     }
+    var convertFromTimeToDate: Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.date(from: fromTime) ?? Date()
+    }
 }
+
 
 struct GroupTask: Hashable {
     var index: Int

@@ -41,11 +41,12 @@ struct NotificationService: NotificationInteractor {
         content.title = "\(task.name)"
         content.subtitle = "Task has to be started. Return to application please"
         var dateComponents = DateComponents()
-        let removePeriod = task.fromTime
-            .components(separatedBy: " ")
-        let timeComponent = removePeriod.first?
-            .components(separatedBy: ":")
-        dateComponents.hour = Int(timeComponent?.first ?? "")
+        let removePeriod = task.fromTime.components(separatedBy: " ")
+        let timeComponent = removePeriod.first?.components(separatedBy: ":")
+        var hour = Int(timeComponent?.first ?? "") ?? 0
+        let amPm = removePeriod.last ?? ""
+        hour = amPm == "AM" ? hour : hour + 12
+        dateComponents.hour = hour
         dateComponents.minute = Int(timeComponent?.last ?? "")
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString,
