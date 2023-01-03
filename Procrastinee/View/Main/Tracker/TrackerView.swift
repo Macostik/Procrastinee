@@ -231,13 +231,11 @@ struct TipsView: View {
         VStack(spacing: 0) {
             if viewModel.isTrackStarted {
                 HStack {
-                    if viewModel.selectedTrackerType == .stopWatch {
-                        Image.tapToPause
-                    }
+                    Image.tapToPause
+                        .opacity(viewModel.selectedTrackerType == .stopWatch ? 1 : 0)
                     Spacer()
                     Image.tapToHold
                 }
-                .padding(.bottom, 12)
                 .padding(.horizontal, 10)
             }
             Image.groupDots
@@ -250,7 +248,7 @@ struct TipsView: View {
             }
         }
         .padding(.horizontal, 14)
-        .padding(.top, viewModel.isTrackStarted ? -30 : 97)
+        .padding(.top, viewModel.isTrackStarted ? 4 : 97)
     }
 }
 
@@ -267,7 +265,7 @@ struct StatisticView: View {
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundStyle(gradientVertical)
                 }
-                .padding(.bottom, 70)
+                .padding(.bottom, 80)
             } else {
                 HStack {
                     HStack(alignment: .bottom, spacing: 0) {
@@ -295,6 +293,7 @@ struct StatisticView: View {
                         Text(viewModel.todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradientVertical)
+                            .offset(x: 5)
                         Image.underLine
                             .resizable()
                             .frame(width: 60, height: 50)
