@@ -32,7 +32,8 @@ struct ContainerPlanningView: View {
                     Section(header:
                                 TaskSectionHeader(viewModel: viewModel,
                                                   index: item.index,
-                                                  date: item.value.first?.timestamp ?? 0,
+                                                  date: item.value.first?.timestamp ??
+                                                  Date().timeIntervalSince1970,
                                                   title: item.key)) {
                         VStack(spacing: 13) {
                             ForEach(item.value, id: \.self) { task in
