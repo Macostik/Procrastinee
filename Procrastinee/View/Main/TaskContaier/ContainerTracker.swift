@@ -10,16 +10,20 @@ import SwiftUI
 struct ContainerTrackerView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
-        VStack(spacing: 0) {
+        ZStack {
             TimerView(viewModel: viewModel) {
                 if viewModel.hasTaskPaused == false {
                     viewModel.isTaskCategoryPresented = true
                 }
             }
+            .offset(y: -183)
+            TipsImageView(viewModel: viewModel)
+                .offset(y: 40)
             TipsView(viewModel: viewModel)
+                .offset(y: 143)
             StatisticView(viewModel: viewModel)
+                .offset(y: 244)
         }
-        .padding(.bottom, 100)
     }
 }
 

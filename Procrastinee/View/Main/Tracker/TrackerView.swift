@@ -104,6 +104,7 @@ struct TimerView: View {
             Image.tapToStart
                 .offset(y: 20)
                 .opacity(viewModel.isTrackStarted ? 0 : 1)
+                .zIndex(1)
             ZStack {
                 LinePath()
                     .stroke(Color.c2F2E41,
@@ -116,7 +117,7 @@ struct TimerView: View {
                         if viewModel.hasTaskPaused {
                             Circle()
                                 .foregroundColor(Color.gray)
-                                .frame(width: 219, height: 219)
+                                .frame(width: 230, height: 230)
                             Image.pause
                                 .resizable()
                                 .frame(width: 52, height: 58)
@@ -130,7 +131,7 @@ struct TimerView: View {
                         }
                         GradientCircleView(startInitValue: $viewModel.counter)
                             .fill(viewModel.isBreakingTime ? promodoroGradient : gradient)
-                            .frame(width: 219, height: 219, alignment: .center)
+                            .frame(width: 230, height: 230, alignment: .center)
                             .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
@@ -196,7 +197,7 @@ struct TimerView: View {
                     .impactOccurred()
                 viewModel.presentFinishedPopup = true
             })
-            .frame(width: 311, height: 311, alignment: .center)
+            .frame(width: 326, height: 326, alignment: .center)
         }
     }
 }
@@ -229,44 +230,45 @@ struct TipsView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 0) {
-            if viewModel.isTrackStarted {
-                HStack {
-                    Image.tapToPause
-                        .opacity(viewModel.selectedTrackerType == .stopWatch ? 1 : 0)
-                    Spacer()
-                    Image.tapToHold
-                }
-                .padding(.horizontal, 10)
-            }
             Image.groupDots
-            if !viewModel.isTrackStarted {
-                HStack {
-                    Image.slideLeft
-                    Spacer()
-                }
-                .padding(.top, 25)
+            HStack {
+                Image.slideLeft
+                    .opacity(viewModel.isTrackStarted ? 0 : 1)
+                Spacer()
             }
+            .padding(.top, 25)
         }
         .padding(.horizontal, 14)
-        .padding(.top, viewModel.isTrackStarted ? 4 : 97)
+    }
+}
+struct TipsImageView: View {
+    @StateObject var viewModel: MainViewModel
+    var body: some View {
+        HStack {
+            Image.tapToPause
+                .opacity(viewModel.selectedTrackerType == .stopWatch ? 1 : 0)
+            Spacer()
+            Image.tapToHold
+        }
+        .padding(.horizontal, 10)
+        .opacity(viewModel.isTrackStarted ? 1 : 0)
     }
 }
 
 struct StatisticView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
-        VStack(spacing: 5) {
-            if viewModel.isTrackStarted {
-                HStack(alignment: .bottom, spacing: 0) {
-                    Text(L10n.Main.todayFocused)
-                        .font(.system(size: 12).weight(.semibold))
-                        .foregroundColor(Color.c2F2E41)
-                    Text(viewModel.todayFocusedValue)
-                        .font(.system(size: 12).weight(.semibold))
-                        .foregroundStyle(gradientVertical)
-                }
-                .padding(.bottom, 80)
-            } else {
+        ZStack(alignment: .top) {
+            HStack(alignment: .bottom, spacing: 0) {
+                Text(L10n.Main.todayFocused)
+                    .font(.system(size: 12).weight(.semibold))
+                    .foregroundColor(Color.c2F2E41)
+                Text(viewModel.todayFocusedValue)
+                    .font(.system(size: 12).weight(.semibold))
+                    .foregroundStyle(gradientVertical)
+            }
+            .opacity(viewModel.isTrackStarted ? 1 : 0)
+            VStack(spacing: 5) {
                 HStack {
                     HStack(alignment: .bottom, spacing: 0) {
                         Text(L10n.Main.todayFocused)
@@ -301,9 +303,9 @@ struct StatisticView: View {
                     }
                 }
             }
+            .opacity(viewModel.isTrackStarted ? 0 : 1)
         }
         .padding(.horizontal, 14)
-        .padding(.top, viewModel.isTrackStarted ? 100 : 24)
     }
 }
 

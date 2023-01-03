@@ -41,7 +41,7 @@ struct MainContentView: View {
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
                 }
-                .padding(.bottom, 62)
+                .padding(.bottom, 60)
                 .opacity(viewModel.isTaskCategoryPresented || viewModel.presentFinishedPopup ? 0 : 1)
                 .animation(.easeInOut(duration: 0.5), value: viewModel.isTaskCategoryPresented)
                 .animation(.easeInOut(duration: 0.5), value: viewModel.presentFinishedPopup)
