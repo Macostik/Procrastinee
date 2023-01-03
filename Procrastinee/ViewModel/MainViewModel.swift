@@ -194,7 +194,9 @@ class MainViewModel: ObservableObject {
                 guard let key = key,
                       let value = listByDate[key]?.sorted(by: { $0.timestamp > $1.timestamp })
                 else { return }
-                let group = GroupTask(index: key == "Today" ? 0 : -1, key: key, value: value)
+                let group = GroupTask(index: 0,
+                                      key: key,
+                                      value: value)
                 listItem.append(group)
             }
             groupTask =

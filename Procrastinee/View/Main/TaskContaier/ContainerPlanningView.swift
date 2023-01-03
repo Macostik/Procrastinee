@@ -95,7 +95,7 @@ struct TaskSectionHeader: View {
                     .foregroundColor(Color.ccfcfcf)
             }
             Spacer()
-            if index == 0 {
+            if viewModel.groupTask.first?.key == title {
                 Button {
                     viewModel.isSetTaskTime = true
                     viewModel.isTaskCategoryPresented = true
