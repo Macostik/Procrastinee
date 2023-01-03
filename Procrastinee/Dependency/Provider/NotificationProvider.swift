@@ -18,7 +18,9 @@ struct NotificationService: NotificationInteractor {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                 if success == false || error != nil {
-                    Logger.debug("Notification was not setup correctly)")
+                    Logger.debug("Notifications were not setup correctly")
+                } else {
+                    Logger.debug("Notifications were setup correctly")
                 }
         }
     }
