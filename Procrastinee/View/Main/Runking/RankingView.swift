@@ -29,13 +29,16 @@ struct RankingView: View {
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
             } label: {
-                TopRankingHeader()
+                TopRankingHeader(viewModel: viewModel)
             }
             TopListView()
         }
         .background(Color.cf2F2F2)
         .sheet(isPresented: $isPresentTopRankingView) {
             TopRankingView(viewModel: viewModel)
+        }
+        .onAppear {
+            viewModel.onAppearRankingScreen()
         }
     }
 }
@@ -47,7 +50,7 @@ struct RankingView_Previews: PreviewProvider {
 }
 
 struct TopRankingHeader: View {
-    @State var totalTime = "2d:23h:59m"
+    @StateObject var viewModel: MainViewModel
     var body: some View {
         RoundedRectangle(cornerRadius: 9)
             .frame(maxWidth: .infinity, maxHeight: 100)
@@ -79,7 +82,7 @@ struct TopRankingHeader: View {
                                 Text(L10n.Ranking.endsIn)
                                     .font(.system(size: 15).weight(.semibold))
                                     .foregroundColor(Color.white)
-                                Text(totalTime)
+                                Text(viewModel.weekEndInValue)
                                     .font(.system(size: 15).weight(.semibold))
                                     .foregroundColor(Color.white)
                             }
@@ -98,7 +101,7 @@ struct TopListView: View {
     @Environment(\.dependency) private var dependency
     var body: some View {
         let dataList = dependency.provider.firebaseService.users.value
-            .sorted(by: { $0.totalTime > $1.totalTime })
+            .sorted(by: { Int($0.totalTime) ?? 0 > Int($1.totalTime) ?? 0 })
         VStack {
             ScrollView {
                 LazyVStack {

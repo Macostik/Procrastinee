@@ -73,6 +73,8 @@ class OnboardingViewModel: ObservableObject {
             if code == "UA" {
                 countryList.insert((flag + " " + name), at: 0)
                 selectedCountry = (flag + " " + name)
+            } else if code == "RU" || code == "BY" {
+                continue
             } else {
                 countryList.append((flag + " " + name))
             }

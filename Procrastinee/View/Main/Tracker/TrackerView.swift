@@ -35,6 +35,9 @@ struct TrackerView: View {
             }
         }
         .background(Color.cf8Fafb)
+        .onAppear {
+            viewModel.onAppearMainScreen()
+        }
         TaskPopoverPresenterView(viewModel: viewModel)
     }
 }
@@ -82,7 +85,6 @@ struct TrackerPlaningSwitcher: View {
 
 struct TimerView: View {
     @StateObject var viewModel: MainViewModel
-    @State var reverseAnimation = false
     @State var isScale = false
     var clickHandler: (() -> Void)?
     @State var player: AVAudioPlayer? = {
@@ -133,17 +135,17 @@ struct TimerView: View {
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
                                     if viewModel.counter >= endCycleValue {
-                                        self.reverseAnimation = true
+                                        viewModel.isReverseAnimation = true
                                         viewModel.isTrackShouldStop = true
-                                        viewModel.isBrackingTimeShouldStop = viewModel.isBreakingTime
+                                        viewModel.isBreakingTimeShouldStop = viewModel.isBreakingTime
                                     } else if viewModel.counter <= beginCycleValue {
                                         viewModel.isBreakingTime =
-                                        reverseAnimation &&
+                                        viewModel.isReverseAnimation &&
                                         viewModel.selectedTrackerType == .promodoro
-                                        self.reverseAnimation = false
+                                        viewModel.isReverseAnimation = false
                                         if viewModel.isTrackShouldStop {
                                             if viewModel.isBreakingTime {
-                                                if viewModel.isBrackingTimeShouldStop {
+                                                if viewModel.isBreakingTimeShouldStop {
                                                     viewModel.isTrackStarted = false
                                                     viewModel.trackIsOver = true
                                                 }
@@ -152,10 +154,10 @@ struct TimerView: View {
                                                 viewModel.trackIsOver = true
                                             }
                                             viewModel.isTrackShouldStop = false
-                                            viewModel.isBrackingTimeShouldStop = false
+                                            viewModel.isBreakingTimeShouldStop = false
                                         }
                                     }
-                                    viewModel.counter = self.reverseAnimation ?
+                                    viewModel.counter = viewModel.isReverseAnimation ?
                                     viewModel.counter - 1 : viewModel.counter + 1
                                 }
                             }
@@ -189,6 +191,9 @@ struct TimerView: View {
                 }
             }
             .onLongPressGesture(perform: {
+                player?.play()
+                UIImpactFeedbackGenerator(style: .soft)
+                    .impactOccurred()
                 viewModel.presentFinishedPopup = true
             })
             .frame(width: 311, height: 311, alignment: .center)
@@ -253,17 +258,14 @@ struct StatisticView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 5) {
-            let focusHour = (Int(viewModel.todayFocusedValue) ?? 0) / 60
-            let focusMinute = (Int(viewModel.todayFocusedValue) ?? 0) % 60
-            let todayFocusFocusTime = "\(focusHour)" + "h " + "\(focusMinute)" + "m"
             if viewModel.isTrackStarted {
                 HStack(alignment: .bottom, spacing: 0) {
                     Text(L10n.Main.todayFocused)
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundColor(Color.c2F2E41)
-                    Text(todayFocusFocusTime)
+                    Text(viewModel.todayFocusedValue)
                         .font(.system(size: 12).weight(.semibold))
-                        .foregroundStyle(gradient)
+                        .foregroundStyle(gradientVertical)
                 }
                 .padding(.bottom, 70)
             } else {
@@ -274,7 +276,7 @@ struct StatisticView: View {
                             .foregroundColor(Color.c2F2E41)
                         Text(viewModel.todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
-                            .foregroundStyle(gradient)
+                            .foregroundStyle(gradientVertical)
                     }
                     HStack(alignment: .bottom, spacing: 0) {
                         Text(L10n.Main.dailyAverage)
@@ -282,7 +284,7 @@ struct StatisticView: View {
                             .foregroundColor(Color.c2F2E41)
                         Text(viewModel.todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
-                            .foregroundStyle(gradient)
+                            .foregroundStyle(gradientVertical)
                     }
                 }
                 HStack(alignment: .top, spacing: -10) {
@@ -292,7 +294,7 @@ struct StatisticView: View {
                     VStack(spacing: 0) {
                         Text(viewModel.todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
-                            .foregroundStyle(gradient)
+                            .foregroundStyle(gradientVertical)
                         Image.underLine
                             .resizable()
                             .frame(width: 60, height: 50)
