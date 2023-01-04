@@ -35,7 +35,9 @@ class MainViewModel: ObservableObject {
     @Published var isTrackShouldStop = false
     @Published var isBreakingTimeShouldStop = false
     @Published var isReverseAnimation = false
-    @Published var todayFocusedValue = ""
+    @Published var todayFocusedValue = "0h 0m"
+    @Published var dailyAverageValue = "0h 0m"
+    @Published var totalWeekly = "0h 0m"
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var promodoroTimer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
     @Published var groupTask = [
@@ -77,28 +79,11 @@ class MainViewModel: ObservableObject {
         observeBreakingTime()
         observeSelectedDeal()
         observeTrackFinish()
-        fetchCurrentUser()
     }
     func onAppearMainScreen() {
     }
     func onAppearRankingScreen() {
         endInWeek()
-    }
-    private func fetchCurrentUser() {
-        firebaseService.currentUser
-            .sink { _ in
-            } receiveValue: { [weak self] _ in
-                self?.observeTotalWorkingTime()
-            }
-            .store(in: &cancellable)
-    }
-    private func observeTotalWorkingTime() {
-        let totalTime = self.firebaseService
-            .currentUser.value.totalTime
-        let focusHour = (Int(totalTime) ?? 0) / 60
-        let focusMinute = (Int(totalTime) ?? 0) % 60
-        let todayFocusedValue = "\(focusHour)" + "h " + "\(focusMinute)" + "m"
-        self.todayFocusedValue = todayFocusedValue
     }
     private func observeBreakingTime() {
         $isBreakingTime
@@ -150,7 +135,7 @@ class MainViewModel: ObservableObject {
                     let time = self.selectedTrackerType == .promodoro ?
                     self.workPeriodTime : self.stopWatchingTrackingTime
                     self.firebaseService
-                        .updateTotalTime(with: time)
+                        .updateTrackUserTime(time)
                 }
             }
             .store(in: &cancellable)
@@ -182,6 +167,7 @@ class MainViewModel: ObservableObject {
             .sink { _ in
             } receiveValue: { [weak self] itemList in
                 self?.divideByDate(itemList)
+                self?.observeWorkingTime()
             }
             .store(in: &cancellable)
     }
@@ -203,5 +189,19 @@ class MainViewModel: ObservableObject {
             groupTask =
             listItem.sorted(by: {($0.value.first?.timestamp ?? 0) > ($1.value.first?.timestamp ?? 0)})
         }
+    }
+    private func observeWorkingTime() {
+        let totalWeekly = self.firebaseService
+            .currentUser.value.totalWeekly
+        self.totalWeekly = "\(totalWeekly.hour)" + "h " + "\(totalWeekly.minute)" + "m"
+    }
+}
+
+extension Int {
+    var hour: String {
+        "\(self / 60)"
+    }
+    var minute: String {
+        "\(self % 60)"
     }
 }

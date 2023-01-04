@@ -282,7 +282,7 @@ struct StatisticView: View {
                         Text(L10n.Main.dailyAverage)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundColor(Color.c2F2E41)
-                        Text(viewModel.todayFocusedValue)
+                        Text(viewModel.dailyAverageValue)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradientVertical)
                     }
@@ -292,7 +292,7 @@ struct StatisticView: View {
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundColor(Color.c2F2E41)
                     VStack(spacing: 0) {
-                        Text(viewModel.todayFocusedValue)
+                        Text(viewModel.totalWeekly)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradientVertical)
                             .offset(x: 5)

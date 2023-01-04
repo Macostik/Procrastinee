@@ -90,8 +90,7 @@ struct CreateProfileView: View {
                         } else {
                             dependency.provider.firebaseService
                                 .addUser(name: viewModel.nickName,
-                                         country: viewModel.selectedCountry,
-                                         totalTime: "")
+                                         country: viewModel.selectedCountry)
                             onNextScreen?()
                         }
                     })

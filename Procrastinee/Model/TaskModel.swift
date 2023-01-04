@@ -36,8 +36,6 @@ extension TaskItem {
         return dateFormatter.date(from: fromTime) ?? Date()
     }
 }
-
-
 struct GroupTask: Hashable {
     var index: Int
     var key: String

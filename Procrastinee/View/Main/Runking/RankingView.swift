@@ -101,7 +101,7 @@ struct TopListView: View {
     @Environment(\.dependency) private var dependency
     var body: some View {
         let dataList = dependency.provider.firebaseService.users.value
-            .sorted(by: { Int($0.totalTime) ?? 0 > Int($1.totalTime) ?? 0 })
+            .sorted(by: { $0.totalWeekly > $1.totalWeekly })
         VStack {
             ScrollView {
                 LazyVStack {
@@ -173,7 +173,7 @@ struct UserTotalTime: View {
                 }
                 HStack(spacing: 5) {
                     HStack(spacing: 0) {
-                        Text("\(Int((Int(user.totalTime) ?? 0)/60))")
+                        Text("\(user.totalWeekly.hour)")
                             .font(.system(size: 14).weight(.medium))
                             .foregroundStyle(gradientVertical)
                         Text("h")
@@ -181,12 +181,9 @@ struct UserTotalTime: View {
                             .foregroundColor(Color.black)
                     }
                     HStack(spacing: 0) {
-                        let value = Int(CGFloat(truncating: NumberFormatter()
-                            .number(from: user.totalTime) ?? 0)
-                            .truncatingRemainder(dividingBy: 60))
-                        Text("\(value)")
-                        .font(.system(size: 14).weight(.medium))
-                        .foregroundStyle(gradientVertical)
+                        Text("\(user.totalWeekly.minute)")
+                            .font(.system(size: 14).weight(.medium))
+                            .foregroundStyle(gradientVertical)
                         Text("m")
                             .font(.system(size: 14).weight(.medium))
                             .foregroundColor(Color.black)
@@ -196,9 +193,7 @@ struct UserTotalTime: View {
         } else {
             HStack(spacing: 5) {
                 HStack(spacing: 0) {
-                    let value = Int(CGFloat(truncating: NumberFormatter()
-                        .number(from: user.totalTime) ?? 0)/60)
-                    Text("\(value)")
+                    Text("\(user.totalWeekly.hour)")
                         .font(.system(size: 14).weight(.medium))
                         .foregroundStyle(gradientVertical)
                     Text("h")
@@ -206,10 +201,7 @@ struct UserTotalTime: View {
                         .foregroundColor(Color.black)
                 }
                 HStack(spacing: 0) {
-                    let value = Int(CGFloat(truncating: NumberFormatter()
-                        .number(from: user.totalTime) ?? 0)
-                        .truncatingRemainder(dividingBy: 60))
-                    Text("\(value)")
+                    Text("\(user.totalWeekly.minute)")
                         .font(.system(size: 14).weight(.medium))
                         .foregroundStyle(gradientVertical)
                     Text("m")

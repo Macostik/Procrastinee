@@ -64,16 +64,16 @@ class FirebaseService: FirebaseInteractor {
     private var cancellable: Set<AnyCancellable> = []
     init() {
         addListener()
-        getCurrentUser()
-        fetchAllTasks()
     }
     private func addListener() {
         FirestoreSubscription.subscribe(id: SubscriptionID(), docPath: "User")
             .compactMap(FirestoreDecoder.decode(User.self))
             .receive(on: DispatchQueue.main)
-            .print("List of users")
             .sink(receiveValue: { [weak self] users in
+                Logger.info("List of users: \(users)")
                 self?.users.value = users
+                self?.getCurrentUser()
+                self?.fetchAllTasks()
             })
             .store(in: &cancellable)
     }
@@ -81,9 +81,9 @@ class FirebaseService: FirebaseInteractor {
         users
             .compactMap({ $0.filter({ $0.name == UserDefaults.standard
                 .string(forKey: Constants.userNickname) }).first })
-            .print("Current user")
             .sink { _ in
             } receiveValue: { [weak self] user in
+                Logger.info("Current user: \(user)")
                 self?.currentUser.value = user
             }
             .store(in: &cancellable)
@@ -105,41 +105,40 @@ class FirebaseService: FirebaseInteractor {
             }
             .store(in: &cancellable)
     }
-    func addUser(name: String, country: String, totalTime: String) {
+    func addUser(name: String, country: String) {
         var ref: DocumentReference?
         ref = dataBase.collection("User").addDocument(data: [
             "name": name,
             "country": country,
-            "totalTime": totalTime,
+            "todayFocused": 0,
+            "dailyAverage": 0,
+            "totalWeekly": 0,
             "tasks": [""]
         ]) { err in
             if let err = err {
                 Logger.error("Error adding document: \(err)")
             } else {
                 Logger.debug("Document added with ID: \(ref!.documentID)")
-                self.getCurrentUser()
             }
         }
     }
     func addTask(task: TaskItem) {
         if let encodedTask = try? JSONEncoder().encode(task) {
             if let jsonTask = String(data: encodedTask, encoding: .utf8) {
-                let ref = dataBase.collection("User").document(currentUser.value.id!)
+                let ref = dataBase.collection("User").document(currentUser.value.id ?? "")
                 ref.updateData([
                     "tasks": FieldValue.arrayUnion([jsonTask])
                 ])
             }
         }
     }
-    func updateTotalTime(with time: Int) {
-        dataBase.collection("User").document(currentUser.value.id!)
+    func updateTrackUserTime(_ time: Int) {
+        dataBase.collection("User").document(currentUser.value.id ?? "")
             .getDocument(completion: { snapshot, _ in
                 guard let user = try? snapshot?.data(as: User.self) else { return }
-                let oldTotalTime = user.totalTime
-                let  newTotalTime = Int(truncating: NumberFormatter()
-                    .number(from: oldTotalTime) ?? 0) + time
+                let  newTotalTime = user.todayFocused + time
                 snapshot?.reference.updateData([
-                    "totalTime": "\(newTotalTime)"
+                    "todayFocused": "\(newTotalTime)"
                 ])
             })
     }
