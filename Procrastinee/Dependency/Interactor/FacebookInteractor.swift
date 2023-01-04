@@ -14,5 +14,7 @@ protocol FirebaseInteractor {
     var tasks: CurrentValueSubject<[TaskItem], Error> { get }
     func addUser(name: String, country: String)
     func addTask(task: TaskItem)
-    func updateTrackUserTime(_ time: Int)
+    func updateTrackUserTimes(todayTotalTime: Int,
+                              dailyAverage: Int,
+                              totalWeekly: Int)
 }

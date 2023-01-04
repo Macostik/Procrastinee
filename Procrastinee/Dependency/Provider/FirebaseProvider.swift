@@ -132,14 +132,19 @@ class FirebaseService: FirebaseInteractor {
             }
         }
     }
-    func updateTrackUserTime(_ time: Int) {
-        dataBase.collection("User").document(currentUser.value.id ?? "")
-            .getDocument(completion: { snapshot, _ in
-                guard let user = try? snapshot?.data(as: User.self) else { return }
-                let  newTotalTime = user.todayFocused + time
-                snapshot?.reference.updateData([
-                    "todayFocused": "\(newTotalTime)"
-                ])
-            })
+    func updateTrackUserTimes(todayTotalTime: Int,
+                              dailyAverage: Int,
+                              totalWeekly: Int) {
+        DispatchQueue.global(qos: .background).async {
+            self.dataBase.collection("User").document(self.currentUser.value.id ?? "")
+                .getDocument(completion: { snapshot, _ in
+                    snapshot?.reference.updateData([
+                        "todayFocused": todayTotalTime,
+                        "dailyAverage": dailyAverage,
+                        "totalWeekly": totalWeekly
+                    ])
+                    Logger.debug("Update tracker user times")
+                })
+        }
     }
 }

@@ -149,10 +149,12 @@ struct TimerView: View {
                                                 if viewModel.isBreakingTimeShouldStop {
                                                     viewModel.isTrackStarted = false
                                                     viewModel.trackIsOver = true
+                                                    viewModel.trackAnimationFinished = true
                                                 }
                                             } else {
                                                 viewModel.isTrackStarted = false
                                                 viewModel.trackIsOver = true
+                                                viewModel.trackAnimationFinished = true
                                             }
                                             viewModel.isTrackShouldStop = false
                                             viewModel.isBreakingTimeShouldStop = false
@@ -161,6 +163,11 @@ struct TimerView: View {
                                     viewModel.counter = viewModel.isReverseAnimation ?
                                     viewModel.counter - 1 : viewModel.counter + 1
                                 }
+                            }
+                            .onReceive(viewModel.timeCounterTimer) { _ in
+                                viewModel.todayFocusedValue += 1
+                                viewModel.totalWeeklyValue += 1
+                                viewModel.dailyAverageValue = viewModel.totalWeeklyValue/7
                             }
                     } else {
                         Button {
@@ -263,7 +270,9 @@ struct StatisticView: View {
                 Text(L10n.Main.todayFocused)
                     .font(.system(size: 12).weight(.semibold))
                     .foregroundColor(Color.c2F2E41)
-                Text(viewModel.todayFocusedValue)
+                let todayFocusedValue = "\(viewModel.todayFocusedValue.hour)" + "h " +
+                "\(viewModel.todayFocusedValue.minute)" + "m"
+                Text(todayFocusedValue)
                     .font(.system(size: 12).weight(.semibold))
                     .foregroundStyle(gradientVertical)
             }
@@ -274,7 +283,9 @@ struct StatisticView: View {
                         Text(L10n.Main.todayFocused)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundColor(Color.c2F2E41)
-                        Text(viewModel.todayFocusedValue)
+                        let todayFocusedValue = "\(viewModel.todayFocusedValue.hour)" + "h " +
+                        "\(viewModel.todayFocusedValue.minute)" + "m"
+                        Text(todayFocusedValue)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradientVertical)
                     }
@@ -282,7 +293,9 @@ struct StatisticView: View {
                         Text(L10n.Main.dailyAverage)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundColor(Color.c2F2E41)
-                        Text(viewModel.dailyAverageValue)
+                        let dailyAverageValue = "\(viewModel.dailyAverageValue.hour)" + "h " +
+                        "\(viewModel.dailyAverageValue.minute)" + "m"
+                        Text(dailyAverageValue)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradientVertical)
                     }
@@ -292,7 +305,9 @@ struct StatisticView: View {
                         .font(.system(size: 12).weight(.semibold))
                         .foregroundColor(Color.c2F2E41)
                     VStack(spacing: 0) {
-                        Text(viewModel.totalWeekly)
+                        let totalWeekly = "\(viewModel.totalWeeklyValue.hour)" + "h " +
+                        "\(viewModel.totalWeeklyValue.minute)" + "m"
+                        Text(totalWeekly)
                             .font(.system(size: 12).weight(.semibold))
                             .foregroundStyle(gradientVertical)
                             .offset(x: 5)

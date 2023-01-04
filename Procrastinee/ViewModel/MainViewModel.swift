@@ -21,7 +21,6 @@ class MainViewModel: ObservableObject {
     @Published var taskName = ""
     @Published var isSetTaskTime = false
     @Published var isTrackStarted = false
-    @Published var counter: CGFloat = -89
     @Published var hasTaskPaused = false
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
@@ -35,11 +34,13 @@ class MainViewModel: ObservableObject {
     @Published var isTrackShouldStop = false
     @Published var isBreakingTimeShouldStop = false
     @Published var isReverseAnimation = false
-    @Published var todayFocusedValue = "0h 0m"
-    @Published var dailyAverageValue = "0h 0m"
-    @Published var totalWeekly = "0h 0m"
+    @Published var trackAnimationFinished = false
+    @Published var todayFocusedValue = 0
+    @Published var dailyAverageValue = 0
+    @Published var totalWeeklyValue = 0
+    @Published var counter: CGFloat = -89
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @Published var promodoroTimer = Timer.publish(every: 10, on: .main, in: .common).autoconnect()
+    @Published var timeCounterTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     @Published var groupTask = [
         GroupTask(index: 0, key: "Today", value: [])
     ]
@@ -69,8 +70,12 @@ class MainViewModel: ObservableObject {
                     timer = Timer.publish(every: interval,
                                           on: .main,
                                           in: .common).autoconnect()
+                    timeCounterTimer = Timer.publish(every: 60,
+                                          on: .main,
+                                          in: .common).autoconnect()
                 } else {
                     timer.upstream.connect().cancel()
+                    timeCounterTimer.upstream.connect().cancel()
                 }
             }
             .store(in: &cancellable)
@@ -78,7 +83,7 @@ class MainViewModel: ObservableObject {
         fetchAllTasks()
         observeBreakingTime()
         observeSelectedDeal()
-        observeTrackFinish()
+        observeTrackingAnimationFinish()
     }
     func onAppearMainScreen() {
     }
@@ -124,20 +129,6 @@ class MainViewModel: ObservableObject {
             .receive(on: DispatchQueue.main)
             .map({!$0})
             .assign(to: \.presentFinishedPopup, on: self)
-            .store(in: &cancellable)
-    }
-    private func observeTrackFinish() {
-        $trackIsOver
-            .dropFirst(1)
-            .receive(on: DispatchQueue.main)
-            .sink { [unowned self] value in
-                if value {
-                    let time = self.selectedTrackerType == .promodoro ?
-                    self.workPeriodTime : self.stopWatchingTrackingTime
-                    self.firebaseService
-                        .updateTrackUserTime(time)
-                }
-            }
             .store(in: &cancellable)
     }
     func creatTask() {
@@ -191,9 +182,26 @@ class MainViewModel: ObservableObject {
         }
     }
     private func observeWorkingTime() {
-        let totalWeekly = self.firebaseService
-            .currentUser.value.totalWeekly
-        self.totalWeekly = "\(totalWeekly.hour)" + "h " + "\(totalWeekly.minute)" + "m"
+        let currentUser = self.firebaseService
+            .currentUser.value
+        self.todayFocusedValue = currentUser.todayFocused
+        self.dailyAverageValue = currentUser.dailyAverage
+        self.totalWeeklyValue = currentUser.totalWeekly
+    }
+    private func observeTrackingAnimationFinish() {
+        $trackAnimationFinished
+            .sink { [weak self] value in
+                if value {
+                    self?.updateTrackerTimes()
+                }
+            }
+            .store(in: &cancellable)
+    }
+    private func updateTrackerTimes() {
+        firebaseService
+            .updateTrackUserTimes(todayTotalTime: self.todayFocusedValue,
+                                  dailyAverage: self.dailyAverageValue,
+                                  totalWeekly: self.totalWeeklyValue)
     }
 }
 
