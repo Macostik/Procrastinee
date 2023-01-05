@@ -11,4 +11,6 @@ struct Constants {
     static let authorised = "authorised"
     static let userNickname = "userNickname"
     static let lastUpdate = "lastUpdate"
+    static let tapToHold = "tapToHold"
+    static let tapToPause = "tapToPause"
 }

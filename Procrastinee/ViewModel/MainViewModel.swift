@@ -21,7 +21,6 @@ class MainViewModel: ObservableObject {
     @Published var taskName = ""
     @Published var isSetTaskTime = false
     @Published var isTrackStarted = false
-    @Published var hasTaskPaused = false
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
     @Published var trackIsOver = false
@@ -46,6 +45,21 @@ class MainViewModel: ObservableObject {
     @Published var groupTask = [
         GroupTask(index: 0, key: "Today", value: [])
     ]
+    @Published var hasTaskPaused = false {
+        willSet {
+            if newValue {
+                UserDefaults.standard.set(newValue, forKey: Constants.tapToPause)
+            }
+
+        }
+    }
+    @Published var hasTappedToHold = false {
+        willSet {
+            if newValue {
+                UserDefaults.standard.set(newValue, forKey: Constants.tapToHold)
+            }
+        }
+    }
     private var firebaseService: FirebaseInteractor {
         dependency.provider.firebaseService
     }

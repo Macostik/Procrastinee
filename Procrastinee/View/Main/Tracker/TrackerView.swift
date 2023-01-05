@@ -200,6 +200,7 @@ struct TimerView: View {
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
                 viewModel.presentFinishedPopup = true
+                viewModel.hasTappedToHold = true
             })
             .frame(width: 326, height: 326, alignment: .center)
         }
@@ -250,9 +251,11 @@ struct TipsImageView: View {
     var body: some View {
         HStack {
             Image.tapToPause
-                .opacity(viewModel.selectedTrackerType == .stopWatch ? 1 : 0)
+                .opacity((UserDefaults.standard.bool(forKey: Constants.tapToPause) ||
+                         viewModel.selectedTrackerType == .promodoro) ? 0 : 1)
             Spacer()
             Image.tapToHold
+                .opacity(UserDefaults.standard.bool(forKey: Constants.tapToHold) ? 0 : 1)
         }
         .padding(.horizontal, 10)
         .opacity(viewModel.isTrackStarted ? 1 : 0)
