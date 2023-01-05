@@ -9,6 +9,8 @@ import Foundation
 import Combine
 import SwiftUI
 
+var smoothAnimationValue: CGFloat = 10
+
 class MainViewModel: ObservableObject {
     @Environment(\.dependency) private var dependency
     @Published var selectedTrackerType: TrackerSettingsType = .stopWatch
@@ -29,7 +31,7 @@ class MainViewModel: ObservableObject {
     @Published var weekEndInValue = ""
     @Published var breakTime = 10
     @Published var workPeriodTime = 60
-    @Published var stopWatchingTrackingTime = 10
+    @Published var stopWatchingTrackingTime = 1
     @Published var isTrackShouldStop = false
     @Published var isBreakingTimeShouldStop = false
     @Published var isReverseAnimation = false
@@ -87,7 +89,8 @@ class MainViewModel: ObservableObject {
                 if value {
                     let workingTime = (selectedTrackerType == .stopWatch ?
                                        stopWatchingTrackingTime : workPeriodTime) * 60
-                    let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
+                    let interval =
+                    CGFloat(CGFloat(workingTime)/smoothAnimationValue/2/(endCycleValue - beginCycleValue))
                     timer = Timer.publish(every: interval,
                                           on: .main,
                                           in: .common).autoconnect()
@@ -198,7 +201,8 @@ extension MainViewModel {
             .sink { [unowned self] value in
                 if self.selectedTrackerType == .promodoro {
                     let workingTime = (value ? breakTime : workPeriodTime) * 60
-                        let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
+                        let interval =
+                    CGFloat(CGFloat(workingTime)/smoothAnimationValue/2/(endCycleValue - beginCycleValue))
                         timer = Timer.publish(every: interval,
                                               on: .main,
                                               in: .common).autoconnect()

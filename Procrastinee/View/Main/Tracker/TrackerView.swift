@@ -158,7 +158,8 @@ struct TimerView: View {
                                         }
                                     }
                                     viewModel.counter = viewModel.isReverseAnimation ?
-                                    viewModel.counter - 1 : viewModel.counter + 1
+                                    viewModel.counter - 1/smoothAnimationValue :
+                                    viewModel.counter + 1/smoothAnimationValue
                                 }
                             }
                             .onReceive(viewModel.timeCounterTimer) { _ in
