@@ -25,6 +25,7 @@ struct ContentView: View {
             }
             .environment(\.screenSize, proxy.size)
             .onChange(of: scenePhase) { newPhase in
+                let currentCalendar = Calendar.current
                 if newPhase == .inactive &&
                     mainViewModel.isTrackStarted &&
                     mainViewModel.isDeepMode {
@@ -34,8 +35,11 @@ struct ContentView: View {
                             UserDefaults.standard
                         .value(forKey: Constants.lastUpdate) as? Date else { return }
                     let currentUser = dependency.provider.firebaseService.currentUser.value
-                    if Calendar.current.isDateInToday(lastTrackerTaskTimeStamp) {
+                    if currentCalendar.isDateInToday(lastTrackerTaskTimeStamp) {
                         mainViewModel.todayFocusedValue = currentUser.todayFocused
+                    } else if currentCalendar.component(Calendar.Component.weekday,
+                                                        from: lastTrackerTaskTimeStamp) == 7 {
+                        mainViewModel.totalWeeklyValue = 0
                     } else {
                         mainViewModel.todayFocusedValue = 0
                     }
