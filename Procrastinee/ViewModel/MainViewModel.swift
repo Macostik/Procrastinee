@@ -60,6 +60,13 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    @Published var hasTappedToStart = false {
+        willSet {
+            if newValue {
+                UserDefaults.standard.set(newValue, forKey: Constants.tapToStart)
+            }
+        }
+    }
     private var firebaseService: FirebaseInteractor {
         dependency.provider.firebaseService
     }

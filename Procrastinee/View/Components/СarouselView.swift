@@ -22,6 +22,7 @@ struct СarouselView: View {
                         .font(.system(size: 38).weight(.thin))
                         .foregroundColor(Color.black)
                         .padding(25)
+                        .background(grayGradientVertical)
                 }
                 .scaleEffect(1.0 - abs(distance(item)) * 0.25)
                 .opacity(1.0 - abs(distance(item)) * 0.5)

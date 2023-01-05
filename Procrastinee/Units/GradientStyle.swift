@@ -24,3 +24,8 @@ let promodoroGradient = LinearGradient(colors:
                                          Color.promodoroEndGradientColor],
                                        startPoint: .leading,
                                        endPoint: .trailing)
+let grayGradientVertical = LinearGradient(colors:
+                                [Color.clear,
+                                 Color.backgroundColor],
+                              startPoint: .top,
+                              endPoint: .bottom)

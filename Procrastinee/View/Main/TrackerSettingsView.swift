@@ -22,10 +22,9 @@ struct TrackerSettingsView: View {
             }
             DeepFocusModeView(isKeepingFocus: $viewModel.isDeepMode,
                               isPromodoroSelected: isPromodoroSelected)
-            FocusSoundsView()
+            FocusSoundsView(isPromodoroSelected: isPromodoroSelected)
             Spacer()
         }
-        .padding(.top, -10)
         .fullScreenSize()
     }
 }
@@ -39,16 +38,19 @@ struct TrackerSettingsView_Previews: PreviewProvider {
 struct BreakTimeView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
-        VStack(spacing: 0) {
-            Text(L10n.Tracking.Settings.breakTime)
-                .font(.system(size: 20).weight(.semibold))
-                .foregroundColor(Color.c2F2E41)
-            Text(L10n.Tracking.Settings.takeRest)
-                .font(.system(size: 15).weight(.light))
-                .foregroundColor(Color.settingsTextColor)
-                .padding(.top, 4)
+        ZStack (alignment: .top) {
+            VStack(spacing: 0) {
+                Text(L10n.Tracking.Settings.breakTime)
+                    .font(.system(size: 20).weight(.semibold))
+                    .foregroundColor(Color.c2F2E41)
+                Text(L10n.Tracking.Settings.takeRest)
+                    .font(.system(size: 15).weight(.light))
+                    .foregroundColor(Color.settingsTextColor)
+                    .padding(.top, 4)
+                
+            }
             СarouselView(dataList: Array(1...10), selectedValue: $viewModel.breakTime)
-            .padding(.top, 0)
+                .padding(.top, 50)
         }
         .padding(.top, 16)
     }
@@ -96,13 +98,14 @@ struct DeepFocusModeView: View {
                     .background(backgroundView(isKeepingFocus))
                     .cornerRadius(14)
             }
-            .padding(.top, 20)
+            .padding(.top, 18)
         }
         .padding(.top, isPromodoroSelected  ? 30 : 74)
     }
 }
 
 struct FocusSoundsView: View {
+    var isPromodoroSelected: Bool = false
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(L10n.Tracking.Settings.focusSound)
@@ -115,7 +118,7 @@ struct FocusSoundsView: View {
             }
             .padding(.top, 19)
         }
-        .padding(.top, 56)
+        .padding(.top, isPromodoroSelected ? 54 : 78)
     }
 }
 

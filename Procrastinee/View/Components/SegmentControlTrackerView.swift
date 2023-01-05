@@ -27,43 +27,46 @@ struct SegmentControlTrackerView: View {
         selectedTracker == .promodoro
     }
     var body: some View {
-        VStack(spacing: 0) {
-            if isPromodoroSelected {
-                Text(L10n.Tracking.Settings.promoTracker)
-                    .font(.system(size: 20).weight(.semibold))
-                    .foregroundColor(Color.c2F2E41)
-                Text(L10n.Tracking.Settings.workSet)
-                    .font(.system(size: 15).weight(.light))
-                    .foregroundColor(Color.settingsTextColor)
-                    .padding(.top, 4)
-            } else {
-                Text(L10n.Tracking.Settings.stopWatchTracker)
-                    .font(.system(size: 20).weight(.semibold))
-                    .foregroundColor(Color.c2F2E41)
-                Text(L10n.Tracking.Settings.workUntil)
-                    .font(.system(size: 15).weight(.light))
-                    .foregroundColor(Color.settingsTextColor)
-                    .padding(.top, 4)
-            }
-            SegmentControl(isRightCornerRounded: isPromodoroSelected)
-                .onTapGesture {
-                    if selectedTracker == .promodoro {
-                        selectedTracker = .stopWatch
-                        trackerPlayer?.play()
-                    } else {
-                        selectedTracker = .promodoro
-                        planningPlayer?.play()
-                    }
-                    UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+        ZStack(alignment: .top) {
+            VStack(spacing: 0) {
+                if isPromodoroSelected {
+                    Text(L10n.Tracking.Settings.promoTracker)
+                        .font(.system(size: 20).weight(.semibold))
+                        .foregroundColor(Color.c2F2E41)
+                    Text(L10n.Tracking.Settings.workSet)
+                        .font(.system(size: 15).weight(.light))
+                        .foregroundColor(Color.settingsTextColor)
+                        .padding(.top, 4)
+                } else {
+                    Text(L10n.Tracking.Settings.stopWatchTracker)
+                        .font(.system(size: 20).weight(.semibold))
+                        .foregroundColor(Color.c2F2E41)
+                    Text(L10n.Tracking.Settings.workUntil)
+                        .font(.system(size: 15).weight(.light))
+                        .foregroundColor(Color.settingsTextColor)
+                        .padding(.top, 4)
                 }
+                SegmentControl(isRightCornerRounded: isPromodoroSelected)
+                    .onTapGesture {
+                        if selectedTracker == .promodoro {
+                            selectedTracker = .stopWatch
+                            trackerPlayer?.play()
+                        } else {
+                            selectedTracker = .promodoro
+                            planningPlayer?.play()
+                        }
+                        UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                    }
+                
+            }
+            .padding(.top, 65)
             if isPromodoroSelected {
                 СarouselView(dataList: Array(1...12),
                              multiplayValue: 5,
                              selectedValue: $viewModel.workPeriodTime)
-                    .padding(.top, 10)
+                    .padding(.top, 180)
             }
         }
-        .padding(.top, 73)
     }
 }
 

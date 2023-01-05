@@ -103,7 +103,7 @@ struct TimerView: View {
         VStack(alignment: .leading) {
             Image.tapToStart
                 .offset(y: 20)
-                .opacity(viewModel.isTrackStarted ? 0 : 1)
+                .opacity(UserDefaults.standard.bool(forKey: Constants.tapToStart) ? 0 : 1)
                 .zIndex(1)
             ZStack {
                 LinePath()
@@ -176,6 +176,7 @@ struct TimerView: View {
                                 viewModel.counter = beginCycleValue - 0.9
                                 UIImpactFeedbackGenerator(style: .soft)
                                     .impactOccurred()
+                                viewModel.hasTappedToStart = true
                             }
                         } label: {
                             Image.polygon
