@@ -29,6 +29,16 @@ struct ContentView: View {
                     mainViewModel.isTrackStarted &&
                     mainViewModel.isDeepMode {
                     dependency.provider.notificationService.sendAlertNotification()
+                } else if newPhase == .active {
+                    guard let lastTrackerTaskTimeStamp =
+                            UserDefaults.standard
+                        .value(forKey: Constants.lastUpdate) as? Date else { return }
+                    let currentUser = dependency.provider.firebaseService.currentUser.value
+                    if Calendar.current.isDateInToday(lastTrackerTaskTimeStamp) {
+                        mainViewModel.todayFocusedValue = currentUser.todayFocused
+                    } else {
+                        mainViewModel.todayFocusedValue = 0
+                    }
                 }
             }
         }

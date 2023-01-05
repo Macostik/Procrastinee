@@ -184,9 +184,9 @@ class MainViewModel: ObservableObject {
     private func observeWorkingTime() {
         let currentUser = self.firebaseService
             .currentUser.value
-        self.todayFocusedValue = currentUser.todayFocused
         self.dailyAverageValue = currentUser.dailyAverage
         self.totalWeeklyValue = currentUser.totalWeekly
+        self.todayFocusedValue = currentUser.todayFocused
     }
     private func observeTrackingAnimationFinish() {
         $trackAnimationFinished
@@ -198,6 +198,7 @@ class MainViewModel: ObservableObject {
             .store(in: &cancellable)
     }
     private func updateTrackerTimes() {
+        UserDefaults.standard.setValue(Date(), forKey: Constants.lastUpdate)
         firebaseService
             .updateTrackUserTimes(todayTotalTime: self.todayFocusedValue,
                                   dailyAverage: self.dailyAverageValue,
