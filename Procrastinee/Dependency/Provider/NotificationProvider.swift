@@ -24,12 +24,12 @@ struct NotificationService: NotificationInteractor {
                 }
         }
     }
-    func sendAlertNotification() {
+    func sendAlertNotification(with interval: TimeInterval) {
         let content = UNMutableNotificationContent()
         content.title = "Go back to the Procrastinee"
         content.subtitle = "The task is not completed"
         content.sound = UNNotificationSound(named: UNNotificationSoundName(rawValue: "bamboo.mp3"))
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2,
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: interval,
                                                         repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString,
                                             content: content,

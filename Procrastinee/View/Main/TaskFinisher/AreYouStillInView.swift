@@ -54,7 +54,6 @@ struct AreYouStillInView: View {
             .padding(.top, 30)
             .padding(.horizontal, 48)
         }
-        .padding(.bottom, -26)
     }
 }
 

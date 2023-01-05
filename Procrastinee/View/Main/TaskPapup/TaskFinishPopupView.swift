@@ -9,44 +9,24 @@ import SwiftUI
 
 struct TaskFinishPopupView: View {
     @StateObject var viewModel: MainViewModel
-    @State var selectedTaskPage = 0
     @State var offset = 0.0
     var body: some View {
         VStack(spacing: 0) {
-            ZStack(alignment: .top) {
+            VStack(spacing: 0){
                 Capsule()
                     .foregroundColor(Color.cd9D9D9)
                     .frame(width: 35, height: 4)
                     .padding(.top, 12)
                 Spacer()
                 HStack {
-                    GeometryReader { proxy in
-                        ScrollViewReader { reader in
-                            VStack {
-                                ScrollableScrollView(scrollDisable: true) {
-                                    Group {
-                                        WantToFinishView(viewModel: viewModel) {
-                                            withAnimation {
-                                                selectedTaskPage = 1
-                                            }
-                                        }
-                                        .id(0)
-                                        AreYouStillInView(viewModel: viewModel)
-                                            .id(1)
-                                    }
-                                    .frame(width: proxy.size.width,
-                                           height: proxy.size.height)
-                                }
-                            }
-                            .onChange(of: selectedTaskPage) { newValue in
-                                withAnimation {
-                                    reader.scrollTo(newValue)
-                                }
-                            }
-                        }
+                    if viewModel.isCheckIn {
+                        AreYouStillInView(viewModel: viewModel)
+                    } else {
+                        WantToFinishView(viewModel: viewModel)
+                           
                     }
                 }
-                Spacer()
+                .padding(.bottom, 70)
             }
             .frame(maxWidth: .infinity, maxHeight: 400)
             .background(Color.cf8Fafb)
@@ -65,9 +45,6 @@ struct TaskFinishPopupView: View {
             )
             .clipShape(RoundedCorner(radius: 10,
                                      corners: [.topLeft, .topRight]))
-            .onDisappear {
-                selectedTaskPage = 0
-            }
         }
     }
 }

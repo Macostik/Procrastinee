@@ -26,10 +26,12 @@ struct ContentView: View {
             .environment(\.screenSize, proxy.size)
             .onChange(of: scenePhase) { newPhase in
                 let currentCalendar = Calendar.current
-                if newPhase == .inactive &&
-                    mainViewModel.isTrackStarted &&
-                    mainViewModel.isDeepMode {
-                    dependency.provider.notificationService.sendAlertNotification()
+                if newPhase == .inactive {
+                    if  mainViewModel.isTrackStarted {
+                        mainViewModel.isCheckIn = !mainViewModel.isDeepMode
+                        dependency.provider.notificationService
+                            .sendAlertNotification(with: mainViewModel.isDeepMode ? 2 : 10)
+                    }
                 } else if newPhase == .active {
                     guard let lastTrackerTaskTimeStamp =
                             UserDefaults.standard

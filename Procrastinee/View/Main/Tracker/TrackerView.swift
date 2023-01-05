@@ -133,6 +133,11 @@ struct TimerView: View {
                             .fill(viewModel.isBreakingTime ? promodoroGradient : gradient)
                             .frame(width: 230, height: 230, alignment: .center)
                             .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
+                            .onChange(of: viewModel.isCheckIn, perform: { newValue in
+                                if newValue {
+                                    viewModel.presentFinishedPopup = true
+                                }
+                            })
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
                                     if viewModel.counter >= endCycleValue {

@@ -39,7 +39,7 @@ struct WantToFinishView: View {
                     player?.play()
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
-                    continueClick?()
+                    viewModel.presentFinishedPopup = false
                 } label: {
                     Text(L10n.Task.continue)
                         .font(.system(size: 17).weight(.bold))
