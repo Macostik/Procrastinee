@@ -106,7 +106,7 @@ struct TaskSectionHeader: View {
                 } label: {
                     Image.plusIcon
                 }
-                .padding(.trailing, 7)
+                .padding(.trailing, -7)
             }
         }
         .padding(.horizontal, horizontalPadding)

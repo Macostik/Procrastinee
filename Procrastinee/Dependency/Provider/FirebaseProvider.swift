@@ -123,12 +123,15 @@ class FirebaseService: FirebaseInteractor {
         }
     }
     func addTask(task: TaskItem) {
-        if let encodedTask = try? JSONEncoder().encode(task) {
-            if let jsonTask = String(data: encodedTask, encoding: .utf8) {
-                let ref = dataBase.collection("User").document(currentUser.value.id ?? "")
-                ref.updateData([
-                    "tasks": FieldValue.arrayUnion([jsonTask])
-                ])
+        DispatchQueue.global(qos: .background).async {
+            if let encodedTask = try? JSONEncoder().encode(task) {
+                if let jsonTask = String(data: encodedTask, encoding: .utf8) {
+                    let ref = self.dataBase.collection("User")
+                        .document(self.currentUser.value.id ?? "")
+                    ref.updateData([
+                        "tasks": FieldValue.arrayUnion([jsonTask])
+                    ])
+                }
             }
         }
     }
@@ -145,6 +148,14 @@ class FirebaseService: FirebaseInteractor {
                     ])
                     Logger.debug("Update tracker user times")
                 })
+        }
+    }
+    func updateFinishedTask(with name: String) {
+        DispatchQueue.global(qos: .background).async {
+            let ref = self.dataBase.collection("User")
+                .document(self.currentUser.value.id ?? "")
+                .collection("tasks")
+            print(">> \(ref)")
         }
     }
 }

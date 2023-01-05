@@ -17,4 +17,5 @@ protocol FirebaseInteractor {
     func updateTrackUserTimes(todayTotalTime: Int,
                               dailyAverage: Int,
                               totalWeekly: Int)
+    func updateFinishedTask(with name: String)
 }

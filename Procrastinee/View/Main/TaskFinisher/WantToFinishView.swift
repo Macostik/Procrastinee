@@ -58,6 +58,7 @@ struct WantToFinishView: View {
                         UIImpactFeedbackGenerator(style: .soft)
                             .impactOccurred()
                         viewModel.taskIsOver = true
+                        viewModel.updateFinishedTask()
                     }
             }
             .padding(.horizontal, 48)

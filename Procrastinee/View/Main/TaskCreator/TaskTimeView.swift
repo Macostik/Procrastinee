@@ -24,11 +24,11 @@ struct TaskTimeView: View {
                 RoundedRectangle(cornerRadius: 9)
                     .foregroundColor(Color.cebebeb)
                     .frame(width: screenSize.width - 16, height: 34)
-                TimePickerView(selectedTime: $viewModel.selecteTime)
+                TimePickerView(selectedTime: $viewModel.selectedTaskTime)
             }
             .padding(.top, 60)
             GradientButton {
-                viewModel.creatTask()
+                viewModel.createTask(inProcess: false)
                 player?.play()
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()

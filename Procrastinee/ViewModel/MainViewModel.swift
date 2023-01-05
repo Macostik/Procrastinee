@@ -25,7 +25,7 @@ class MainViewModel: ObservableObject {
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
     @Published var trackIsOver = false
-    @Published var selecteTime = ""
+    @Published var selectedTaskTime = ""
     @Published var isTaskCategoryPresented = false
     @Published var weekEndInValue = ""
     @Published var breakTime = 10
@@ -41,6 +41,7 @@ class MainViewModel: ObservableObject {
     @Published var counter: CGFloat = -89
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var timeCounterTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @Published var currentTask: TaskItem?
     @Published var groupTask = [
         GroupTask(index: 0, key: "Today", value: [])
     ]
@@ -62,8 +63,6 @@ class MainViewModel: ObservableObject {
         $isTrackStarted
             .sink { [unowned self] value in
                 if value {
-                    self.taskName = ""
-                    self.selectedTask = .sport
                     let workingTime = (selectedTrackerType == .stopWatch ?
                                        stopWatchingTrackingTime : workPeriodTime) * 60
                     let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
@@ -90,58 +89,26 @@ class MainViewModel: ObservableObject {
     func onAppearRankingScreen() {
         endInWeek()
     }
-    private func observeBreakingTime() {
-        $isBreakingTime
-            .sink { [unowned self] value in
-                if self.selectedTrackerType == .promodoro {
-                    if value {
-                        let workingTime = breakTime * 60
-                        let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
-                        timer = Timer.publish(every: interval,
-                                              on: .main,
-                                              in: .common).autoconnect()
-                    }
-                }
-            }
-            .store(in: &cancellable)
-    }
-    private func observeSelectedDeal() {
-        $selectedDeal
-            .map({ $0 == .tracker ? 0 : 1 })
-            .assign(to: \.pickerViewSelectedIndex, on: self)
-            .store(in: &cancellable)
-    }
-    private func fetchTrackOver() {
-        $taskIsOver
-            .dropFirst(1)
-            .receive(on: DispatchQueue.main)
-            .map({!$0})
-            .assign(to: \.isTrackStarted, on: self)
-            .store(in: &cancellable)
-        $taskIsOver
-            .dropFirst(1)
-            .receive(on: DispatchQueue.main)
-            .map({!$0})
-            .assign(to: \.hasTaskPaused, on: self)
-            .store(in: &cancellable)
-        $taskIsOver
-            .dropFirst(1)
-            .receive(on: DispatchQueue.main)
-            .map({!$0})
-            .assign(to: \.presentFinishedPopup, on: self)
-            .store(in: &cancellable)
-    }
-    func creatTask() {
-        isTaskCategoryPresented = false
-        isTrackStarted = false
+    func createTask(inProcess: Bool = true) {
+        let fromTime = inProcess ? Date().convertDateToTime : selectedTaskTime
         let task = TaskItem(state: "planned",
-                             type: selectedTask.rawValue,
-                             name: taskName,
-                             fromTime: selecteTime,
-                             forTime: "")
+                            type: selectedTask.rawValue,
+                            name: taskName,
+                            fromTime: fromTime ,
+                            forTime: "")
         firebaseService.addTask(task: task)
-        notificationService.scheduleNotification(with: task)
+        if inProcess == false {
+            notificationService.scheduleNotification(with: task)
+        } else {
+            currentTask = task
+        }
     }
+    func updateFinishedTask() {
+        firebaseService.updateFinishedTask(with: currentTask?.name ?? "")
+    }
+}
+
+extension MainViewModel {
     private func endInWeek() {
         let endOfWeek = Date().endOfWeek ?? Date()
         let diffs = Calendar.current.dateComponents([.day, .hour, .minute],
@@ -204,13 +171,43 @@ class MainViewModel: ObservableObject {
                                   dailyAverage: self.dailyAverageValue,
                                   totalWeekly: self.totalWeeklyValue)
     }
-}
-
-extension Int {
-    var hour: String {
-        "\(self / 60)"
+    private func observeBreakingTime() {
+        $isBreakingTime
+            .sink { [unowned self] value in
+                if self.selectedTrackerType == .promodoro {
+                    let workingTime = (value ? breakTime : workPeriodTime) * 60
+                        let interval = CGFloat(CGFloat(workingTime)/2/(endCycleValue - beginCycleValue))
+                        timer = Timer.publish(every: interval,
+                                              on: .main,
+                                              in: .common).autoconnect()
+                }
+            }
+            .store(in: &cancellable)
     }
-    var minute: String {
-        "\(self % 60)"
+    private func observeSelectedDeal() {
+        $selectedDeal
+            .map({ $0 == .tracker ? 0 : 1 })
+            .assign(to: \.pickerViewSelectedIndex, on: self)
+            .store(in: &cancellable)
+    }
+    private func fetchTrackOver() {
+        $taskIsOver
+            .dropFirst(1)
+            .receive(on: DispatchQueue.main)
+            .map({!$0})
+            .assign(to: \.isTrackStarted, on: self)
+            .store(in: &cancellable)
+        $taskIsOver
+            .dropFirst(1)
+            .receive(on: DispatchQueue.main)
+            .map({!$0})
+            .assign(to: \.hasTaskPaused, on: self)
+            .store(in: &cancellable)
+        $taskIsOver
+            .dropFirst(1)
+            .receive(on: DispatchQueue.main)
+            .map({!$0})
+            .assign(to: \.presentFinishedPopup, on: self)
+            .store(in: &cancellable)
     }
 }

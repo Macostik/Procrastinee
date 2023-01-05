@@ -80,6 +80,7 @@ struct TaskNameTextField: View {
                                  if viewModel.isSetTaskTime {
                                      setTimeAction?()
                                  } else {
+                                     viewModel.createTask()
                                      viewModel.isTaskCategoryPresented = false
                                  }
                             }

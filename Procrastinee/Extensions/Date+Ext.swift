@@ -15,6 +15,11 @@ extension Date {
                                                  from: self)) else { return nil }
         return gregorian.date(byAdding: .day, value: 7, to: sunday)
     }
+    var convertDateToTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: self)
+    }
 }
 
 extension TimeInterval {
@@ -49,5 +54,14 @@ extension TimeInterval {
         let currentWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: Date())
         let datesWeek = Calendar.current.component(Calendar.Component.weekOfYear, from: date)
         return (currentWeek == datesWeek)
+    }
+}
+
+extension Int {
+    var hour: String {
+        "\(self / 60)"
+    }
+    var minute: String {
+        "\(self % 60)"
     }
 }

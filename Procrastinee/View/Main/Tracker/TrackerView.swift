@@ -77,7 +77,7 @@ struct TrackerPlaningSwitcher: View {
                                      Color.c2F2E41 : Color.c878787)
             }
         }
-        .offset(x: type == .tracker ? 40 : -40)
+        .offset(x: type == .tracker ? 50 : -50)
         .animation(.easeInOut, value: type)
         .padding(.top, 66)
     }
@@ -136,26 +136,18 @@ struct TimerView: View {
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
                                     if viewModel.counter >= endCycleValue {
+                                        // reverse animation
                                         viewModel.isReverseAnimation = true
                                         viewModel.isTrackShouldStop = true
                                         viewModel.isBreakingTimeShouldStop = viewModel.isBreakingTime
                                     } else if viewModel.counter <= beginCycleValue {
+                                        // begin animation
                                         viewModel.isBreakingTime =
                                         viewModel.isReverseAnimation &&
+                                        !viewModel.isBreakingTimeShouldStop &&
                                         viewModel.selectedTrackerType == .promodoro
                                         viewModel.isReverseAnimation = false
                                         if viewModel.isTrackShouldStop {
-                                            if viewModel.isBreakingTime {
-                                                if viewModel.isBreakingTimeShouldStop {
-                                                    viewModel.isTrackStarted = false
-                                                    viewModel.trackIsOver = true
-                                                    viewModel.trackAnimationFinished = true
-                                                }
-                                            } else {
-                                                viewModel.isTrackStarted = false
-                                                viewModel.trackIsOver = true
-                                                viewModel.trackAnimationFinished = true
-                                            }
                                             viewModel.isTrackShouldStop = false
                                             viewModel.isBreakingTimeShouldStop = false
                                         }
