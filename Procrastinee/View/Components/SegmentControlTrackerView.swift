@@ -57,7 +57,6 @@ struct SegmentControlTrackerView: View {
                         }
                         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     }
-                
             }
             .padding(.top, 65)
             if isPromodoroSelected {

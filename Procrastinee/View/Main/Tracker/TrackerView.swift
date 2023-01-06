@@ -35,9 +35,6 @@ struct TrackerView: View {
             }
         }
         .background(Color.cf8Fafb)
-        .onAppear {
-            viewModel.onAppearMainScreen()
-        }
         TaskPopoverPresenterView(viewModel: viewModel)
     }
 }
@@ -133,11 +130,6 @@ struct TimerView: View {
                             .fill(viewModel.isBreakingTime ? promodoroGradient : gradient)
                             .frame(width: 230, height: 230, alignment: .center)
                             .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
-                            .onChange(of: viewModel.isCheckIn, perform: { newValue in
-                                if newValue {
-                                    viewModel.presentFinishedPopup = true
-                                }
-                            })
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
                                     if viewModel.counter >= endCycleValue {
@@ -163,9 +155,11 @@ struct TimerView: View {
                                 }
                             }
                             .onReceive(viewModel.timeCounterTimer) { _ in
-                                viewModel.todayFocusedValue += 1
-                                viewModel.totalWeeklyValue += 1
-                                viewModel.dailyAverageValue = viewModel.totalWeeklyValue/7
+                                if viewModel.isBreakingTime == false {
+                                    viewModel.todayFocusedValue += 1
+                                    viewModel.totalWeeklyValue += 1
+                                    viewModel.dailyAverageValue = viewModel.totalWeeklyValue/7
+                                }
                             }
                     } else {
                         Button {
@@ -240,7 +234,8 @@ struct TipsView: View {
             Image.groupDots
             HStack {
                 Image.slideLeft
-                    .opacity(viewModel.isTrackStarted ? 0 : 1)
+                    .opacity(UserDefaults.standard
+                        .bool(forKey: Constants.slideToLeft) ? 0 : 1 )
                 Spacer()
             }
             .padding(.top, 25)

@@ -32,6 +32,9 @@ struct TaskTimeView: View {
                 player?.play()
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
+                viewModel.isTaskCategoryPresented = false
+                viewModel.selectedTask = .sport
+                viewModel.taskName = ""
             } label: {
                 HStack {
                     Image.checkmark

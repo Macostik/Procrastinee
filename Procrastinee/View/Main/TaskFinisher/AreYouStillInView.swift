@@ -31,6 +31,7 @@ struct AreYouStillInView: View {
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
                     viewModel.presentFinishedPopup = false
+                    viewModel.isCheckIn = false
                 } label: {
                     Text(L10n.Task.checkAndContinue)
                         .font(.system(size: 17).weight(.bold))
@@ -41,7 +42,10 @@ struct AreYouStillInView: View {
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
                     viewModel.taskIsOver = true
+                    viewModel.selectedTask = .sport
+                    viewModel.taskName = ""
                     viewModel.presentFinishedPopup = false
+                    viewModel.isCheckIn = false
                     viewModel.updateFinishedTask()
                 } label: {
                     Text(L10n.Task.finish)

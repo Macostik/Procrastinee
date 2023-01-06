@@ -14,4 +14,5 @@ struct Constants {
     static let tapToHold = "tapToHold"
     static let tapToPause = "tapToPause"
     static let tapToStart = "tapToStart"
+    static let slideToLeft = "slideToLeft"
 }

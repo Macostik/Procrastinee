@@ -25,6 +25,9 @@ struct TrackerSettingsView: View {
             FocusSoundsView(isPromodoroSelected: isPromodoroSelected)
             Spacer()
         }
+        .onDisappear {
+            viewModel.hasSlidToLeft = true
+        }
         .fullScreenSize()
     }
 }
@@ -38,7 +41,7 @@ struct TrackerSettingsView_Previews: PreviewProvider {
 struct BreakTimeView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
-        ZStack (alignment: .top) {
+        ZStack(alignment: .top) {
             VStack(spacing: 0) {
                 Text(L10n.Tracking.Settings.breakTime)
                     .font(.system(size: 20).weight(.semibold))
@@ -47,7 +50,6 @@ struct BreakTimeView: View {
                     .font(.system(size: 15).weight(.light))
                     .foregroundColor(Color.settingsTextColor)
                     .padding(.top, 4)
-                
             }
             СarouselView(dataList: Array(1...10), selectedValue: $viewModel.breakTime)
                 .padding(.top, 50)

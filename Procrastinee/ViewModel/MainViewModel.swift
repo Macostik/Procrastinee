@@ -21,7 +21,6 @@ class MainViewModel: ObservableObject {
     @Published var selectedTask = TaskType.sport
     @Published var isDeepMode = false
     @Published var taskName = ""
-    @Published var isSetTaskTime = false
     @Published var isTrackStarted = false
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
@@ -31,7 +30,7 @@ class MainViewModel: ObservableObject {
     @Published var weekEndInValue = ""
     @Published var breakTime = 10
     @Published var workPeriodTime = 60
-    @Published var stopWatchingTrackingTime = 1
+    @Published var stopWatchingTrackingTime = 10
     @Published var isTrackShouldStop = false
     @Published var isBreakingTimeShouldStop = false
     @Published var isReverseAnimation = false
@@ -69,6 +68,13 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    @Published var hasSlidToLeft = false {
+        willSet {
+            if newValue {
+                UserDefaults.standard.set(newValue, forKey: Constants.slideToLeft)
+            }
+        }
+    }
     private var firebaseService: FirebaseInteractor {
         dependency.provider.firebaseService
     }
@@ -77,42 +83,12 @@ class MainViewModel: ObservableObject {
     }
     private var cancellable: Set<AnyCancellable> = []
     init() {
-        $isTaskCategoryPresented
-            .receive(on: DispatchQueue.main)
-            .map({ [unowned self] in
-                !$0 &&
-                !self.taskName.isEmpty })
-            .assign(to: \.isTrackStarted, on: self)
-            .store(in: &cancellable)
-        $isTrackStarted
-            .sink { [unowned self] value in
-                if value {
-                    let workingTime = (selectedTrackerType == .stopWatch ?
-                                       stopWatchingTrackingTime : workPeriodTime) * 60
-                    let interval =
-                    CGFloat(CGFloat(workingTime)/smoothAnimationValue/2/(endCycleValue - beginCycleValue))
-                    timer = Timer.publish(every: interval,
-                                          on: .main,
-                                          in: .common).autoconnect()
-                    timeCounterTimer = Timer.publish(every: 60,
-                                          on: .main,
-                                          in: .common).autoconnect()
-                } else {
-                    timer.upstream.connect().cancel()
-                    timeCounterTimer.upstream.connect().cancel()
-                }
-            }
-            .store(in: &cancellable)
         fetchTrackOver()
         fetchAllTasks()
+        observeWorkingTime()
+        observeTrackingTime()
         observeBreakingTime()
         observeSelectedDeal()
-        observeTrackingAnimationFinish()
-    }
-    func onAppearMainScreen() {
-    }
-    func onAppearRankingScreen() {
-        endInWeek()
     }
     func createTask(inProcess: Bool = true) {
         let fromTime = inProcess ? Date().convertDateToTime : selectedTaskTime
@@ -130,27 +106,17 @@ class MainViewModel: ObservableObject {
     }
     func updateFinishedTask() {
         firebaseService.updateFinishedTask(currentTask)
+        self.updateTrackerTimes()
     }
 }
 
 extension MainViewModel {
-    private func endInWeek() {
-        let endOfWeek = Date().endOfWeek ?? Date()
-        let diffs = Calendar.current.dateComponents([.day, .hour, .minute],
-                                                    from: Date(),
-                                                    to: endOfWeek)
-        let day = diffs.day ?? 0
-        let hour = diffs.hour ?? 0
-        let minutes = diffs.minute ?? 0
-        weekEndInValue = "\(day)" + "d:" + "\(hour)" + "h:" + "\(minutes)" + "m"
-    }
     private func fetchAllTasks() {
         firebaseService.tasks
             .receive(on: DispatchQueue.main)
             .sink { _ in
             } receiveValue: { [weak self] itemList in
                 self?.divideByDate(itemList)
-                self?.observeWorkingTime()
             }
             .store(in: &cancellable)
     }
@@ -173,20 +139,35 @@ extension MainViewModel {
             listItem.sorted(by: {($0.value.first?.timestamp ?? 0) > ($1.value.first?.timestamp ?? 0)})
         }
     }
-    private func observeWorkingTime() {
-        let currentUser = self.firebaseService
-            .currentUser.value
-        self.dailyAverageValue = currentUser.dailyAverage
-        self.totalWeeklyValue = currentUser.totalWeekly
-        self.todayFocusedValue = currentUser.todayFocused
-    }
-    private func observeTrackingAnimationFinish() {
-        $trackAnimationFinished
-            .sink { [weak self] value in
+    private func observeTrackingTime() {
+        $isTrackStarted
+            .sink { [unowned self] value in
                 if value {
-                    self?.updateTrackerTimes()
+                    let workingTime = (selectedTrackerType == .stopWatch ?
+                                       stopWatchingTrackingTime : workPeriodTime) * 60
+                    let interval =
+                    CGFloat(CGFloat(workingTime)/smoothAnimationValue/2/(endCycleValue - beginCycleValue))
+                    timer = Timer.publish(every: interval,
+                                          on: .main,
+                                          in: .common).autoconnect()
+                    timeCounterTimer = Timer.publish(every: 60,
+                                          on: .main,
+                                          in: .common).autoconnect()
+                } else {
+                    timer.upstream.connect().cancel()
+                    timeCounterTimer.upstream.connect().cancel()
                 }
             }
+            .store(in: &cancellable)
+    }
+    private func observeWorkingTime() {
+        firebaseService.currentUser
+            .sink(receiveCompletion: { _ in
+            }, receiveValue: { [unowned self] user in
+                self.dailyAverageValue = user.dailyAverage
+                self.totalWeeklyValue = user.totalWeekly
+                self.todayFocusedValue = user.todayFocused
+            })
             .store(in: &cancellable)
     }
     private func updateTrackerTimes() {

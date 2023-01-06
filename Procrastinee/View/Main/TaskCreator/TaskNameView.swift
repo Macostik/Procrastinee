@@ -77,10 +77,11 @@ struct TaskNameTextField: View {
                                      player?.play()
                                      UIImpactFeedbackGenerator(style: .soft)
                                          .impactOccurred()
-                                 if viewModel.isSetTaskTime {
+                                 if viewModel.selectedDeal == .planning {
                                      setTimeAction?()
                                  } else {
                                      viewModel.createTask()
+                                     viewModel.isTrackStarted = true
                                      viewModel.isTaskCategoryPresented = false
                                  }
                             }

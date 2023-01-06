@@ -58,6 +58,8 @@ struct WantToFinishView: View {
                         UIImpactFeedbackGenerator(style: .soft)
                             .impactOccurred()
                         viewModel.taskIsOver = true
+                        viewModel.selectedTask = .sport
+                        viewModel.taskName = ""
                         viewModel.updateFinishedTask()
                     }
             }

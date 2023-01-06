@@ -98,7 +98,6 @@ struct TaskSectionHeader: View {
             Spacer()
             if viewModel.groupTask.first?.key == title {
                 Button {
-                    viewModel.isSetTaskTime = true
                     viewModel.isTaskCategoryPresented = true
                     player?.play()
                     UIImpactFeedbackGenerator(style: .soft)

@@ -28,7 +28,10 @@ struct ContentView: View {
                 let currentCalendar = Calendar.current
                 if newPhase == .inactive {
                     if  mainViewModel.isTrackStarted {
-                        mainViewModel.isCheckIn = !mainViewModel.isDeepMode
+                        if mainViewModel.isDeepMode == false {
+                            mainViewModel.isCheckIn = true
+                            mainViewModel.presentFinishedPopup = true
+                        }
                         dependency.provider.notificationService
                             .sendAlertNotification(with: mainViewModel.isDeepMode ? 2 : 10)
                     }

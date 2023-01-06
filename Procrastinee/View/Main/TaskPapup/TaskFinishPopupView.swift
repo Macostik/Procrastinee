@@ -12,7 +12,7 @@ struct TaskFinishPopupView: View {
     @State var offset = 0.0
     var body: some View {
         VStack(spacing: 0) {
-            VStack(spacing: 0){
+            VStack(spacing: 0) {
                 Capsule()
                     .foregroundColor(Color.cd9D9D9)
                     .frame(width: 35, height: 4)
@@ -23,7 +23,6 @@ struct TaskFinishPopupView: View {
                         AreYouStillInView(viewModel: viewModel)
                     } else {
                         WantToFinishView(viewModel: viewModel)
-                           
                     }
                 }
                 .padding(.bottom, 70)

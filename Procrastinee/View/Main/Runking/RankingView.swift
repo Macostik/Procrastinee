@@ -38,8 +38,18 @@ struct RankingView: View {
             TopRankingView(viewModel: viewModel)
         }
         .onAppear {
-            viewModel.onAppearRankingScreen()
+            endInWeek()
         }
+    }
+    func endInWeek() {
+        let endOfWeek = Date().endOfWeek ?? Date()
+        let diffs = Calendar.current.dateComponents([.day, .hour, .minute],
+                                                    from: Date(),
+                                                    to: endOfWeek)
+        let day = diffs.day ?? 0
+        let hour = diffs.hour ?? 0
+        let minutes = diffs.minute ?? 0
+        viewModel.weekEndInValue = "\(day)" + "d:" + "\(hour)" + "h:" + "\(minutes)" + "m"
     }
 }
 
