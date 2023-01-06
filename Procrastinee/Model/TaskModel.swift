@@ -10,12 +10,12 @@ import SwiftUI
 import FirebaseFirestoreSwift
 
 struct TaskItem: Hashable, Codable {
-    var id = UUID()
-    let state: String
+    var id = UUID().uuidString
+    var state: String
     let type: String
     let name: String
     let fromTime: String
-    let forTime: String
+    var forTime: String
     var timestamp = Date().timeIntervalSince1970
 }
 extension TaskItem {

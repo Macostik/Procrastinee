@@ -68,6 +68,8 @@ public enum L10n {
     public static let motivated = L10n.tr("Localizable", "onboarding.motivated")
     /// Nickname...
     public static let nickname = L10n.tr("Localizable", "onboarding.nickname")
+    /// User nickName can't be empty
+    public static let nicknameEmpty = L10n.tr("Localizable", "onboarding.nicknameEmpty")
     /// OK
     public static let ok = L10n.tr("Localizable", "onboarding.ok")
     /// 1 Week

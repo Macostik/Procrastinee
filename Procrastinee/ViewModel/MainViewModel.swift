@@ -129,7 +129,7 @@ class MainViewModel: ObservableObject {
         }
     }
     func updateFinishedTask() {
-        firebaseService.updateFinishedTask(with: currentTask?.name ?? "")
+        firebaseService.updateFinishedTask(currentTask)
     }
 }
 

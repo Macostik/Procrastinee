@@ -84,7 +84,8 @@ struct CreateProfileView: View {
                             .impactOccurred()
                         player?.play()
                         userExist = dependency.provider.firebaseService.users.value
-                            .contains(where: { $0.name == viewModel.nickName })
+                            .contains(where: { $0.name == viewModel.nickName }) ||
+                        viewModel.nickName.isEmpty
                         if userExist {
                             Logger.warrning(L10n.Onboarding.userExist)
                         } else {
@@ -106,7 +107,9 @@ struct CreateProfileView: View {
                 })
                 .padding(.horizontal, 23)
                 .padding(.bottom, 20)
-                .alert(L10n.Onboarding.userExistTryAnother,
+                .alert(viewModel.nickName.isEmpty ?
+                       L10n.Onboarding.nicknameEmpty :
+                       L10n.Onboarding.userExistTryAnother,
                        isPresented: $userExist) {
                     Button(L10n.Onboarding.ok, role: .cancel) { }
                         }

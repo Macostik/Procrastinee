@@ -47,6 +47,7 @@
 "onboarding.subscribe" = "SUBSCRIBE";
 "onboarding.userExist" = "User with this name is already exist!";
 "onboarding.userExistTryAnother" = "User with this name is already exist! Please try another name";
+"onboarding.nicknameEmpty" = "User nickName can't be empty";
 "onboarding.ok" = "OK";
 
 "tracking.settings.promoTracker" = "Pomodoro Tracker";

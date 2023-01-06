@@ -150,12 +150,28 @@ class FirebaseService: FirebaseInteractor {
                 })
         }
     }
-    func updateFinishedTask(with name: String) {
-        DispatchQueue.global(qos: .background).async {
-            let ref = self.dataBase.collection("User")
-                .document(self.currentUser.value.id ?? "")
-                .collection("tasks")
-            print(">> \(ref)")
-        }
+    func updateFinishedTask(_ task: TaskItem?) {
+        self.dataBase.collection("User")
+            .document(self.currentUser.value.id ?? "")
+            .getDocument { snapshot, _ in
+                guard let task = task,
+                      let document = snapshot,
+                      var tasksList = document.get("tasks") as? [String],
+                      let foundTask = tasksList
+                    .first(where: { $0.contains(task.id) }),
+                      var decodeTask = try? JSONDecoder()
+                    .decode(TaskItem.self, from: foundTask.data(using: .utf8)!)
+                else { return }
+                tasksList = tasksList.filter { !$0.contains(task.id) }
+                decodeTask.state = "completed"
+                decodeTask.forTime = Date().convertDateToTime
+                if let encodeTask = try?  JSONEncoder().encode(decodeTask),
+                    let jsonTask = String(data: encodeTask, encoding: .utf8) {
+                    tasksList.append(jsonTask)
+                    document.reference.updateData([
+                        "tasks": tasksList
+                    ])
+                }
+            }
     }
 }

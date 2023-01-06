@@ -42,6 +42,7 @@ struct AreYouStillInView: View {
                         .impactOccurred()
                     viewModel.taskIsOver = true
                     viewModel.presentFinishedPopup = false
+                    viewModel.updateFinishedTask()
                 } label: {
                     Text(L10n.Task.finish)
                         .font(.system(size: 17).weight(.bold))
