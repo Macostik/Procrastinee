@@ -155,10 +155,18 @@ struct TimerView: View {
                                 }
                             }
                             .onReceive(viewModel.timeCounterTimer) { _ in
-                                if viewModel.isBreakingTime == false {
-                                    viewModel.todayFocusedValue += 1
-                                    viewModel.totalWeeklyValue += 1
-                                    viewModel.dailyAverageValue = viewModel.totalWeeklyValue/7
+                                if viewModel.selectedTrackerType == .promodoro {
+                                    if viewModel.isBreakingTime == false {
+                                        viewModel.todayFocusedValue += 1
+                                        viewModel.totalWeeklyValue += 1
+                                        viewModel.dailyAverageValue = viewModel.totalWeeklyValue/7
+                                    }
+                                } else {
+                                    if viewModel.hasTaskPaused == false {
+                                        viewModel.todayFocusedValue += 1
+                                        viewModel.totalWeeklyValue += 1
+                                        viewModel.dailyAverageValue = viewModel.totalWeeklyValue/7
+                                    }
                                 }
                             }
                     } else {

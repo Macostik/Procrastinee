@@ -101,7 +101,7 @@ extension OnboardingViewModel {
         return String(indicatorSymbols.map({ Character($0) }))
     }
     func purchaseProduct() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2.0, execute: {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             let userDefaults = UserDefaults.standard
             let isUserAuthorised = !(userDefaults.string(forKey: Constants.userNickname)?.isEmpty ?? false)
             UserDefaults.standard.set(isUserAuthorised,

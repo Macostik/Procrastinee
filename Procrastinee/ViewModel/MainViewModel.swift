@@ -150,7 +150,7 @@ extension MainViewModel {
                     timer = Timer.publish(every: interval,
                                           on: .main,
                                           in: .common).autoconnect()
-                    timeCounterTimer = Timer.publish(every: 60,
+                    timeCounterTimer = Timer.publish(every: 10,
                                           on: .main,
                                           in: .common).autoconnect()
                 } else {
