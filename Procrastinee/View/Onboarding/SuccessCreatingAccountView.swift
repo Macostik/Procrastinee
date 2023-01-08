@@ -12,7 +12,9 @@ struct SuccessCreatingAccountView: View {
     var onNextScreen: (() -> Void)?
     var body: some View {
         VStack {
-            Image.successMark
+            LottieView(animationName: "SuccessMark",
+                       loopMode: .playOnce,
+                       contentMode: .scaleAspectFit)
             Text(L10n.Onboarding.accountCreateSuccess)
                 .font(.system(size: 14).weight(.medium))
                 .foregroundColor(Color.onboardingTextColor)

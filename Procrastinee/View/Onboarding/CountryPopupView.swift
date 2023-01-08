@@ -14,7 +14,7 @@ struct CountryPopupView: View {
         VStack {
             Picker("", selection: $viewModel.selectedCountry) {
                 ForEach(viewModel.countryList, id: \.self) { value in
-                    Text(value)
+                    Text(value.flag + " " + value.name)
                         .font(.system(size: 23).weight(.medium))
                         .foregroundColor(Color.black)
                 }

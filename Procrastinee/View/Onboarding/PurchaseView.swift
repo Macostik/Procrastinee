@@ -11,7 +11,7 @@ import AVFoundation
 struct PurchaseView: View {
     @StateObject var onboardingViewModel: OnboardingViewModel
     @StateObject var viewModel = PurchaseViewModel()
-    @State var isSelectedPurchaseType: PurchaseType = .week
+    @State var isSelectedPurchaseType: PurchaseType = .month
     @State var choosePurchasePlayer: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Planning Button",
                                   withExtension: "mp3")

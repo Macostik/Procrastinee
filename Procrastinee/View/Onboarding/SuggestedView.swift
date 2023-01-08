@@ -35,7 +35,7 @@ struct SuggestedView: View {
             .padding(.horizontal, 50)
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2.5, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.5, execute: {
                 onNextScreen?()
             })
         }

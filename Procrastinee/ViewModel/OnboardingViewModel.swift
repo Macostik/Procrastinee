@@ -8,9 +8,13 @@
 import Foundation
 import Combine
 
+struct CountryType: Hashable {
+    var flag: String
+    var name: String
+}
+
 enum OnboardingScreensType: String {
-    case getStarted,
-         suggested,
+    case suggested,
          introducing,
          reminder,
          createProfile,
@@ -56,7 +60,7 @@ class OnboardingViewModel: ObservableObject {
             }
         }
     }
-    var countryList = [String]()
+    var countryList: [CountryType] = []
     var cancellable: Cancellable?
     init() {
         setup()
@@ -70,15 +74,15 @@ class OnboardingViewModel: ObservableObject {
                 .localeIdentifier(fromComponents: [NSLocale.Key.countryCode.rawValue: code])
             let name = NSLocale(localeIdentifier: "en_UK")
                 .displayName(forKey: NSLocale.Key.identifier, value: id) ?? ""
-            if code == "UA" {
-                countryList.insert((flag + " " + name), at: 0)
-                selectedCountry = (flag + " " + name)
-            } else if code == "RU" || code == "BY" {
+            if code == "RU" || code == "BY" || code == "AX" {
                 continue
             } else {
-                countryList.append((flag + " " + name))
+                countryList.append(CountryType(flag: flag, name: name))
             }
         }
+        countryList.sort(by: { $0.name < $1.name })
+        let searchCountry = countryList.first(where: { $0.name.contains("Ukraine") })
+        selectedCountry = (searchCountry?.flag ?? "") + " " + (searchCountry?.name ?? "")
     }
 }
 

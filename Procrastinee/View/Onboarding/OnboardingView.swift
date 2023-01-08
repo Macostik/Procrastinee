@@ -9,7 +9,7 @@ import SwiftUI
 struct OnboardingView: View {
     @StateObject var onboardingViewModel: OnboardingViewModel
     @StateObject var mainViewModel: MainViewModel
-    @State private var screenType: OnboardingScreensType = .getStarted
+    @State private var screenType: OnboardingScreensType = .suggested
     var body: some View {
         GeometryReader { proxy in
             NavigationLink("", destination: MainView(viewModel: mainViewModel),
@@ -46,10 +46,6 @@ struct ListScreenView: View {
     @Binding var screenType: OnboardingScreensType
     var body: some View {
         Group {
-            GetStartedView {
-                screenType = .suggested
-            }
-            .id(OnboardingScreensType.getStarted)
             SuggestedView {
                 screenType = .introducing
             }

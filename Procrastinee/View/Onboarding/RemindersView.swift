@@ -9,6 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct RemindersView: View {
+    @Environment(\.dependency) private var dependency
     var onNextScreen: (() -> Void)?
     @State var player: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Planning Button",
@@ -40,7 +41,10 @@ struct RemindersView: View {
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
                 player?.play()
-                onNextScreen?()
+                dependency.provider.notificationService
+                    .requestNotificationPermission {
+                        onNextScreen?()
+                    }
             }, label: {
                 HStack {
                     Image.checkmark

@@ -14,7 +14,7 @@ protocol NotificationProvider {
 }
 
 struct NotificationService: NotificationInteractor {
-    init() {
+    func requestNotificationPermission(completion: @escaping () -> Void) {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .badge, .sound]) { success, error in
                 if success == false || error != nil {
@@ -22,6 +22,7 @@ struct NotificationService: NotificationInteractor {
                 } else {
                     Logger.debug("Notifications were setup correctly")
                 }
+                completion()
         }
     }
     func sendAlertNotification(with interval: TimeInterval) {
