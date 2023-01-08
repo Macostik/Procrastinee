@@ -77,6 +77,7 @@
 		569B9535296ACEE000FB48A9 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 569B9534296ACEE000FB48A9 /* Lottie */; };
 		569B9537296ACF0100FB48A9 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569B9536296ACF0100FB48A9 /* LottieView.swift */; };
 		569B953B296AD12D00FB48A9 /* SuccessMark.json in Resources */ = {isa = PBXBuildFile; fileRef = 569B953A296AD12D00FB48A9 /* SuccessMark.json */; };
+		569B953D296AD77C00FB48A9 /* DotsProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569B953C296AD77C00FB48A9 /* DotsProgressView.swift */; };
 		569E3DC729533B5B00145A95 /* ContainerTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DC629533B5B00145A95 /* ContainerTracker.swift */; };
 		569E3DC929533B7600145A95 /* ContainerPlanningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DC829533B7600145A95 /* ContainerPlanningView.swift */; };
 		569E3DCB2953441000145A95 /* TaskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 569E3DCA2953441000145A95 /* TaskModel.swift */; };
@@ -172,6 +173,7 @@
 		567CB22D29521F360065A39B /* AreYouStillInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AreYouStillInView.swift; sourceTree = "<group>"; };
 		569B9536296ACF0100FB48A9 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		569B953A296AD12D00FB48A9 /* SuccessMark.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = SuccessMark.json; sourceTree = "<group>"; };
+		569B953C296AD77C00FB48A9 /* DotsProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotsProgressView.swift; sourceTree = "<group>"; };
 		569E3DC629533B5B00145A95 /* ContainerTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerTracker.swift; sourceTree = "<group>"; };
 		569E3DC829533B7600145A95 /* ContainerPlanningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerPlanningView.swift; sourceTree = "<group>"; };
 		569E3DCA2953441000145A95 /* TaskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskModel.swift; sourceTree = "<group>"; };
@@ -531,6 +533,7 @@
 				56A33F8B2954CB0800A7A87E /* СarouselView.swift */,
 				56B0F062295872A5001F9D9F /* ScrollableScrollView.swift */,
 				56288974295C41BA004EA89E /* PagerView.swift */,
+				569B953C296AD77C00FB48A9 /* DotsProgressView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				5628898D295E07CA004EA89E /* NotificationProvider.swift in Sources */,
 				56F68EC729559CB900116D17 /* RankingView.swift in Sources */,
 				5628897E295DFF38004EA89E /* Provider.swift in Sources */,
+				569B953D296AD77C00FB48A9 /* DotsProgressView.swift in Sources */,
 				56E9E768294B086300F03C08 /* Environment+Value.swift in Sources */,
 				56F68ECB2955CA6F00116D17 /* TopListItem.swift in Sources */,
 				560B68DD2944E8EF00EDD52F /* ProgressView.swift in Sources */,

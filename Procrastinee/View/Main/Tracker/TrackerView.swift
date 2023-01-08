@@ -10,6 +10,7 @@ import AVFoundation
 
 let endCycleValue: CGFloat = 269
 let beginCycleValue: CGFloat = -89
+let dotsCount = 8
 
 struct TrackerView: View {
     @StateObject var viewModel: MainViewModel
@@ -33,6 +34,9 @@ struct TrackerView: View {
                     }
                 }
             }
+        }
+        .onDisappear {
+            viewModel.hasSlidToLeft = true
         }
         .background(Color.cf8Fafb)
         TaskPopoverPresenterView(viewModel: viewModel)
@@ -132,6 +136,11 @@ struct TimerView: View {
                             .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
+                                    viewModel.counterDots += viewModel.isReverseAnimation ? -1 : 1
+                                    let currentSeconds = Int(ceil(viewModel.counterDots * viewModel.interval))
+                                    let index =
+                                    Int(currentSeconds/((viewModel.stopWatchingTrackingTime * 60)/(dotsCount - 1)/2))
+                                    viewModel.progressDots = index
                                     if viewModel.counter >= endCycleValue {
                                         // reverse animation
                                         viewModel.isReverseAnimation = true
@@ -239,7 +248,9 @@ struct TipsView: View {
     @StateObject var viewModel: MainViewModel
     var body: some View {
         VStack(spacing: 0) {
-            Image.groupDots
+            DotsProgressView(dotsCount: dotsCount,
+                             selectedIndex: $viewModel.progressDots)
+                .offset(x: 6)
             HStack {
                 Image.slideLeft
                     .opacity(UserDefaults.standard

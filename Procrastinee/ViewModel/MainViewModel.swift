@@ -30,7 +30,7 @@ class MainViewModel: ObservableObject {
     @Published var weekEndInValue = ""
     @Published var breakTime = 10
     @Published var workPeriodTime = 60
-    @Published var stopWatchingTrackingTime = 10
+    @Published var stopWatchingTrackingTime = 1
     @Published var isTrackShouldStop = false
     @Published var isBreakingTimeShouldStop = false
     @Published var isReverseAnimation = false
@@ -42,6 +42,8 @@ class MainViewModel: ObservableObject {
     @Published var counter: CGFloat = -89
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var timeCounterTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
+    @Published var progressDots = 0
+    @Published var counterDots: CGFloat = 200
     @Published var currentTask: TaskItem?
     @Published var groupTask = [
         GroupTask(index: 0, key: "Today", value: [])
@@ -75,6 +77,7 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    var interval: CGFloat = 1
     private var firebaseService: FirebaseInteractor {
         dependency.provider.firebaseService
     }
@@ -128,7 +131,7 @@ extension MainViewModel {
             for key in listByDate.keys {
                 guard let key = key,
                       let value = listByDate[key]?
-                    .sorted(by: { $0.convertFromTimeToDate < $1.convertFromTimeToDate })
+                    .sorted(by: { $0.convertFromTimeToDate > $1.convertFromTimeToDate })
                 else { return }
                 let group = GroupTask(index: 0,
                                       key: key,
@@ -145,7 +148,7 @@ extension MainViewModel {
                 if value {
                     let workingTime = (selectedTrackerType == .stopWatch ?
                                        stopWatchingTrackingTime : workPeriodTime) * 60
-                    let interval =
+                    interval =
                     CGFloat(CGFloat(workingTime)/smoothAnimationValue/2/(endCycleValue - beginCycleValue))
                     timer = Timer.publish(every: interval,
                                           on: .main,

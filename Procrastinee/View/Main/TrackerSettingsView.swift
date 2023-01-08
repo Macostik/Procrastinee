@@ -25,9 +25,6 @@ struct TrackerSettingsView: View {
             FocusSoundsView(isPromodoroSelected: isPromodoroSelected)
             Spacer()
         }
-        .onDisappear {
-            viewModel.hasSlidToLeft = true
-        }
         .fullScreenSize()
     }
 }
