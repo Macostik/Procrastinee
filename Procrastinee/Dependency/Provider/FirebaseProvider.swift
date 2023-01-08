@@ -164,7 +164,7 @@ class FirebaseService: FirebaseInteractor {
                 else { return }
                 tasksList = tasksList.filter { !$0.contains(task.id) }
                 decodeTask.state = "completed"
-                decodeTask.forTime = Date().convertDateToTime
+                decodeTask.forTime = Date().convertDateToShortTime
                 if let encodeTask = try?  JSONEncoder().encode(decodeTask),
                     let jsonTask = String(data: encodeTask, encoding: .utf8) {
                     tasksList.append(jsonTask)

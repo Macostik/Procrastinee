@@ -15,9 +15,14 @@ extension Date {
                                                  from: self)) else { return nil }
         return gregorian.date(byAdding: .day, value: 7, to: sunday)
     }
-    var convertDateToTime: String {
+    var convertDateToAmPmTime: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "h:mm a"
+        return dateFormatter.string(from: self)
+    }
+    var convertDateToShortTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "h:mm"
         return dateFormatter.string(from: self)
     }
 }

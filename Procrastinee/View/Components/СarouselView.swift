@@ -42,6 +42,8 @@ struct СarouselView: View {
                         snappedItem = draggingItem
                         let index = ((dataList.count - 1) - Int(draggingItem)) % dataList.count
                         selectedValue = dataList[index] * multiplayValue
+                        UIImpactFeedbackGenerator(style: .soft)
+                            .impactOccurred()
                     }
                 }
         )

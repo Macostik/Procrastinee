@@ -138,24 +138,38 @@ struct TaskCell: View {
 struct DesctriptionTaskView: View {
     var task: TaskItem
     var body: some View {
+        let forTime = task.forTime.components(separatedBy: ":")
         VStack(alignment: .leading, spacing: 0) {
-            Text(task.type.capitalized)
+            Text(task.name.capitalized)
                 .font(.system(size: 16).weight(.semibold))
                 .foregroundColor(Color.black)
-            HStack {
+            HStack(spacing: 0) {
                 Group {
                     Text(L10n.Task.from) +
-                    Text(task.fromTime)
+                    Text(task.fromTime) +
+                    Text(" ")
                 }
                 .font(.system(size: 12).weight(.medium))
                 .foregroundColor(Color.ccfcfcf)
                 if task.state == "completed" {
                     Group {
-                        Text(L10n.Task.for) +
-                        Text(task.forTime)
+                        Text(" ")
+                        Text(L10n.Task.for)
+                            .font(.system(size: 12).weight(.medium))
+                            .foregroundColor(Color.black)
+                        Text(forTime.first ?? "")
+                            .font(.system(size: 12).weight(.medium))
+                            .foregroundColor(Color.black)
+                        Text("h ")
+                            .font(.system(size: 12).weight(.light))
+                            .foregroundColor(Color.black)
+                        Text(forTime.last ?? "")
+                            .font(.system(size: 12).weight(.medium))
+                            .foregroundColor(Color.black)
+                        Text("m")
+                            .font(.system(size: 12).weight(.light))
+                            .foregroundColor(Color.black)
                     }
-                    .font(.system(size: 12).weight(.medium))
-                    .foregroundColor(Color.ccfcfcf)
                 }
             }
             .padding(.top, 5)

@@ -19,7 +19,7 @@ class MainViewModel: ObservableObject {
     @Published var isBreakingTime = false
     @Published var pickerViewSelectedIndex = 0
     @Published var selectedTask = TaskType.sport
-    @Published var isDeepMode = false
+    @Published var isDeepMode = true
     @Published var taskName = ""
     @Published var isTrackStarted = false
     @Published var presentFinishedPopup = false
@@ -94,7 +94,7 @@ class MainViewModel: ObservableObject {
         observeSelectedDeal()
     }
     func createTask(inProcess: Bool = true) {
-        let fromTime = inProcess ? Date().convertDateToTime : selectedTaskTime
+        let fromTime = inProcess ? Date().convertDateToAmPmTime : selectedTaskTime
         let task = TaskItem(state: "planned",
                             type: selectedTask.rawValue,
                             name: taskName,

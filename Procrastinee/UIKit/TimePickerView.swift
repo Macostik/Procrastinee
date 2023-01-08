@@ -38,7 +38,7 @@ struct TimePickerView: UIViewRepresentable {
         }
         func pickerView(_ pickerView: UIPickerView,
                         numberOfRowsInComponent component: Int) -> Int {
-            TimePickerData.allCases[component].description.count
+            return TimePickerData.allCases[component].description.count
         }
         func pickerView(_ pickerView: UIPickerView,
                         titleForRow row: Int,
@@ -85,5 +85,18 @@ struct TimePickerView: UIViewRepresentable {
         picker.delegate = context.coordinator
         return picker
     }
-    func updateUIView(_ picker: UIPickerView, context: Context) {}
+    func updateUIView(_ picker: UIPickerView, context: Context) {
+        let date = Date()
+        let calendar = Calendar.current
+        var hour = calendar.component(.hour, from: date)
+        let isPm = hour > 12
+        hour = isPm ? hour - 12 : hour
+        var minutes = calendar.component(.minute, from: date)
+        let roundedMinute = lrint(Double(minutes) / Double(5)) * 5
+        let firstRow = TimePickerData.hour.description.firstIndex(of: "\(hour)") ?? 0
+        let secondRow = TimePickerData.minute.description.firstIndex(of: "\(roundedMinute)") ?? 0
+        picker.selectRow(firstRow, inComponent: 0, animated: false)
+        picker.selectRow(secondRow, inComponent: 1, animated: false)
+        picker.selectRow(isPm ? 1 : 0, inComponent: 2, animated: false)
+    }
 }
