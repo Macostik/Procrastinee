@@ -39,6 +39,10 @@
 		5628898D295E07CA004EA89E /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628898C295E07CA004EA89E /* NotificationProvider.swift */; };
 		5628898F295E119A004EA89E /* HYSLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 5628898E295E119A004EA89E /* HYSLogger */; };
 		56288991295E31B9004EA89E /* bamboo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56288990295E31B9004EA89E /* bamboo.mp3 */; };
+		5641B8B7296BFFD6000526EA /* River.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B3296BFFD5000526EA /* River.mp3 */; };
+		5641B8B8296BFFD6000526EA /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B4296BFFD5000526EA /* Rain.mp3 */; };
+		5641B8B9296BFFD6000526EA /* Nature.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B5296BFFD5000526EA /* Nature.mp3 */; };
+		5641B8BA296BFFD6000526EA /* Campfire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B6296BFFD6000526EA /* Campfire.mp3 */; };
 		5642A3942962345E0052AF7F /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642A3932962345E0052AF7F /* Date+Ext.swift */; };
 		56430080295B53EA00657034 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007F295B53EA00657034 /* User.swift */; };
 		56430087295B765400657034 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 56430086295B765400657034 /* FirebaseFirestore */; };
@@ -139,6 +143,10 @@
 		5628898A295E05E2004EA89E /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		5628898C295E07CA004EA89E /* NotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProvider.swift; sourceTree = "<group>"; };
 		56288990295E31B9004EA89E /* bamboo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bamboo.mp3; sourceTree = "<group>"; };
+		5641B8B3296BFFD5000526EA /* River.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = River.mp3; sourceTree = "<group>"; };
+		5641B8B4296BFFD5000526EA /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
+		5641B8B5296BFFD5000526EA /* Nature.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Nature.mp3; sourceTree = "<group>"; };
+		5641B8B6296BFFD6000526EA /* Campfire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Campfire.mp3; sourceTree = "<group>"; };
 		5642A3932962345E0052AF7F /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		5643007F295B53EA00657034 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5645FFC52959896900A92205 /* IntroducingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingView.swift; sourceTree = "<group>"; };
@@ -266,6 +274,7 @@
 		560328E129431DAF00E6BCB3 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				5641B8B2296BFFC2000526EA /* FocusSound */,
 				569B953A296AD12D00FB48A9 /* SuccessMark.json */,
 				56288976295C626D004EA89E /* GoogleService-Info.plist */,
 				564ECCDC29504ABB00EFD784 /* ButtonSound */,
@@ -407,6 +416,17 @@
 			children = (
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		5641B8B2296BFFC2000526EA /* FocusSound */ = {
+			isa = PBXGroup;
+			children = (
+				5641B8B6296BFFD6000526EA /* Campfire.mp3 */,
+				5641B8B5296BFFD5000526EA /* Nature.mp3 */,
+				5641B8B4296BFFD5000526EA /* Rain.mp3 */,
+				5641B8B3296BFFD5000526EA /* River.mp3 */,
+			);
+			path = FocusSound;
 			sourceTree = "<group>";
 		};
 		5643008A295B7A9700657034 /* Frameworks */ = {
@@ -627,13 +647,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5641B8B8296BFFD6000526EA /* Rain.mp3 in Resources */,
 				564ECCFF295050BB00EFD784 /* Slide Lefs.mp3 in Resources */,
 				564ECCFB295050BB00EFD784 /* Open Prize.mp3 in Resources */,
+				5641B8B7296BFFD6000526EA /* River.mp3 in Resources */,
 				564ECCFE295050BB00EFD784 /* Tracker Tapbar Button.mp3 in Resources */,
 				560328D729431CA400E6BCB3 /* Preview Assets.xcassets in Resources */,
 				564ECCFC295050BB00EFD784 /* Tracker from Planning Button.mp3 in Resources */,
 				564ECCFD295050BB00EFD784 /* Close Button 2.mp3 in Resources */,
 				564ECCF7295050BB00EFD784 /* Ranking Tapbar Button.mp3 in Resources */,
+				5641B8BA296BFFD6000526EA /* Campfire.mp3 in Resources */,
 				56288977295C626D004EA89E /* GoogleService-Info.plist in Resources */,
 				560328E72943206300E6BCB3 /* fonts_swift5_swiftui.stencil in Resources */,
 				564ECCF9295050BB00EFD784 /* Play Tracker Buton.mp3 in Resources */,
@@ -649,6 +672,7 @@
 				564ECCF6295050BB00EFD784 /* Stop Tracker Button.mp3 in Resources */,
 				560328EA294320D100E6BCB3 /* Colors.xcassets in Resources */,
 				564ECCF5295050BB00EFD784 /* Slide Right.mp3 in Resources */,
+				5641B8B9296BFFD6000526EA /* Nature.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

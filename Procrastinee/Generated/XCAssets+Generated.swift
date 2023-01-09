@@ -45,6 +45,7 @@ internal extension Image {
   static var successMark : Image { Image("SuccessMark", bundle: BundleToken.bundle) }
   static var topOne : Image { Image("TopOne", bundle: BundleToken.bundle) }
   static var arrow : Image { Image("arrow", bundle: BundleToken.bundle) }
+  static var campfire : Image { Image("campfire", bundle: BundleToken.bundle) }
   static var checkmark : Image { Image("checkmark", bundle: BundleToken.bundle) }
   static var clock : Image { Image("clock", bundle: BundleToken.bundle) }
   static var closeIcon : Image { Image("closeIcon", bundle: BundleToken.bundle) }
@@ -52,13 +53,16 @@ internal extension Image {
   static var educationTaskIcon : Image { Image("educationTaskIcon", bundle: BundleToken.bundle) }
   static var firstIntroduction : Image { Image("firstIntroduction", bundle: BundleToken.bundle) }
   static var getStarted : Image { Image("getStarted", bundle: BundleToken.bundle) }
+  static var nature : Image { Image("nature", bundle: BundleToken.bundle) }
   static var pause : Image { Image("pause", bundle: BundleToken.bundle) }
   static var plusIcon : Image { Image("plusIcon", bundle: BundleToken.bundle) }
   static var procrasteeImage : Image { Image("procrasteeImage", bundle: BundleToken.bundle) }
+  static var rain : Image { Image("rain", bundle: BundleToken.bundle) }
   static var rankingBackground : Image { Image("rankingBackground", bundle: BundleToken.bundle) }
   static var reminders : Image { Image("reminders", bundle: BundleToken.bundle) }
   static var secondIntroduction : Image { Image("secondIntroduction", bundle: BundleToken.bundle) }
   static var sportTaskIcon : Image { Image("sportTaskIcon", bundle: BundleToken.bundle) }
+  static var stream : Image { Image("stream", bundle: BundleToken.bundle) }
   static var studyTaskIcon : Image { Image("studyTaskIcon", bundle: BundleToken.bundle) }
   static var suggested : Image { Image("suggested", bundle: BundleToken.bundle) }
   static var tapToHold : Image { Image("tapToHold", bundle: BundleToken.bundle) }

@@ -9,7 +9,6 @@ import Foundation
 
 struct Purchase: Identifiable, Hashable {
     var id = UUID()
-    var isSelected = false
     var purchaseType: PurchaseType
 }
 

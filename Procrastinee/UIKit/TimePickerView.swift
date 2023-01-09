@@ -91,7 +91,7 @@ struct TimePickerView: UIViewRepresentable {
         var hour = calendar.component(.hour, from: date)
         let isPm = hour > 12
         hour = isPm ? hour - 12 : hour
-        var minutes = calendar.component(.minute, from: date)
+        let minutes = calendar.component(.minute, from: date)
         let roundedMinute = lrint(Double(minutes) / Double(5)) * 5
         let firstRow = TimePickerData.hour.description.firstIndex(of: "\(hour)") ?? 0
         let secondRow = TimePickerData.minute.description.firstIndex(of: "\(roundedMinute)") ?? 0

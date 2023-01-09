@@ -105,14 +105,18 @@ struct DeepFocusModeView: View {
 
 struct FocusSoundsView: View {
     var isPromodoroSelected: Bool = false
+    @State var selectedSound = Sound.campfire
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(L10n.Tracking.Settings.focusSound)
                 .font(.system(size: 20).weight(.semibold))
                 .foregroundColor(Color.c2F2E41)
             HStack(spacing: 22) {
-                ForEach(soundList) { sound in
-                    SoundView(sound: sound)
+                ForEach(Sound.allCases, id: \.self) { sound in
+                    SoundView(sound: sound, selected: sound == selectedSound)
+                        .onTapGesture {
+                            self.selectedSound = sound
+                        }
                 }
             }
             .padding(.top, 19)

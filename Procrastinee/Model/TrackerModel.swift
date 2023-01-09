@@ -8,17 +8,9 @@
 import Foundation
 import Combine
 
-struct Sound: Identifiable {
-    let id = UUID()
-    let name: String
+enum Sound: String, CaseIterable {
+    case campfire, rain, stream, nature
 }
-
-var soundList = [
-    Sound(name: "Campfire"),
-    Sound(name: "Rain"),
-    Sound(name: "River"),
-    Sound(name: "Nature")
-]
 
 enum TrackerSettingsType {
     case promodoro, stopWatch

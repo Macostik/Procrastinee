@@ -30,7 +30,7 @@ class MainViewModel: ObservableObject {
     @Published var weekEndInValue = ""
     @Published var breakTime = 10
     @Published var workPeriodTime = 60
-    @Published var stopWatchingTrackingTime = 1
+    @Published var stopWatchingTrackingTime = 10
     @Published var isTrackShouldStop = false
     @Published var isBreakingTimeShouldStop = false
     @Published var isReverseAnimation = false
@@ -43,7 +43,7 @@ class MainViewModel: ObservableObject {
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @Published var timeCounterTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     @Published var progressDots = 0
-    @Published var counterDots: CGFloat = 200
+    @Published var counterDots: CGFloat = 0
     @Published var currentTask: TaskItem?
     @Published var groupTask = [
         GroupTask(index: 0, key: "Today", value: [])
@@ -153,7 +153,7 @@ extension MainViewModel {
                     timer = Timer.publish(every: interval,
                                           on: .main,
                                           in: .common).autoconnect()
-                    timeCounterTimer = Timer.publish(every: 10,
+                    timeCounterTimer = Timer.publish(every: 60,
                                           on: .main,
                                           in: .common).autoconnect()
                 } else {

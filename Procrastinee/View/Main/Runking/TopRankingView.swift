@@ -11,6 +11,7 @@ import AVFoundation
 
 struct TopRankingView: View {
     @StateObject var viewModel: MainViewModel
+    @Environment(\.presentationMode) private var presentationMode
     @State var player: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "Close Button 2",
                                   withExtension: "mp3")
@@ -22,7 +23,7 @@ struct TopRankingView: View {
             HStack {
                 Spacer()
                 Button {
-                    viewModel.selectedTracker = .tracker
+                    presentationMode.wrappedValue.dismiss()
                     player?.play()
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
@@ -31,7 +32,7 @@ struct TopRankingView: View {
                 }
             }
             .padding(.trailing, 24)
-            .padding(.top, 47)
+            .padding(.top, 24)
             Text(L10n.Ranking.system)
                 .font(.system(size: 20).weight(.semibold))
                 .foregroundColor(Color.c2F2E41)
