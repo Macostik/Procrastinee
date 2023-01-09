@@ -68,12 +68,10 @@ class FirebaseService: FirebaseInteractor {
     private func addListener() {
         FirestoreSubscription.subscribe(id: SubscriptionID(), docPath: "User")
             .compactMap(FirestoreDecoder.decode(User.self))
-            .receive(on: DispatchQueue.main)
             .sink(receiveValue: { [weak self] users in
                 Logger.info("List of users: \(users)")
                 self?.users.value = users
                 self?.getCurrentUser()
-                self?.fetchAllTasks()
             })
             .store(in: &cancellable)
     }
@@ -85,13 +83,14 @@ class FirebaseService: FirebaseInteractor {
             } receiveValue: { [weak self] user in
                 Logger.info("Current user: \(user)")
                 self?.currentUser.value = user
+                self?.fetchAllTasks()
             }
             .store(in: &cancellable)
     }
     private func fetchAllTasks() {
         currentUser
             .sink { _ in
-            } receiveValue: { user in
+            } receiveValue: { [unowned self] user in
                 guard let tasks = user.tasks else { return }
                 var tasksList: [TaskItem] = []
                 for task in tasks where task.isEmpty == false {
@@ -123,32 +122,28 @@ class FirebaseService: FirebaseInteractor {
         }
     }
     func addTask(task: TaskItem) {
-        DispatchQueue.global(qos: .background).async {
-            if let encodedTask = try? JSONEncoder().encode(task) {
-                if let jsonTask = String(data: encodedTask, encoding: .utf8) {
-                    let ref = self.dataBase.collection("User")
-                        .document(self.currentUser.value.id ?? "")
-                    ref.updateData([
-                        "tasks": FieldValue.arrayUnion([jsonTask])
-                    ])
-                }
+        if let encodedTask = try? JSONEncoder().encode(task) {
+            if let jsonTask = String(data: encodedTask, encoding: .utf8) {
+                let ref = self.dataBase.collection("User")
+                    .document(self.currentUser.value.id ?? "")
+                ref.updateData([
+                    "tasks": FieldValue.arrayUnion([jsonTask])
+                ])
             }
         }
     }
     func updateTrackUserTimes(todayTotalTime: Int,
                               dailyAverage: Int,
                               totalWeekly: Int) {
-        DispatchQueue.global(qos: .background).async {
-            self.dataBase.collection("User").document(self.currentUser.value.id ?? "")
-                .getDocument(completion: { snapshot, _ in
-                    snapshot?.reference.updateData([
-                        "todayFocused": todayTotalTime,
-                        "dailyAverage": dailyAverage,
-                        "totalWeekly": totalWeekly
-                    ])
-                    Logger.debug("Update tracker user times")
-                })
-        }
+        self.dataBase.collection("User").document(self.currentUser.value.id ?? "")
+            .getDocument(completion: { snapshot, _ in
+                snapshot?.reference.updateData([
+                    "todayFocused": todayTotalTime,
+                    "dailyAverage": dailyAverage,
+                    "totalWeekly": totalWeekly
+                ])
+                Logger.debug("Update tracker user times")
+            })
     }
     func updateFinishedTask(_ task: TaskItem?) {
         self.dataBase.collection("User")
@@ -166,7 +161,7 @@ class FirebaseService: FirebaseInteractor {
                 decodeTask.state = "completed"
                 decodeTask.forTime = Date().convertDateToShortTime
                 if let encodeTask = try?  JSONEncoder().encode(decodeTask),
-                    let jsonTask = String(data: encodeTask, encoding: .utf8) {
+                   let jsonTask = String(data: encodeTask, encoding: .utf8) {
                     tasksList.append(jsonTask)
                     document.reference.updateData([
                         "tasks": tasksList

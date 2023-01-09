@@ -108,6 +108,9 @@ struct TimerView: View {
                                 .zIndex(2)
                                 .onTapGesture {
                                     viewModel.hasTaskPaused = false
+                                    viewModel.mainplayer?.play()
+                                    UIImpactFeedbackGenerator(style: .soft)
+                                        .impactOccurred()
                                 }
                         }
                         GradientCircleView(startInitValue: $viewModel.counter)
@@ -122,8 +125,11 @@ struct TimerView: View {
                                     }
                                     viewModel.counterDots += 1
                                     let currentSeconds = Int(viewModel.counterDots * viewModel.interval)
+                                    let timePeriod =
+                                    (viewModel.selectedTrackerType == .stopWatch ?
+                                     viewModel.stopWatchingTrackingTime : viewModel.workPeriodTime) * 60
                                     let index =
-                                    Int(currentSeconds/(viewModel.stopWatchingTrackingTime * 60/dotsCount))
+                                    Int(currentSeconds/(timePeriod/dotsCount))
                                     viewModel.progressDots = index
                                     if viewModel.counter >= endCycleValue {
                                         // reverse animation

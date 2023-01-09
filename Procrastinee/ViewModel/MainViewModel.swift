@@ -18,7 +18,6 @@ class MainViewModel: ObservableObject {
     @Published var selectedTracker: TrackerType = .tracker
     @Published var selectedDeal: DealType = .tracker
     @Published var isBreakingTime = false
-    @Published var pickerViewSelectedIndex = 0
     @Published var selectedTask = TaskType.sport
     @Published var taskName = ""
     @Published var isTrackStarted = false
@@ -38,6 +37,7 @@ class MainViewModel: ObservableObject {
     @Published var isCheckIn = false
     @Published var todayFocusedValue = 0
     @Published var dailyAverageValue = 0
+    @Published var pickerViewSelectedIndex = 0
     @Published var totalWeeklyValue = 0
     @Published var counter: CGFloat = -89
     @Published var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
@@ -92,6 +92,7 @@ class MainViewModel: ObservableObject {
             setupPlayer(soundName: newValue?.soundName ?? "")
         }
     }
+  
     @Published var focusPlayer: AVAudioPlayer?
     @Published var mainplayer: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "MainSound",
@@ -115,6 +116,7 @@ class MainViewModel: ObservableObject {
     private var cancellable: Set<AnyCancellable> = []
     init() {
         setupPlayer(soundName: selectedSound?.soundName ?? "")
+        fetchAllTasks()
         fetchTrackOver()
         observeWorkingTime()
         observeTrackingTime()
@@ -196,6 +198,8 @@ extension MainViewModel {
                     timer.upstream.connect().cancel()
                     timeCounterTimer.upstream.connect().cancel()
                     focusPlayer?.pause()
+                    counterDots = 0
+                    progressDots = 0
                 }
             }
             .store(in: &cancellable)

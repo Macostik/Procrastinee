@@ -17,6 +17,7 @@ struct DotsProgressView: View {
                     .frame(width: 2, height: 2)
                     .scaleEffect(selectedIndex >= index ? 3 : 1)
                     .padding(.trailing, index == 4 ? 23 : 11)
+                    .foregroundColor(Color.black)
             }
         }
         .frame(width: 109, height: 6)

@@ -122,7 +122,6 @@ struct CreateProfileView: View {
 
 struct CreateProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        
         CreateProfileView(mainViewModel: MainViewModel(),
                           onboardingViewModel: OnboardingViewModel())
     }

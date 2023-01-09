@@ -36,7 +36,6 @@ struct ContentView: View {
                             .sendAlertNotification(with: mainViewModel.isDeepMode ? 2 : 10)
                     }
                 } else if newPhase == .active {
-                    mainViewModel.fetchAllTasks()
                     guard let lastTrackerTaskTimeStamp =
                             UserDefaults.standard
                         .value(forKey: Constants.lastUpdate) as? Date else { return }
