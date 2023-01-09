@@ -10,6 +10,14 @@ import Combine
 
 enum Sound: String, CaseIterable {
     case campfire, rain, stream, nature
+    var soundName: String {
+        switch self {
+        case .campfire: return "Campfire"
+        case .rain: return "Rain"
+        case .stream: return "Stream"
+        case .nature: return "Nature"
+        }
+    }
 }
 
 enum TrackerSettingsType {

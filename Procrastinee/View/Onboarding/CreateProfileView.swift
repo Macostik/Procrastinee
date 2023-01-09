@@ -12,15 +12,10 @@ import HYSLogger
 struct CreateProfileView: View {
     @FocusState private var isFocused: Bool
     @StateObject private var keyboard = KeyboardHandler()
-    @StateObject var viewModel: OnboardingViewModel
+    @StateObject var mainViewModel: MainViewModel
+    @StateObject var onboardingViewModel: OnboardingViewModel
     @Environment(\.dependency) private var dependency
     @State private var userExist = false
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var onNextScreen: (() -> Void)?
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -45,23 +40,23 @@ struct CreateProfileView: View {
                             Button {
                                 withAnimation {
                                     isFocused = false
-                                    viewModel.isCountyPopupPresented = true
+                                    onboardingViewModel.isCountyPopupPresented = true
                                 }
                             } label: {
-                                let flag = viewModel.selectedCountry.components(separatedBy: " ").first ?? ""
-                                Text(flag)
+                                let code = onboardingViewModel.selectedCountry.components(separatedBy: "_").last ?? ""
+                                Text(emojiFlag(by: code))
                             }
                             Image.countrySelectedIcon
                             Divider()
                                 .padding(.vertical, 19)
                                 .padding(.horizontal, 11)
-                            TextField(L10n.Onboarding.nickname, text: $viewModel.nickName)
+                            TextField(L10n.Onboarding.nickname, text: $onboardingViewModel.nickName)
                                 .foregroundColor(Color.onboardingTextColor)
                                 .font(.system(size: 18))
                                 .accentColor(Color.c2F2E41)
                                 .focused($isFocused)
                                 .onTapGesture {
-                                    viewModel.isCountyPopupPresented = false
+                                    onboardingViewModel.isCountyPopupPresented = false
                                     isFocused = true
                                 }
                                 .onAppear {
@@ -74,24 +69,24 @@ struct CreateProfileView: View {
                     }
                     .frame(height: 66)
                     .padding(.horizontal, 28)
-                    .padding(.top, viewModel.isCountyPopupPresented ? -40 : 40)
+                    .padding(.top, onboardingViewModel.isCountyPopupPresented ? -40 : 40)
                     .shadow(color: Color.shadowColor, radius: 30)
                 Spacer()
                 GradientButton(action: {
                     isFocused = false
+                    mainViewModel.mainplayer?.play()
                     DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
                         UIImpactFeedbackGenerator(style: .soft)
                             .impactOccurred()
-                        player?.play()
                         userExist = dependency.provider.firebaseService.users.value
-                            .contains(where: { $0.name == viewModel.nickName }) ||
-                        viewModel.nickName.isEmpty
+                            .contains(where: { $0.name == onboardingViewModel.nickName }) ||
+                        onboardingViewModel.nickName.isEmpty
                         if userExist {
                             Logger.warrning(L10n.Onboarding.userExist)
                         } else {
                             dependency.provider.firebaseService
-                                .addUser(name: viewModel.nickName,
-                                         country: viewModel.selectedCountry)
+                                .addUser(name: onboardingViewModel.nickName,
+                                         country: onboardingViewModel.selectedCountry)
                             onNextScreen?()
                         }
                     })
@@ -107,17 +102,17 @@ struct CreateProfileView: View {
                 })
                 .padding(.horizontal, 23)
                 .padding(.bottom, 20)
-                .alert(viewModel.nickName.isEmpty ?
+                .alert(onboardingViewModel.nickName.isEmpty ?
                        L10n.Onboarding.nicknameEmpty :
                        L10n.Onboarding.userExistTryAnother,
                        isPresented: $userExist) {
                     Button(L10n.Onboarding.ok, role: .cancel) { }
                         }
             }
-            if viewModel.isCountyPopupPresented {
-                CountryPopupView(viewModel: viewModel)
+            if onboardingViewModel.isCountyPopupPresented {
+                CountryPopupView(viewModel: onboardingViewModel)
                     .transition(.move(edge: .bottom))
-                    .animation(.easeInOut, value: viewModel.isCountyPopupPresented)
+                    .animation(.easeInOut, value: onboardingViewModel.isCountyPopupPresented)
             }
         }
         .background(Color.backgroundColor)
@@ -127,6 +122,8 @@ struct CreateProfileView: View {
 
 struct CreateProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        CreateProfileView(viewModel: OnboardingViewModel())
+        
+        CreateProfileView(mainViewModel: MainViewModel(),
+                          onboardingViewModel: OnboardingViewModel())
     }
 }

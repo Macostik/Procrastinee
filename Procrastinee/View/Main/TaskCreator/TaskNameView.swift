@@ -46,12 +46,6 @@ struct TaskNameTextField: View {
     @StateObject var viewModel: MainViewModel
     @FocusState private var isFocused: Bool
     @State var textFontColor = Color.ccfd0D4
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Play Tracker Buton",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var setTimeAction: (() -> Void)?
     var body: some View {
         ZStack {
@@ -74,7 +68,7 @@ struct TaskNameTextField: View {
                         Button {
                              if viewModel.taskName.isEmpty == false {
                                  isFocused = false
-                                     player?.play()
+                                 viewModel.mainplayer?.play()
                                      UIImpactFeedbackGenerator(style: .soft)
                                          .impactOccurred()
                                  if viewModel.selectedDeal == .planning {

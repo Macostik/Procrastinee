@@ -20,9 +20,11 @@ struct TrackerSettingsView: View {
             if isPromodoroSelected {
                 BreakTimeView(viewModel: viewModel)
             }
-            DeepFocusModeView(isKeepingFocus: $viewModel.isDeepMode,
+            DeepFocusModeView(viewModel: viewModel,
+                              isKeepingFocus: $viewModel.isDeepMode,
                               isPromodoroSelected: isPromodoroSelected)
-            FocusSoundsView(isPromodoroSelected: isPromodoroSelected)
+            FocusSoundsView(viewModel: viewModel,
+                            isPromodoroSelected: isPromodoroSelected)
             Spacer()
         }
         .fullScreenSize()
@@ -56,19 +58,8 @@ struct BreakTimeView: View {
 }
 
 struct DeepFocusModeView: View {
+    @StateObject var viewModel: MainViewModel
     @Binding var isKeepingFocus: Bool
-    @State var playerOn: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Tracker from Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
-    @State var playerOff: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var isPromodoroSelected: Bool = false
     var body: some View {
         VStack(spacing: 0) {
@@ -83,9 +74,9 @@ struct DeepFocusModeView: View {
             Button {
                 isKeepingFocus.toggle()
                 if isKeepingFocus {
-                    playerOn?.play()
+                    viewModel.mainplayer?.play()
                 } else {
-                    playerOff?.play()
+                    viewModel.secondaryPlayer?.play()
                 }
                 UIImpactFeedbackGenerator(style: .soft).impactOccurred()
             } label: {
@@ -104,8 +95,8 @@ struct DeepFocusModeView: View {
 }
 
 struct FocusSoundsView: View {
+    @StateObject var viewModel: MainViewModel
     var isPromodoroSelected: Bool = false
-    @State var selectedSound = Sound.campfire
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Text(L10n.Tracking.Settings.focusSound)
@@ -113,9 +104,13 @@ struct FocusSoundsView: View {
                 .foregroundColor(Color.c2F2E41)
             HStack(spacing: 22) {
                 ForEach(Sound.allCases, id: \.self) { sound in
-                    SoundView(sound: sound, selected: sound == selectedSound)
+                    SoundView(sound: sound, selected: sound == viewModel.selectedSound)
                         .onTapGesture {
-                            self.selectedSound = sound
+                            if viewModel.isDeepMode {
+                                viewModel.selectedSound = sound
+                                viewModel.secondaryPlayer?.play()
+                                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
+                            }
                         }
                 }
             }

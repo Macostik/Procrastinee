@@ -60,12 +60,6 @@ struct ContainerPlanningView_Previews: PreviewProvider {
 
 struct TaskSectionHeader: View {
     @StateObject var viewModel: MainViewModel
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Open Prize",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var index: Int
     var date: TimeInterval
     var title: String
@@ -99,7 +93,7 @@ struct TaskSectionHeader: View {
             if viewModel.groupTask.first?.key == title {
                 Button {
                     viewModel.isTaskCategoryPresented = true
-                    player?.play()
+                    viewModel.secondaryPlayer?.play()
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
                 } label: {

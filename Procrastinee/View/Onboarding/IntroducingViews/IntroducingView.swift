@@ -9,13 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct IntroducingView: View {
+    @StateObject var viewModel: MainViewModel
     var onNextScreen: (() -> Void)?
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     @State var nextScreen: IntroducingViewType = .first
     var body: some View {
         ZStack(alignment: .bottom) {
@@ -43,9 +38,9 @@ struct IntroducingView: View {
                 }
             }
             FooterIntroducingView {
+                viewModel.mainplayer?.play()
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
-                player?.play()
                 nextScreen.goToNext()
                 if nextScreen == .finish {
                     onNextScreen?()
@@ -57,7 +52,7 @@ struct IntroducingView: View {
 
 struct IntroducingView_Previews: PreviewProvider {
     static var previews: some View {
-        IntroducingView()
+        IntroducingView(viewModel: MainViewModel())
     }
 }
 

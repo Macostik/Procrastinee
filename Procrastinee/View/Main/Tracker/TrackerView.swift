@@ -17,7 +17,7 @@ struct TrackerView: View {
     @State private var canDrag = false
     var body: some View {
         VStack(spacing: 0) {
-            TrackerPlaningSwitcher(type: $viewModel.selectedDeal)
+            TrackerPlaningSwitcher(viewModel: viewModel, type: $viewModel.selectedDeal)
             VStack {
                 GeometryReader { proxy in
                     PagerView(pageCount: 2, canDrag: $canDrag,
@@ -50,17 +50,12 @@ struct TrackerView_Previews: PreviewProvider {
 }
 
 struct TrackerPlaningSwitcher: View {
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Play Tracker Buton",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
+    @StateObject var viewModel: MainViewModel
     @Binding var type: DealType
     var body: some View {
         HStack(spacing: 30) {
             Button {
-                player?.play()
+                viewModel.secondaryPlayer?.play()
                 type = .tracker
             } label: {
                 Text(L10n.Main.tracker)
@@ -69,7 +64,7 @@ struct TrackerPlaningSwitcher: View {
                                      Color.c2F2E41 : Color.c878787)
             }
             Button {
-                player?.play()
+                viewModel.secondaryPlayer?.play()
                 type = .planning
             } label: {
                 Text(L10n.Main.planing)
@@ -88,18 +83,6 @@ struct TimerView: View {
     @StateObject var viewModel: MainViewModel
     @State var isScale = false
     var clickHandler: (() -> Void)?
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Play Tracker Buton",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
-    @State var stopPlayer: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Stop Tracker Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var body: some View {
         VStack(alignment: .leading) {
             Image.tapToStart
@@ -125,9 +108,6 @@ struct TimerView: View {
                                 .zIndex(2)
                                 .onTapGesture {
                                     viewModel.hasTaskPaused = false
-                                    player?.play()
-                                    UIImpactFeedbackGenerator(style: .soft)
-                                        .impactOccurred()
                                 }
                         }
                         GradientCircleView(startInitValue: $viewModel.counter)
@@ -136,6 +116,10 @@ struct TimerView: View {
                             .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
+                                    if viewModel.isDeepMode {
+                                        viewModel.focusPlayer?.numberOfLoops = .max
+                                        viewModel.focusPlayer?.play()
+                                    }
                                     viewModel.counterDots += 1
                                     let currentSeconds = Int(viewModel.counterDots * viewModel.interval)
                                     let index =
@@ -183,7 +167,6 @@ struct TimerView: View {
                         Button {
                             isScale = true
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                                player?.play()
                                 clickHandler?()
                                 isScale = false
                                 viewModel.counter = beginCycleValue - 0.9
@@ -204,13 +187,14 @@ struct TimerView: View {
             .onTapGesture {
                 if viewModel.selectedTrackerType == .stopWatch {
                     viewModel.hasTaskPaused = true
-                    stopPlayer?.play()
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
+                    viewModel.focusPlayer?.pause()
+                    viewModel.secondaryPlayer?.play()
                 }
             }
             .onLongPressGesture(perform: {
-                player?.play()
+                viewModel.mainplayer?.play()
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
                 viewModel.presentFinishedPopup = true

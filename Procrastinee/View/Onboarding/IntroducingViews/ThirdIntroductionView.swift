@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct ThirdIntroductionView: View {
-    @State private var isPresentedKeepYourTrackView = false
     var body: some View {
         VStack {
-            NavigationLink(destination: RemindersView(),
-                           isActive: $isPresentedKeepYourTrackView) {}
             Spacer()
             Image.thirdIntroduction
                 .resizable()

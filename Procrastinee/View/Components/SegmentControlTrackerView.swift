@@ -11,18 +11,6 @@ import AVFoundation
 struct SegmentControlTrackerView: View {
     @StateObject var viewModel: MainViewModel
     @Binding var selectedTracker: TrackerSettingsType
-    @State var planningPlayer: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
-    @State var trackerPlayer: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Tracker from Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     private var isPromodoroSelected: Bool {
         selectedTracker == .promodoro
     }
@@ -50,11 +38,10 @@ struct SegmentControlTrackerView: View {
                     .onTapGesture {
                         if selectedTracker == .promodoro {
                             selectedTracker = .stopWatch
-                            trackerPlayer?.play()
                         } else {
                             selectedTracker = .promodoro
-                            planningPlayer?.play()
                         }
+                        viewModel.secondaryPlayer?.play()
                         UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                     }
             }

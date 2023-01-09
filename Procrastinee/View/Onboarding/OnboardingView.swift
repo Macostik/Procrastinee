@@ -17,7 +17,8 @@ struct OnboardingView: View {
             ScrollViewReader { reader in
                 VStack {
                     ScrollableScrollView(scrollDisable: true) {
-                        ListScreenView(viewModel: onboardingViewModel,
+                        ListScreenView(mainViewModel: mainViewModel,
+                                       onboardingViewModel: onboardingViewModel,
                                        screenType: $screenType)
                             .frame(width: proxy.size.width,
                                    height: proxy.size.height)
@@ -42,7 +43,8 @@ struct OnboardingView_Previews: PreviewProvider {
 }
 
 struct ListScreenView: View {
-    @StateObject var viewModel: OnboardingViewModel
+    @StateObject var mainViewModel: MainViewModel
+    @StateObject var onboardingViewModel: OnboardingViewModel
     @Binding var screenType: OnboardingScreensType
     var body: some View {
         Group {
@@ -50,27 +52,29 @@ struct ListScreenView: View {
                 screenType = .introducing
             }
             .id(OnboardingScreensType.suggested)
-            IntroducingView {
+            IntroducingView(viewModel: mainViewModel) {
                 screenType = .reminder
             }
             .id(OnboardingScreensType.introducing)
-            RemindersView {
+            RemindersView(viewModel: mainViewModel) {
                 screenType = .createProfile
             }
             .id(OnboardingScreensType.reminder)
-            CreateProfileView(viewModel: viewModel) {
+            CreateProfileView(mainViewModel: mainViewModel,
+                              onboardingViewModel: onboardingViewModel) {
                 screenType = .progress
             }
             .id(OnboardingScreensType.createProfile)
-            ProgressView(viewModel: viewModel) {
+            ProgressView(viewModel: onboardingViewModel) {
                 screenType = .successCreated
             }
             .id(OnboardingScreensType.progress)
-            SuccessCreatingAccountView(viewModel: viewModel) {
+            SuccessCreatingAccountView(viewModel: onboardingViewModel) {
                 screenType = .purchase
             }
             .id(OnboardingScreensType.successCreated)
-            PurchaseView(onboardingViewModel: viewModel)
+            PurchaseView(mainViewModel: mainViewModel,
+                         onboardingViewModel: onboardingViewModel)
             .id(OnboardingScreensType.purchase)
         }
     }

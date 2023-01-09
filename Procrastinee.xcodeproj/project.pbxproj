@@ -38,11 +38,12 @@
 		5628898B295E05E2004EA89E /* FirebaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628898A295E05E2004EA89E /* FirebaseProvider.swift */; };
 		5628898D295E07CA004EA89E /* NotificationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5628898C295E07CA004EA89E /* NotificationProvider.swift */; };
 		5628898F295E119A004EA89E /* HYSLogger in Frameworks */ = {isa = PBXBuildFile; productRef = 5628898E295E119A004EA89E /* HYSLogger */; };
-		56288991295E31B9004EA89E /* bamboo.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 56288990295E31B9004EA89E /* bamboo.mp3 */; };
-		5641B8B7296BFFD6000526EA /* River.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B3296BFFD5000526EA /* River.mp3 */; };
+		5641B8B7296BFFD6000526EA /* Stream.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B3296BFFD5000526EA /* Stream.mp3 */; };
 		5641B8B8296BFFD6000526EA /* Rain.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B4296BFFD5000526EA /* Rain.mp3 */; };
 		5641B8B9296BFFD6000526EA /* Nature.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B5296BFFD5000526EA /* Nature.mp3 */; };
 		5641B8BA296BFFD6000526EA /* Campfire.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8B6296BFFD6000526EA /* Campfire.mp3 */; };
+		5641B8BF296C41EB000526EA /* MainSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8BD296C41EB000526EA /* MainSound.mp3 */; };
+		5641B8C0296C41EB000526EA /* SecondarySound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 5641B8BE296C41EB000526EA /* SecondarySound.mp3 */; };
 		5642A3942962345E0052AF7F /* Date+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5642A3932962345E0052AF7F /* Date+Ext.swift */; };
 		56430080295B53EA00657034 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5643007F295B53EA00657034 /* User.swift */; };
 		56430087295B765400657034 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 56430086295B765400657034 /* FirebaseFirestore */; };
@@ -53,17 +54,6 @@
 		564DC5BA2945E5E900912250 /* AnimationCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5B92945E5E900912250 /* AnimationCompletion.swift */; };
 		564DC5BD2945E69700912250 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5BC2945E69700912250 /* View+Ext.swift */; };
 		564DC5BF29462F6700912250 /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564DC5BE29462F6700912250 /* PurchaseView.swift */; };
-		564ECCF5295050BB00EFD784 /* Slide Right.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEA295050BA00EFD784 /* Slide Right.mp3 */; };
-		564ECCF6295050BB00EFD784 /* Stop Tracker Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEB295050BA00EFD784 /* Stop Tracker Button.mp3 */; };
-		564ECCF7295050BB00EFD784 /* Ranking Tapbar Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEC295050BB00EFD784 /* Ranking Tapbar Button.mp3 */; };
-		564ECCF8295050BB00EFD784 /* Finish Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCED295050BB00EFD784 /* Finish Button.mp3 */; };
-		564ECCF9295050BB00EFD784 /* Play Tracker Buton.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEE295050BB00EFD784 /* Play Tracker Buton.mp3 */; };
-		564ECCFA295050BB00EFD784 /* Planning Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCEF295050BB00EFD784 /* Planning Button.mp3 */; };
-		564ECCFB295050BB00EFD784 /* Open Prize.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF0295050BB00EFD784 /* Open Prize.mp3 */; };
-		564ECCFC295050BB00EFD784 /* Tracker from Planning Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF1295050BB00EFD784 /* Tracker from Planning Button.mp3 */; };
-		564ECCFD295050BB00EFD784 /* Close Button 2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF2295050BB00EFD784 /* Close Button 2.mp3 */; };
-		564ECCFE295050BB00EFD784 /* Tracker Tapbar Button.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */; };
-		564ECCFF295050BB00EFD784 /* Slide Lefs.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */; };
 		564ECD012950583300EFD784 /* View+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD002950583300EFD784 /* View+Style.swift */; };
 		564ECD0329505B1100EFD784 /* TaskCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD0229505B1000EFD784 /* TaskCategoryView.swift */; };
 		564ECD052950734000EFD784 /* TaskPopoverPresenterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 564ECD042950734000EFD784 /* TaskPopoverPresenterView.swift */; };
@@ -142,11 +132,12 @@
 		56288985295E0373004EA89E /* NotificationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationInteractor.swift; sourceTree = "<group>"; };
 		5628898A295E05E2004EA89E /* FirebaseProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseProvider.swift; sourceTree = "<group>"; };
 		5628898C295E07CA004EA89E /* NotificationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProvider.swift; sourceTree = "<group>"; };
-		56288990295E31B9004EA89E /* bamboo.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bamboo.mp3; sourceTree = "<group>"; };
-		5641B8B3296BFFD5000526EA /* River.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = River.mp3; sourceTree = "<group>"; };
+		5641B8B3296BFFD5000526EA /* Stream.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Stream.mp3; sourceTree = "<group>"; };
 		5641B8B4296BFFD5000526EA /* Rain.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Rain.mp3; sourceTree = "<group>"; };
 		5641B8B5296BFFD5000526EA /* Nature.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Nature.mp3; sourceTree = "<group>"; };
 		5641B8B6296BFFD6000526EA /* Campfire.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Campfire.mp3; sourceTree = "<group>"; };
+		5641B8BD296C41EB000526EA /* MainSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = MainSound.mp3; sourceTree = "<group>"; };
+		5641B8BE296C41EB000526EA /* SecondarySound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = SecondarySound.mp3; sourceTree = "<group>"; };
 		5642A3932962345E0052AF7F /* Date+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Ext.swift"; sourceTree = "<group>"; };
 		5643007F295B53EA00657034 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5645FFC52959896900A92205 /* IntroducingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroducingView.swift; sourceTree = "<group>"; };
@@ -154,17 +145,6 @@
 		564DC5B92945E5E900912250 /* AnimationCompletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCompletion.swift; sourceTree = "<group>"; };
 		564DC5BC2945E69700912250 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		564DC5BE29462F6700912250 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
-		564ECCEA295050BA00EFD784 /* Slide Right.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slide Right.mp3"; sourceTree = "<group>"; };
-		564ECCEB295050BA00EFD784 /* Stop Tracker Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Stop Tracker Button.mp3"; sourceTree = "<group>"; };
-		564ECCEC295050BB00EFD784 /* Ranking Tapbar Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Ranking Tapbar Button.mp3"; sourceTree = "<group>"; };
-		564ECCED295050BB00EFD784 /* Finish Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Finish Button.mp3"; sourceTree = "<group>"; };
-		564ECCEE295050BB00EFD784 /* Play Tracker Buton.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Play Tracker Buton.mp3"; sourceTree = "<group>"; };
-		564ECCEF295050BB00EFD784 /* Planning Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Planning Button.mp3"; sourceTree = "<group>"; };
-		564ECCF0295050BB00EFD784 /* Open Prize.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Open Prize.mp3"; sourceTree = "<group>"; };
-		564ECCF1295050BB00EFD784 /* Tracker from Planning Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tracker from Planning Button.mp3"; sourceTree = "<group>"; };
-		564ECCF2295050BB00EFD784 /* Close Button 2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Close Button 2.mp3"; sourceTree = "<group>"; };
-		564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Tracker Tapbar Button.mp3"; sourceTree = "<group>"; };
-		564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Slide Lefs.mp3"; sourceTree = "<group>"; };
 		564ECD002950583300EFD784 /* View+Style.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Style.swift"; sourceTree = "<group>"; };
 		564ECD0229505B1000EFD784 /* TaskCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskCategoryView.swift; sourceTree = "<group>"; };
 		564ECD042950734000EFD784 /* TaskPopoverPresenterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskPopoverPresenterView.swift; sourceTree = "<group>"; };
@@ -424,7 +404,7 @@
 				5641B8B6296BFFD6000526EA /* Campfire.mp3 */,
 				5641B8B5296BFFD5000526EA /* Nature.mp3 */,
 				5641B8B4296BFFD5000526EA /* Rain.mp3 */,
-				5641B8B3296BFFD5000526EA /* River.mp3 */,
+				5641B8B3296BFFD5000526EA /* Stream.mp3 */,
 			);
 			path = FocusSound;
 			sourceTree = "<group>";
@@ -462,18 +442,8 @@
 		564ECCDC29504ABB00EFD784 /* ButtonSound */ = {
 			isa = PBXGroup;
 			children = (
-				56288990295E31B9004EA89E /* bamboo.mp3 */,
-				564ECCF2295050BB00EFD784 /* Close Button 2.mp3 */,
-				564ECCED295050BB00EFD784 /* Finish Button.mp3 */,
-				564ECCF0295050BB00EFD784 /* Open Prize.mp3 */,
-				564ECCEF295050BB00EFD784 /* Planning Button.mp3 */,
-				564ECCEE295050BB00EFD784 /* Play Tracker Buton.mp3 */,
-				564ECCEC295050BB00EFD784 /* Ranking Tapbar Button.mp3 */,
-				564ECCF4295050BB00EFD784 /* Slide Lefs.mp3 */,
-				564ECCEA295050BA00EFD784 /* Slide Right.mp3 */,
-				564ECCEB295050BA00EFD784 /* Stop Tracker Button.mp3 */,
-				564ECCF1295050BB00EFD784 /* Tracker from Planning Button.mp3 */,
-				564ECCF3295050BB00EFD784 /* Tracker Tapbar Button.mp3 */,
+				5641B8BD296C41EB000526EA /* MainSound.mp3 */,
+				5641B8BE296C41EB000526EA /* SecondarySound.mp3 */,
 			);
 			path = ButtonSound;
 			sourceTree = "<group>";
@@ -648,31 +618,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				5641B8B8296BFFD6000526EA /* Rain.mp3 in Resources */,
-				564ECCFF295050BB00EFD784 /* Slide Lefs.mp3 in Resources */,
-				564ECCFB295050BB00EFD784 /* Open Prize.mp3 in Resources */,
-				5641B8B7296BFFD6000526EA /* River.mp3 in Resources */,
-				564ECCFE295050BB00EFD784 /* Tracker Tapbar Button.mp3 in Resources */,
+				5641B8C0296C41EB000526EA /* SecondarySound.mp3 in Resources */,
+				5641B8B7296BFFD6000526EA /* Stream.mp3 in Resources */,
 				560328D729431CA400E6BCB3 /* Preview Assets.xcassets in Resources */,
-				564ECCFC295050BB00EFD784 /* Tracker from Planning Button.mp3 in Resources */,
-				564ECCFD295050BB00EFD784 /* Close Button 2.mp3 in Resources */,
-				564ECCF7295050BB00EFD784 /* Ranking Tapbar Button.mp3 in Resources */,
 				5641B8BA296BFFD6000526EA /* Campfire.mp3 in Resources */,
 				56288977295C626D004EA89E /* GoogleService-Info.plist in Resources */,
 				560328E72943206300E6BCB3 /* fonts_swift5_swiftui.stencil in Resources */,
-				564ECCF9295050BB00EFD784 /* Play Tracker Buton.mp3 in Resources */,
 				569B953B296AD12D00FB48A9 /* SuccessMark.json in Resources */,
-				56288991295E31B9004EA89E /* bamboo.mp3 in Resources */,
 				560328E82943206300E6BCB3 /* swiftui-xcassets-template.stencil in Resources */,
-				564ECCF8295050BB00EFD784 /* Finish Button.mp3 in Resources */,
-				564ECCFA295050BB00EFD784 /* Planning Button.mp3 in Resources */,
 				560328DF29431D8F00E6BCB3 /* swiftlint.yml in Resources */,
 				560328D429431CA400E6BCB3 /* Assets.xcassets in Resources */,
 				560328F92943266700E6BCB3 /* Localizable.strings in Resources */,
 				560328E029431D8F00E6BCB3 /* swiftgen.yml in Resources */,
-				564ECCF6295050BB00EFD784 /* Stop Tracker Button.mp3 in Resources */,
 				560328EA294320D100E6BCB3 /* Colors.xcassets in Resources */,
-				564ECCF5295050BB00EFD784 /* Slide Right.mp3 in Resources */,
 				5641B8B9296BFFD6000526EA /* Nature.mp3 in Resources */,
+				5641B8BF296C41EB000526EA /* MainSound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

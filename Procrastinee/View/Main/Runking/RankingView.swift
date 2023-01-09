@@ -11,12 +11,6 @@ import AVFoundation
 struct RankingView: View {
     @State var isPresentTopRankingView = false
     @StateObject var viewModel: MainViewModel
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Open Prize",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var body: some View {
         VStack(spacing: 0) {
             Text(L10n.Ranking.weekly)
@@ -25,7 +19,6 @@ struct RankingView: View {
                 .padding(.top, 62)
             Button {
                 isPresentTopRankingView = true
-                player?.play()
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
             } label: {

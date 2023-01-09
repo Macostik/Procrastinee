@@ -15,6 +15,7 @@ struct TaskCategoryView: View {
             TaskCategoryHeaderView()
             PickerTaskView(viewModel: viewModel)
             GradientButton(action: {
+                viewModel.mainplayer?.play()
                 action?()
             }, label: {
                 HStack {

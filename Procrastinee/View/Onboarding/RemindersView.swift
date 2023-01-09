@@ -9,14 +9,8 @@ import SwiftUI
 import AVFoundation
 
 struct RemindersView: View {
-    @Environment(\.dependency) private var dependency
+    @StateObject var viewModel: MainViewModel
     var onNextScreen: (() -> Void)?
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var body: some View {
         VStack {
             Text(L10n.Onboarding.keepYourTrack)
@@ -40,8 +34,8 @@ struct RemindersView: View {
             GradientButton(action: {
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
-                player?.play()
-                dependency.provider.notificationService
+                viewModel.mainplayer?.play()
+                viewModel.notificationService
                     .requestNotificationPermission {
                         onNextScreen?()
                     }
@@ -64,6 +58,6 @@ struct RemindersView: View {
 
 struct RemindersView_Previews: PreviewProvider {
     static var previews: some View {
-        RemindersView()
+        RemindersView(viewModel: MainViewModel())
     }
 }

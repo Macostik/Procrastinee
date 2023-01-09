@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import SwiftUI
+import AVFoundation
 
 var smoothAnimationValue: CGFloat = 10
 
@@ -19,7 +20,6 @@ class MainViewModel: ObservableObject {
     @Published var isBreakingTime = false
     @Published var pickerViewSelectedIndex = 0
     @Published var selectedTask = TaskType.sport
-    @Published var isDeepMode = true
     @Published var taskName = ""
     @Published var isTrackStarted = false
     @Published var presentFinishedPopup = false
@@ -77,17 +77,45 @@ class MainViewModel: ObservableObject {
             }
         }
     }
+    @Published var isDeepMode = true {
+        willSet {
+            if newValue {
+                selectedSound = .campfire
+            } else {
+                focusPlayer = nil
+                selectedSound = nil
+            }
+        }
+    }
+    @Published var selectedSound: Sound? = .campfire {
+        willSet {
+            setupPlayer(soundName: newValue?.soundName ?? "")
+        }
+    }
+    @Published var focusPlayer: AVAudioPlayer?
+    @Published var mainplayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "MainSound",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
+    @Published var secondaryPlayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "SecondarySound",
+                                  withExtension: "mp3")
+        return try? AVAudioPlayer(contentsOf: url!,
+                                  fileTypeHint: AVFileType.mp3.rawValue)
+    }()
     var interval: CGFloat = 1
-    private var firebaseService: FirebaseInteractor {
+    var firebaseService: FirebaseInteractor {
         dependency.provider.firebaseService
     }
-    private var notificationService: NotificationInteractor {
+    var notificationService: NotificationInteractor {
         dependency.provider.notificationService
     }
     private var cancellable: Set<AnyCancellable> = []
     init() {
+        setupPlayer(soundName: selectedSound?.soundName ?? "")
         fetchTrackOver()
-        fetchAllTasks()
         observeWorkingTime()
         observeTrackingTime()
         observeBreakingTime()
@@ -114,7 +142,15 @@ class MainViewModel: ObservableObject {
 }
 
 extension MainViewModel {
-    private func fetchAllTasks() {
+    private func setupPlayer(soundName: String?) {
+        focusPlayer = {
+            let url = Bundle.main.url(forResource: soundName,
+                                      withExtension: "mp3")
+            return try? AVAudioPlayer(contentsOf: url!,
+                                      fileTypeHint: AVFileType.mp3.rawValue)
+        }()
+    }
+    func fetchAllTasks() {
         firebaseService.tasks
             .receive(on: DispatchQueue.main)
             .sink { _ in
@@ -159,6 +195,7 @@ extension MainViewModel {
                 } else {
                     timer.upstream.connect().cancel()
                     timeCounterTimer.upstream.connect().cancel()
+                    focusPlayer?.pause()
                 }
             }
             .store(in: &cancellable)

@@ -12,19 +12,12 @@ import AVFoundation
 struct TopRankingView: View {
     @StateObject var viewModel: MainViewModel
     @Environment(\.presentationMode) private var presentationMode
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Close Button 2",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var body: some View {
         VStack(spacing: 0) {
             HStack {
                 Spacer()
                 Button {
                     presentationMode.wrappedValue.dismiss()
-                    player?.play()
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()
                 } label: {

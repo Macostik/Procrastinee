@@ -23,12 +23,18 @@ enum TimePickerData: CaseIterable {
 struct TimePickerView: UIViewRepresentable {
     @Binding var selectedTime: String
     class Coordinator: NSObject, UIPickerViewDelegate, UIPickerViewDataSource {
-        private var hourValue = "1"
-        private var minuteValue = "05"
-        private var period = "AM"
+        var hourValue = "1"
+        var minuteValue = "05"
+        var period = "AM"
+        var didSelectRow = false
         var timeValue: Binding<String>
-        init(timeValue: Binding<String>) {
+        init(timeValue: Binding<String>, didSelectRow: Bool = false) {
             self.timeValue = timeValue
+            self.didSelectRow = didSelectRow
+            let roundDate = roundDate()
+            hourValue = "\(roundDate.0)"
+            minuteValue = "\(roundDate.1)"
+            period = roundDate.2 ? "PM" : "AM"
             timeValue.wrappedValue = hourValue + ":" + minuteValue + " " + period
         }
         func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -48,6 +54,7 @@ struct TimePickerView: UIViewRepresentable {
         func pickerView(_ pickerView: UIPickerView,
                         didSelectRow row: Int,
                         inComponent component: Int) {
+            didSelectRow = true
             let value = TimePickerData.allCases[component].description[row]
             if component == 0 {
                 hourValue = value
@@ -59,6 +66,7 @@ struct TimePickerView: UIViewRepresentable {
             } else {
                 period = value
             }
+            didSelectRow = true
             timeValue.wrappedValue = hourValue + ":" + minuteValue + " " + period
         }
         func pickerView(_ pickerView: UIPickerView,
@@ -86,17 +94,24 @@ struct TimePickerView: UIViewRepresentable {
         return picker
     }
     func updateUIView(_ picker: UIPickerView, context: Context) {
-        let date = Date()
-        let calendar = Calendar.current
-        var hour = calendar.component(.hour, from: date)
-        let isPm = hour > 12
-        hour = isPm ? hour - 12 : hour
-        let minutes = calendar.component(.minute, from: date)
-        let roundedMinute = lrint(Double(minutes) / Double(5)) * 5
-        let firstRow = TimePickerData.hour.description.firstIndex(of: "\(hour)") ?? 0
-        let secondRow = TimePickerData.minute.description.firstIndex(of: "\(roundedMinute)") ?? 0
-        picker.selectRow(firstRow, inComponent: 0, animated: false)
-        picker.selectRow(secondRow, inComponent: 1, animated: false)
-        picker.selectRow(isPm ? 1 : 0, inComponent: 2, animated: false)
+        let roundDate = roundDate()
+        if context.coordinator.didSelectRow == false {
+            let firstRow = TimePickerData.hour.description.firstIndex(of: "\(roundDate.0)") ?? 0
+            let secondRow = TimePickerData.minute.description.firstIndex(of: "\(roundDate.1)") ?? 0
+            picker.selectRow(firstRow, inComponent: 0, animated: false)
+            picker.selectRow(secondRow, inComponent: 1, animated: false)
+            picker.selectRow(roundDate.2 ? 1 : 0, inComponent: 2, animated: false)
+        }
     }
+}
+typealias RoundDateType = (Int, Int, Bool)
+func roundDate() -> RoundDateType {
+    let date = Date()
+    let calendar = Calendar.current
+    var hour = calendar.component(.hour, from: date)
+    let isPm = hour > 12
+    hour = isPm ? hour - 12 : hour
+    let minutes = calendar.component(.minute, from: date)
+    let roundedMinute = lrint(Double(minutes) / Double(5)) * 5
+    return (hour, roundedMinute, isPm)
 }

@@ -9,21 +9,10 @@ import SwiftUI
 import AVFoundation
 
 struct PurchaseView: View {
+    @StateObject var mainViewModel: MainViewModel
     @StateObject var onboardingViewModel: OnboardingViewModel
-    @StateObject var viewModel = PurchaseViewModel()
+    @StateObject var purchaseViewModel = PurchaseViewModel()
     @State var isSelectedPurchaseType: PurchaseType = .month
-    @State var choosePurchasePlayer: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Planning Button",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
-    @State var player: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "Open Prize",
-                                  withExtension: "mp3")
-        return try? AVAudioPlayer(contentsOf: url!,
-                                  fileTypeHint: AVFileType.mp3.rawValue)
-    }()
     var body: some View {
         VStack {
             Image.procrasteeImage
@@ -40,13 +29,13 @@ struct PurchaseView: View {
                 .font(.system(size: 23).weight(.bold))
                 .padding(.bottom, 12)
             HStack(spacing: 3) {
-                ForEach(viewModel.purchaseList,
+                ForEach(purchaseViewModel.purchaseList,
                         id: \.self) { purchase in
                     PurchaseItem(purchase: purchase,
                                  isSelected:
                             .constant(purchase.purchaseType == isSelectedPurchaseType))
                         .onTapGesture {
-                            choosePurchasePlayer?.play()
+                            mainViewModel.secondaryPlayer?.play()
                             isSelectedPurchaseType = purchase.purchaseType
                         }
                 }
@@ -57,7 +46,7 @@ struct PurchaseView: View {
             GradientButton(action: {
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
-                player?.play()
+                mainViewModel.mainplayer?.play()
                 onboardingViewModel.purchaseProduct()
             }, label: {
                 Text(isSelectedPurchaseType == .week ?
@@ -80,7 +69,8 @@ struct PurchaseView: View {
 
 struct PurchaseView_Previews: PreviewProvider {
     static var previews: some View {
-        PurchaseView(onboardingViewModel: OnboardingViewModel())
+        PurchaseView(mainViewModel: MainViewModel(),
+                     onboardingViewModel: OnboardingViewModel())
     }
 }
 

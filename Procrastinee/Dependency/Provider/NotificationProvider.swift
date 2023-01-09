@@ -42,13 +42,14 @@ struct NotificationService: NotificationInteractor {
         content.title = "\(task.name)"
         content.subtitle = "Task has to be started. Return to application please"
         var dateComponents = DateComponents()
-        let removePeriod = task.fromTime.components(separatedBy: " ")
-        let timeComponent = removePeriod.first?.components(separatedBy: ":")
+        let scheduleTime = task.fromTime.components(separatedBy: " ")
+        let timeComponent = scheduleTime.first?.components(separatedBy: ":")
         var hour = Int(timeComponent?.first ?? "") ?? 0
-        let amPm = removePeriod.last ?? ""
+        let amPm = scheduleTime.last ?? ""
         hour = amPm == "AM" ? hour : hour + 12
+        let minute = Int(timeComponent?.last ?? "") ?? 0
         dateComponents.hour = hour
-        dateComponents.minute = Int(timeComponent?.last ?? "")
+        dateComponents.minute = minute
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: UUID().uuidString,
                                             content: content,
