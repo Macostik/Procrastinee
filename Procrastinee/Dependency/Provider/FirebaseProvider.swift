@@ -57,6 +57,7 @@ protocol FirebaseProvider {
 
 class FirebaseService: FirebaseInteractor {
     var currentUser = CurrentValueSubject<User, Error>(.empty)
+    var currentTask = CurrentValueSubject<TaskItem?, Error>(nil)
     var users = CurrentValueSubject<[User], Error>([])
     var tasks = CurrentValueSubject<[TaskItem], Error>([])
     struct SubscriptionID: Hashable {}
@@ -80,10 +81,10 @@ class FirebaseService: FirebaseInteractor {
             .compactMap({ $0.filter({ $0.name == UserDefaults.standard
                 .string(forKey: Constants.userNickname) }).first })
             .sink { _ in
-            } receiveValue: { [weak self] user in
+            } receiveValue: { [unowned self] user in
                 Logger.info("Current user: \(user)")
-                self?.currentUser.value = user
-                self?.fetchAllTasks()
+                self.currentUser.value = user
+                self.fetchAllTasks()
             }
             .store(in: &cancellable)
     }
@@ -91,16 +92,23 @@ class FirebaseService: FirebaseInteractor {
         currentUser
             .sink { _ in
             } receiveValue: { [unowned self] user in
-                guard let tasks = user.tasks else { return }
-                var tasksList: [TaskItem] = []
-                for task in tasks where task.isEmpty == false {
-                    guard let remoteTask = try? JSONDecoder()
-                        .decode(TaskItem.self,
-                                from: task.data(using: .utf8)!)
-                    else { return }
-                    tasksList.append(remoteTask)
+                guard let tasks = user.tasks,
+                      let lastRemoteTaskString = tasks.last else { return }
+                let lastLocalTask = self.tasks.value.last
+                let lastRemoteTask = try? JSONDecoder()
+                    .decode(TaskItem.self,
+                            from: lastRemoteTaskString.data(using: .utf8)!)
+                if lastLocalTask != lastRemoteTask {
+                    var tasksList: [TaskItem] = []
+                    for task in tasks where task.isEmpty == false {
+                        guard let decodeTask = try? JSONDecoder()
+                            .decode(TaskItem.self,
+                                    from: task.data(using: .utf8)!)
+                        else { return }
+                        tasksList.append(decodeTask)
+                    }
+                    self.tasks.value = tasksList
                 }
-                self.tasks.value = tasksList
             }
             .store(in: &cancellable)
     }
@@ -111,8 +119,7 @@ class FirebaseService: FirebaseInteractor {
             "country": country,
             "todayFocused": 0,
             "dailyAverage": 0,
-            "totalWeekly": 0,
-            "tasks": [""]
+            "totalWeekly": 0
         ]) { err in
             if let err = err {
                 Logger.error("Error adding document: \(err)")
@@ -122,6 +129,7 @@ class FirebaseService: FirebaseInteractor {
         }
     }
     func addTask(task: TaskItem) {
+        currentTask.value = task
         if let encodedTask = try? JSONEncoder().encode(task) {
             if let jsonTask = String(data: encodedTask, encoding: .utf8) {
                 let ref = self.dataBase.collection("User")
@@ -145,11 +153,11 @@ class FirebaseService: FirebaseInteractor {
                 Logger.debug("Update tracker user times")
             })
     }
-    func updateFinishedTask(_ task: TaskItem?) {
+    func updateFinishedTask() {
         self.dataBase.collection("User")
             .document(self.currentUser.value.id ?? "")
-            .getDocument { snapshot, _ in
-                guard let task = task,
+            .getDocument {[unowned self]  snapshot, _ in
+                guard var task = self.currentTask.value,
                       let document = snapshot,
                       var tasksList = document.get("tasks") as? [String],
                       let foundTask = tasksList
@@ -158,14 +166,16 @@ class FirebaseService: FirebaseInteractor {
                     .decode(TaskItem.self, from: foundTask.data(using: .utf8)!)
                 else { return }
                 tasksList = tasksList.filter { !$0.contains(task.id) }
+                let time = Date().convertDateToShortTime
                 decodeTask.state = "completed"
-                decodeTask.forTime = Date().convertDateToShortTime
+                decodeTask.forTime = time
                 if let encodeTask = try?  JSONEncoder().encode(decodeTask),
                    let jsonTask = String(data: encodeTask, encoding: .utf8) {
                     tasksList.append(jsonTask)
                     document.reference.updateData([
                         "tasks": tasksList
                     ])
+                    currentTask.value = nil
                 }
             }
     }

@@ -21,6 +21,7 @@ struct TaskPopoverPresenterView: View {
                 }
             }
         }
+        .zIndex(1)
         .animation(.easeInOut, value: viewModel.isTaskCategoryPresented)
         .animation(.easeInOut, value: viewModel.presentFinishedPopup)
         .shadow(color: Color.black.opacity(0.1), radius: 16, y: -10)

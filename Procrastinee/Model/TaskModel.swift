@@ -35,6 +35,11 @@ extension TaskItem {
         dateFormatter.dateFormat = "h:mm a"
         return dateFormatter.date(from: fromTime) ?? Date()
     }
+    static let empty = TaskItem(state: "",
+                                type: "",
+                                name: "",
+                                fromTime: "",
+                                forTime: "")
 }
 struct GroupTask: Hashable {
     var index: Int

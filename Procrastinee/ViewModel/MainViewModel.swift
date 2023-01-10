@@ -44,7 +44,6 @@ class MainViewModel: ObservableObject {
     @Published var timeCounterTimer = Timer.publish(every: 60, on: .main, in: .common).autoconnect()
     @Published var progressDots = 0
     @Published var counterDots: CGFloat = 0
-    @Published var currentTask: TaskItem?
     @Published var groupTask = [
         GroupTask(index: 0, key: "Today", value: [])
     ]
@@ -92,7 +91,6 @@ class MainViewModel: ObservableObject {
             setupPlayer(soundName: newValue?.soundName ?? "")
         }
     }
-  
     @Published var focusPlayer: AVAudioPlayer?
     @Published var mainplayer: AVAudioPlayer? = {
         let url = Bundle.main.url(forResource: "MainSound",
@@ -133,12 +131,10 @@ class MainViewModel: ObservableObject {
         firebaseService.addTask(task: task)
         if inProcess == false {
             notificationService.scheduleNotification(with: task)
-        } else {
-            currentTask = task
         }
     }
     func updateFinishedTask() {
-        firebaseService.updateFinishedTask(currentTask)
+        firebaseService.updateFinishedTask()
         self.updateTrackerTimes()
     }
 }
@@ -154,10 +150,10 @@ extension MainViewModel {
     }
     func fetchAllTasks() {
         firebaseService.tasks
-            .receive(on: DispatchQueue.main)
             .sink { _ in
             } receiveValue: { [weak self] itemList in
-                self?.divideByDate(itemList)
+                print(">> \(itemList.count)")
+                self?.divideByDate(itemList.reversed())
             }
             .store(in: &cancellable)
     }
@@ -168,16 +164,16 @@ extension MainViewModel {
             var listItem: [GroupTask] = []
             for key in listByDate.keys {
                 guard let key = key,
-                      let value = listByDate[key]?
-                    .sorted(by: { $0.convertFromTimeToDate > $1.convertFromTimeToDate })
+                      let value = listByDate[key]
+//                    .sorted(by: { $0.convertFromTimeToDate > $1.convertFromTimeToDate })
                 else { return }
                 let group = GroupTask(index: 0,
                                       key: key,
                                       value: value)
                 listItem.append(group)
             }
-            groupTask =
-            listItem.sorted(by: {($0.value.first?.timestamp ?? 0) > ($1.value.first?.timestamp ?? 0)})
+            groupTask = listItem
+                .sorted(by: {($0.value.first?.timestamp ?? 0) > ($1.value.first?.timestamp ?? 0)})
         }
     }
     private func observeTrackingTime() {

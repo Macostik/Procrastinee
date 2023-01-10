@@ -29,9 +29,8 @@ struct MainContentView: View {
                         .impactOccurred()
                 }
                 .padding(.bottom, 60)
-                .opacity(viewModel.isTaskCategoryPresented || viewModel.presentFinishedPopup ? 0 : 1)
-                .animation(.easeInOut(duration: 0.5), value: viewModel.isTaskCategoryPresented)
-                .animation(.easeInOut(duration: 0.5), value: viewModel.presentFinishedPopup)
+                .animation(.easeInOut, value: viewModel.isTaskCategoryPresented)
+                .animation(.easeInOut, value: viewModel.presentFinishedPopup)
         }
         .fullScreenSize()
     }
