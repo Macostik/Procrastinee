@@ -137,7 +137,8 @@ struct TopListCell: View {
                                 .font(.system(size: 16).weight(.semibold))
                                 .foregroundColor(Color.black)
                                 .padding(.leading, 15)
-                           let flag = user.country.components(separatedBy: " ").first ?? ""
+                           let code = user.country.components(separatedBy: "_").last ?? ""
+                           let flag = emojiFlag(by: code)
                             Text(flag)
                                 .font(.system(size: 16).weight(.semibold))
                                 .foregroundColor(Color.black)

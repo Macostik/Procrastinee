@@ -50,7 +50,7 @@ struct NotificationService: NotificationInteractor {
         let minute = Int(timeComponent?.last ?? "") ?? 0
         dateComponents.hour = hour
         dateComponents.minute = minute
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString,
                                             content: content,
                                             trigger: trigger)

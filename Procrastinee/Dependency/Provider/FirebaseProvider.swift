@@ -166,9 +166,13 @@ class FirebaseService: FirebaseInteractor {
                     .decode(TaskItem.self, from: foundTask.data(using: .utf8)!)
                 else { return }
                 tasksList = tasksList.filter { !$0.contains(task.id) }
-                let time = Date().convertDateToShortTime
+                let fromDate = dateFromTime(fromTime: task.fromTime) ?? Date()
+                let diffs = Calendar.current.dateComponents([.hour, .minute],
+                                                            from: fromDate,
+                                                            to: Date())
+                let forTime = "\(diffs.hour ?? 0)" + ":" +  "\(diffs.minute ?? 0)"
                 decodeTask.state = "completed"
-                decodeTask.forTime = time
+                decodeTask.forTime = forTime
                 if let encodeTask = try?  JSONEncoder().encode(decodeTask),
                    let jsonTask = String(data: encodeTask, encoding: .utf8) {
                     tasksList.append(jsonTask)
@@ -179,4 +183,16 @@ class FirebaseService: FirebaseInteractor {
                 }
             }
     }
+}
+
+func dateFromTime(fromTime: String) -> Date? {
+    let timeComponent = fromTime.components(separatedBy: " ")
+    let isPM = timeComponent.last == "PM"
+    let time = timeComponent.first?.components(separatedBy: ":")
+    var hour = Int(time?.first ?? "") ?? 0
+    hour = isPM ? hour + 12 : hour
+    let minute = Int(time?.last ?? "") ?? 0
+    return  Calendar.current.date(bySettingHour: hour,
+                                     minute: minute,
+                                     second: 0, of: Date())
 }

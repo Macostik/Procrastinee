@@ -35,11 +35,7 @@ class OnboardingViewModel: ObservableObject {
     @Published var isPresentedPurchaseView = false
     @Published var isPresentedProgressBarView = false
     @Published var isCountyPopupPresented = false
-    @Published var selectedCountry = "Ukraine_UA" {
-        willSet {
-            print(">> \(newValue)")
-        }
-    }
+    @Published var selectedCountry = "Ukraine_UA" 
     @Published var isPresentedSuccessCreatingAccount = false {
         willSet {
             if newValue {
