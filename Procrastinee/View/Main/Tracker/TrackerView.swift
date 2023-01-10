@@ -119,10 +119,8 @@ struct TimerView: View {
                             .rotationEffect(Angle(degrees: -CGFloat(viewModel.counter/2) - 45))
                             .onReceive(viewModel.timer) { _ in
                                 if viewModel.hasTaskPaused == false {
-                                    if viewModel.isDeepMode {
-                                        viewModel.focusPlayer?.numberOfLoops = .max
-                                        viewModel.focusPlayer?.play()
-                                    }
+                                    viewModel.focusPlayer?.numberOfLoops = .max
+                                    viewModel.focusPlayer?.play()
                                     viewModel.counterDots += 1
                                     let currentSeconds = Int(viewModel.counterDots * viewModel.interval)
                                     let timePeriod =
@@ -191,7 +189,7 @@ struct TimerView: View {
             }
             .background(Color.backgroundColor)
             .onTapGesture {
-                if viewModel.selectedTrackerType == .stopWatch {
+                if viewModel.isBreakingTime == false {
                     viewModel.hasTaskPaused = true
                     UIImpactFeedbackGenerator(style: .soft)
                         .impactOccurred()

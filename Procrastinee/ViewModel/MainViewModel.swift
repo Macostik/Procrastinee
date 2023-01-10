@@ -24,6 +24,7 @@ class MainViewModel: ObservableObject {
     @Published var presentFinishedPopup = false
     @Published var taskIsOver = false
     @Published var trackIsOver = false
+    @Published var isDeepMode = true
     @Published var selectedTaskTime = ""
     @Published var isTaskCategoryPresented = false
     @Published var weekEndInValue = ""
@@ -76,30 +77,25 @@ class MainViewModel: ObservableObject {
             }
         }
     }
-    @Published var isDeepMode = true {
+  
+    @Published var selectedSound: Sound? = nil {
         willSet {
-            if newValue {
-                selectedSound = .campfire
+            if let newValue = newValue {
+                setupPlayer(soundName: newValue.soundName)
             } else {
                 focusPlayer = nil
-                selectedSound = nil
             }
         }
     }
-    @Published var selectedSound: Sound? = .campfire {
-        willSet {
-            setupPlayer(soundName: newValue?.soundName ?? "")
-        }
-    }
     @Published var focusPlayer: AVAudioPlayer?
-    @Published var mainplayer: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "MainSound",
+    @Published var secondaryPlayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "SecondarySound",
                                   withExtension: "mp3")
         return try? AVAudioPlayer(contentsOf: url!,
                                   fileTypeHint: AVFileType.mp3.rawValue)
     }()
-    @Published var secondaryPlayer: AVAudioPlayer? = {
-        let url = Bundle.main.url(forResource: "SecondarySound",
+    @Published var mainplayer: AVAudioPlayer? = {
+        let url = Bundle.main.url(forResource: "MainSound",
                                   withExtension: "mp3")
         return try? AVAudioPlayer(contentsOf: url!,
                                   fileTypeHint: AVFileType.mp3.rawValue)
@@ -113,7 +109,6 @@ class MainViewModel: ObservableObject {
     }
     private var cancellable: Set<AnyCancellable> = []
     init() {
-        setupPlayer(soundName: selectedSound?.soundName ?? "")
         fetchAllTasks()
         fetchTrackOver()
         observeWorkingTime()
@@ -152,7 +147,6 @@ extension MainViewModel {
         firebaseService.tasks
             .sink { _ in
             } receiveValue: { [weak self] itemList in
-                print(">> \(itemList.count)")
                 self?.divideByDate(itemList.reversed())
             }
             .store(in: &cancellable)

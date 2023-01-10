@@ -106,11 +106,10 @@ struct FocusSoundsView: View {
                 ForEach(Sound.allCases, id: \.self) { sound in
                     SoundView(sound: sound, selected: sound == viewModel.selectedSound)
                         .onTapGesture {
-                            if viewModel.isDeepMode {
-                                viewModel.selectedSound = sound
-                                viewModel.secondaryPlayer?.play()
-                                UIImpactFeedbackGenerator(style: .soft).impactOccurred()
-                            }
+                            viewModel.selectedSound =
+                            viewModel.selectedSound == sound ? nil : sound
+                            viewModel.secondaryPlayer?.play()
+                            UIImpactFeedbackGenerator(style: .soft).impactOccurred()
                         }
                 }
             }
