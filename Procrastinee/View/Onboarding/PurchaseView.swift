@@ -26,6 +26,7 @@ struct PurchaseView: View {
                 .scaledToFit()
                 .padding(.bottom, 27)
             Text(L10n.Onboarding.chooseYourPlan)
+                .foregroundColor(Color.black)
                 .font(.system(size: 23).weight(.bold))
                 .padding(.bottom, 12)
             HStack(spacing: 3) {
@@ -84,12 +85,16 @@ struct PurchaseItem: View {
                     RoundedRectangle(cornerRadius: 7)
                     .stroke(gradientVertical,
                             lineWidth: isSelected ? 2 : 1)
+                    .background(Color.backgroundColor)
+                    .cornerRadius(7)
+                    .shadow(color: Color.black.opacity(0.1), radius: 7)
                 } else {
                     RoundedRectangle(cornerRadius: 7)
                         .stroke(Color.grayColor,
                                 lineWidth: isSelected ? 2 : 1)
                 }
-            }.overlay {
+            }
+            .overlay {
                     VStack {
                         Text(purchase.purchaseType.description)
                             .font(.system(size: 17).weight(.semibold))

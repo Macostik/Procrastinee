@@ -15,12 +15,14 @@ struct SuccessCreatingAccountView: View {
             LottieView(animationName: "SuccessMark",
                        loopMode: .playOnce,
                        contentMode: .scaleAspectFit)
+            .frame(width: 200, height: 200)
             Text(L10n.Onboarding.accountCreateSuccess)
                 .font(.system(size: 14).weight(.medium))
                 .foregroundColor(Color.onboardingTextColor)
                 .multilineTextAlignment(.center)
                 .padding(.top, 6)
                 .padding(.horizontal, 116)
+                .offset(y: -80)
         }
         .onChange(of: viewModel.isPresentedPurchaseView,
                   perform: { value in

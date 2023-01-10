@@ -43,13 +43,26 @@ struct CreateProfileView: View {
                                     onboardingViewModel.isCountyPopupPresented = true
                                 }
                             } label: {
-                                let code = onboardingViewModel.selectedCountry.components(separatedBy: "_").last ?? ""
-                                Text(emojiFlag(by: code))
+                                RoundedRectangle(cornerRadius: 5)
+                                    .frame(width: 48, height: 48)
+                                    .foregroundColor(Color.clear)
+                                    .overlay {
+                                        HStack {
+                                            let code = onboardingViewModel
+                                                .selectedCountry
+                                                .components(separatedBy: "_").last ?? ""
+                                            Text(emojiFlag(by: code))
+                                            Image.countrySelectedIcon
+                                            
+                                        }
+                                    }
+                                    .padding(3)
                             }
-                            Image.countrySelectedIcon
+                           
                             Divider()
                                 .padding(.vertical, 19)
-                                .padding(.horizontal, 11)
+                                .padding(.trailing, 11)
+                                .padding(.leading, -5)
                             TextField(L10n.Onboarding.nickname, text: $onboardingViewModel.nickName)
                                 .foregroundColor(Color.onboardingTextColor)
                                 .font(.system(size: 18))
