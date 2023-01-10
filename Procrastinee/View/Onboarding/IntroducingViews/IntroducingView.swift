@@ -21,11 +21,33 @@ struct IntroducingView: View {
                             Group {
                                 FirstIntroductionView()
                                     .id(IntroducingViewType.first)
+                                    .onAppear {
+                                        DispatchQueue.main
+                                            .asyncAfter(deadline: .now() + 1.5,
+                                                                      execute: {
+                                            viewModel.isShownContinueButton = true
+                                        })
+                                    }
                                 SecondIntroductionView()
                                     .id(IntroducingViewType.second)
+                                    .onAppear {
+                                        DispatchQueue.main
+                                            .asyncAfter(deadline: .now() + 1.5,
+                                                                      execute: {
+                                            viewModel.isShownContinueButton = true
+                                        })
+                                    }
                                 ThirdIntroductionView()
                                     .id(IntroducingViewType.third)
+                                    .onAppear {
+                                        DispatchQueue.main
+                                            .asyncAfter(deadline: .now() + 1.5,
+                                                                      execute: {
+                                            viewModel.isShownContinueButton = true
+                                        })
+                                    }
                             }
+                            
                             .frame(width: proxy.size.width,
                                    height: proxy.size.height)
                         }
@@ -37,7 +59,7 @@ struct IntroducingView: View {
                     }
                 }
             }
-            FooterIntroducingView {
+            FooterIntroducingView(viewModel: viewModel) {
                 viewModel.mainplayer?.play()
                 UIImpactFeedbackGenerator(style: .soft)
                     .impactOccurred()
@@ -57,12 +79,14 @@ struct IntroducingView_Previews: PreviewProvider {
 }
 
 struct FooterIntroducingView: View {
+    @StateObject var viewModel: MainViewModel
     @State var selected = 1
     var onNextScreen: (() -> Void)?
     var body: some View {
         VStack(spacing: 0) {
             GradientButton(action: {
                 onNextScreen?()
+                viewModel.isShownContinueButton = false
                 selected += 1
             }, label: {
                 HStack {
@@ -73,6 +97,7 @@ struct FooterIntroducingView: View {
                             .weight(.bold))
                 }
             })
+            .opacity(viewModel.isShownContinueButton ? 1 : 0)
             .padding(.horizontal, 23)
             PageIndicatorView(selected: $selected)
                 .padding(.top, 18)

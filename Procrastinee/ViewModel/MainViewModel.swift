@@ -36,6 +36,7 @@ class MainViewModel: ObservableObject {
     @Published var isReverseAnimation = false
     @Published var trackAnimationFinished = false
     @Published var isCheckIn = false
+    @Published var isShownContinueButton = false
     @Published var todayFocusedValue = 0
     @Published var dailyAverageValue = 0
     @Published var pickerViewSelectedIndex = 0
